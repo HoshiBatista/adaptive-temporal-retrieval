@@ -1,0 +1,2437 @@
+{
+  "candidate_pool": {
+    "candidates_per_query": 100,
+    "frozen_pool_sha256": "3b8ed06e05d0357f4d889fcb2b4fcb4d9ca2aba4bdf9bcefa188e5fe8b7913ea",
+    "no_test_access": true,
+    "query_count": 100,
+    "score_cache": "run/run.trec; one raw cross-encoder logit per frozen query/document pair",
+    "source_manifest_sha256": "fef933fc67bb78de87ff0c5bcfcb4ba7260dcbe83ba0b53e2185b5e83b7d51dc",
+    "source_run_sha256": "8df0d79f34035189c5aa385ea57794b18aa10cee8cd2db51a4d13f7f3700d6ab",
+    "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646"
+  },
+  "config": {
+    "baseline": {
+      "b": 0.75,
+      "bootstrap_samples": 2000,
+      "epsilon": 0.25,
+      "failure_examples": 5,
+      "k1": 1.5,
+      "method": "fixed_cross_encoder",
+      "name": "fixed_cross_encoder_m3_validation100_v1",
+      "partition": "validation",
+      "query_limit": 100,
+      "seed": 1729,
+      "tie_break": "score_desc_doc_id_asc",
+      "tokenizer": "python_str_split_v1",
+      "top_k": 100,
+      "warmup_queries": 3
+    },
+    "batch_size": 16,
+    "candidate_manifest_sha256": "fef933fc67bb78de87ff0c5bcfcb4ba7260dcbe83ba0b53e2185b5e83b7d51dc",
+    "max_length": 512,
+    "model_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "revision": "1427fd652930e4ba29e8149678df786c240d8825"
+  },
+  "fast_summary": {
+    "index_build_ms": 308.4636679996038,
+    "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+    "metrics": {
+      "ndcg_at_10": {
+        "mean": 0.2076845949018348,
+        "query_bootstrap_95_percent_interval": [
+          0.15033191154951472,
+          0.2662136336339977
+        ]
+      },
+      "recall_at_10": {
+        "mean": 0.2608333333333333,
+        "query_bootstrap_95_percent_interval": [
+          0.195,
+          0.32585416666666656
+        ]
+      },
+      "recall_at_100": {
+        "mean": 0.415,
+        "query_bootstrap_95_percent_interval": [
+          0.33997916666666655,
+          0.4925208333333332
+        ]
+      },
+      "recall_at_20": {
+        "mean": 0.31,
+        "query_bootstrap_95_percent_interval": [
+          0.2383333333333333,
+          0.38668749999999985
+        ]
+      },
+      "reference_prefix_ndcg_at_10": {
+        "mean": 0.28686458804684095,
+        "query_bootstrap_95_percent_interval": [
+          0.2146777375228565,
+          0.3570818024744488
+        ]
+      }
+    },
+    "queries_with_incomplete_top10": 88,
+    "queries_with_no_gold_in_top100": 43,
+    "query_count": 100,
+    "retrieval_timing_ms": {
+      "concurrency": 1,
+      "mean": 88.5901043800095,
+      "p50": 89.05065800036027,
+      "p95": 120.32090339930619,
+      "scope": "sequential hybrid_rrf; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+    }
+  },
+  "incremental_pairs_per_second": 667.9910855110612,
+  "incremental_queries_per_second": 6.679910855110612,
+  "mlflow_run_id": "1419b5ef303b4611a38e40a9f61cdfa9",
+  "paired_deltas_vs_hybrid": {
+    "ndcg_at_10": {
+      "best_query_ids": [
+        1868,
+        758,
+        200,
+        5,
+        1214
+      ],
+      "improved": 7,
+      "mean_delta": -0.09770282905669259,
+      "paired_query_bootstrap_95_percent_interval": [
+        -0.14418888413261297,
+        -0.05664078325964191
+      ],
+      "regressed": 33,
+      "unchanged": 60,
+      "worst_query_ids": [
+        2351,
+        2313,
+        2763,
+        2487,
+        1040
+      ]
+    },
+    "recall_at_10": {
+      "best_query_ids": [
+        200,
+        2969,
+        2949,
+        2922,
+        2876
+      ],
+      "improved": 1,
+      "mean_delta": -0.125,
+      "paired_query_bootstrap_95_percent_interval": [
+        -0.17999999999999997,
+        -0.07666666666666666
+      ],
+      "regressed": 26,
+      "unchanged": 73,
+      "worst_query_ids": [
+        2313,
+        2351,
+        2763,
+        1197,
+        2017
+      ]
+    },
+    "recall_at_100": {
+      "best_query_ids": [
+        2998,
+        2969,
+        2949,
+        2922,
+        2876
+      ],
+      "improved": 0,
+      "mean_delta": 0.0,
+      "paired_query_bootstrap_95_percent_interval": [
+        0.0,
+        0.0
+      ],
+      "regressed": 0,
+      "unchanged": 100,
+      "worst_query_ids": [
+        3,
+        5,
+        62,
+        91,
+        118
+      ]
+    },
+    "recall_at_20": {
+      "best_query_ids": [
+        2654,
+        2969,
+        2949,
+        2922,
+        2876
+      ],
+      "improved": 1,
+      "mean_delta": -0.14083333333333334,
+      "paired_query_bootstrap_95_percent_interval": [
+        -0.1933541666666667,
+        -0.09
+      ],
+      "regressed": 29,
+      "unchanged": 70,
+      "worst_query_ids": [
+        1443,
+        1959,
+        2313,
+        2763,
+        1197
+      ]
+    }
+  },
+  "replay_verification": {
+    "manifest_sha256": "f6adde897f21175dae7dab2e75fb38ea62527bd5e644e95fbf099e44d4cd970a",
+    "profile": {
+      "asset_sha256": {
+        "config.json": "cc2cfe51aa3fd759d21d21acf5dfd6994aa67a3c9210636d22e143699d336c77",
+        "model.safetensors": "5daeca2481a76b5976a2bdc32f0a78532b6716da4f8cd3ff59460ef8d2f359b4",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+        "tokenizer.json": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626",
+        "tokenizer_config.json": "e7fbfbfa6347b4e414c1cee50d142e2c2f9a895dad68b068ae83a8b564c3837e"
+      },
+      "attention": "eager",
+      "batch_size": 16,
+      "call_timings_including_warmup": [
+        {
+          "cpu_tokenization_ms": 20.23674800148001,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 512.5448170019808
+        },
+        {
+          "cpu_tokenization_ms": 18.670755001949146,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 87.78980499482714
+        },
+        {
+          "cpu_tokenization_ms": 18.05432000037399,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 86.99063199856027
+        },
+        {
+          "cpu_tokenization_ms": 18.18672199988214,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 90.0160289984342
+        },
+        {
+          "cpu_tokenization_ms": 21.092434997626697,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 167.87498099984077
+        },
+        {
+          "cpu_tokenization_ms": 19.424210000579478,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 95.49696799876983
+        },
+        {
+          "cpu_tokenization_ms": 21.376504000727437,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 152.35449299871107
+        },
+        {
+          "cpu_tokenization_ms": 18.02201800092007,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 93.3171359993139
+        },
+        {
+          "cpu_tokenization_ms": 19.252666001193575,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 127.51754300006723
+        },
+        {
+          "cpu_tokenization_ms": 19.50098099950992,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 116.9727620035701
+        },
+        {
+          "cpu_tokenization_ms": 18.86020999700122,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 99.36109699810913
+        },
+        {
+          "cpu_tokenization_ms": 17.883668000649777,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.53726400130836
+        },
+        {
+          "cpu_tokenization_ms": 18.76852000168583,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 146.2812509998912
+        },
+        {
+          "cpu_tokenization_ms": 17.230536997885793,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 76.52881599824468
+        },
+        {
+          "cpu_tokenization_ms": 19.387888998608105,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 99.72619700420182
+        },
+        {
+          "cpu_tokenization_ms": 18.766114000754897,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 118.00920899804623
+        },
+        {
+          "cpu_tokenization_ms": 19.61143599874049,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 106.72493300262431
+        },
+        {
+          "cpu_tokenization_ms": 21.307262004484073,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 210.14848499908112
+        },
+        {
+          "cpu_tokenization_ms": 18.872049000492552,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 104.12920900125755
+        },
+        {
+          "cpu_tokenization_ms": 18.62360099949001,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 128.99063299664704
+        },
+        {
+          "cpu_tokenization_ms": 18.76697899751889,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 115.35725700014154
+        },
+        {
+          "cpu_tokenization_ms": 18.824957001925213,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 77.09803299803752
+        },
+        {
+          "cpu_tokenization_ms": 18.715936999797123,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 86.10198700080218
+        },
+        {
+          "cpu_tokenization_ms": 20.02861999972083,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 108.9590319988929
+        },
+        {
+          "cpu_tokenization_ms": 18.534876000558143,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 84.2701110013877
+        },
+        {
+          "cpu_tokenization_ms": 19.157388001985964,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 107.39458100033517
+        },
+        {
+          "cpu_tokenization_ms": 18.854235000617336,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 92.49244000238832
+        },
+        {
+          "cpu_tokenization_ms": 19.233836999774212,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 125.95314499776578
+        },
+        {
+          "cpu_tokenization_ms": 20.041162000779877,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 142.2394549990713
+        },
+        {
+          "cpu_tokenization_ms": 18.507361000956735,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 106.83914700348396
+        },
+        {
+          "cpu_tokenization_ms": 19.00721399761096,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 112.28815699723782
+        },
+        {
+          "cpu_tokenization_ms": 21.428822003144887,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 167.4131040017528
+        },
+        {
+          "cpu_tokenization_ms": 19.932068998969044,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 107.86460599774728
+        },
+        {
+          "cpu_tokenization_ms": 19.8310389987455,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 113.98945899964019
+        },
+        {
+          "cpu_tokenization_ms": 18.68324300085078,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 123.23387600008573
+        },
+        {
+          "cpu_tokenization_ms": 20.15414699963003,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 111.29999900003895
+        },
+        {
+          "cpu_tokenization_ms": 20.853606998571195,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 146.5025460020115
+        },
+        {
+          "cpu_tokenization_ms": 19.656430995382834,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 112.90254900086438
+        },
+        {
+          "cpu_tokenization_ms": 18.958008997287834,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 106.45281500183046
+        },
+        {
+          "cpu_tokenization_ms": 19.045814999117283,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 90.28370600208291
+        },
+        {
+          "cpu_tokenization_ms": 19.391129999348777,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 110.46178699871234
+        },
+        {
+          "cpu_tokenization_ms": 20.392815000377595,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.96537900083058
+        },
+        {
+          "cpu_tokenization_ms": 21.519217001696234,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 172.16767599711602
+        },
+        {
+          "cpu_tokenization_ms": 21.89161899877945,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 168.15712100105884
+        },
+        {
+          "cpu_tokenization_ms": 19.99510599671339,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 117.97558699799993
+        },
+        {
+          "cpu_tokenization_ms": 20.114699998885044,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 139.11251799981983
+        },
+        {
+          "cpu_tokenization_ms": 20.739923000292038,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 170.71787900022173
+        },
+        {
+          "cpu_tokenization_ms": 20.70642499893438,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 150.5144749989995
+        },
+        {
+          "cpu_tokenization_ms": 20.98969699909503,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 179.22202600129822
+        },
+        {
+          "cpu_tokenization_ms": 20.49061899924709,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 168.1855720016756
+        },
+        {
+          "cpu_tokenization_ms": 21.672910001143464,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 202.92632600103389
+        },
+        {
+          "cpu_tokenization_ms": 20.29478099939297,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 144.07911600210355
+        },
+        {
+          "cpu_tokenization_ms": 18.87725800042972,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.43195999626187
+        },
+        {
+          "cpu_tokenization_ms": 21.17467899734038,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 157.18060200561013
+        },
+        {
+          "cpu_tokenization_ms": 19.509344001562567,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 105.5382290014677
+        },
+        {
+          "cpu_tokenization_ms": 18.871943997510243,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 108.23072199855233
+        },
+        {
+          "cpu_tokenization_ms": 20.03692200014484,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 120.4909799998859
+        },
+        {
+          "cpu_tokenization_ms": 18.326800998693216,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 121.81311899985303
+        },
+        {
+          "cpu_tokenization_ms": 20.45981099581695,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 128.71250399985001
+        },
+        {
+          "cpu_tokenization_ms": 19.23349700155086,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 109.45072499816888
+        },
+        {
+          "cpu_tokenization_ms": 20.7444609986851,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 152.15411400276935
+        },
+        {
+          "cpu_tokenization_ms": 22.14744099910604,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 221.96735000034096
+        },
+        {
+          "cpu_tokenization_ms": 20.022778002385166,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 129.0152970013878
+        },
+        {
+          "cpu_tokenization_ms": 20.290845999625162,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 105.02520900081436
+        },
+        {
+          "cpu_tokenization_ms": 18.23888199942303,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 77.39844400020957
+        },
+        {
+          "cpu_tokenization_ms": 19.430424999882234,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 112.25740300142206
+        },
+        {
+          "cpu_tokenization_ms": 20.427255001777667,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 136.96866699865495
+        },
+        {
+          "cpu_tokenization_ms": 18.789597997965757,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 83.54516600229545
+        },
+        {
+          "cpu_tokenization_ms": 21.475030996953137,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 165.74457399838138
+        },
+        {
+          "cpu_tokenization_ms": 20.42608299962012,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 148.45518199945218
+        },
+        {
+          "cpu_tokenization_ms": 19.09188999889011,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 91.60608200181741
+        },
+        {
+          "cpu_tokenization_ms": 20.863087001998792,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 179.709203001039
+        },
+        {
+          "cpu_tokenization_ms": 19.5729230017605,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 94.2502770012652
+        },
+        {
+          "cpu_tokenization_ms": 21.39701700252772,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 171.7661139991833
+        },
+        {
+          "cpu_tokenization_ms": 21.263283997541294,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 132.78749300116033
+        },
+        {
+          "cpu_tokenization_ms": 20.591495998814935,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 145.83447000222804
+        },
+        {
+          "cpu_tokenization_ms": 19.304754998302087,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 96.4934279982117
+        },
+        {
+          "cpu_tokenization_ms": 20.69158499762125,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 127.92841799819143
+        },
+        {
+          "cpu_tokenization_ms": 19.011151998711284,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 106.6327589978755
+        },
+        {
+          "cpu_tokenization_ms": 21.446121001645224,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 152.9618529984873
+        },
+        {
+          "cpu_tokenization_ms": 20.55779399961466,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 136.17312100359413
+        },
+        {
+          "cpu_tokenization_ms": 21.56983900204068,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 171.15494700010458
+        },
+        {
+          "cpu_tokenization_ms": 20.45352700042713,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 161.3781830001244
+        },
+        {
+          "cpu_tokenization_ms": 19.53015699837124,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 125.07479500163754
+        },
+        {
+          "cpu_tokenization_ms": 19.481502000417095,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 96.225097997376
+        },
+        {
+          "cpu_tokenization_ms": 17.74261600075988,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 103.27906099701067
+        },
+        {
+          "cpu_tokenization_ms": 18.874979001338943,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 115.1454589999048
+        },
+        {
+          "cpu_tokenization_ms": 19.95439699749113,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 137.5602140014962
+        },
+        {
+          "cpu_tokenization_ms": 19.721819000551477,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 116.92260199561133
+        },
+        {
+          "cpu_tokenization_ms": 21.060412997030653,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 153.4805180017429
+        },
+        {
+          "cpu_tokenization_ms": 19.669439001518185,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 92.99324200401315
+        },
+        {
+          "cpu_tokenization_ms": 19.809701001577196,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 146.13807599926076
+        },
+        {
+          "cpu_tokenization_ms": 19.496798995533027,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 131.32106099510565
+        },
+        {
+          "cpu_tokenization_ms": 19.307376998767722,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 105.96293599883211
+        },
+        {
+          "cpu_tokenization_ms": 18.919518999609863,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 112.47456400087685
+        },
+        {
+          "cpu_tokenization_ms": 20.486103003349854,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 140.22435900187702
+        },
+        {
+          "cpu_tokenization_ms": 20.94124500035832,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 182.95963600030518
+        },
+        {
+          "cpu_tokenization_ms": 20.555156999762403,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 144.92675400106236
+        },
+        {
+          "cpu_tokenization_ms": 20.95048199953453,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 147.529317997396
+        },
+        {
+          "cpu_tokenization_ms": 20.358918000056292,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 149.74049799820932
+        },
+        {
+          "cpu_tokenization_ms": 18.9083329969435,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 93.68715199707367
+        },
+        {
+          "cpu_tokenization_ms": 19.266007002443075,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 119.38699999882374
+        },
+        {
+          "cpu_tokenization_ms": 19.23578199966869,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 126.22927200027334
+        }
+      ],
+      "component_timing_scope": "wall clock; forward includes CUDA work, CPU dispatch and transfers; not kernel-only GPU time; warmup calls precede measured calls",
+      "cuda_runtime": "12.8",
+      "dtype": "float32",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "input": "query/text pairs; no prefixes, titles, timestamps or qrels",
+      "korean_scope": "transfer; absent from documented mMARCO supervised languages",
+      "length_count_scope": "potential truncation; not exact truncated count",
+      "license": "Apache-2.0 (model card)",
+      "loading_info": {
+        "legacy_position_buffer_checked": true,
+        "missing_keys": [],
+        "unexpected_keys": [
+          "roberta.embeddings.position_ids"
+        ]
+      },
+      "max_length": 512,
+      "model_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "padding": "dynamic_per_batch",
+      "pair_count_including_warmup": 10300,
+      "pairs_at_max_length_including_warmup": 0,
+      "peak_allocated_bytes": 822993920,
+      "peak_reserved_bytes": 1614807040,
+      "resident_models": "reranker only; frozen candidates; encoder not loaded",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "score": "single_raw_logit; higher_is_better; identity_activation",
+      "seed": 1729,
+      "tf32": false,
+      "truncation": "longest_first"
+    },
+    "quality_candidate_pools_paired_deltas_identical": true,
+    "rankings_scores_qrels_config_byte_identical": true,
+    "source_snapshot_sha256": "677d81d33839f72a20fb63c07a8e75a09051970a7b82e4dc6f98537539fa2142",
+    "timing_ms": {
+      "concurrency": 1,
+      "mean": 147.12416439999288,
+      "p50": 139.75441499951557,
+      "p95": 200.62808345082885,
+      "scope": "incremental rerank only: frozen candidate lookup, text lookup, pair tokenization, CPU/GPU transfers, synchronized CUDA forward, scalar scores and sorting; concurrency 1; excludes fast retrieval, model load, warmup, metrics, file writes and tracking"
+    }
+  },
+  "reranker_profile": {
+    "asset_sha256": {
+      "config.json": "cc2cfe51aa3fd759d21d21acf5dfd6994aa67a3c9210636d22e143699d336c77",
+      "model.safetensors": "5daeca2481a76b5976a2bdc32f0a78532b6716da4f8cd3ff59460ef8d2f359b4",
+      "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+      "special_tokens_map.json": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+      "tokenizer.json": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626",
+      "tokenizer_config.json": "e7fbfbfa6347b4e414c1cee50d142e2c2f9a895dad68b068ae83a8b564c3837e"
+    },
+    "attention": "eager",
+    "batch_size": 16,
+    "call_timings_including_warmup": [
+      {
+        "cpu_tokenization_ms": 20.18721599597484,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 823.7254960004066
+      },
+      {
+        "cpu_tokenization_ms": 17.677956999250455,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 86.0044659984851
+      },
+      {
+        "cpu_tokenization_ms": 18.25989499411662,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 86.7015839976375
+      },
+      {
+        "cpu_tokenization_ms": 18.66717800112383,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 85.90399599597731
+      },
+      {
+        "cpu_tokenization_ms": 20.334381002612645,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 165.0686590000987
+      },
+      {
+        "cpu_tokenization_ms": 18.776203996822005,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 92.85501200065482
+      },
+      {
+        "cpu_tokenization_ms": 19.886764999682782,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 147.6300850026746
+      },
+      {
+        "cpu_tokenization_ms": 17.816938998294063,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 92.06852799434273
+      },
+      {
+        "cpu_tokenization_ms": 19.430435999311158,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 123.40492399744107
+      },
+      {
+        "cpu_tokenization_ms": 19.34543199968175,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 114.06295500091801
+      },
+      {
+        "cpu_tokenization_ms": 19.003450999662164,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 96.95888799797103
+      },
+      {
+        "cpu_tokenization_ms": 18.68455099975108,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 98.9657790032652
+      },
+      {
+        "cpu_tokenization_ms": 19.62488200115331,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 145.80272100101865
+      },
+      {
+        "cpu_tokenization_ms": 18.3527499975753,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 74.65693000085594
+      },
+      {
+        "cpu_tokenization_ms": 20.188846998280496,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 101.15478499938035
+      },
+      {
+        "cpu_tokenization_ms": 19.199081003534957,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 117.24422200131812
+      },
+      {
+        "cpu_tokenization_ms": 18.58932499817456,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 105.04905000016151
+      },
+      {
+        "cpu_tokenization_ms": 23.08316399648902,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 207.6521379967744
+      },
+      {
+        "cpu_tokenization_ms": 17.688173000351526,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 101.13305800041417
+      },
+      {
+        "cpu_tokenization_ms": 19.70171500215656,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 128.89815499875112
+      },
+      {
+        "cpu_tokenization_ms": 18.64710999871022,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 117.24304500239668
+      },
+      {
+        "cpu_tokenization_ms": 17.11138299833692,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 77.47647399810376
+      },
+      {
+        "cpu_tokenization_ms": 17.952173999219667,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 86.58651000041573
+      },
+      {
+        "cpu_tokenization_ms": 19.382781996682752,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 109.21203599536966
+      },
+      {
+        "cpu_tokenization_ms": 18.898978996730875,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 83.5859269991488
+      },
+      {
+        "cpu_tokenization_ms": 18.6653499968088,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 107.59686100027466
+      },
+      {
+        "cpu_tokenization_ms": 18.554524998762645,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 93.28500700030418
+      },
+      {
+        "cpu_tokenization_ms": 21.505952996449196,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 135.2254429984896
+      },
+      {
+        "cpu_tokenization_ms": 21.566819998042774,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 151.42255000137084
+      },
+      {
+        "cpu_tokenization_ms": 20.733051998831797,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 114.12307299906388
+      },
+      {
+        "cpu_tokenization_ms": 20.853774998613517,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 121.127462003642
+      },
+      {
+        "cpu_tokenization_ms": 22.751649003112107,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 175.26540200560703
+      },
+      {
+        "cpu_tokenization_ms": 20.83986299658136,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 111.782530997516
+      },
+      {
+        "cpu_tokenization_ms": 20.773104995896574,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 116.80793400410039
+      },
+      {
+        "cpu_tokenization_ms": 21.16243699856568,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 126.09593699744437
+      },
+      {
+        "cpu_tokenization_ms": 21.08356700045988,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 114.05633300091722
+      },
+      {
+        "cpu_tokenization_ms": 22.190452000359073,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 150.65796700037026
+      },
+      {
+        "cpu_tokenization_ms": 19.82872600092378,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 116.02699400100391
+      },
+      {
+        "cpu_tokenization_ms": 20.004757001515827,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 108.63860700010264
+      },
+      {
+        "cpu_tokenization_ms": 20.402539004862774,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 95.39816500364395
+      },
+      {
+        "cpu_tokenization_ms": 19.9958119992516,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 116.78098500306078
+      },
+      {
+        "cpu_tokenization_ms": 20.32462100032717,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 106.20749900226656
+      },
+      {
+        "cpu_tokenization_ms": 22.667052002361743,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 179.83919300058915
+      },
+      {
+        "cpu_tokenization_ms": 22.106268002971774,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 176.07498499819485
+      },
+      {
+        "cpu_tokenization_ms": 20.233116001691087,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 122.9621570018935
+      },
+      {
+        "cpu_tokenization_ms": 21.859794000192778,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 148.051383001075
+      },
+      {
+        "cpu_tokenization_ms": 21.686548001525807,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 180.64988399964932
+      },
+      {
+        "cpu_tokenization_ms": 22.167560000525555,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 159.20281500075362
+      },
+      {
+        "cpu_tokenization_ms": 21.73984899854986,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 190.83881399637903
+      },
+      {
+        "cpu_tokenization_ms": 21.88543600095727,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 178.9620420004212
+      },
+      {
+        "cpu_tokenization_ms": 22.961370998018538,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 213.6614799983363
+      },
+      {
+        "cpu_tokenization_ms": 20.397652999236016,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 150.2479940008925
+      },
+      {
+        "cpu_tokenization_ms": 19.578182997065596,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 104.68270700221183
+      },
+      {
+        "cpu_tokenization_ms": 21.228846000667545,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 163.83771199980401
+      },
+      {
+        "cpu_tokenization_ms": 20.25696399869048,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 108.97305700018478
+      },
+      {
+        "cpu_tokenization_ms": 20.43629299987515,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 113.02033100218978
+      },
+      {
+        "cpu_tokenization_ms": 20.63049400021555,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 127.19647299854842
+      },
+      {
+        "cpu_tokenization_ms": 20.16392899895436,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 127.07178400160046
+      },
+      {
+        "cpu_tokenization_ms": 19.45845799673407,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 133.39542300127505
+      },
+      {
+        "cpu_tokenization_ms": 19.88220700150123,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 111.29206099758449
+      },
+      {
+        "cpu_tokenization_ms": 22.02978700006497,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 156.67932399810525
+      },
+      {
+        "cpu_tokenization_ms": 21.575121998466784,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 227.00103799979843
+      },
+      {
+        "cpu_tokenization_ms": 20.13896500102419,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 132.99608000306762
+      },
+      {
+        "cpu_tokenization_ms": 21.470736002811464,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 107.15029200218851
+      },
+      {
+        "cpu_tokenization_ms": 18.662186001165537,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 82.66369400007534
+      },
+      {
+        "cpu_tokenization_ms": 20.001607002996025,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 117.67400500320946
+      },
+      {
+        "cpu_tokenization_ms": 21.882431001358782,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 143.9986229997885
+      },
+      {
+        "cpu_tokenization_ms": 19.270082000730326,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 87.65618899997207
+      },
+      {
+        "cpu_tokenization_ms": 22.24445200045011,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 169.3408349983656
+      },
+      {
+        "cpu_tokenization_ms": 21.71593999992183,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 155.6416219973471
+      },
+      {
+        "cpu_tokenization_ms": 20.581008997396566,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 94.60053400107427
+      },
+      {
+        "cpu_tokenization_ms": 22.484733004603186,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 188.8279800004966
+      },
+      {
+        "cpu_tokenization_ms": 19.660167996335076,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 100.5309420015692
+      },
+      {
+        "cpu_tokenization_ms": 22.124063998489873,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 181.25462999887532
+      },
+      {
+        "cpu_tokenization_ms": 22.56599400061532,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 141.80217100147274
+      },
+      {
+        "cpu_tokenization_ms": 20.791516995814163,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 153.7557450010354
+      },
+      {
+        "cpu_tokenization_ms": 20.231765001881286,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 101.40297099678719
+      },
+      {
+        "cpu_tokenization_ms": 21.331144003852387,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 133.7925699990592
+      },
+      {
+        "cpu_tokenization_ms": 19.34368499860284,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 103.99519999918994
+      },
+      {
+        "cpu_tokenization_ms": 20.355241998913698,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 149.22012699935294
+      },
+      {
+        "cpu_tokenization_ms": 19.49227799923392,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 132.71132599948032
+      },
+      {
+        "cpu_tokenization_ms": 20.38580800035561,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 166.8528430036531
+      },
+      {
+        "cpu_tokenization_ms": 20.34828199975891,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 157.61499099789944
+      },
+      {
+        "cpu_tokenization_ms": 19.626703002359136,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 121.0231160002877
+      },
+      {
+        "cpu_tokenization_ms": 19.18813599877467,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 94.81658199729281
+      },
+      {
+        "cpu_tokenization_ms": 19.2398149993096,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 101.30658699745254
+      },
+      {
+        "cpu_tokenization_ms": 19.261518000348588,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 113.57134200261498
+      },
+      {
+        "cpu_tokenization_ms": 18.97860100143589,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 136.00438499997836
+      },
+      {
+        "cpu_tokenization_ms": 18.73192500170262,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 114.54413600222324
+      },
+      {
+        "cpu_tokenization_ms": 20.238590999724693,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 150.10708699810493
+      },
+      {
+        "cpu_tokenization_ms": 18.647291999513982,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 90.2384519977204
+      },
+      {
+        "cpu_tokenization_ms": 20.65786800085334,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 141.97500600312196
+      },
+      {
+        "cpu_tokenization_ms": 19.28390600005514,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 128.67440799891483
+      },
+      {
+        "cpu_tokenization_ms": 18.32512400324049,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 102.53170999931172
+      },
+      {
+        "cpu_tokenization_ms": 18.45799499824352,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 111.79751600138843
+      },
+      {
+        "cpu_tokenization_ms": 19.886935000613448,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 137.62715399934677
+      },
+      {
+        "cpu_tokenization_ms": 21.765881996543612,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 180.8855820017925
+      },
+      {
+        "cpu_tokenization_ms": 20.107818998440052,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 143.26401900143537
+      },
+      {
+        "cpu_tokenization_ms": 20.085413998458534,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 147.74450100048853
+      },
+      {
+        "cpu_tokenization_ms": 19.548504998965655,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 149.92324600098073
+      },
+      {
+        "cpu_tokenization_ms": 17.918823003128637,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 92.66659699824231
+      },
+      {
+        "cpu_tokenization_ms": 19.625347000328475,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 119.30981899968174
+      },
+      {
+        "cpu_tokenization_ms": 18.700012002227595,
+        "pair_count": 100,
+        "synchronized_forward_and_transfers_ms": 125.9559470017848
+      }
+    ],
+    "component_timing_scope": "wall clock; forward includes CUDA work, CPU dispatch and transfers; not kernel-only GPU time; warmup calls precede measured calls",
+    "cuda_runtime": "12.8",
+    "dtype": "float32",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti",
+    "input": "query/text pairs; no prefixes, titles, timestamps or qrels",
+    "korean_scope": "transfer; absent from documented mMARCO supervised languages",
+    "length_count_scope": "potential truncation; not exact truncated count",
+    "license": "Apache-2.0 (model card)",
+    "loading_info": {
+      "legacy_position_buffer_checked": true,
+      "missing_keys": [],
+      "unexpected_keys": [
+        "roberta.embeddings.position_ids"
+      ]
+    },
+    "max_length": 512,
+    "model_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "padding": "dynamic_per_batch",
+    "pair_count_including_warmup": 10300,
+    "pairs_at_max_length_including_warmup": 0,
+    "peak_allocated_bytes": 822993920,
+    "peak_reserved_bytes": 1614807040,
+    "resident_models": "reranker only; frozen candidates; encoder not loaded",
+    "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+    "score": "single_raw_logit; higher_is_better; identity_activation",
+    "seed": 1729,
+    "tf32": false,
+    "truncation": "longest_first"
+  },
+  "reranker_summary": {
+    "index_build_ms": 0.0,
+    "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+    "metrics": {
+      "ndcg_at_10": {
+        "mean": 0.10998176584514219,
+        "query_bootstrap_95_percent_interval": [
+          0.06951305489135834,
+          0.15612625261210422
+        ]
+      },
+      "recall_at_10": {
+        "mean": 0.13583333333333333,
+        "query_bootstrap_95_percent_interval": [
+          0.0825,
+          0.19333333333333333
+        ]
+      },
+      "recall_at_100": {
+        "mean": 0.415,
+        "query_bootstrap_95_percent_interval": [
+          0.33997916666666655,
+          0.4925208333333332
+        ]
+      },
+      "recall_at_20": {
+        "mean": 0.16916666666666663,
+        "query_bootstrap_95_percent_interval": [
+          0.11333333333333333,
+          0.22835416666666655
+        ]
+      },
+      "reference_prefix_ndcg_at_10": {
+        "mean": 0.16539325181005374,
+        "query_bootstrap_95_percent_interval": [
+          0.10476953766379593,
+          0.2307310446824843
+        ]
+      }
+    },
+    "queries_with_incomplete_top10": 94,
+    "queries_with_no_gold_in_top100": 43,
+    "query_count": 100,
+    "retrieval_timing_ms": {
+      "concurrency": 1,
+      "mean": 149.70259659003204,
+      "p50": 142.78109499991842,
+      "p95": 204.21125485136142,
+      "scope": "incremental rerank only: frozen candidate lookup, text lookup, pair tokenization, CPU/GPU transfers, synchronized CUDA forward, scalar scores and sorting; concurrency 1; excludes fast retrieval, model load, warmup, metrics, file writes and tracking"
+    }
+  },
+  "router_training_targets_generated": false,
+  "run_manifest": {
+    "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+    "candidate_pool": {
+      "candidates_per_query": 100,
+      "frozen_pool_sha256": "3b8ed06e05d0357f4d889fcb2b4fcb4d9ca2aba4bdf9bcefa188e5fe8b7913ea",
+      "no_test_access": true,
+      "query_count": 100,
+      "score_cache": "run/run.trec; one raw cross-encoder logit per frozen query/document pair",
+      "source_manifest_sha256": "fef933fc67bb78de87ff0c5bcfcb4ba7260dcbe83ba0b53e2185b5e83b7d51dc",
+      "source_run_sha256": "8df0d79f34035189c5aa385ea57794b18aa10cee8cd2db51a4d13f7f3700d6ab",
+      "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646"
+    },
+    "candidate_source_path": "artifacts/m2/company_policies_validation100_verified_v1/hybrid_rrf",
+    "config": {
+      "b": 0.75,
+      "bootstrap_samples": 2000,
+      "epsilon": 0.25,
+      "failure_examples": 5,
+      "k1": 1.5,
+      "method": "fixed_cross_encoder",
+      "name": "fixed_cross_encoder_m3_validation100_v1",
+      "partition": "validation",
+      "query_limit": 100,
+      "seed": 1729,
+      "tie_break": "score_desc_doc_id_asc",
+      "tokenizer": "python_str_split_v1",
+      "top_k": 100,
+      "warmup_queries": 3
+    },
+    "config_sha256": "3ff5217ae8e7402c3a4687319d4e4888cb3371f9230f133f37a51da1f4cf9d62",
+    "corpus_document_count": 30000,
+    "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+    "cutoffs": {
+      "ndcg": [
+        10
+      ],
+      "recall": [
+        10,
+        20,
+        100
+      ]
+    },
+    "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+    "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+    "git_dirty": true,
+    "logical_cpu_count": 12,
+    "member": "timelyrag_company_policies_dataset_v2.jsonl",
+    "output_sha256": {
+      "config.json": "65842d16584783e60bf96d2445f72faa6294c6f96302b67b79d63352b2fc78dc",
+      "failure_cases.json": "fb3b11ad7ee6ad45099564393cd8c96c4b3567a6809b0e560924b5b51ddfdc11",
+      "per_query.jsonl": "0c531debfccaaaf4e4b87e661a7a86160c320df21e94c0055d3eb7b2ccf051e6",
+      "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+      "run.trec": "b436a33846ceeb708614a485d71e7362a9bc6347c25a79b4bcca604ca9f4a14a",
+      "summary.json": "9dab6a044d3123694851a9c6cbd5045c1eee59c66f59d3005561915ba6a305bd"
+    },
+    "packages": {
+      "numpy": "2.5.5",
+      "pydantic": "2.14.4",
+      "rank-bm25": "0.2.2",
+      "tokenizers": "0.22.2",
+      "torch": "2.10.0",
+      "transformers": "5.5.0"
+    },
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.11",
+    "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+    "reranker": {
+      "asset_sha256": {
+        "config.json": "cc2cfe51aa3fd759d21d21acf5dfd6994aa67a3c9210636d22e143699d336c77",
+        "model.safetensors": "5daeca2481a76b5976a2bdc32f0a78532b6716da4f8cd3ff59460ef8d2f359b4",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+        "tokenizer.json": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626",
+        "tokenizer_config.json": "e7fbfbfa6347b4e414c1cee50d142e2c2f9a895dad68b068ae83a8b564c3837e"
+      },
+      "attention": "eager",
+      "batch_size": 16,
+      "call_timings_including_warmup": [
+        {
+          "cpu_tokenization_ms": 20.18721599597484,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 823.7254960004066
+        },
+        {
+          "cpu_tokenization_ms": 17.677956999250455,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 86.0044659984851
+        },
+        {
+          "cpu_tokenization_ms": 18.25989499411662,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 86.7015839976375
+        },
+        {
+          "cpu_tokenization_ms": 18.66717800112383,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 85.90399599597731
+        },
+        {
+          "cpu_tokenization_ms": 20.334381002612645,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 165.0686590000987
+        },
+        {
+          "cpu_tokenization_ms": 18.776203996822005,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 92.85501200065482
+        },
+        {
+          "cpu_tokenization_ms": 19.886764999682782,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 147.6300850026746
+        },
+        {
+          "cpu_tokenization_ms": 17.816938998294063,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 92.06852799434273
+        },
+        {
+          "cpu_tokenization_ms": 19.430435999311158,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 123.40492399744107
+        },
+        {
+          "cpu_tokenization_ms": 19.34543199968175,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 114.06295500091801
+        },
+        {
+          "cpu_tokenization_ms": 19.003450999662164,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 96.95888799797103
+        },
+        {
+          "cpu_tokenization_ms": 18.68455099975108,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 98.9657790032652
+        },
+        {
+          "cpu_tokenization_ms": 19.62488200115331,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 145.80272100101865
+        },
+        {
+          "cpu_tokenization_ms": 18.3527499975753,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 74.65693000085594
+        },
+        {
+          "cpu_tokenization_ms": 20.188846998280496,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.15478499938035
+        },
+        {
+          "cpu_tokenization_ms": 19.199081003534957,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 117.24422200131812
+        },
+        {
+          "cpu_tokenization_ms": 18.58932499817456,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 105.04905000016151
+        },
+        {
+          "cpu_tokenization_ms": 23.08316399648902,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 207.6521379967744
+        },
+        {
+          "cpu_tokenization_ms": 17.688173000351526,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.13305800041417
+        },
+        {
+          "cpu_tokenization_ms": 19.70171500215656,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 128.89815499875112
+        },
+        {
+          "cpu_tokenization_ms": 18.64710999871022,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 117.24304500239668
+        },
+        {
+          "cpu_tokenization_ms": 17.11138299833692,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 77.47647399810376
+        },
+        {
+          "cpu_tokenization_ms": 17.952173999219667,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 86.58651000041573
+        },
+        {
+          "cpu_tokenization_ms": 19.382781996682752,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 109.21203599536966
+        },
+        {
+          "cpu_tokenization_ms": 18.898978996730875,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 83.5859269991488
+        },
+        {
+          "cpu_tokenization_ms": 18.6653499968088,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 107.59686100027466
+        },
+        {
+          "cpu_tokenization_ms": 18.554524998762645,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 93.28500700030418
+        },
+        {
+          "cpu_tokenization_ms": 21.505952996449196,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 135.2254429984896
+        },
+        {
+          "cpu_tokenization_ms": 21.566819998042774,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 151.42255000137084
+        },
+        {
+          "cpu_tokenization_ms": 20.733051998831797,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 114.12307299906388
+        },
+        {
+          "cpu_tokenization_ms": 20.853774998613517,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 121.127462003642
+        },
+        {
+          "cpu_tokenization_ms": 22.751649003112107,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 175.26540200560703
+        },
+        {
+          "cpu_tokenization_ms": 20.83986299658136,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 111.782530997516
+        },
+        {
+          "cpu_tokenization_ms": 20.773104995896574,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 116.80793400410039
+        },
+        {
+          "cpu_tokenization_ms": 21.16243699856568,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 126.09593699744437
+        },
+        {
+          "cpu_tokenization_ms": 21.08356700045988,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 114.05633300091722
+        },
+        {
+          "cpu_tokenization_ms": 22.190452000359073,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 150.65796700037026
+        },
+        {
+          "cpu_tokenization_ms": 19.82872600092378,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 116.02699400100391
+        },
+        {
+          "cpu_tokenization_ms": 20.004757001515827,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 108.63860700010264
+        },
+        {
+          "cpu_tokenization_ms": 20.402539004862774,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 95.39816500364395
+        },
+        {
+          "cpu_tokenization_ms": 19.9958119992516,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 116.78098500306078
+        },
+        {
+          "cpu_tokenization_ms": 20.32462100032717,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 106.20749900226656
+        },
+        {
+          "cpu_tokenization_ms": 22.667052002361743,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 179.83919300058915
+        },
+        {
+          "cpu_tokenization_ms": 22.106268002971774,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 176.07498499819485
+        },
+        {
+          "cpu_tokenization_ms": 20.233116001691087,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 122.9621570018935
+        },
+        {
+          "cpu_tokenization_ms": 21.859794000192778,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 148.051383001075
+        },
+        {
+          "cpu_tokenization_ms": 21.686548001525807,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 180.64988399964932
+        },
+        {
+          "cpu_tokenization_ms": 22.167560000525555,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 159.20281500075362
+        },
+        {
+          "cpu_tokenization_ms": 21.73984899854986,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 190.83881399637903
+        },
+        {
+          "cpu_tokenization_ms": 21.88543600095727,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 178.9620420004212
+        },
+        {
+          "cpu_tokenization_ms": 22.961370998018538,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 213.6614799983363
+        },
+        {
+          "cpu_tokenization_ms": 20.397652999236016,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 150.2479940008925
+        },
+        {
+          "cpu_tokenization_ms": 19.578182997065596,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 104.68270700221183
+        },
+        {
+          "cpu_tokenization_ms": 21.228846000667545,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 163.83771199980401
+        },
+        {
+          "cpu_tokenization_ms": 20.25696399869048,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 108.97305700018478
+        },
+        {
+          "cpu_tokenization_ms": 20.43629299987515,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 113.02033100218978
+        },
+        {
+          "cpu_tokenization_ms": 20.63049400021555,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 127.19647299854842
+        },
+        {
+          "cpu_tokenization_ms": 20.16392899895436,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 127.07178400160046
+        },
+        {
+          "cpu_tokenization_ms": 19.45845799673407,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 133.39542300127505
+        },
+        {
+          "cpu_tokenization_ms": 19.88220700150123,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 111.29206099758449
+        },
+        {
+          "cpu_tokenization_ms": 22.02978700006497,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 156.67932399810525
+        },
+        {
+          "cpu_tokenization_ms": 21.575121998466784,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 227.00103799979843
+        },
+        {
+          "cpu_tokenization_ms": 20.13896500102419,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 132.99608000306762
+        },
+        {
+          "cpu_tokenization_ms": 21.470736002811464,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 107.15029200218851
+        },
+        {
+          "cpu_tokenization_ms": 18.662186001165537,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 82.66369400007534
+        },
+        {
+          "cpu_tokenization_ms": 20.001607002996025,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 117.67400500320946
+        },
+        {
+          "cpu_tokenization_ms": 21.882431001358782,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 143.9986229997885
+        },
+        {
+          "cpu_tokenization_ms": 19.270082000730326,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 87.65618899997207
+        },
+        {
+          "cpu_tokenization_ms": 22.24445200045011,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 169.3408349983656
+        },
+        {
+          "cpu_tokenization_ms": 21.71593999992183,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 155.6416219973471
+        },
+        {
+          "cpu_tokenization_ms": 20.581008997396566,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 94.60053400107427
+        },
+        {
+          "cpu_tokenization_ms": 22.484733004603186,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 188.8279800004966
+        },
+        {
+          "cpu_tokenization_ms": 19.660167996335076,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 100.5309420015692
+        },
+        {
+          "cpu_tokenization_ms": 22.124063998489873,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 181.25462999887532
+        },
+        {
+          "cpu_tokenization_ms": 22.56599400061532,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 141.80217100147274
+        },
+        {
+          "cpu_tokenization_ms": 20.791516995814163,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 153.7557450010354
+        },
+        {
+          "cpu_tokenization_ms": 20.231765001881286,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.40297099678719
+        },
+        {
+          "cpu_tokenization_ms": 21.331144003852387,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 133.7925699990592
+        },
+        {
+          "cpu_tokenization_ms": 19.34368499860284,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 103.99519999918994
+        },
+        {
+          "cpu_tokenization_ms": 20.355241998913698,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 149.22012699935294
+        },
+        {
+          "cpu_tokenization_ms": 19.49227799923392,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 132.71132599948032
+        },
+        {
+          "cpu_tokenization_ms": 20.38580800035561,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 166.8528430036531
+        },
+        {
+          "cpu_tokenization_ms": 20.34828199975891,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 157.61499099789944
+        },
+        {
+          "cpu_tokenization_ms": 19.626703002359136,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 121.0231160002877
+        },
+        {
+          "cpu_tokenization_ms": 19.18813599877467,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 94.81658199729281
+        },
+        {
+          "cpu_tokenization_ms": 19.2398149993096,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 101.30658699745254
+        },
+        {
+          "cpu_tokenization_ms": 19.261518000348588,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 113.57134200261498
+        },
+        {
+          "cpu_tokenization_ms": 18.97860100143589,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 136.00438499997836
+        },
+        {
+          "cpu_tokenization_ms": 18.73192500170262,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 114.54413600222324
+        },
+        {
+          "cpu_tokenization_ms": 20.238590999724693,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 150.10708699810493
+        },
+        {
+          "cpu_tokenization_ms": 18.647291999513982,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 90.2384519977204
+        },
+        {
+          "cpu_tokenization_ms": 20.65786800085334,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 141.97500600312196
+        },
+        {
+          "cpu_tokenization_ms": 19.28390600005514,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 128.67440799891483
+        },
+        {
+          "cpu_tokenization_ms": 18.32512400324049,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 102.53170999931172
+        },
+        {
+          "cpu_tokenization_ms": 18.45799499824352,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 111.79751600138843
+        },
+        {
+          "cpu_tokenization_ms": 19.886935000613448,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 137.62715399934677
+        },
+        {
+          "cpu_tokenization_ms": 21.765881996543612,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 180.8855820017925
+        },
+        {
+          "cpu_tokenization_ms": 20.107818998440052,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 143.26401900143537
+        },
+        {
+          "cpu_tokenization_ms": 20.085413998458534,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 147.74450100048853
+        },
+        {
+          "cpu_tokenization_ms": 19.548504998965655,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 149.92324600098073
+        },
+        {
+          "cpu_tokenization_ms": 17.918823003128637,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 92.66659699824231
+        },
+        {
+          "cpu_tokenization_ms": 19.625347000328475,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 119.30981899968174
+        },
+        {
+          "cpu_tokenization_ms": 18.700012002227595,
+          "pair_count": 100,
+          "synchronized_forward_and_transfers_ms": 125.9559470017848
+        }
+      ],
+      "component_timing_scope": "wall clock; forward includes CUDA work, CPU dispatch and transfers; not kernel-only GPU time; warmup calls precede measured calls",
+      "cuda_runtime": "12.8",
+      "dtype": "float32",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "input": "query/text pairs; no prefixes, titles, timestamps or qrels",
+      "korean_scope": "transfer; absent from documented mMARCO supervised languages",
+      "length_count_scope": "potential truncation; not exact truncated count",
+      "license": "Apache-2.0 (model card)",
+      "loading_info": {
+        "legacy_position_buffer_checked": true,
+        "missing_keys": [],
+        "unexpected_keys": [
+          "roberta.embeddings.position_ids"
+        ]
+      },
+      "max_length": 512,
+      "model_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "padding": "dynamic_per_batch",
+      "pair_count_including_warmup": 10300,
+      "pairs_at_max_length_including_warmup": 0,
+      "peak_allocated_bytes": 822993920,
+      "peak_reserved_bytes": 1614807040,
+      "resident_models": "reranker only; frozen candidates; encoder not loaded",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "score": "single_raw_logit; higher_is_better; identity_activation",
+      "seed": 1729,
+      "tf32": false,
+      "truncation": "longest_first"
+    },
+    "reranking_config": {
+      "baseline": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "fixed_cross_encoder",
+        "name": "fixed_cross_encoder_m3_validation100_v1",
+        "partition": "validation",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "batch_size": 16,
+      "candidate_manifest_sha256": "fef933fc67bb78de87ff0c5bcfcb4ba7260dcbe83ba0b53e2185b5e83b7d51dc",
+      "max_length": 512,
+      "model_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825"
+    },
+    "selected_query_ids": [
+      1016,
+      474,
+      866,
+      5,
+      200,
+      1858,
+      841,
+      2949,
+      262,
+      741,
+      855,
+      2615,
+      2072,
+      1806,
+      720,
+      1959,
+      2969,
+      91,
+      1214,
+      246,
+      2500,
+      2630,
+      1218,
+      2354,
+      718,
+      2222,
+      757,
+      453,
+      136,
+      2763,
+      2654,
+      1978,
+      947,
+      1094,
+      1197,
+      406,
+      238,
+      716,
+      2069,
+      3,
+      2379,
+      1422,
+      2613,
+      2998,
+      1868,
+      2766,
+      1045,
+      2150,
+      2837,
+      1393,
+      2035,
+      2487,
+      833,
+      317,
+      2217,
+      1931,
+      2126,
+      1720,
+      2876,
+      919,
+      380,
+      1733,
+      2059,
+      758,
+      2146,
+      2029,
+      2017,
+      224,
+      2317,
+      944,
+      1483,
+      62,
+      118,
+      223,
+      1455,
+      1040,
+      2351,
+      1636,
+      2346,
+      1127,
+      2076,
+      2140,
+      2922,
+      953,
+      1571,
+      1876,
+      790,
+      2614,
+      2460,
+      1339,
+      2750,
+      1645,
+      2851,
+      1670,
+      1300,
+      2313,
+      2063,
+      1795,
+      444,
+      1443
+    ],
+    "source_files_sha256": {
+      "pyproject.toml": "d3b08ae14ea02c857beb865828b29ae87e916783f3d1f5005d3f209313a9431b",
+      "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+      "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+      "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+      "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+      "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+      "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+      "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+      "src/temporalproof/evaluation/baseline.py": "8a75fb32fe5cf79eee1260ecd947f1109f76abce5ecf0dcff6cfca4e8209255f",
+      "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+      "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+      "src/temporalproof/evaluation/reranking.py": "360bb4e3cea8b087cccfa50280643ee01adc53d8759142d90d67302e7cd144d9",
+      "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+      "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+      "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+      "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+      "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+      "src/temporalproof/retrieval/reranker.py": "fc3723f9a046ca56792766af39119fb6ee7a283b946050d5523618b57d128775",
+      "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+      "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+      "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+    },
+    "source_snapshot_sha256": "677d81d33839f72a20fb63c07a8e75a09051970a7b82e4dc6f98537539fa2142",
+    "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+    "test_partition_evaluated": false,
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "warmup_query_id": 1016
+  },
+  "source_candidate_manifest": {
+    "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+    "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+    "config": {
+      "b": 0.75,
+      "bootstrap_samples": 2000,
+      "epsilon": 0.25,
+      "failure_examples": 5,
+      "k1": 1.5,
+      "method": "hybrid_rrf",
+      "name": "hybrid_rrf_m2_validation100_v1",
+      "partition": "validation",
+      "query_limit": 100,
+      "seed": 1729,
+      "tie_break": "score_desc_doc_id_asc",
+      "tokenizer": "python_str_split_v1",
+      "top_k": 100,
+      "warmup_queries": 3
+    },
+    "corpus_document_count": 30000,
+    "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+    "cutoffs": {
+      "ndcg": [
+        10
+      ],
+      "recall": [
+        10,
+        20,
+        100
+      ]
+    },
+    "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+    "encoder": {
+      "asset_sha256": {
+        "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+        "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+      },
+      "attention": "eager",
+      "batch_size": 16,
+      "cuda_runtime": "12.8",
+      "dimension": 384,
+      "dtype": "float32",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "inputs_at_max_length": 1,
+      "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+      "license": "MIT",
+      "loading_info": {
+        "legacy_position_buffer_checked": true,
+        "missing_keys": [],
+        "unexpected_keys": [
+          "embeddings.position_ids"
+        ]
+      },
+      "max_length": 512,
+      "model_id": "intfloat/multilingual-e5-small",
+      "passage_prefix": "passage: ",
+      "peak_allocated_bytes": 968040448,
+      "peak_reserved_bytes": 1591738368,
+      "pooling": "attention_mask_mean_then_l2",
+      "query_prefix": "query: ",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "seed": 1729,
+      "tf32": false
+    },
+    "encoder_cache": {
+      "cache_hit": false,
+      "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+      "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+      "dimension": 384,
+      "document_count": 30000,
+      "embedding_build_ms": 34075.51163900007,
+      "faiss_build_ms": 93.6798650000128,
+      "faiss_index": "IndexFlatIP",
+      "files_sha256": {
+        "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+        "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+      },
+      "identity": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+        "faiss_version": "1.16.0",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "input_count_at_max_length": 1
+    },
+    "fusion": {
+      "input_top_k": 100,
+      "method": "equal_weight_rrf",
+      "offset": 60
+    },
+    "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+    "git_dirty": true,
+    "logical_cpu_count": 12,
+    "member": "timelyrag_company_policies_dataset_v2.jsonl",
+    "output_sha256": {
+      "config.json": "33e82c540c435c3f9edc5eedaa558098f2d36b569ccb0dc9bc72187d82afa158",
+      "failure_cases.json": "66ecd5a424165ea073f7ad6a72212e69147bed48c21117fda8d92b384786ec6e",
+      "per_query.jsonl": "d09d27329f5f988de9a1ed0221bbcbf74be9c4c3796a74cfed48e6aa90744f9e",
+      "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+      "run.trec": "8df0d79f34035189c5aa385ea57794b18aa10cee8cd2db51a4d13f7f3700d6ab",
+      "summary.json": "e11102bea769ac0c89f071ac587904a3b202d98f7b14dc8d61be07d2330c7006"
+    },
+    "packages": {
+      "faiss-cpu": "1.16.0",
+      "numpy": "2.5.5",
+      "pydantic": "2.14.4",
+      "rank-bm25": "0.2.2",
+      "tokenizers": "0.22.2",
+      "torch": "2.10.0",
+      "transformers": "5.5.0"
+    },
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.11",
+    "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+    "selected_query_ids": [
+      1016,
+      474,
+      866,
+      5,
+      200,
+      1858,
+      841,
+      2949,
+      262,
+      741,
+      855,
+      2615,
+      2072,
+      1806,
+      720,
+      1959,
+      2969,
+      91,
+      1214,
+      246,
+      2500,
+      2630,
+      1218,
+      2354,
+      718,
+      2222,
+      757,
+      453,
+      136,
+      2763,
+      2654,
+      1978,
+      947,
+      1094,
+      1197,
+      406,
+      238,
+      716,
+      2069,
+      3,
+      2379,
+      1422,
+      2613,
+      2998,
+      1868,
+      2766,
+      1045,
+      2150,
+      2837,
+      1393,
+      2035,
+      2487,
+      833,
+      317,
+      2217,
+      1931,
+      2126,
+      1720,
+      2876,
+      919,
+      380,
+      1733,
+      2059,
+      758,
+      2146,
+      2029,
+      2017,
+      224,
+      2317,
+      944,
+      1483,
+      62,
+      118,
+      223,
+      1455,
+      1040,
+      2351,
+      1636,
+      2346,
+      1127,
+      2076,
+      2140,
+      2922,
+      953,
+      1571,
+      1876,
+      790,
+      2614,
+      2460,
+      1339,
+      2750,
+      1645,
+      2851,
+      1670,
+      1300,
+      2313,
+      2063,
+      1795,
+      444,
+      1443
+    ],
+    "source_files_sha256": {
+      "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+      "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+      "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+      "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+      "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+      "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+      "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+      "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+      "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+      "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+      "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+      "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+      "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+      "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+      "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+      "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+      "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+      "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+      "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+    },
+    "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646",
+    "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+    "temporal_policy": {
+      "event_time_inferred": false,
+      "hard_filter": false,
+      "name": "soft_insertion_gap_v1",
+      "weight": 0.1
+    },
+    "test_partition_evaluated": false,
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "warmup_query_id": 0
+  },
+  "test_partition_evaluated": false,
+  "timing_comparison_scope": "fast timings retained from source M2 run; new timings are rerank-only on frozen candidates. No live end-to-end, concurrent encoder/reranker, service throughput or sum-of-p95 claim. Models loaded separately."
+}

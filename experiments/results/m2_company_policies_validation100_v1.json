@@ -1,0 +1,3376 @@
+{
+  "config": {
+    "baseline": {
+      "b": 0.75,
+      "bootstrap_samples": 2000,
+      "epsilon": 0.25,
+      "failure_examples": 5,
+      "k1": 1.5,
+      "method": "bm25",
+      "name": "bm25_m2_validation100_v1",
+      "partition": "validation",
+      "query_limit": 100,
+      "seed": 1729,
+      "tie_break": "score_desc_doc_id_asc",
+      "tokenizer": "python_str_split_v1",
+      "top_k": 100,
+      "warmup_queries": 3
+    },
+    "batch_size": 16,
+    "insertion_weight": 0.1,
+    "max_length": 512,
+    "model_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "rrf_offset": 60
+  },
+  "encoder_cache": {
+    "cache_hit": false,
+    "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+    "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+    "dimension": 384,
+    "document_count": 30000,
+    "embedding_build_ms": 34075.51163900007,
+    "faiss_build_ms": 93.6798650000128,
+    "faiss_index": "IndexFlatIP",
+    "files_sha256": {
+      "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+      "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+    },
+    "identity": {
+      "asset_sha256": {
+        "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+        "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+      },
+      "attention": "eager",
+      "batch_size": 16,
+      "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+      "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+      "cuda_runtime": "12.8",
+      "dimension": 384,
+      "dtype": "float32",
+      "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+      "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+      "faiss_version": "1.16.0",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "license": "MIT",
+      "loading_info": {
+        "legacy_position_buffer_checked": true,
+        "missing_keys": [],
+        "unexpected_keys": [
+          "embeddings.position_ids"
+        ]
+      },
+      "max_length": 512,
+      "model_id": "intfloat/multilingual-e5-small",
+      "passage_prefix": "passage: ",
+      "pooling": "attention_mask_mean_then_l2",
+      "query_prefix": "query: ",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "seed": 1729,
+      "tf32": false
+    },
+    "input_count_at_max_length": 1
+  },
+  "encoder_profile": {
+    "asset_sha256": {
+      "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+      "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+      "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+      "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+      "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+      "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+    },
+    "attention": "eager",
+    "batch_size": 16,
+    "cuda_runtime": "12.8",
+    "dimension": 384,
+    "dtype": "float32",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti",
+    "inputs_at_max_length": 1,
+    "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+    "license": "MIT",
+    "loading_info": {
+      "legacy_position_buffer_checked": true,
+      "missing_keys": [],
+      "unexpected_keys": [
+        "embeddings.position_ids"
+      ]
+    },
+    "max_length": 512,
+    "model_id": "intfloat/multilingual-e5-small",
+    "passage_prefix": "passage: ",
+    "peak_allocated_bytes": 968040448,
+    "peak_reserved_bytes": 1591738368,
+    "pooling": "attention_mask_mean_then_l2",
+    "query_prefix": "query: ",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "seed": 1729,
+    "tf32": false
+  },
+  "insertion_vs_hybrid_paired": {
+    "ndcg_at_10": {
+      "best_query_ids": [
+        2379,
+        1455,
+        5,
+        1094,
+        758
+      ],
+      "improved": 7,
+      "mean_delta": -0.004023444803456993,
+      "paired_query_bootstrap_95_percent_interval": [
+        -0.011647810234815776,
+        0.0021481886516469435
+      ],
+      "regressed": 9,
+      "unchanged": 84,
+      "worst_query_ids": [
+        757,
+        2217,
+        136,
+        833,
+        1339
+      ]
+    },
+    "recall_at_10": {
+      "best_query_ids": [
+        2998,
+        2969,
+        2949,
+        2922,
+        2876
+      ],
+      "improved": 0,
+      "mean_delta": -0.003333333333333333,
+      "paired_query_bootstrap_95_percent_interval": [
+        -0.01,
+        0.0
+      ],
+      "regressed": 1,
+      "unchanged": 99,
+      "worst_query_ids": [
+        136,
+        3,
+        5,
+        62,
+        91
+      ]
+    },
+    "recall_at_100": {
+      "best_query_ids": [
+        2998,
+        2969,
+        2949,
+        2922,
+        2876
+      ],
+      "improved": 0,
+      "mean_delta": 0.0,
+      "paired_query_bootstrap_95_percent_interval": [
+        0.0,
+        0.0
+      ],
+      "regressed": 0,
+      "unchanged": 100,
+      "worst_query_ids": [
+        3,
+        5,
+        62,
+        91,
+        118
+      ]
+    },
+    "recall_at_20": {
+      "best_query_ids": [
+        136,
+        2998,
+        2969,
+        2949,
+        2922
+      ],
+      "improved": 1,
+      "mean_delta": 0.003333333333333333,
+      "paired_query_bootstrap_95_percent_interval": [
+        0.0,
+        0.01
+      ],
+      "regressed": 0,
+      "unchanged": 99,
+      "worst_query_ids": [
+        3,
+        5,
+        62,
+        91,
+        118
+      ]
+    }
+  },
+  "measured_on": "2026-11-26",
+  "mlflow_run_ids": {
+    "bm25": "7f78491db25643d09fde0f681a17b125",
+    "dense": "f66fcec374824e9095c600cfa229d9e6",
+    "hybrid_insertion_time": "bcaae473e89d401587302b2e9800a626",
+    "hybrid_rrf": "ffb70dac7f2a4977acc4074d5a82cf16"
+  },
+  "paired_deltas_vs_bm25": {
+    "dense": {
+      "ndcg_at_10": {
+        "best_query_ids": [
+          855,
+          5,
+          1339,
+          2654,
+          2069
+        ],
+        "improved": 20,
+        "mean_delta": -0.02591633627651925,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.07561645703191565,
+          0.02535443222597158
+        ],
+        "regressed": 28,
+        "unchanged": 52,
+        "worst_query_ids": [
+          1443,
+          1214,
+          2763,
+          758,
+          1670
+        ]
+      },
+      "recall_at_10": {
+        "best_query_ids": [
+          2654,
+          855,
+          5,
+          1339,
+          136
+        ],
+        "improved": 12,
+        "mean_delta": -0.035,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.105875,
+          0.03416666666666666
+        ],
+        "regressed": 22,
+        "unchanged": 66,
+        "worst_query_ids": [
+          1214,
+          1443,
+          2763,
+          1197,
+          2140
+        ]
+      },
+      "recall_at_100": {
+        "best_query_ids": [
+          2654,
+          2614,
+          406,
+          136,
+          1339
+        ],
+        "improved": 13,
+        "mean_delta": -0.03166666666666666,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.09666666666666666,
+          0.039187499999999896
+        ],
+        "regressed": 22,
+        "unchanged": 65,
+        "worst_query_ids": [
+          1443,
+          1483,
+          718,
+          758,
+          1645
+        ]
+      },
+      "recall_at_20": {
+        "best_query_ids": [
+          2654,
+          1959,
+          855,
+          136,
+          5
+        ],
+        "improved": 11,
+        "mean_delta": -0.06166666666666666,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.13916666666666666,
+          0.018333333333333333
+        ],
+        "regressed": 24,
+        "unchanged": 65,
+        "worst_query_ids": [
+          200,
+          1214,
+          1443,
+          1483,
+          2763
+        ]
+      }
+    },
+    "hybrid_insertion_time": {
+      "ndcg_at_10": {
+        "best_query_ids": [
+          855,
+          2069,
+          2354,
+          757,
+          200
+        ],
+        "improved": 23,
+        "mean_delta": 0.027702379834968833,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.011871434984522722,
+          0.06725096582484685
+        ],
+        "regressed": 17,
+        "unchanged": 60,
+        "worst_query_ids": [
+          1443,
+          2059,
+          1214,
+          2140,
+          758
+        ]
+      },
+      "recall_at_10": {
+        "best_query_ids": [
+          855,
+          2069,
+          1959,
+          1868,
+          757
+        ],
+        "improved": 12,
+        "mean_delta": 0.0275,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.015020833333333336,
+          0.06918749999999987
+        ],
+        "regressed": 6,
+        "unchanged": 82,
+        "worst_query_ids": [
+          1443,
+          1214,
+          2059,
+          2035,
+          2140
+        ]
+      },
+      "recall_at_100": {
+        "best_query_ids": [
+          2654,
+          136,
+          1339,
+          5,
+          2969
+        ],
+        "improved": 6,
+        "mean_delta": 0.02166666666666667,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.013333333333333334,
+          0.06333333333333334
+        ],
+        "regressed": 4,
+        "unchanged": 90,
+        "worst_query_ids": [
+          758,
+          718,
+          1876,
+          2317,
+          3
+        ]
+      },
+      "recall_at_20": {
+        "best_query_ids": [
+          1959,
+          855,
+          136,
+          5,
+          2069
+        ],
+        "improved": 10,
+        "mean_delta": 0.03166666666666666,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.013333333333333334,
+          0.08
+        ],
+        "regressed": 5,
+        "unchanged": 85,
+        "worst_query_ids": [
+          1483,
+          841,
+          1868,
+          224,
+          2035
+        ]
+      }
+    },
+    "hybrid_rrf": {
+      "ndcg_at_10": {
+        "best_query_ids": [
+          855,
+          2069,
+          757,
+          2354,
+          200
+        ],
+        "improved": 24,
+        "mean_delta": 0.03172582463842582,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.008300255076138316,
+          0.07190718347194865
+        ],
+        "regressed": 17,
+        "unchanged": 59,
+        "worst_query_ids": [
+          1443,
+          2059,
+          1214,
+          758,
+          2140
+        ]
+      },
+      "recall_at_10": {
+        "best_query_ids": [
+          855,
+          2069,
+          1959,
+          1868,
+          757
+        ],
+        "improved": 13,
+        "mean_delta": 0.03083333333333333,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.011666666666666667,
+          0.07333333333333332
+        ],
+        "regressed": 6,
+        "unchanged": 81,
+        "worst_query_ids": [
+          1443,
+          1214,
+          2059,
+          2035,
+          2140
+        ]
+      },
+      "recall_at_100": {
+        "best_query_ids": [
+          2654,
+          136,
+          1339,
+          5,
+          2969
+        ],
+        "improved": 6,
+        "mean_delta": 0.02166666666666667,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.013333333333333334,
+          0.06333333333333334
+        ],
+        "regressed": 4,
+        "unchanged": 90,
+        "worst_query_ids": [
+          758,
+          718,
+          1876,
+          2317,
+          3
+        ]
+      },
+      "recall_at_20": {
+        "best_query_ids": [
+          1959,
+          855,
+          5,
+          2069,
+          757
+        ],
+        "improved": 10,
+        "mean_delta": 0.028333333333333332,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.016666666666666666,
+          0.07504166666666645
+        ],
+        "regressed": 5,
+        "unchanged": 85,
+        "worst_query_ids": [
+          1483,
+          841,
+          1868,
+          224,
+          2035
+        ]
+      }
+    }
+  },
+  "pre_environment_lock_guard_validation": {
+    "initial_summaries": {
+      "bm25": {
+        "index_build_ms": 216.25522799968167,
+        "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+        "metrics": {
+          "ndcg_at_10": {
+            "mean": 0.17595877026340895,
+            "query_bootstrap_95_percent_interval": [
+              0.12230256145325066,
+              0.23036653559413722
+            ]
+          },
+          "recall_at_10": {
+            "mean": 0.23,
+            "query_bootstrap_95_percent_interval": [
+              0.16666666666666663,
+              0.29666666666666663
+            ]
+          },
+          "recall_at_100": {
+            "mean": 0.39333333333333337,
+            "query_bootstrap_95_percent_interval": [
+              0.31581249999999994,
+              0.47166666666666673
+            ]
+          },
+          "recall_at_20": {
+            "mean": 0.2816666666666666,
+            "query_bootstrap_95_percent_interval": [
+              0.2116458333333333,
+              0.3567083333333331
+            ]
+          },
+          "reference_prefix_ndcg_at_10": {
+            "mean": 0.24276213967124355,
+            "query_bootstrap_95_percent_interval": [
+              0.1760420134658617,
+              0.31001915350050885
+            ]
+          }
+        },
+        "queries_with_incomplete_top10": 88,
+        "queries_with_no_gold_in_top100": 45,
+        "query_count": 100,
+        "retrieval_timing_ms": {
+          "concurrency": 1,
+          "mean": 76.75948739007254,
+          "p50": 77.83334200030367,
+          "p95": 110.82558130037796,
+          "scope": "sequential bm25; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        }
+      },
+      "dense": {
+        "index_build_ms": 94.88851500009332,
+        "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+        "metrics": {
+          "ndcg_at_10": {
+            "mean": 0.1500424339868897,
+            "query_bootstrap_95_percent_interval": [
+              0.10166221882790942,
+              0.20295483005701787
+            ]
+          },
+          "recall_at_10": {
+            "mean": 0.195,
+            "query_bootstrap_95_percent_interval": [
+              0.1325,
+              0.2575
+            ]
+          },
+          "recall_at_100": {
+            "mean": 0.36166666666666664,
+            "query_bootstrap_95_percent_interval": [
+              0.28581249999999997,
+              0.43999999999999995
+            ]
+          },
+          "recall_at_20": {
+            "mean": 0.22,
+            "query_bootstrap_95_percent_interval": [
+              0.15416666666666667,
+              0.2875208333333332
+            ]
+          },
+          "reference_prefix_ndcg_at_10": {
+            "mean": 0.21125183619602267,
+            "query_bootstrap_95_percent_interval": [
+              0.14657903417427154,
+              0.2804048283085662
+            ]
+          }
+        },
+        "queries_with_incomplete_top10": 91,
+        "queries_with_no_gold_in_top100": 48,
+        "query_count": 100,
+        "retrieval_timing_ms": {
+          "concurrency": 1,
+          "mean": 12.391588439950283,
+          "p50": 11.36633999976766,
+          "p95": 13.137087549785065,
+          "scope": "sequential dense; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        }
+      },
+      "hybrid_insertion_time": {
+        "index_build_ms": 311.143742999775,
+        "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+        "metrics": {
+          "ndcg_at_10": {
+            "mean": 0.20366115009837776,
+            "query_bootstrap_95_percent_interval": [
+              0.1466221736771521,
+              0.26224176917805525
+            ]
+          },
+          "recall_at_10": {
+            "mean": 0.2575,
+            "query_bootstrap_95_percent_interval": [
+              0.19166666666666665,
+              0.3233333333333333
+            ]
+          },
+          "recall_at_100": {
+            "mean": 0.415,
+            "query_bootstrap_95_percent_interval": [
+              0.33997916666666655,
+              0.4925208333333332
+            ]
+          },
+          "recall_at_20": {
+            "mean": 0.3133333333333333,
+            "query_bootstrap_95_percent_interval": [
+              0.2425,
+              0.3908333333333333
+            ]
+          },
+          "reference_prefix_ndcg_at_10": {
+            "mean": 0.2796681251241754,
+            "query_bootstrap_95_percent_interval": [
+              0.2091323773724729,
+              0.3493315440704567
+            ]
+          }
+        },
+        "queries_with_incomplete_top10": 88,
+        "queries_with_no_gold_in_top100": 43,
+        "query_count": 100,
+        "retrieval_timing_ms": {
+          "concurrency": 1,
+          "mean": 93.12294073995872,
+          "p50": 92.56638650003879,
+          "p95": 126.72222024966686,
+          "scope": "sequential hybrid_insertion_time; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        }
+      },
+      "hybrid_rrf": {
+        "index_build_ms": 311.143742999775,
+        "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+        "metrics": {
+          "ndcg_at_10": {
+            "mean": 0.2076845949018348,
+            "query_bootstrap_95_percent_interval": [
+              0.15033191154951472,
+              0.2662136336339977
+            ]
+          },
+          "recall_at_10": {
+            "mean": 0.2608333333333333,
+            "query_bootstrap_95_percent_interval": [
+              0.195,
+              0.32585416666666656
+            ]
+          },
+          "recall_at_100": {
+            "mean": 0.415,
+            "query_bootstrap_95_percent_interval": [
+              0.33997916666666655,
+              0.4925208333333332
+            ]
+          },
+          "recall_at_20": {
+            "mean": 0.31,
+            "query_bootstrap_95_percent_interval": [
+              0.2383333333333333,
+              0.38668749999999985
+            ]
+          },
+          "reference_prefix_ndcg_at_10": {
+            "mean": 0.28686458804684095,
+            "query_bootstrap_95_percent_interval": [
+              0.2146777375228565,
+              0.3570818024744488
+            ]
+          }
+        },
+        "queries_with_incomplete_top10": 88,
+        "queries_with_no_gold_in_top100": 43,
+        "query_count": 100,
+        "retrieval_timing_ms": {
+          "concurrency": 1,
+          "mean": 92.78473618001044,
+          "p50": 92.16671099966334,
+          "p95": 125.19704054998329,
+          "scope": "sequential hybrid_rrf; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        }
+      }
+    },
+    "replay": {
+      "cache_hit": true,
+      "encoder_profile": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "inputs_at_max_length": 0,
+        "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "peak_allocated_bytes": 481755136,
+        "peak_reserved_bytes": 507510784,
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "ranking_scores_qrels_and_quality_metrics_match": true,
+      "timings_ms": {
+        "bm25": {
+          "concurrency": 1,
+          "mean": 80.42878715993538,
+          "p50": 79.37500099978934,
+          "p95": 118.26825275038573,
+          "scope": "sequential bm25; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        },
+        "dense": {
+          "concurrency": 1,
+          "mean": 11.723598520011365,
+          "p50": 11.385290500129486,
+          "p95": 12.875813549953818,
+          "scope": "sequential dense; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        },
+        "hybrid_insertion_time": {
+          "concurrency": 1,
+          "mean": 95.97763572000986,
+          "p50": 93.75928749977902,
+          "p95": 138.32023210011357,
+          "scope": "sequential hybrid_insertion_time; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        },
+        "hybrid_rrf": {
+          "concurrency": 1,
+          "mean": 95.91002169004241,
+          "p50": 93.52263749997292,
+          "p95": 129.95402140068109,
+          "scope": "sequential hybrid_rrf; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+        }
+      }
+    },
+    "run_manifests": {
+      "bm25": {
+        "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+        "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+        "config": {
+          "b": 0.75,
+          "bootstrap_samples": 2000,
+          "epsilon": 0.25,
+          "failure_examples": 5,
+          "k1": 1.5,
+          "method": "bm25",
+          "name": "bm25_m2_validation100_v1",
+          "partition": "validation",
+          "query_limit": 100,
+          "seed": 1729,
+          "tie_break": "score_desc_doc_id_asc",
+          "tokenizer": "python_str_split_v1",
+          "top_k": 100,
+          "warmup_queries": 3
+        },
+        "corpus_document_count": 30000,
+        "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+        "cutoffs": {
+          "ndcg": [
+            10
+          ],
+          "recall": [
+            10,
+            20,
+            100
+          ]
+        },
+        "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+        "encoder": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "inputs_at_max_length": 1,
+          "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "peak_allocated_bytes": 968040448,
+          "peak_reserved_bytes": 1591738368,
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "encoder_cache": {
+          "cache_hit": false,
+          "cache_key": "d716afb3e622cee9b283a3d8850181325eab20a9f5fe9dc08d6896b29870fecd",
+          "cache_manifest_sha256": "e0cd3b7bf0674b8bd564546af6094896c872e6b9ddbaaa61c1e164abfe11aaea",
+          "dimension": 384,
+          "document_count": 30000,
+          "embedding_build_ms": 34114.16461799991,
+          "faiss_build_ms": 94.88851500009332,
+          "faiss_index": "IndexFlatIP",
+          "files_sha256": {
+            "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+            "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+          },
+          "identity": {
+            "asset_sha256": {
+              "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+              "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+              "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+              "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+              "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+              "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+            },
+            "attention": "eager",
+            "batch_size": 16,
+            "cache_implementation_sha256": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+            "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+            "cuda_runtime": "12.8",
+            "dimension": 384,
+            "dtype": "float32",
+            "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+            "faiss_version": "1.16.0",
+            "gpu": "NVIDIA GeForce RTX 5060 Ti",
+            "license": "MIT",
+            "loading_info": {
+              "legacy_position_buffer_checked": true,
+              "missing_keys": [],
+              "unexpected_keys": [
+                "embeddings.position_ids"
+              ]
+            },
+            "max_length": 512,
+            "model_id": "intfloat/multilingual-e5-small",
+            "passage_prefix": "passage: ",
+            "pooling": "attention_mask_mean_then_l2",
+            "query_prefix": "query: ",
+            "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+            "seed": 1729,
+            "tf32": false
+          },
+          "input_count_at_max_length": 1
+        },
+        "fusion": {
+          "input_top_k": 100,
+          "method": "equal_weight_rrf",
+          "offset": 60
+        },
+        "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+        "git_dirty": true,
+        "logical_cpu_count": 12,
+        "member": "timelyrag_company_policies_dataset_v2.jsonl",
+        "output_sha256": {
+          "config.json": "7b65af43c6d8922df9d80a04fa588e9510c065bbaf0a623a2290006b21d7344c",
+          "failure_cases.json": "1a263916641320844f7aa862e5bc49d79178f0efb2353bfa538f0d0c591e6d0e",
+          "per_query.jsonl": "9c7f15ea9d7214301c1b88ef1c90856fb3a04a06978b4f826d6db6e7d60758f1",
+          "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+          "run.trec": "724604657680f5d784539da0c9dd60729255957964f6d7b5bf9adb4f55ef0026",
+          "summary.json": "0a600036fa4af7d289b8d308a5da298c1bca213d8d320eb391ece8181201af70"
+        },
+        "packages": {
+          "faiss-cpu": "1.16.0",
+          "numpy": "2.5.5",
+          "pydantic": "2.14.4",
+          "rank-bm25": "0.2.2",
+          "tokenizers": "0.22.2",
+          "torch": "2.10.0",
+          "transformers": "5.5.0"
+        },
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.11",
+        "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+        "selected_query_ids": [
+          1016,
+          474,
+          866,
+          5,
+          200,
+          1858,
+          841,
+          2949,
+          262,
+          741,
+          855,
+          2615,
+          2072,
+          1806,
+          720,
+          1959,
+          2969,
+          91,
+          1214,
+          246,
+          2500,
+          2630,
+          1218,
+          2354,
+          718,
+          2222,
+          757,
+          453,
+          136,
+          2763,
+          2654,
+          1978,
+          947,
+          1094,
+          1197,
+          406,
+          238,
+          716,
+          2069,
+          3,
+          2379,
+          1422,
+          2613,
+          2998,
+          1868,
+          2766,
+          1045,
+          2150,
+          2837,
+          1393,
+          2035,
+          2487,
+          833,
+          317,
+          2217,
+          1931,
+          2126,
+          1720,
+          2876,
+          919,
+          380,
+          1733,
+          2059,
+          758,
+          2146,
+          2029,
+          2017,
+          224,
+          2317,
+          944,
+          1483,
+          62,
+          118,
+          223,
+          1455,
+          1040,
+          2351,
+          1636,
+          2346,
+          1127,
+          2076,
+          2140,
+          2922,
+          953,
+          1571,
+          1876,
+          790,
+          2614,
+          2460,
+          1339,
+          2750,
+          1645,
+          2851,
+          1670,
+          1300,
+          2313,
+          2063,
+          1795,
+          444,
+          1443
+        ],
+        "source_files_sha256": {
+          "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+          "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+          "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+          "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+          "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+          "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+          "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+          "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+          "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+          "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+          "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+          "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+          "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+          "src/temporalproof/retrieval/dense.py": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+          "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+          "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+          "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+          "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+        },
+        "source_snapshot_sha256": "d723d2b872c63da262f3225ec1f1a5052a0e1376e0f0952cf1c3c59ccda73843",
+        "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+        "temporal_policy": {
+          "event_time_inferred": false,
+          "hard_filter": false,
+          "name": "soft_insertion_gap_v1",
+          "weight": 0.1
+        },
+        "test_partition_evaluated": false,
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "warmup_query_id": 0
+      },
+      "dense": {
+        "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+        "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+        "config": {
+          "b": 0.75,
+          "bootstrap_samples": 2000,
+          "epsilon": 0.25,
+          "failure_examples": 5,
+          "k1": 1.5,
+          "method": "dense",
+          "name": "dense_m2_validation100_v1",
+          "partition": "validation",
+          "query_limit": 100,
+          "seed": 1729,
+          "tie_break": "score_desc_doc_id_asc",
+          "tokenizer": "python_str_split_v1",
+          "top_k": 100,
+          "warmup_queries": 3
+        },
+        "corpus_document_count": 30000,
+        "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+        "cutoffs": {
+          "ndcg": [
+            10
+          ],
+          "recall": [
+            10,
+            20,
+            100
+          ]
+        },
+        "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+        "encoder": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "inputs_at_max_length": 1,
+          "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "peak_allocated_bytes": 968040448,
+          "peak_reserved_bytes": 1591738368,
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "encoder_cache": {
+          "cache_hit": false,
+          "cache_key": "d716afb3e622cee9b283a3d8850181325eab20a9f5fe9dc08d6896b29870fecd",
+          "cache_manifest_sha256": "e0cd3b7bf0674b8bd564546af6094896c872e6b9ddbaaa61c1e164abfe11aaea",
+          "dimension": 384,
+          "document_count": 30000,
+          "embedding_build_ms": 34114.16461799991,
+          "faiss_build_ms": 94.88851500009332,
+          "faiss_index": "IndexFlatIP",
+          "files_sha256": {
+            "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+            "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+          },
+          "identity": {
+            "asset_sha256": {
+              "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+              "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+              "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+              "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+              "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+              "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+            },
+            "attention": "eager",
+            "batch_size": 16,
+            "cache_implementation_sha256": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+            "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+            "cuda_runtime": "12.8",
+            "dimension": 384,
+            "dtype": "float32",
+            "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+            "faiss_version": "1.16.0",
+            "gpu": "NVIDIA GeForce RTX 5060 Ti",
+            "license": "MIT",
+            "loading_info": {
+              "legacy_position_buffer_checked": true,
+              "missing_keys": [],
+              "unexpected_keys": [
+                "embeddings.position_ids"
+              ]
+            },
+            "max_length": 512,
+            "model_id": "intfloat/multilingual-e5-small",
+            "passage_prefix": "passage: ",
+            "pooling": "attention_mask_mean_then_l2",
+            "query_prefix": "query: ",
+            "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+            "seed": 1729,
+            "tf32": false
+          },
+          "input_count_at_max_length": 1
+        },
+        "fusion": {
+          "input_top_k": 100,
+          "method": "equal_weight_rrf",
+          "offset": 60
+        },
+        "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+        "git_dirty": true,
+        "logical_cpu_count": 12,
+        "member": "timelyrag_company_policies_dataset_v2.jsonl",
+        "output_sha256": {
+          "config.json": "3858cc75b0c89f1f8f0cb4b70ff90026ac03db5db5eb77bc652ea74f098e3a44",
+          "failure_cases.json": "c531d59e47ee4ac61deb36bc18e93723858671dbc50a02c141df0d4808d12fb9",
+          "per_query.jsonl": "f12f635ad83ed5107c7deba75491445af54acded1a265e726aa2fc08129e8999",
+          "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+          "run.trec": "f9e152229f6610ac693d72c2189e43c5ab2dcd9d575b34f531d961ac7f1b9bd7",
+          "summary.json": "aa55c271506cf34276d0a91041fc414b1b4dbacc3bfb3279d987459ba8688121"
+        },
+        "packages": {
+          "faiss-cpu": "1.16.0",
+          "numpy": "2.5.5",
+          "pydantic": "2.14.4",
+          "rank-bm25": "0.2.2",
+          "tokenizers": "0.22.2",
+          "torch": "2.10.0",
+          "transformers": "5.5.0"
+        },
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.11",
+        "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+        "selected_query_ids": [
+          1016,
+          474,
+          866,
+          5,
+          200,
+          1858,
+          841,
+          2949,
+          262,
+          741,
+          855,
+          2615,
+          2072,
+          1806,
+          720,
+          1959,
+          2969,
+          91,
+          1214,
+          246,
+          2500,
+          2630,
+          1218,
+          2354,
+          718,
+          2222,
+          757,
+          453,
+          136,
+          2763,
+          2654,
+          1978,
+          947,
+          1094,
+          1197,
+          406,
+          238,
+          716,
+          2069,
+          3,
+          2379,
+          1422,
+          2613,
+          2998,
+          1868,
+          2766,
+          1045,
+          2150,
+          2837,
+          1393,
+          2035,
+          2487,
+          833,
+          317,
+          2217,
+          1931,
+          2126,
+          1720,
+          2876,
+          919,
+          380,
+          1733,
+          2059,
+          758,
+          2146,
+          2029,
+          2017,
+          224,
+          2317,
+          944,
+          1483,
+          62,
+          118,
+          223,
+          1455,
+          1040,
+          2351,
+          1636,
+          2346,
+          1127,
+          2076,
+          2140,
+          2922,
+          953,
+          1571,
+          1876,
+          790,
+          2614,
+          2460,
+          1339,
+          2750,
+          1645,
+          2851,
+          1670,
+          1300,
+          2313,
+          2063,
+          1795,
+          444,
+          1443
+        ],
+        "source_files_sha256": {
+          "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+          "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+          "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+          "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+          "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+          "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+          "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+          "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+          "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+          "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+          "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+          "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+          "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+          "src/temporalproof/retrieval/dense.py": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+          "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+          "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+          "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+          "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+        },
+        "source_snapshot_sha256": "d723d2b872c63da262f3225ec1f1a5052a0e1376e0f0952cf1c3c59ccda73843",
+        "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+        "temporal_policy": {
+          "event_time_inferred": false,
+          "hard_filter": false,
+          "name": "soft_insertion_gap_v1",
+          "weight": 0.1
+        },
+        "test_partition_evaluated": false,
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "warmup_query_id": 0
+      },
+      "hybrid_insertion_time": {
+        "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+        "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+        "config": {
+          "b": 0.75,
+          "bootstrap_samples": 2000,
+          "epsilon": 0.25,
+          "failure_examples": 5,
+          "k1": 1.5,
+          "method": "hybrid_insertion_time",
+          "name": "hybrid_insertion_time_m2_validation100_v1",
+          "partition": "validation",
+          "query_limit": 100,
+          "seed": 1729,
+          "tie_break": "score_desc_doc_id_asc",
+          "tokenizer": "python_str_split_v1",
+          "top_k": 100,
+          "warmup_queries": 3
+        },
+        "corpus_document_count": 30000,
+        "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+        "cutoffs": {
+          "ndcg": [
+            10
+          ],
+          "recall": [
+            10,
+            20,
+            100
+          ]
+        },
+        "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+        "encoder": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "inputs_at_max_length": 1,
+          "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "peak_allocated_bytes": 968040448,
+          "peak_reserved_bytes": 1591738368,
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "encoder_cache": {
+          "cache_hit": false,
+          "cache_key": "d716afb3e622cee9b283a3d8850181325eab20a9f5fe9dc08d6896b29870fecd",
+          "cache_manifest_sha256": "e0cd3b7bf0674b8bd564546af6094896c872e6b9ddbaaa61c1e164abfe11aaea",
+          "dimension": 384,
+          "document_count": 30000,
+          "embedding_build_ms": 34114.16461799991,
+          "faiss_build_ms": 94.88851500009332,
+          "faiss_index": "IndexFlatIP",
+          "files_sha256": {
+            "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+            "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+          },
+          "identity": {
+            "asset_sha256": {
+              "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+              "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+              "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+              "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+              "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+              "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+            },
+            "attention": "eager",
+            "batch_size": 16,
+            "cache_implementation_sha256": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+            "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+            "cuda_runtime": "12.8",
+            "dimension": 384,
+            "dtype": "float32",
+            "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+            "faiss_version": "1.16.0",
+            "gpu": "NVIDIA GeForce RTX 5060 Ti",
+            "license": "MIT",
+            "loading_info": {
+              "legacy_position_buffer_checked": true,
+              "missing_keys": [],
+              "unexpected_keys": [
+                "embeddings.position_ids"
+              ]
+            },
+            "max_length": 512,
+            "model_id": "intfloat/multilingual-e5-small",
+            "passage_prefix": "passage: ",
+            "pooling": "attention_mask_mean_then_l2",
+            "query_prefix": "query: ",
+            "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+            "seed": 1729,
+            "tf32": false
+          },
+          "input_count_at_max_length": 1
+        },
+        "fusion": {
+          "input_top_k": 100,
+          "method": "equal_weight_rrf",
+          "offset": 60
+        },
+        "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+        "git_dirty": true,
+        "logical_cpu_count": 12,
+        "member": "timelyrag_company_policies_dataset_v2.jsonl",
+        "output_sha256": {
+          "config.json": "fe7ffe9c5f23b74bcf85bf78c9c76ab81c01c8a56cc5bd6b3a5a0035a262d6e0",
+          "failure_cases.json": "eee4f32c18b71e7437c984879bb6b25c2e53f11d41e7921cea68589a69f4e1ad",
+          "per_query.jsonl": "dd2d050b8d4eb9e238010173e7ddd20fa6e9b67a8274b1a756f71eb4ed878d7a",
+          "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+          "run.trec": "d607ae30148d04125d4a91385df90b7289385a49c4aca279f48158b31d3d4279",
+          "summary.json": "d3cf5633a881e6f3f617bf7699a9e008c043945cb46857a4af7582d263fbc341"
+        },
+        "packages": {
+          "faiss-cpu": "1.16.0",
+          "numpy": "2.5.5",
+          "pydantic": "2.14.4",
+          "rank-bm25": "0.2.2",
+          "tokenizers": "0.22.2",
+          "torch": "2.10.0",
+          "transformers": "5.5.0"
+        },
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.11",
+        "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+        "selected_query_ids": [
+          1016,
+          474,
+          866,
+          5,
+          200,
+          1858,
+          841,
+          2949,
+          262,
+          741,
+          855,
+          2615,
+          2072,
+          1806,
+          720,
+          1959,
+          2969,
+          91,
+          1214,
+          246,
+          2500,
+          2630,
+          1218,
+          2354,
+          718,
+          2222,
+          757,
+          453,
+          136,
+          2763,
+          2654,
+          1978,
+          947,
+          1094,
+          1197,
+          406,
+          238,
+          716,
+          2069,
+          3,
+          2379,
+          1422,
+          2613,
+          2998,
+          1868,
+          2766,
+          1045,
+          2150,
+          2837,
+          1393,
+          2035,
+          2487,
+          833,
+          317,
+          2217,
+          1931,
+          2126,
+          1720,
+          2876,
+          919,
+          380,
+          1733,
+          2059,
+          758,
+          2146,
+          2029,
+          2017,
+          224,
+          2317,
+          944,
+          1483,
+          62,
+          118,
+          223,
+          1455,
+          1040,
+          2351,
+          1636,
+          2346,
+          1127,
+          2076,
+          2140,
+          2922,
+          953,
+          1571,
+          1876,
+          790,
+          2614,
+          2460,
+          1339,
+          2750,
+          1645,
+          2851,
+          1670,
+          1300,
+          2313,
+          2063,
+          1795,
+          444,
+          1443
+        ],
+        "source_files_sha256": {
+          "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+          "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+          "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+          "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+          "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+          "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+          "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+          "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+          "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+          "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+          "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+          "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+          "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+          "src/temporalproof/retrieval/dense.py": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+          "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+          "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+          "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+          "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+        },
+        "source_snapshot_sha256": "d723d2b872c63da262f3225ec1f1a5052a0e1376e0f0952cf1c3c59ccda73843",
+        "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+        "temporal_policy": {
+          "event_time_inferred": false,
+          "hard_filter": false,
+          "name": "soft_insertion_gap_v1",
+          "weight": 0.1
+        },
+        "test_partition_evaluated": false,
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "warmup_query_id": 0
+      },
+      "hybrid_rrf": {
+        "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+        "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+        "config": {
+          "b": 0.75,
+          "bootstrap_samples": 2000,
+          "epsilon": 0.25,
+          "failure_examples": 5,
+          "k1": 1.5,
+          "method": "hybrid_rrf",
+          "name": "hybrid_rrf_m2_validation100_v1",
+          "partition": "validation",
+          "query_limit": 100,
+          "seed": 1729,
+          "tie_break": "score_desc_doc_id_asc",
+          "tokenizer": "python_str_split_v1",
+          "top_k": 100,
+          "warmup_queries": 3
+        },
+        "corpus_document_count": 30000,
+        "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+        "cutoffs": {
+          "ndcg": [
+            10
+          ],
+          "recall": [
+            10,
+            20,
+            100
+          ]
+        },
+        "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+        "encoder": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "inputs_at_max_length": 1,
+          "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "peak_allocated_bytes": 968040448,
+          "peak_reserved_bytes": 1591738368,
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "encoder_cache": {
+          "cache_hit": false,
+          "cache_key": "d716afb3e622cee9b283a3d8850181325eab20a9f5fe9dc08d6896b29870fecd",
+          "cache_manifest_sha256": "e0cd3b7bf0674b8bd564546af6094896c872e6b9ddbaaa61c1e164abfe11aaea",
+          "dimension": 384,
+          "document_count": 30000,
+          "embedding_build_ms": 34114.16461799991,
+          "faiss_build_ms": 94.88851500009332,
+          "faiss_index": "IndexFlatIP",
+          "files_sha256": {
+            "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+            "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+          },
+          "identity": {
+            "asset_sha256": {
+              "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+              "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+              "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+              "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+              "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+              "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+            },
+            "attention": "eager",
+            "batch_size": 16,
+            "cache_implementation_sha256": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+            "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+            "cuda_runtime": "12.8",
+            "dimension": 384,
+            "dtype": "float32",
+            "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+            "faiss_version": "1.16.0",
+            "gpu": "NVIDIA GeForce RTX 5060 Ti",
+            "license": "MIT",
+            "loading_info": {
+              "legacy_position_buffer_checked": true,
+              "missing_keys": [],
+              "unexpected_keys": [
+                "embeddings.position_ids"
+              ]
+            },
+            "max_length": 512,
+            "model_id": "intfloat/multilingual-e5-small",
+            "passage_prefix": "passage: ",
+            "pooling": "attention_mask_mean_then_l2",
+            "query_prefix": "query: ",
+            "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+            "seed": 1729,
+            "tf32": false
+          },
+          "input_count_at_max_length": 1
+        },
+        "fusion": {
+          "input_top_k": 100,
+          "method": "equal_weight_rrf",
+          "offset": 60
+        },
+        "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+        "git_dirty": true,
+        "logical_cpu_count": 12,
+        "member": "timelyrag_company_policies_dataset_v2.jsonl",
+        "output_sha256": {
+          "config.json": "33e82c540c435c3f9edc5eedaa558098f2d36b569ccb0dc9bc72187d82afa158",
+          "failure_cases.json": "23a29dce55e156c50d7dfcb7f88628e644f94c15fbc90b47788b037854e3fbd1",
+          "per_query.jsonl": "9c2402b8ded96a34640cf81d3c8dd4bf4741bbc32e6b8feec398320f5c53bcc1",
+          "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+          "run.trec": "8df0d79f34035189c5aa385ea57794b18aa10cee8cd2db51a4d13f7f3700d6ab",
+          "summary.json": "ccb486885969fe2baf8bb0b4e27961b0d2a19d63b7cb06635aa49ea7ddd3a311"
+        },
+        "packages": {
+          "faiss-cpu": "1.16.0",
+          "numpy": "2.5.5",
+          "pydantic": "2.14.4",
+          "rank-bm25": "0.2.2",
+          "tokenizers": "0.22.2",
+          "torch": "2.10.0",
+          "transformers": "5.5.0"
+        },
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "python": "3.13.11",
+        "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+        "selected_query_ids": [
+          1016,
+          474,
+          866,
+          5,
+          200,
+          1858,
+          841,
+          2949,
+          262,
+          741,
+          855,
+          2615,
+          2072,
+          1806,
+          720,
+          1959,
+          2969,
+          91,
+          1214,
+          246,
+          2500,
+          2630,
+          1218,
+          2354,
+          718,
+          2222,
+          757,
+          453,
+          136,
+          2763,
+          2654,
+          1978,
+          947,
+          1094,
+          1197,
+          406,
+          238,
+          716,
+          2069,
+          3,
+          2379,
+          1422,
+          2613,
+          2998,
+          1868,
+          2766,
+          1045,
+          2150,
+          2837,
+          1393,
+          2035,
+          2487,
+          833,
+          317,
+          2217,
+          1931,
+          2126,
+          1720,
+          2876,
+          919,
+          380,
+          1733,
+          2059,
+          758,
+          2146,
+          2029,
+          2017,
+          224,
+          2317,
+          944,
+          1483,
+          62,
+          118,
+          223,
+          1455,
+          1040,
+          2351,
+          1636,
+          2346,
+          1127,
+          2076,
+          2140,
+          2922,
+          953,
+          1571,
+          1876,
+          790,
+          2614,
+          2460,
+          1339,
+          2750,
+          1645,
+          2851,
+          1670,
+          1300,
+          2313,
+          2063,
+          1795,
+          444,
+          1443
+        ],
+        "source_files_sha256": {
+          "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+          "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+          "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+          "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+          "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+          "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+          "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+          "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+          "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+          "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+          "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+          "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+          "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+          "src/temporalproof/retrieval/dense.py": "9d81c161b7f6f52fa22296c852a73d98433c7ed6b71766e68b5b584ddc25e6d2",
+          "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+          "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+          "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+          "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+        },
+        "source_snapshot_sha256": "d723d2b872c63da262f3225ec1f1a5052a0e1376e0f0952cf1c3c59ccda73843",
+        "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+        "temporal_policy": {
+          "event_time_inferred": false,
+          "hard_filter": false,
+          "name": "soft_insertion_gap_v1",
+          "weight": 0.1
+        },
+        "test_partition_evaluated": false,
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "warmup_query_id": 0
+      }
+    },
+    "same_quality_metrics": true
+  },
+  "replay": {
+    "cache_hit": true,
+    "encoder_profile": {
+      "asset_sha256": {
+        "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+        "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+      },
+      "attention": "eager",
+      "batch_size": 16,
+      "cuda_runtime": "12.8",
+      "dimension": 384,
+      "dtype": "float32",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "inputs_at_max_length": 0,
+      "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+      "license": "MIT",
+      "loading_info": {
+        "legacy_position_buffer_checked": true,
+        "missing_keys": [],
+        "unexpected_keys": [
+          "embeddings.position_ids"
+        ]
+      },
+      "max_length": 512,
+      "model_id": "intfloat/multilingual-e5-small",
+      "passage_prefix": "passage: ",
+      "peak_allocated_bytes": 481755136,
+      "peak_reserved_bytes": 507510784,
+      "pooling": "attention_mask_mean_then_l2",
+      "query_prefix": "query: ",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "seed": 1729,
+      "tf32": false
+    },
+    "ranking_scores_qrels_and_quality_metrics_match": true,
+    "timings_ms": {
+      "bm25": {
+        "concurrency": 1,
+        "mean": 79.07124801005921,
+        "p50": 77.57895550003013,
+        "p95": 116.08810430070662,
+        "scope": "sequential bm25; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      },
+      "dense": {
+        "concurrency": 1,
+        "mean": 11.81744361998426,
+        "p50": 11.558990500361688,
+        "p95": 12.944402799848831,
+        "scope": "sequential dense; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      },
+      "hybrid_insertion_time": {
+        "concurrency": 1,
+        "mean": 93.56529904994204,
+        "p50": 91.42120699971201,
+        "p95": 124.53265849926538,
+        "scope": "sequential hybrid_insertion_time; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      },
+      "hybrid_rrf": {
+        "concurrency": 1,
+        "mean": 93.80772025004262,
+        "p50": 91.20046549969629,
+        "p95": 127.59148025047577,
+        "scope": "sequential hybrid_rrf; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      }
+    }
+  },
+  "run_manifests": {
+    "bm25": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+      "config": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "bm25",
+        "name": "bm25_m2_validation100_v1",
+        "partition": "validation",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "corpus_document_count": 30000,
+      "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+      "cutoffs": {
+        "ndcg": [
+          10
+        ],
+        "recall": [
+          10,
+          20,
+          100
+        ]
+      },
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "encoder": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "inputs_at_max_length": 1,
+        "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "peak_allocated_bytes": 968040448,
+        "peak_reserved_bytes": 1591738368,
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "encoder_cache": {
+        "cache_hit": false,
+        "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+        "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+        "dimension": 384,
+        "document_count": 30000,
+        "embedding_build_ms": 34075.51163900007,
+        "faiss_build_ms": 93.6798650000128,
+        "faiss_index": "IndexFlatIP",
+        "files_sha256": {
+          "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+          "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+        },
+        "identity": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+          "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+          "faiss_version": "1.16.0",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "input_count_at_max_length": 1
+      },
+      "fusion": {
+        "input_top_k": 100,
+        "method": "equal_weight_rrf",
+        "offset": 60
+      },
+      "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+      "git_dirty": true,
+      "logical_cpu_count": 12,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "output_sha256": {
+        "config.json": "7b65af43c6d8922df9d80a04fa588e9510c065bbaf0a623a2290006b21d7344c",
+        "failure_cases.json": "92f5a21cc5f591184184c43e4f8345450fe299bd088f5601a4921f1d58d029c8",
+        "per_query.jsonl": "912daa1db1673592df64eeb44be714a5e0c39592fa8b82bde5813678bcd1d6c6",
+        "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+        "run.trec": "724604657680f5d784539da0c9dd60729255957964f6d7b5bf9adb4f55ef0026",
+        "summary.json": "8fc86d78b4e73afb51cb414c0e47e231bbcd8d27c3ea4cf4f00fafa8d9324b3c"
+      },
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "numpy": "2.5.5",
+        "pydantic": "2.14.4",
+        "rank-bm25": "0.2.2",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.13.11",
+      "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+      "selected_query_ids": [
+        1016,
+        474,
+        866,
+        5,
+        200,
+        1858,
+        841,
+        2949,
+        262,
+        741,
+        855,
+        2615,
+        2072,
+        1806,
+        720,
+        1959,
+        2969,
+        91,
+        1214,
+        246,
+        2500,
+        2630,
+        1218,
+        2354,
+        718,
+        2222,
+        757,
+        453,
+        136,
+        2763,
+        2654,
+        1978,
+        947,
+        1094,
+        1197,
+        406,
+        238,
+        716,
+        2069,
+        3,
+        2379,
+        1422,
+        2613,
+        2998,
+        1868,
+        2766,
+        1045,
+        2150,
+        2837,
+        1393,
+        2035,
+        2487,
+        833,
+        317,
+        2217,
+        1931,
+        2126,
+        1720,
+        2876,
+        919,
+        380,
+        1733,
+        2059,
+        758,
+        2146,
+        2029,
+        2017,
+        224,
+        2317,
+        944,
+        1483,
+        62,
+        118,
+        223,
+        1455,
+        1040,
+        2351,
+        1636,
+        2346,
+        1127,
+        2076,
+        2140,
+        2922,
+        953,
+        1571,
+        1876,
+        790,
+        2614,
+        2460,
+        1339,
+        2750,
+        1645,
+        2851,
+        1670,
+        1300,
+        2313,
+        2063,
+        1795,
+        444,
+        1443
+      ],
+      "source_files_sha256": {
+        "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+      "temporal_policy": {
+        "event_time_inferred": false,
+        "hard_filter": false,
+        "name": "soft_insertion_gap_v1",
+        "weight": 0.1
+      },
+      "test_partition_evaluated": false,
+      "thread_environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "warmup_query_id": 0
+    },
+    "dense": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+      "config": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "dense",
+        "name": "dense_m2_validation100_v1",
+        "partition": "validation",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "corpus_document_count": 30000,
+      "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+      "cutoffs": {
+        "ndcg": [
+          10
+        ],
+        "recall": [
+          10,
+          20,
+          100
+        ]
+      },
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "encoder": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "inputs_at_max_length": 1,
+        "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "peak_allocated_bytes": 968040448,
+        "peak_reserved_bytes": 1591738368,
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "encoder_cache": {
+        "cache_hit": false,
+        "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+        "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+        "dimension": 384,
+        "document_count": 30000,
+        "embedding_build_ms": 34075.51163900007,
+        "faiss_build_ms": 93.6798650000128,
+        "faiss_index": "IndexFlatIP",
+        "files_sha256": {
+          "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+          "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+        },
+        "identity": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+          "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+          "faiss_version": "1.16.0",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "input_count_at_max_length": 1
+      },
+      "fusion": {
+        "input_top_k": 100,
+        "method": "equal_weight_rrf",
+        "offset": 60
+      },
+      "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+      "git_dirty": true,
+      "logical_cpu_count": 12,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "output_sha256": {
+        "config.json": "3858cc75b0c89f1f8f0cb4b70ff90026ac03db5db5eb77bc652ea74f098e3a44",
+        "failure_cases.json": "06478994092ecff85152221c2fea8ba08d5f952688505ca9087f7fe01f02b9c1",
+        "per_query.jsonl": "2954342ad28dd19af48df2de932ec8db749d260ee9fae64b710d594f829e5292",
+        "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+        "run.trec": "f9e152229f6610ac693d72c2189e43c5ab2dcd9d575b34f531d961ac7f1b9bd7",
+        "summary.json": "9613ed8d86d86e5b4666f7038050cd8b3a3ee04544197a79f7a43cbfd1eff7cb"
+      },
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "numpy": "2.5.5",
+        "pydantic": "2.14.4",
+        "rank-bm25": "0.2.2",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.13.11",
+      "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+      "selected_query_ids": [
+        1016,
+        474,
+        866,
+        5,
+        200,
+        1858,
+        841,
+        2949,
+        262,
+        741,
+        855,
+        2615,
+        2072,
+        1806,
+        720,
+        1959,
+        2969,
+        91,
+        1214,
+        246,
+        2500,
+        2630,
+        1218,
+        2354,
+        718,
+        2222,
+        757,
+        453,
+        136,
+        2763,
+        2654,
+        1978,
+        947,
+        1094,
+        1197,
+        406,
+        238,
+        716,
+        2069,
+        3,
+        2379,
+        1422,
+        2613,
+        2998,
+        1868,
+        2766,
+        1045,
+        2150,
+        2837,
+        1393,
+        2035,
+        2487,
+        833,
+        317,
+        2217,
+        1931,
+        2126,
+        1720,
+        2876,
+        919,
+        380,
+        1733,
+        2059,
+        758,
+        2146,
+        2029,
+        2017,
+        224,
+        2317,
+        944,
+        1483,
+        62,
+        118,
+        223,
+        1455,
+        1040,
+        2351,
+        1636,
+        2346,
+        1127,
+        2076,
+        2140,
+        2922,
+        953,
+        1571,
+        1876,
+        790,
+        2614,
+        2460,
+        1339,
+        2750,
+        1645,
+        2851,
+        1670,
+        1300,
+        2313,
+        2063,
+        1795,
+        444,
+        1443
+      ],
+      "source_files_sha256": {
+        "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+      "temporal_policy": {
+        "event_time_inferred": false,
+        "hard_filter": false,
+        "name": "soft_insertion_gap_v1",
+        "weight": 0.1
+      },
+      "test_partition_evaluated": false,
+      "thread_environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "warmup_query_id": 0
+    },
+    "hybrid_insertion_time": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+      "config": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "hybrid_insertion_time",
+        "name": "hybrid_insertion_time_m2_validation100_v1",
+        "partition": "validation",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "corpus_document_count": 30000,
+      "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+      "cutoffs": {
+        "ndcg": [
+          10
+        ],
+        "recall": [
+          10,
+          20,
+          100
+        ]
+      },
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "encoder": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "inputs_at_max_length": 1,
+        "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "peak_allocated_bytes": 968040448,
+        "peak_reserved_bytes": 1591738368,
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "encoder_cache": {
+        "cache_hit": false,
+        "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+        "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+        "dimension": 384,
+        "document_count": 30000,
+        "embedding_build_ms": 34075.51163900007,
+        "faiss_build_ms": 93.6798650000128,
+        "faiss_index": "IndexFlatIP",
+        "files_sha256": {
+          "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+          "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+        },
+        "identity": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+          "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+          "faiss_version": "1.16.0",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "input_count_at_max_length": 1
+      },
+      "fusion": {
+        "input_top_k": 100,
+        "method": "equal_weight_rrf",
+        "offset": 60
+      },
+      "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+      "git_dirty": true,
+      "logical_cpu_count": 12,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "output_sha256": {
+        "config.json": "fe7ffe9c5f23b74bcf85bf78c9c76ab81c01c8a56cc5bd6b3a5a0035a262d6e0",
+        "failure_cases.json": "825122dae303238bd09aa4d4d848a3ad849b0cefc97e3354da61c3a0b831a5da",
+        "per_query.jsonl": "ebb38b3a2f9c4b0ccf7a0c925c87c94b3137fc29c0174f559b8d07c2447f6735",
+        "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+        "run.trec": "d607ae30148d04125d4a91385df90b7289385a49c4aca279f48158b31d3d4279",
+        "summary.json": "984103657eb750fe47627b20fdbd9187acc84713348ca770cf6940122a1aae06"
+      },
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "numpy": "2.5.5",
+        "pydantic": "2.14.4",
+        "rank-bm25": "0.2.2",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.13.11",
+      "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+      "selected_query_ids": [
+        1016,
+        474,
+        866,
+        5,
+        200,
+        1858,
+        841,
+        2949,
+        262,
+        741,
+        855,
+        2615,
+        2072,
+        1806,
+        720,
+        1959,
+        2969,
+        91,
+        1214,
+        246,
+        2500,
+        2630,
+        1218,
+        2354,
+        718,
+        2222,
+        757,
+        453,
+        136,
+        2763,
+        2654,
+        1978,
+        947,
+        1094,
+        1197,
+        406,
+        238,
+        716,
+        2069,
+        3,
+        2379,
+        1422,
+        2613,
+        2998,
+        1868,
+        2766,
+        1045,
+        2150,
+        2837,
+        1393,
+        2035,
+        2487,
+        833,
+        317,
+        2217,
+        1931,
+        2126,
+        1720,
+        2876,
+        919,
+        380,
+        1733,
+        2059,
+        758,
+        2146,
+        2029,
+        2017,
+        224,
+        2317,
+        944,
+        1483,
+        62,
+        118,
+        223,
+        1455,
+        1040,
+        2351,
+        1636,
+        2346,
+        1127,
+        2076,
+        2140,
+        2922,
+        953,
+        1571,
+        1876,
+        790,
+        2614,
+        2460,
+        1339,
+        2750,
+        1645,
+        2851,
+        1670,
+        1300,
+        2313,
+        2063,
+        1795,
+        444,
+        1443
+      ],
+      "source_files_sha256": {
+        "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+      "temporal_policy": {
+        "event_time_inferred": false,
+        "hard_filter": false,
+        "name": "soft_insertion_gap_v1",
+        "weight": 0.1
+      },
+      "test_partition_evaluated": false,
+      "thread_environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "warmup_query_id": 0
+    },
+    "hybrid_rrf": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "comparison_config_sha256": "b3601f0076b853be0fa31d0e59f550456dc0c95be301ff42239b50cf23e33bf8",
+      "config": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "hybrid_rrf",
+        "name": "hybrid_rrf_m2_validation100_v1",
+        "partition": "validation",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "corpus_document_count": 30000,
+      "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+      "cutoffs": {
+        "ndcg": [
+          10
+        ],
+        "recall": [
+          10,
+          20,
+          100
+        ]
+      },
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "encoder": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "inputs_at_max_length": 1,
+        "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "peak_allocated_bytes": 968040448,
+        "peak_reserved_bytes": 1591738368,
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "encoder_cache": {
+        "cache_hit": false,
+        "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+        "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+        "dimension": 384,
+        "document_count": 30000,
+        "embedding_build_ms": 34075.51163900007,
+        "faiss_build_ms": 93.6798650000128,
+        "faiss_index": "IndexFlatIP",
+        "files_sha256": {
+          "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+          "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+        },
+        "identity": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+          "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+          "faiss_version": "1.16.0",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "input_count_at_max_length": 1
+      },
+      "fusion": {
+        "input_top_k": 100,
+        "method": "equal_weight_rrf",
+        "offset": 60
+      },
+      "git_commit": "7b3c374295386f5b3f37882a54a8c7422a6cbc0b",
+      "git_dirty": true,
+      "logical_cpu_count": 12,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "output_sha256": {
+        "config.json": "33e82c540c435c3f9edc5eedaa558098f2d36b569ccb0dc9bc72187d82afa158",
+        "failure_cases.json": "66ecd5a424165ea073f7ad6a72212e69147bed48c21117fda8d92b384786ec6e",
+        "per_query.jsonl": "d09d27329f5f988de9a1ed0221bbcbf74be9c4c3796a74cfed48e6aa90744f9e",
+        "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+        "run.trec": "8df0d79f34035189c5aa385ea57794b18aa10cee8cd2db51a4d13f7f3700d6ab",
+        "summary.json": "e11102bea769ac0c89f071ac587904a3b202d98f7b14dc8d61be07d2330c7006"
+      },
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "numpy": "2.5.5",
+        "pydantic": "2.14.4",
+        "rank-bm25": "0.2.2",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.13.11",
+      "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+      "selected_query_ids": [
+        1016,
+        474,
+        866,
+        5,
+        200,
+        1858,
+        841,
+        2949,
+        262,
+        741,
+        855,
+        2615,
+        2072,
+        1806,
+        720,
+        1959,
+        2969,
+        91,
+        1214,
+        246,
+        2500,
+        2630,
+        1218,
+        2354,
+        718,
+        2222,
+        757,
+        453,
+        136,
+        2763,
+        2654,
+        1978,
+        947,
+        1094,
+        1197,
+        406,
+        238,
+        716,
+        2069,
+        3,
+        2379,
+        1422,
+        2613,
+        2998,
+        1868,
+        2766,
+        1045,
+        2150,
+        2837,
+        1393,
+        2035,
+        2487,
+        833,
+        317,
+        2217,
+        1931,
+        2126,
+        1720,
+        2876,
+        919,
+        380,
+        1733,
+        2059,
+        758,
+        2146,
+        2029,
+        2017,
+        224,
+        2317,
+        944,
+        1483,
+        62,
+        118,
+        223,
+        1455,
+        1040,
+        2351,
+        1636,
+        2346,
+        1127,
+        2076,
+        2140,
+        2922,
+        953,
+        1571,
+        1876,
+        790,
+        2614,
+        2460,
+        1339,
+        2750,
+        1645,
+        2851,
+        1670,
+        1300,
+        2313,
+        2063,
+        1795,
+        444,
+        1443
+      ],
+      "source_files_sha256": {
+        "pyproject.toml": "8163171b0ce8c9deb270bc4b23ad2271c5e7830ba6b605917a94afa24aaa1dd8",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "61c3b11536ea362442158ae53c54d1621687739158c887a0b8dd74d1840e1cf7",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "5175c2d35a80488a77ad7793ebd94cfc9f5c005716825f95d56a491a937dd646",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+      "temporal_policy": {
+        "event_time_inferred": false,
+        "hard_filter": false,
+        "name": "soft_insertion_gap_v1",
+        "weight": 0.1
+      },
+      "test_partition_evaluated": false,
+      "thread_environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "warmup_query_id": 0
+    }
+  },
+  "scope": "100 fixed M1 validation queries; full 30000-passage corpus; no test evaluation or parameter tuning",
+  "summaries": {
+    "bm25": {
+      "index_build_ms": 214.783802999591,
+      "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+      "metrics": {
+        "ndcg_at_10": {
+          "mean": 0.17595877026340895,
+          "query_bootstrap_95_percent_interval": [
+            0.12230256145325066,
+            0.23036653559413722
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.23,
+          "query_bootstrap_95_percent_interval": [
+            0.16666666666666663,
+            0.29666666666666663
+          ]
+        },
+        "recall_at_100": {
+          "mean": 0.39333333333333337,
+          "query_bootstrap_95_percent_interval": [
+            0.31581249999999994,
+            0.47166666666666673
+          ]
+        },
+        "recall_at_20": {
+          "mean": 0.2816666666666666,
+          "query_bootstrap_95_percent_interval": [
+            0.2116458333333333,
+            0.3567083333333331
+          ]
+        },
+        "reference_prefix_ndcg_at_10": {
+          "mean": 0.24276213967124355,
+          "query_bootstrap_95_percent_interval": [
+            0.1760420134658617,
+            0.31001915350050885
+          ]
+        }
+      },
+      "queries_with_incomplete_top10": 88,
+      "queries_with_no_gold_in_top100": 45,
+      "query_count": 100,
+      "retrieval_timing_ms": {
+        "concurrency": 1,
+        "mean": 77.75532934002513,
+        "p50": 76.38021150023633,
+        "p95": 109.94781135009362,
+        "scope": "sequential bm25; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      }
+    },
+    "dense": {
+      "index_build_ms": 93.6798650000128,
+      "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+      "metrics": {
+        "ndcg_at_10": {
+          "mean": 0.1500424339868897,
+          "query_bootstrap_95_percent_interval": [
+            0.10166221882790942,
+            0.20295483005701787
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.195,
+          "query_bootstrap_95_percent_interval": [
+            0.1325,
+            0.2575
+          ]
+        },
+        "recall_at_100": {
+          "mean": 0.36166666666666664,
+          "query_bootstrap_95_percent_interval": [
+            0.28581249999999997,
+            0.43999999999999995
+          ]
+        },
+        "recall_at_20": {
+          "mean": 0.22,
+          "query_bootstrap_95_percent_interval": [
+            0.15416666666666667,
+            0.2875208333333332
+          ]
+        },
+        "reference_prefix_ndcg_at_10": {
+          "mean": 0.21125183619602267,
+          "query_bootstrap_95_percent_interval": [
+            0.14657903417427154,
+            0.2804048283085662
+          ]
+        }
+      },
+      "queries_with_incomplete_top10": 91,
+      "queries_with_no_gold_in_top100": 48,
+      "query_count": 100,
+      "retrieval_timing_ms": {
+        "concurrency": 1,
+        "mean": 11.913415850067395,
+        "p50": 11.696932000177185,
+        "p95": 13.032710200059228,
+        "scope": "sequential dense; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      }
+    },
+    "hybrid_insertion_time": {
+      "index_build_ms": 308.4636679996038,
+      "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+      "metrics": {
+        "ndcg_at_10": {
+          "mean": 0.20366115009837776,
+          "query_bootstrap_95_percent_interval": [
+            0.1466221736771521,
+            0.26224176917805525
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.2575,
+          "query_bootstrap_95_percent_interval": [
+            0.19166666666666665,
+            0.3233333333333333
+          ]
+        },
+        "recall_at_100": {
+          "mean": 0.415,
+          "query_bootstrap_95_percent_interval": [
+            0.33997916666666655,
+            0.4925208333333332
+          ]
+        },
+        "recall_at_20": {
+          "mean": 0.3133333333333333,
+          "query_bootstrap_95_percent_interval": [
+            0.2425,
+            0.3908333333333333
+          ]
+        },
+        "reference_prefix_ndcg_at_10": {
+          "mean": 0.2796681251241754,
+          "query_bootstrap_95_percent_interval": [
+            0.2091323773724729,
+            0.3493315440704567
+          ]
+        }
+      },
+      "queries_with_incomplete_top10": 88,
+      "queries_with_no_gold_in_top100": 43,
+      "query_count": 100,
+      "retrieval_timing_ms": {
+        "concurrency": 1,
+        "mean": 90.5721480000011,
+        "p50": 89.51557299997148,
+        "p95": 127.38309975002267,
+        "scope": "sequential hybrid_insertion_time; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      }
+    },
+    "hybrid_rrf": {
+      "index_build_ms": 308.4636679996038,
+      "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+      "metrics": {
+        "ndcg_at_10": {
+          "mean": 0.2076845949018348,
+          "query_bootstrap_95_percent_interval": [
+            0.15033191154951472,
+            0.2662136336339977
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.2608333333333333,
+          "query_bootstrap_95_percent_interval": [
+            0.195,
+            0.32585416666666656
+          ]
+        },
+        "recall_at_100": {
+          "mean": 0.415,
+          "query_bootstrap_95_percent_interval": [
+            0.33997916666666655,
+            0.4925208333333332
+          ]
+        },
+        "recall_at_20": {
+          "mean": 0.31,
+          "query_bootstrap_95_percent_interval": [
+            0.2383333333333333,
+            0.38668749999999985
+          ]
+        },
+        "reference_prefix_ndcg_at_10": {
+          "mean": 0.28686458804684095,
+          "query_bootstrap_95_percent_interval": [
+            0.2146777375228565,
+            0.3570818024744488
+          ]
+        }
+      },
+      "queries_with_incomplete_top10": 88,
+      "queries_with_no_gold_in_top100": 43,
+      "query_count": 100,
+      "retrieval_timing_ms": {
+        "concurrency": 1,
+        "mean": 88.5901043800095,
+        "p50": 89.05065800036027,
+        "p95": 120.32090339930619,
+        "scope": "sequential hybrid_rrf; GPU query encoding if used, CPU scoring/search/fusion; excludes offline embeddings and metrics"
+      }
+    }
+  },
+  "test_partition_evaluated": false
+}

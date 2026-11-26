@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "name": "fixed_korean_cross_encoder_m3_validation100_v1",
+    "partition": "validation",
+    "seed": 1729,
+    "query_limit": 100,
+    "top_k": 100,
+    "k1": 1.5,
+    "b": 0.75,
+    "epsilon": 0.25,
+    "tokenizer": "python_str_split_v1",
+    "tie_break": "score_desc_doc_id_asc",
+    "warmup_queries": 3,
+    "bootstrap_samples": 2000,
+    "failure_examples": 5,
+    "method": "fixed_cross_encoder"
+  },
+  "model_id": "dragonkue/bge-reranker-v2-m3-ko",
+  "revision": "2aca5884ecac490192af9ebd86836d9073d826cd",
+  "batch_size": 16,
+  "max_length": 512,
+  "candidate_manifest_sha256": "fef933fc67bb78de87ff0c5bcfcb4ba7260dcbe83ba0b53e2185b5e83b7d51dc"
+}

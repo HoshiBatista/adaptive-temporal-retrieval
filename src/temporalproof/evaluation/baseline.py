@@ -8,7 +8,7 @@ import os
 import platform
 import subprocess
 import sys
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from pathlib import Path
 from time import perf_counter
 from typing import Literal
@@ -33,11 +33,18 @@ from temporalproof.evaluation.metrics import (
 )
 from temporalproof.retrieval.bm25 import BM25Retriever, Hit
 
+DEFAULT_TIMING_SCOPE = (
+    "sequential warm BM25 tokenization, scoring and top-k sorting; not API latency"
+)
+
 
 class BaselineConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
 
     name: str = Field(pattern=r"^[a-zA-Z0-9_-]+$")
+    method: Literal[
+        "bm25", "dense", "hybrid_rrf", "hybrid_insertion_time", "fixed_cross_encoder"
+    ] = "bm25"
     partition: Literal["train", "validation"]
     seed: int = Field(strict=True, ge=0)
     query_limit: int = Field(strict=True, ge=1)
@@ -77,7 +84,10 @@ def evaluate_query(record: QueryRecord, hits: Sequence[Hit]) -> dict[str, object
 
 
 def summarize(
-    per_query: Sequence[dict[str, object]], seed: int, bootstrap_samples: int
+    per_query: Sequence[dict[str, object]],
+    seed: int,
+    bootstrap_samples: int,
+    timing_scope: str = DEFAULT_TIMING_SCOPE,
 ) -> dict[str, object]:
     rng = np.random.default_rng(seed)
     metrics = {}
@@ -105,9 +115,7 @@ def summarize(
             "p50": float(np.quantile(latency, 0.5)),
             "p95": float(np.quantile(latency, 0.95)),
             "concurrency": 1,
-            "scope": (
-                "sequential warm BM25 tokenization, scoring and top-k sorting; not API latency"
-            ),
+            "scope": timing_scope,
         },
         "interval_scope": (
             "query bootstrap conditional on selected development queries; "
@@ -151,21 +159,47 @@ def run_baseline(
     config: BaselineConfig,
     output: Path,
     provenance: dict[str, object],
+    *,
+    search: Callable[[str, int, str | None], list[Hit]] | None = None,
+    query_search: Callable[[int, str, int, str | None], list[Hit]] | None = None,
+    warmup_query_id: int | None = None,
+    index_build_ms: float | None = None,
+    timing_scope: str = DEFAULT_TIMING_SCOPE,
 ) -> dict[str, object]:
     """No tuning, learned preprocessing or test partition access occurs here."""
     selected = select_queries(split, config.partition, config.query_limit, config.seed)
     by_query = {record.index: record for record in records}
     documents = [doc for record in records for doc in record.docs_ko]
     by_doc = {doc.global_doc_id: doc for doc in documents}
-    output.mkdir(parents=True, exist_ok=False)
-    started = perf_counter()
-    retriever = BM25Retriever(documents, k1=config.k1, b=config.b, epsilon=config.epsilon)
-    build_ms = (perf_counter() - started) * 1000
-    # Warm up with a train query, without consulting any relevance labels.
+    if search is not None and query_search is not None:
+        raise ValueError("provide only one retrieval callback")
     train_ids = split.query_ids("train")
-    warmup_id = train_ids[0] if train_ids else selected[0]
+    warmup_id = warmup_query_id
+    if warmup_id is None:
+        warmup_id = train_ids[0] if train_ids else selected[0]
+    if warmup_id not in train_ids and warmup_id not in selected:
+        raise ValueError("warmup query must be in train or selected development queries")
+    output.mkdir(parents=True, exist_ok=False)
+    if search is None and query_search is None:
+        if config.method != "bm25":
+            raise ValueError("non-BM25 runs require an explicit retrieval function")
+        started = perf_counter()
+        retriever = BM25Retriever(documents, k1=config.k1, b=config.b, epsilon=config.epsilon)
+        build_ms = (perf_counter() - started) * 1000
+
+        def search(text: str, cutoff: int, inserted: str | None) -> list[Hit]:
+            return retriever.search(text, cutoff)
+    else:
+        build_ms = index_build_ms or 0.0
+    if query_search is None:
+
+        def query_search(query_id: int, text: str, cutoff: int, inserted: str | None) -> list[Hit]:
+            return search(text, cutoff, inserted)
+
+    # Default warmup uses train; a frozen-pool run can explicitly use a selected query.
     for _ in range(config.warmup_queries):
-        retriever.search(by_query[warmup_id].query_ko, config.top_k)
+        record = by_query[warmup_id]
+        query_search(warmup_id, record.query_ko, config.top_k, record.query_insert_time)
     per_query = []
     rankings: dict[int, list[Hit]] = {}
     with (
@@ -175,20 +209,22 @@ def run_baseline(
         for query_id in selected:
             record = by_query[query_id]
             started = perf_counter()
-            hits = retriever.search(record.query_ko, config.top_k)
+            hits = query_search(query_id, record.query_ko, config.top_k, record.query_insert_time)
             elapsed_ms = (perf_counter() - started) * 1000
             row = evaluate_query(record, hits)
             row["retrieval_ms"] = elapsed_ms
             per_query.append(row)
             rankings[query_id] = hits
             for rank, hit in enumerate(hits, start=1):
-                run_file.write(f"{query_id} Q0 {hit.doc_id} {rank} {hit.score:.17g} bm25\n")
+                run_file.write(
+                    f"{query_id} Q0 {hit.doc_id} {rank} {hit.score:.17g} {config.method}\n"
+                )
             for doc_id in sorted(record.gold_docs_final_global):
                 qrel_file.write(f"{query_id}\t0\t{doc_id}\t1\n")
     with (output / "per_query.jsonl").open("w", encoding="utf-8") as stream:
         for row in per_query:
             stream.write(json.dumps(row, sort_keys=True) + "\n")
-    summary = summarize(per_query, config.seed, config.bootstrap_samples)
+    summary = summarize(per_query, config.seed, config.bootstrap_samples, timing_scope)
     summary["index_build_ms"] = build_ms
     _write_json(output / "summary.json", summary)
     # Fixed selection rule; snippets stay in ignored local artifacts because rights are unresolved.
@@ -223,7 +259,11 @@ def run_baseline(
         "platform": platform.platform(),
         "logical_cpu_count": os.cpu_count(),
         "packages": {
-            name: importlib.metadata.version(name) for name in ["numpy", "rank-bm25", "pydantic"]
+            **provenance.get("packages", {}),
+            **{
+                name: importlib.metadata.version(name)
+                for name in ["numpy", "rank-bm25", "pydantic"]
+            },
         },
         "thread_environment": {
             key: os.environ.get(key)
@@ -255,6 +295,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         config = BaselineConfig.model_validate_json(args.config.read_text(encoding="utf-8"))
+        if config.method != "bm25":
+            raise DatasetError("use temporalproof-compare for non-BM25 methods")
         split = SplitManifest.model_validate_json(args.split.read_text(encoding="utf-8"))
         records = load_archive_records(args.archive)
         verify_split(split, records, ARCHIVE_SHA256)

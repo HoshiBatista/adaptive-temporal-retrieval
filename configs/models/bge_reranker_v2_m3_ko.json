@@ -1,0 +1,37 @@
+{
+  "model_id": "dragonkue/bge-reranker-v2-m3-ko",
+  "revision": "2aca5884ecac490192af9ebd86836d9073d826cd",
+  "license": "Apache-2.0 (model card)",
+  "model_card": "https://huggingface.co/dragonkue/bge-reranker-v2-m3-ko/blob/2aca5884ecac490192af9ebd86836d9073d826cd/README.md",
+  "model_card_sha256": "367583a8f96b5d7b557c0d61f692a18e6ad2a086d33bdb01100a4cc8abdebed0",
+  "language_scope": "Korean optimization declared by author; complete fine-tuning data undisclosed; benchmark contamination not independently excluded",
+  "base_model": "BAAI/bge-reranker-v2-m3",
+  "training_data_disclosure": "Complete Korean fine-tuning corpus/recipe is not specified in the inspected pinned model card. No independent decontamination claim.",
+  "selection_reason": "One follow-up model selected for explicit author-declared Korean optimization before observing local scores. No parameter/model sweep.",
+  "assets": {
+    "model.safetensors": [
+      2271071852,
+      "aba51b69d97bfff4cd2c1d8eb6c57764e350231850f712b75ae426270f265a43"
+    ],
+    "tokenizer.json": [
+      17098251,
+      "b74659c780d49afad7a7b9799868f75cbd3014fb6c34956e85a793028d38094a"
+    ],
+    "sentencepiece.bpe.model": [
+      5069051,
+      "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+    ],
+    "config.json": [
+      808,
+      "a1d675becc0aa53d579723d7842dc25bea0797fecdc5004f55b9bdb43394d69a"
+    ],
+    "tokenizer_config.json": [
+      1173,
+      "7e4c1cc848840aeccdd763458c18dd525eb0f795c992e00ebe9c28554e7db2d4"
+    ],
+    "special_tokens_map.json": [
+      964,
+      "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835"
+    ]
+  }
+}

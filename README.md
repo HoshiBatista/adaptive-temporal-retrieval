@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** M0 audit and M1 CPU BM25 implemented; validation-subset results measured.
+**Project status:** M0–M3 retrieval/reranking experiments and local MLflow implemented; validation-subset results measured.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -13,13 +13,24 @@
 > [!IMPORTANT]
 > This README specifies what we intend to build, how we will evaluate it, and what we will consider a successful research result. No benchmark scores, performance improvements, model quality claims, or production-readiness guarantees are asserted before the corresponding experiments have been completed.
 
-### Available now: M0 audit and M1 BM25 baseline
+### Available now: M0–M3 retrieval experiments
 
 The repository includes a typed Company Policies loader, metadata-only audit CLI,
 frozen grouped split, CPU BM25 evaluation and tested retrieval metrics. On 100 fixed
 validation queries over 30,000 passages, BM25 measured nDCG@10 **0.175959** and Recall@10
 **0.230000**. These are local development-subset scores; final test and official
-whole-benchmark results have not been measured. Neural models, API and UI remain planned.
+whole-benchmark results have not been measured. M2 adds pinned GPU multilingual E5,
+FAISS cosine search, hybrid RRF and an insertion-time heuristic on the same validation IDs.
+Hybrid measured nDCG@10 **0.207685**; the paired interval versus BM25 includes zero.
+Dense alone and the added insertion heuristic did not improve mean quality over their
+respective reference methods. M3 adds frozen-pool fixed MiniLM reranking and GPU profiling;
+nDCG@10 falls to **0.109982**, adding **149.703 ms** mean rerank time. This model is not
+adopted as the deep path. The Korean BGE follow-up reaches **0.163721**, adding
+**1,148.100 ms** mean rerank time; it also falls below hybrid. See the
+[M3 report](docs/m3_reranker_report.md) and
+[Korean follow-up](docs/m3_korean_reranker_report.md) for regressions, profiling and the
+next train-only feasibility pilot. API, product UI and learned router remain planned.
+See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),
 [benchmark protocol](docs/benchmark_protocol.md) and [current status](docs/agent/CURRENT_STATUS.md).
 
@@ -58,6 +69,56 @@ results; use `uv run --frozen --extra tracking` for tracking-enabled commands. L
 also works with the UI stopped. M1's original result has been imported with its original
 provenance and a historical-import tag. See [local tracking instructions](docs/mlflow.md)
 for artifacts, idempotent imports, restarting and optional-dependency behavior.
+
+### GPU dense/hybrid comparison
+
+```bash
+uv sync --frozen --extra tracking --extra dense --group dev
+uv run --frozen --extra tracking --extra dense temporalproof-fetch-encoder --download
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 \
+  uv run --frozen --extra tracking --extra dense temporalproof-compare --mlflow \
+  --output artifacts/m2/my_validation100_run
+```
+
+Initial CUDA dependencies and ~493 MB encoder assets require network access; fetch is
+explicit and checks pinned hashes. Evaluation is offline and requires CUDA. Corpus
+embeddings are cached with data/model/code/environment identity and checksum validation.
+Normal unit tests run on CPU with tiny arrays/fake encoders and do not download models.
+Include both extras when using tracking and dense tools in the same environment.
+
+### Fixed GPU reranking
+
+After the original verified M2 run is available locally:
+
+```bash
+uv run --frozen --extra tracking --extra dense temporalproof-fetch-reranker --download
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 \
+  uv run --frozen --extra tracking --extra dense temporalproof-rerank --mlflow \
+  --output artifacts/m3/my_validation100_run
+```
+
+The fixed config pins the original M2 source manifest and candidates. For another M2
+run/machine, use a separately named config/source after verifying pool parity; see the
+[M3 reproduction instructions](docs/m3_reranker_report.md#reproduction-and-next-action).
+The ~493 MB reranker download is explicit. Scores, frozen candidates and detailed profile
+stay local; only aggregate evidence is committed. Reported latency is rerank-only.
+
+To reproduce the separately pinned Korean follow-up, keep the same candidates and use:
+
+```bash
+uv run --frozen --extra tracking --extra dense temporalproof-fetch-reranker \
+  --model-id dragonkue/bge-reranker-v2-m3-ko --download
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 \
+  uv run --frozen --extra tracking --extra dense temporalproof-rerank --mlflow \
+  --config configs/experiments/m3_korean_company_policies.json \
+  --output artifacts/m3/my_korean_validation100_run
+```
+
+This model requires ~2.29 GB of explicitly fetched assets. It is an experimental
+alternative; the default MiniLM config and its original negative result are retained.
 
 ---
 
@@ -1283,7 +1344,7 @@ This sequence provides a path to a finished thesis even if later models or optio
 
 ## Project Status and Acknowledgments
 
-**Current state:** M0 data audit and M1 CPU BM25 are implemented with measured validation-subset results and replay checks. Dense/hybrid retrieval, adaptive reranking, services and deployment remain planned; final test and official whole-benchmark scores have not been measured.
+**Current state:** M0 audit, M1 CPU BM25 and M2 GPU dense/hybrid/insertion baselines are implemented with validation-subset results, replay checks and local MLflow. Adaptive reranking/router, services and deployment remain planned; final test and official whole-benchmark scores have not been measured.
 
 The project builds on publicly released research and benchmark resources from the TimelyRAG/TimelyQABench and TEMPO teams. Their work should be cited appropriately in reports and any future publications. TemporalProof is a separate student project and is not affiliated with those research teams.
 

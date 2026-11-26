@@ -1,6 +1,6 @@
 # Research protocol — Adaptive Semantic–Temporal Reranking (ASTR)
 
-**Status:** prospective wider experiment protocol; M0 audit and M1 CPU BM25 are implemented.
+**Status:** prospective wider experiment protocol; M0–M3 retrieval experiments are implemented.
 Measured validation-subset results are in [`docs/m1_bm25_report.md`](../m1_bm25_report.md);
 no final test or official whole-benchmark scores exist. Observed schema and limitations are recorded in
 [`docs/dataset_card.md`](../dataset_card.md); initial metric decisions are in
@@ -8,6 +8,11 @@ no final test or official whole-benchmark scores exist. Observed schema and limi
 has no explicit event-time fields, 47 unparseable document insertion strings and 1,253
 later-inserted positive documents. Do not assume clean validity intervals or enforce a
 known-at filter against unchanged qrels without a separate documented experiment.
+M2's [dense/hybrid report](../m2_retrieval_report.md) retains the fixed validation selection,
+reports paired deltas including regressions and tests insertion metadata only. M3 adds a
+fixed cross-encoder on frozen candidates and measured incremental cost; see the
+[M3 report](../m3_reranker_report.md). Router and valid-time applicability evaluation
+remain pending.
 
 ## 1. Primary research question
 
@@ -116,3 +121,21 @@ Use out-of-fold model predictions for any learned feature or preselection model 
 - If the learned router does not beat a simple policy: report negative results; focus on the independently evaluated semantic–temporal retrieval method and error taxonomy.
 - If the temporal features are not reliable: use an explicit metadata coverage report and ablate them; never infer ground-truth validity silently.
 - If remote APIs/LLM judges are unavailable: use reproducible document-level retrieval metrics; do not fabricate answer-quality outcomes.
+
+## M3 measured development result and routing gate
+
+The fixed MiniLM cross-encoder on frozen hybrid validation100 candidates regresses in
+mean nDCG@10 (0.207685 → 0.109982), with 7 gains/33 regressions and ~150 ms incremental
+rerank cost. Preserve this negative baseline. The multilingual backbone alone does not
+establish Korean relevance quality; Korean was absent from documented supervised mMARCO
+languages. The separately pinned Korean BGE follow-up on identical candidates reaches
+0.163721, still below hybrid, with 11 gains/28 regressions and ~1.15 s mean incremental
+cost. Both negative always-deep comparisons are retained. The next increment is a small
+predeclared train-only feasibility pilot of fast/deep utility, before any learned policy.
+These validation outcomes are never router-training labels. Score caching and allocator/stage telemetry do not establish live pipeline p95,
+concurrent model residency or service throughput. See [M3 report](../m3_reranker_report.md).
+
+The [Korean follow-up report](../m3_korean_reranker_report.md) documents paired comparisons,
+exact-score replay, model-specific tokenizers and the undisclosed fine-tuning-data caveat.
+No independent benchmark-decontamination claim is made. No further model/weight sweep,
+final test or routing features derived from these deep outcomes were introduced.

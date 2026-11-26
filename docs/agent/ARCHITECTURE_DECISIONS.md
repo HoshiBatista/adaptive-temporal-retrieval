@@ -163,6 +163,93 @@ for explicit tracking requests. Local raw failure text is not duplicated into ML
 This implements the tracking previously deferred in ADR-010; no remote account or model
 execution is required. See [`mlflow.md`](../mlflow.md) for actual commands and scope.
 
+### ADR-012: Pinned offline GPU E5 and exact FAISS cosine index
+Date: 2026-11-26
+Status: ACCEPTED for M2 after explicit GPU-download authorization
+
+Use multilingual-e5-small revision `614241f622f53c4eeff9890bdc4f31cfecc418b3` (MIT model
+card), with checksum-verified safetensors/tokenizer assets and no remote code. The fetch
+command is the sole model-download path; inference uses local files only and refuses
+silent CPU fallback. Follow the author's query/passage prefixes, masked-mean pooling and
+L2 normalization. Initial experiment is FP32/eager/TF32-off on one CUDA GPU, max 512 tokens.
+
+FAISS CPU 1.16.0 IndexFlatIP provides exact cosine retrieval of normalized embeddings;
+full scores are ordered by score then ID to resolve cutoff ties. Cache identity covers
+corpus IDs/text, model/config/assets, encoder/cache source hashes, device, FAISS and the
+environment lock hash. Cache arrays use non-pickle NumPy formats and verified checksums.
+This chooses an existing index rather than writing a new search engine; an approximate
+index or another precision/model requires a separately recorded experiment.
+
+### ADR-013: Common evaluation and conservative insertion-time diagnostic
+Date: 2026-11-26
+Status: ACCEPTED for M2
+
+Reuse the evaluator through a retrieval function receiving only query text, cutoff and
+query insertion metadata; qrels remain exclusively in evaluation. Method IDs distinguish
+BM25, dense, equal-weight RRF (offset 60) and RRF with fixed insertion-affinity bonus 0.1.
+Hybrid initially fuses two top-100 lists and returns 100; the insertion variant reranks
+exactly those IDs. Signed insertion gaps/after-query flags are metadata features, not
+validity labels. Missing dates stay unknown and add no bonus; no hard filter or event-time
+inference is introduced. Later-inserted positives and official labels stay unchanged.
+
+Compare fixed validation IDs with paired per-query deltas/bootstrap intervals, retain
+regressions and record sequential timing separately from offline embedding/index costs.
+All four local MLflow entries use the same manifest format as M1. The observed dense and
+time-bonus regressions are retained; no parameters are retuned to manufacture gains.
+Freeze one shared candidate pool before any M3 fast/deep reranking comparison.
+
+### ADR-014: Fixed frozen-pool cross-encoder before adaptive routing
+Date: 2026-11-26
+Status: ACCEPTED for M3 infrastructure; MiniLM not adopted as the deep path
+
+Freeze the original hybrid top-100 IDs/order/scores and pin its complete source manifest.
+Reject data/split/config/qrel drift or malformed candidates before model work. Extend the
+common evaluator with an optional ID-aware callback so identical query texts cannot
+misjoin candidate pools; no relevance labels reach retrieval/scoring callbacks. Default
+warmup remains train; frozen runs explicitly select and record a development warmup ID.
+
+Use mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825 as one compact
+fixed baseline: six checksum-verified local assets, safetensors, no remote code, CUDA,
+FP32/eager/TF32-off, max 512, batch 16. Korean is not a documented supervised mMARCO
+language; report transfer limitations rather than promising Korean quality. Rank all
+original pairs by raw relevance logit/ID and retain every score as immutable file evidence.
+
+Measure synchronized incremental reranking and CPU preprocessing/forward-transfer wall
+components with the encoder unloaded. Separate these from earlier fast retrieval timings;
+no live end-to-end p95 or simultaneous-model VRAM claim follows. Two GPU runs produced
+identical scores but worse mean quality than hybrid, with seven query-level gains and
+33 regressions. Retain the negative result and MLflow evidence. Check another explicitly
+Korean-capable reranker on the same pool before M4; do not train a router on validation
+outcomes. See [M3 report](../m3_reranker_report.md).
+
+### ADR-015: Explicit pinned Korean alternative in the existing reranking protocol
+Date: 2026-11-26
+Status: ACCEPTED for the M3 follow-up
+
+After the negative MiniLM result, add one preselected Korean alternative,
+`dragonkue/bge-reranker-v2-m3-ko@2aca5884ecac490192af9ebd86836d9073d826cd`.
+The author declares Korean optimization and Apache-2.0; complete fine-tuning data is
+undisclosed, so benchmark decontamination is not independently established. Treat its
+quality as an experiment, not a guaranteed improvement. Keep the original negative run.
+
+A small explicit ModelSpec registry shares the existing offline XLM-R classification
+loader, scoring, checked fetch and telemetry. Config validation rejects an unsupported
+model or a mismatched model/revision; the configured model selects the asset directory.
+Both models use verified safetensors/local tokenizers, no remote code or extra libraries.
+Expected position capacity is model-specific (514 / 8194); evaluation remains capped at
+512 tokens for both. Compare identical hybrid pools/qrels and FP32/eager/TF32-off,
+batch 16, concurrency 1. Model-specific tokenizers and capacity are disclosed.
+
+No search over weights/budgets, router training, final test or data relabeling is part
+of this increment. Measure the larger model's own incremental cost and allocator peaks;
+separate model runs do not establish simultaneous residency or live pipeline latency.
+
+Verified outcome: nDCG@10 0.163721 versus hybrid 0.207685 and MiniLM 0.109982;
+11 gains/28 regressions against hybrid, mean incremental cost 1,148.100 ms. Replay
+reproduces all scores exactly; 124 CPU tests pass. Neither model is adopted as the
+always-deep path. Next: predeclared train-only utility pilot before learning a router.
+See [Korean follow-up](../m3_korean_reranker_report.md).
+
 ## Decision entry template
 
 ```text

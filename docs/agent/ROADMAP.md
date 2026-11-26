@@ -42,22 +42,42 @@ not new temporal gold labels; timings are sequential local query timings, not lo
 ## M2 — Dense and temporal retrieval
 
 Tasks:
-- [ ] Choose/pin a compact embedding model and index version.
-- [ ] Compute dense candidate rankings on exactly the same evaluation split.
-- [ ] Add hybrid fusion and explicit temporal filtering/ranking features.
-- [ ] Compare B1/B2/B3/B4 with confidence intervals or per-query deltas.
+- [x] Choose/pin a compact embedding model and index version.
+- [x] Compute dense candidate rankings on exactly the same evaluation split.
+- [x] Add hybrid fusion and explicit temporal filtering/ranking features.
+- [x] Compare B1/B2/B3/B4 with confidence intervals or per-query deltas.
+
+Verified 2026-11-26: multilingual-e5-small GPU FP32, FAISS exact cosine, fixed RRF and
+soft insertion-time ranking evaluated on the original 100 validation IDs. The temporal
+variant is an insertion-metadata diagnostic, not validity inference or an official
+TimelyRAG reproduction. Dense mean quality regressed; hybrid's mean gain has a paired
+interval containing zero; the insertion bonus did not improve hybrid mean nDCG. Original
+qrels/test remain untouched. See [M2 report](../m2_retrieval_report.md) for replay, hardware,
+resource scope and failure cases. 102 CPU tests pass without model inference/downloads.
 
 **Acceptance:** model provenance + repeatable datasets; time-boundary test cases; report includes both improvements and regressions.
 
 ## M3 — Deep reranker and profiling
 
 Tasks:
-- [ ] Implement fixed top-K cross-encoder reranking.
-- [ ] Cache fixed candidate pools and output scores.
-- [ ] Profile CPU/GPU latency at controlled batch size and concurrency.
-- [ ] Record GPU peak and trade-off against the fast model.
+- [x] Implement fixed top-K cross-encoder reranking.
+- [x] Cache fixed candidate pools and output scores.
+- [x] Profile CPU/GPU latency at controlled batch size and concurrency.
+- [x] Record GPU peak and trade-off against the fast model.
 
 **Acceptance:** deep reranker gives a measurable basis for training the router; no unsupported GPU capacity claims.
+
+Verified M3: frozen hybrid top-100 + pinned multilingual MiniLM; 117 CPU tests, two
+reproducible GPU runs and local MLflow. nDCG@10 drops 0.207685 → 0.109982 with mean
+incremental rerank 149.703 ms. CPU tokenization/GPU-forward-transfer stages are measured;
+CPU-only inference and live end-to-end timing are not. See [M3 report](../m3_reranker_report.md).
+
+**Korean follow-up checked:** pinned bge-reranker-v2-m3-ko on the identical pool reaches
+nDCG@10 0.163721 (hybrid 0.207685), 11 gains/28 regressions, mean incremental cost
+1,148.100 ms. Two GPU runs reproduce all scores exactly; **124 CPU tests pass**.
+Neither reranker is adopted as the default deep path. Next M4 increment: a small predeclared
+train-only feasibility pilot of fast/deep utility before learning a route policy.
+See [follow-up report](../m3_korean_reranker_report.md).
 
 ## M4 — Main research contribution: adaptive router
 

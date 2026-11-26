@@ -1,9 +1,11 @@
-# Initial benchmark protocol — verified M0/M1
+# Initial benchmark protocol — verified M0–M2
 
 Status: metric foundation, frozen grouped split and CPU BM25 are implemented and tested.
 The [M1 development report](m1_bm25_report.md) contains measured validation-subset results;
 no final test or official whole-benchmark scores exist.
 The [data card](dataset_card.md) records the pinned corpus and observed limitations.
+The [M2 report](m2_retrieval_report.md) adds GPU dense, hybrid RRF and an insertion-only
+diagnostic on the identical selected validation IDs, with paired deltas and regressions.
 
 ## Evaluation unit and candidates
 
@@ -88,5 +90,53 @@ seeds, code/dependency/config hashes, selected IDs, thread settings and environm
 recorded. Both commands are offline; existing differing splits/runs are never overwritten.
 
 The first 100-query validation run and replay have measured quality and sequential query
-timings; the report states exact scope. Dense/hybrid comparisons, official full-benchmark
-reproduction, final test outcomes, load-test p95, throughput and GPU metrics remain **TBD**.
+timings; the report states exact scope. M2 comparisons now have measured query timings
+and PyTorch allocator peaks, separately from offline embedding/index construction.
+Official full-benchmark reproduction, final test outcomes, load-test p95, throughput and
+total process peak VRAM remain **TBD**.
+
+## M2 fixed comparison
+
+The new compare command reuses the common evaluator with a retrieval function accepting
+only query text, cutoff and query insertion metadata, never qrels. Encoder assets/revision,
+prefixes, pooling, truncation, precision, FAISS version, source/dependency hashes and cache
+provenance are recorded. All variants return 100 IDs; hybrid fuses sparse top 100 and dense
+top 100 with equal RRF weights and offset 60. Its insertion-time variant reranks the exact
+same candidates using min-max RRF plus fixed weight 0.1 insertion affinity. Unknown dates
+add no bonus, no future documents are dropped and no applicability label is invented.
+
+Parameters are frozen before observing M2 scores. Paired bootstrap uses aligned query
+IDs and seed 1729; conditional intervals do not account for group dependence. A higher
+sample mean with an interval containing zero is not a significance claim. Repeat runs
+check identical rankings, qrels, metric means and original M1 ID/split parity. Dense/hybrid
+retrieval pools can differ; M3 fast/deep comparisons must freeze a shared candidate pool.
+
+## M3 frozen-pool reranking
+
+The M3 config pins its M2 hybrid manifest, not only a directory path. All source output
+hashes, selection/config, data/split, exact 100 unique known IDs/order and qrels are checked
+before GPU inference. The common evaluator has an ID-aware callback for frozen pools;
+the cross-encoder itself receives only query/passage texts. Duplicate query texts cannot
+silently share a different query's candidates. Scores are saved for every original pair.
+
+Pinned multilingual MiniLM runs FP32/eager/TF32-off, batch 16, max 512, longest-first pair
+truncation, no metadata features. Korean is a transfer language absent from its documented
+mMARCO supervised languages. The observed negative result is retained. Recall@100 is
+verified unchanged per query. Paired deltas and regressions use the unchanged M2 protocol.
+
+Latency is incremental rerank-only on frozen candidates, including synchronized GPU work
+and CPU preprocessing/sorting, with concurrency 1 and three selected-query warmups.
+Fast M2 latency is historical context, not a current live pipeline measurement. Do not
+add separate p95 values or claim concurrent model capacity from separate model runs.
+Allocator peaks are not total process VRAM. See [M3 report](m3_reranker_report.md).
+Router targets were not generated; any future targets require train-only outcomes.
+
+The [Korean M3 follow-up](m3_korean_reranker_report.md) adds one preselected pinned
+bge-reranker-v2-m3-ko model with the identical source manifest/pool, qrels and runtime
+settings. The small explicit registry validates model/revision pairs and chooses the
+matching local asset directory. Model-specific tokenizer hashes and position capacities
+are recorded; both evaluations remain capped at 512. Raw logits preserve relevance order
+without sigmoid saturation ties. Full fine-tuning data is undisclosed, so contamination
+is not independently excluded. The larger model still regresses versus hybrid; no
+additional variants, reweighting or relabeling were used to hide the result. Before
+learning a router, measure fast/deep utility on a predeclared train-only pilot.

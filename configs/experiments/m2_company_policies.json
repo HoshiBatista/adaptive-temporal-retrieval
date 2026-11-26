@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "name": "bm25_m2_validation100_v1",
+    "partition": "validation",
+    "seed": 1729,
+    "query_limit": 100,
+    "top_k": 100,
+    "k1": 1.5,
+    "b": 0.75,
+    "epsilon": 0.25,
+    "tokenizer": "python_str_split_v1",
+    "tie_break": "score_desc_doc_id_asc",
+    "warmup_queries": 3,
+    "bootstrap_samples": 2000,
+    "failure_examples": 5
+  },
+  "model_id": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "batch_size": 16,
+  "max_length": 512,
+  "rrf_offset": 60,
+  "insertion_weight": 0.1
+}

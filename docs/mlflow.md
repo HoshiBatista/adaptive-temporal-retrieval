@@ -2,7 +2,7 @@
 
 The optional `tracking` extra pins **MLflow 3.18.0**. Research runs retain their JSON/TREC
 files; MLflow adds a local comparison UI and a copy of the evidence. No remote service or
-account is involved. This adapter currently understands the M1 BM25 run-file format.
+account is involved. The common run-file format supports M1 BM25 and M2 comparisons.
 
 ## Install and open
 
@@ -62,6 +62,10 @@ The experiment is `temporalproof-company-policies`. Logged items:
 - Config, manifest, summary, per-query metrics, TREC ranking and qrels under `evidence/`.
   Raw failure-example text is not copied.
 
+M2 uses `temporalproof-compare --mlflow` with `--extra tracking --extra dense`. Each method
+has a distinct `method` parameter/run name and the manifest artifact retains encoder,
+cache, fusion and insertion-policy provenance. Compare only matching split/query IDs.
+
 If explicit tracking fails, the command returns nonzero and states that BM25 file output
 is complete. Fix the local tracking issue and import the existing directory; rerunning
 retrieval is unnecessary. No automatic logging or external model/LLM service is enabled.
@@ -103,3 +107,16 @@ only on the same corpus, split, selected query IDs and metric protocol.
 
 - [MLflow server and local storage configuration](https://mlflow.org/docs/latest/self-hosting/architecture/tracking-server/)
 - [MLflow usage-telemetry opt-out](https://mlflow.org/docs/latest/community/usage-tracking/)
+
+M3 supports `temporalproof-rerank --mlflow` with the same extras and evidence format.
+Its `retrieval_ms.*` metrics mean **incremental reranking only**; inspect the timing-scope
+tag/summary before comparing latency. Model assets/settings, candidate source hashes and
+CPU/GPU profile are in `evidence/manifest.json`. The initial negative MiniLM result is
+FINISHED as `1419b5ef303b4611a38e40a9f61cdfa9`; file-only replay is not another query sample.
+
+Korean M3 follow-up: `temporalproof-rerank --config
+configs/experiments/m3_korean_company_policies.json --mlflow --output <new-directory>`.
+Run `144b746d2199493fba60acfa5c130f05` is FINISHED, nDCG@10 0.163721 and incremental
+mean 1,148.100 ms. It uses the same candidate pool as MiniLM; six evidence files and
+exact-score replay were verified. The default config remains the original MiniLM one.
+Both negative comparisons against hybrid remain visible.
