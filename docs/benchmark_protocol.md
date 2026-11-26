@@ -1,6 +1,8 @@
-# Initial benchmark protocol — M0 decisions, M1 preparation
+# Initial benchmark protocol — verified M0/M1
 
-Status: metric foundation is implemented and tested; **no retrieval scores exist yet**.
+Status: metric foundation, frozen grouped split and CPU BM25 are implemented and tested.
+The [M1 development report](m1_bm25_report.md) contains measured validation-subset results;
+no final test or official whole-benchmark scores exist.
 The [data card](dataset_card.md) records the pinned corpus and observed limitations.
 
 ## Evaluation unit and candidates
@@ -46,11 +48,14 @@ must work independently on CPU. No published score has been reproduced in M0.
 
 ## Splits and temporal policy
 
-M0 emits query groups, not a split. Before model/threshold selection, M1 must audit
-duplicate/family links and create an immutable query-group split with recorded IDs,
-seed, grouping version and corpus checksum. Inspect schema and metadata across the corpus
-without evaluating test outcomes for model selection. Use train/validation for decisions;
-retain held-out queries for the frozen comparison.
+M1 freezes `data/splits/company_policies_v1.json` using seed 1729. Connected groups keep
+normalized exact queries, exact number-masked templates, near templates (character-trigram
+set Jaccard >=0.9), and cross-record normalized exact passages together. All passages
+participate without qrels. See the report for edge counts and residual family/paraphrase
+risks. Group hashing assigns 2,058 train / 495 validation / 447 test queries. M1 evaluates
+100 validation queries selected by a seeded hash, not test. The runner verifies grouping,
+coverage and assignments against the pinned corpus before each run. Inspect schema and
+metadata without using test outcomes for model selection; retain test for frozen comparison.
 
 The initial retrieval baseline retains original qrels and insertion metadata, without
 hard timestamp filtering. This does not claim historically available or legally effective
@@ -72,8 +77,16 @@ mapping, duplicate query grouping, future-positive diagnostics, checksum/size pr
 offline defaults, sanitized errors, deterministic reports and metric counterexamples.
 The fixture was authored for tests; it contains no downloaded benchmark examples.
 
-## M1 outputs still to implement
+## M1 outputs now available
 
-BM25 and declared tokenization, a frozen split, index/config manifests, per-query rankings
-and metrics, official-formula compatibility results where feasible, and failure analysis.
-All benchmark scores, model comparisons, p50/p95 and throughput remain **TBD**.
+`temporalproof-prepare-split` regenerates/verifies the committed ID-only split.
+`temporalproof-bm25 --output <new-directory>` runs library BM25 with raw `str.split()`,
+fixed parameters, score-descending/document-ID-ascending ties, full domain corpus and top
+100 candidates. It emits manifests, per-query metrics, TREC rankings, binary qrels,
+summary and failure cases. Reference-formula nDCG is labeled separately. Query/bootstrap
+seeds, code/dependency/config hashes, selected IDs, thread settings and environment are
+recorded. Both commands are offline; existing differing splits/runs are never overwritten.
+
+The first 100-query validation run and replay have measured quality and sequential query
+timings; the report states exact scope. Dense/hybrid comparisons, official full-benchmark
+reproduction, final test outcomes, load-test p95, throughput and GPU metrics remain **TBD**.

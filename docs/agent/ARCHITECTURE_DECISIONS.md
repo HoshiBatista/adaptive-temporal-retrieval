@@ -116,6 +116,33 @@ selection uses qrels per query. Preserve reference files unchanged and label any
 reproduction separately; best-alpha is an offline diagnostic. Tests cover the missing-gold
 normalization counterexample. See [`benchmark_protocol.md`](../benchmark_protocol.md).
 
+### ADR-009: Freeze connected query groups before retrieval evaluation
+Date: 2026-11-26
+Status: ACCEPTED for Company Policies v1
+
+The split joins normalized exact query text, number-masked templates, near templates
+(character-trigram set Jaccard >=0.9) and any normalized exact passage shared across query
+records. All associated passages participate without consulting qrels. Groups are assigned
+by a seeded SHA-256 bucket rule (70/15/15 target proportions). The ID-only manifest is
+recomputed and checked before evaluation; different outputs need a new version. This
+controls observed query/exact-passage reuse, without claiming exhaustive semantic-family
+separation. No corpus deduplication or label rewriting occurs. M1 evaluates a fixed
+100-query validation selection and refuses test configs; test is reserved for later frozen
+comparisons. See [`m1_bm25_report.md`](../m1_bm25_report.md).
+
+### ADR-010: Independent CPU BM25 and file-based run manifests
+Date: 2026-11-26
+Status: ACCEPTED for M1
+
+Use rank-bm25 0.2.2 with explicit default Okapi parameters and raw `str.split()` to match
+the reference's sparse preprocessing, with deterministic score-descending/ID-ascending
+ties. Search the entire domain, not per-query attached candidates. Save run/qrel files,
+per-query metrics, reference-formula diagnostic, fixed-rule failure examples, configuration,
+source/dependency hashes and timing scope. Existing outputs cannot be overwritten.
+MLflow is deferred until multi-model comparisons in M2; manifests remain the portable
+record even when tracking is added. Raw text/qrels remain ignored while exact data terms
+are unresolved. Revisit tokenization/models on train/validation only.
+
 ## Decision entry template
 
 ```text

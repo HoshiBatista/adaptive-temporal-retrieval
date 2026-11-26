@@ -1,12 +1,14 @@
 """Pinned, size-bounded download, explicit opt-in only."""
 
 import hashlib
+import io
 import os
 import tempfile
+import zipfile
 from pathlib import Path
 from urllib.request import urlopen
 
-from temporalproof.data.timelyqa import DatasetError
+from temporalproof.data.timelyqa import DatasetError, QueryRecord, iter_records
 
 REVISION = "5213a0c1743f23fd52a258005c3887aaf7e8cd0f"
 ARCHIVE_SHA256 = "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad"
@@ -30,6 +32,17 @@ def verify_archive(path: Path) -> None:
         raise DatasetError("archive exceeds size limit")
     if sha256_file(path) != ARCHIVE_SHA256:
         raise DatasetError("archive checksum mismatch; original input was not modified")
+
+
+def load_archive_records(path: Path) -> list[QueryRecord]:
+    """Load only the pinned member; never extract or download anything."""
+    verify_archive(path)
+    with zipfile.ZipFile(path) as archive:
+        member = archive.getinfo(MEMBER)
+        if member.file_size > MAX_MEMBER_BYTES:
+            raise DatasetError("JSONL member exceeds size limit")
+        with archive.open(member) as stream, io.TextIOWrapper(stream, encoding="utf-8") as text:
+            return list(iter_records(text))
 
 
 def download_archive(destination: Path) -> Path:

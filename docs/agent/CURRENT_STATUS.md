@@ -6,16 +6,78 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
 
 - **M0:** reproducible Company Policies data audit, strict typed JSONL adapter, synthetic
   CPU fixture and metric/schema/audit tests implemented and run.
+- **M1:** frozen grouped split and independent CPU BM25 implemented; 81 CPU tests pass.
+  Two runs on the same 100 validation queries / full 30,000-passage corpus have identical
+  rankings, qrels and quality metrics. nDCG@10 0.175959, Recall@10 0.230000, Recall@100
+  0.393333. These are development-subset measurements; test is not evaluated.
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
-  pytest 9.2.0 and Ruff 0.16.10.
-- **Research results:** no BM25/dense/hybrid/reranker/router experiments or retrieval scores.
+  pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2 and NumPy 2.5.5.
+- **Research results:** BM25 validation-subset baseline only; no dense/hybrid/reranker/router
+  comparison, final test evaluation or official whole-benchmark reproduction.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next milestone:** M1 split protocol and CPU BM25, with the M0 limitations below.
+- **Next milestone:** M2 compact dense/hybrid retrieval on the same fixed validation IDs.
 
 ## Verified work log
+
+### 2026-11-26 — M1 / frozen split and CPU BM25 baseline
+
+- Goal: establish a deterministic, query-grouped sparse retrieval baseline and first
+  failure analysis without changing official data/labels or evaluating final test queries.
+- Files changed: `pyproject.toml`, `uv.lock`, archive loader in `data/source.py`, new
+  `data/splits.py`, `retrieval/bm25.py`, `evaluation/baseline.py`, reference-prefix metric
+  diagnostic, three new test modules, `configs/experiments/bm25_company_policies.json`,
+  `data/splits/company_policies_v1.json`, aggregate `experiments/results/` JSON,
+  `docs/m1_bm25_report.md`, README and relevant protocol/card/roadmap/decision/status docs.
+- Exact commands executed:
+
+  ```bash
+  uv sync --group dev
+  uv run --frozen ruff format .
+  uv run --frozen ruff check .
+  uv run --frozen pytest -q
+  uv run --frozen ruff format --check .
+  uv run --frozen temporalproof-prepare-split
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 uv run --frozen temporalproof-bm25 --output artifacts/bm25/company_policies_validation100_v1
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 uv run --frozen temporalproof-bm25 --output artifacts/bm25/company_policies_validation100_replay_v1
+  cmp artifacts/bm25/company_policies_validation100_v1/run.trec artifacts/bm25/company_policies_validation100_replay_v1/run.trec
+  cmp artifacts/bm25/company_policies_validation100_v1/qrels.tsv artifacts/bm25/company_policies_validation100_replay_v1/qrels.tsv
+  cmp artifacts/bm25/company_policies_validation100_v1/config.json artifacts/bm25/company_policies_validation100_replay_v1/config.json
+  uv sync --frozen --group dev
+  git diff --check
+  ```
+
+- Validation: **81 tests pass**; lint and format checks pass. Initial lint checks found
+  an unused import and overlong lines, corrected before benchmark execution. Existing
+  M0 tests still pass. Split regeneration succeeds without changing the frozen file.
+- Replay validation: a Python comparison of `run.trec`, `qrels.tsv`, copied config and
+  quality summaries found exact equality. Timing differences are retained, not hidden.
+  A final checksum check matched generated files, aggregate results, the frozen split
+  and the current implementation snapshot to the recorded run manifest.
+- Split audit: 2,891 connected groups, largest 20; 2,058 train / 495 validation / 447 test
+  query records. Query/template/near-query and exact shared-passage links use no qrels.
+  Frozen split SHA-256: `4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7`.
+  True semantic families/near-duplicate passages are not exhaustively audited.
+- Scope: seed 1729; 100 hash-selected validation queries spanning 98 groups; top 100
+  candidates from all 30,000 original passages; raw whitespace tokenization; no temporal
+  filtering, text deduplication, neural models, tuning or final-test evaluation.
+- Quality: qrel-based nDCG@10 0.1759587703; Recall@10 0.23; Recall@20 0.2816666667;
+  Recall@100 0.3933333333. Separately named reference prefix-nDCG diagnostic 0.2427621397.
+  Conditional query-bootstrap intervals and limits are in the report/results JSON.
+- Failure observations: 88/100 queries lack complete gold in top 10; 45/100 have no
+  gold in top 100. Fixed worst-five inspection found scenario/cohort/date confusions;
+  these are observations, not relabeled temporal gold. Full text stays ignored locally.
+- Timing scope: sequential warm CPU queries on AMD Ryzen 5 7500F, 12 visible logical CPUs,
+  WSL2, Python 3.13.11, thread env variables=1. Initial mean/p50/p95: 70.205/70.288/101.995
+  ms; replay: 69.003/69.707/97.380 ms. Not API/load-test timing. GPU and peak memory unmeasured.
+- Provenance: pinned TimelyRAG revision/checksum unchanged; Git parent `ff7322d` with dirty
+  working tree and exact implementation/dependency hashes recorded in run manifests.
+- Not run: final test, dense/hybrid, neural reranker/router, MLflow, model downloads,
+  GPU or load tests. No commits/pushes performed as part of M1.
+- Next task: M2 dense/hybrid candidate comparison, with unchanged split/selection and
+  per-query analysis; retain untouched test and existing temporal/license caveats.
 
 ### 2026-11-26 — M0 / Company Policies audit foundation
 
@@ -73,9 +135,10 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
 2. **Temporal evaluation:** insertion time is not valid time. No event-time/validity labels
    are supplied. Strict known-at filtering conflicts with later-inserted positives;
    keep original labels intact and define any temporal slice separately.
-3. **Splits:** the archive has domain files, no train/validation/test assignments. The audit
-   emits normalized query groups, but near-duplicate templates and shared evidence/families
-   still need inspection before freezing splits. No split has been created yet.
+3. **Splits:** M1 supplies a custom frozen grouping/split; it is not an author-provided
+   split. Query templates/near queries and exact shared passages are grouped, but residual
+   semantic-family and near-passage leakage risk remains. Full unlabeled corpus is shared;
+   this is query-held-out evaluation, not corpus/domain/temporal separation.
 4. **Official comparison:** reference nDCG normalizes over retrieved positives; reference
    best-alpha uses query qrels. Neither can silently replace the main qrel-based protocol.
 5. **Models / transfer:** Korean support and actual memory/latency are not measured.
@@ -83,7 +146,8 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
 
 ## Recommended next task
 
-Implement M1: inspect duplicate/family links, freeze a grouped query split and declared
-corpus/tokenization policy, then run an independent CPU BM25 baseline. Export per-query
-rankings/metrics and failure cases. Use the original positives without silent timestamp
-filtering; label all results by their exact protocol. See `docs/benchmark_protocol.md`.
+Implement M2: add a pinned compact encoder suitable for Korean and hybrid candidate
+retrieval, using the same frozen validation selection/corpus. Compare paired query deltas,
+regressions and candidate recall before reranking. Add optional local MLflow for comparison,
+preserving portable run manifests. Do not tune on or evaluate final test yet. Original
+qrels and temporal uncertainty remain unchanged. See `docs/m1_bm25_report.md`.

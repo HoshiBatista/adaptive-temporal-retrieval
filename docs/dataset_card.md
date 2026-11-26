@@ -118,11 +118,14 @@ The report exports metadata-only query groups using
 query insertion times: retain each record's temporal context, while keeping its group
 together in any future split. Grouping does not merge records or gold sets.
 
-**No train/validation/test assignment is created in M0.** Before M1 experiment selection,
-audit near-duplicate templates and shared passage/family evidence, then freeze a seeded,
-grouped split manifest. Shared corpus evidence is normal for retrieval; label-derived
-training features and family memorization must be assessed separately. A held-out domain
-is an additional generalization test, not a substitute for query-level leakage controls.
+**M0 did not create a train/validation/test assignment.** M1 now freezes an
+[ID-only grouped split](../data/splits/company_policies_v1.json): 2,058 train / 495
+validation / 447 test queries. Its expanded audit connects numeric query templates,
+near-query templates and normalized exact shared passages, producing 2,891 groups.
+See the [M1 report](m1_bm25_report.md) for policy, hashes and limits: semantic families
+and near-duplicate passages are not exhaustively established. Shared corpus evidence is
+normal for retrieval; label-derived training features and family memorization must be
+assessed separately. Held-out domain evaluation remains a separate generalization test.
 
 ## Reproduction and resources
 
@@ -158,7 +161,7 @@ measurement, not retrieval latency, throughput or a cross-machine memory guarant
 
 Access, schema, document-level positive IDs and deterministic auditing are verified.
 The data supports a label-based retrieval baseline. Full valid-time/known-at correctness
-is not established by the provided metadata. Exact license terms, near-duplicate/family
-grouping and the future-positive mismatch remain open. A basic retrieval experiment may
+is not established by the provided metadata. Exact license terms, residual semantic-family
+grouping risks and the future-positive mismatch remain open. A basic retrieval experiment may
 retain original labels and explicitly state these limits; any historical filtering
 experiment needs a separately documented protocol without silently rewriting gold labels.

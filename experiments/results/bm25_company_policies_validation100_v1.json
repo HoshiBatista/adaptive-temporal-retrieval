@@ -1,0 +1,244 @@
+{
+  "cpu_model_observed": "AMD Ryzen 5 7500F 6-Core Processor",
+  "manifest": {
+    "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+    "config": {
+      "b": 0.75,
+      "bootstrap_samples": 2000,
+      "epsilon": 0.25,
+      "failure_examples": 5,
+      "k1": 1.5,
+      "name": "bm25_company_policies_validation100_v1",
+      "partition": "validation",
+      "query_limit": 100,
+      "seed": 1729,
+      "tie_break": "score_desc_doc_id_asc",
+      "tokenizer": "python_str_split_v1",
+      "top_k": 100,
+      "warmup_queries": 3
+    },
+    "config_sha256": "08541e948e70f07462fd3bd99d2a472fa6d4da81b15efba40cd8ecacb04920a6",
+    "corpus_document_count": 30000,
+    "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+    "cutoffs": {
+      "ndcg": [
+        10
+      ],
+      "recall": [
+        10,
+        20,
+        100
+      ]
+    },
+    "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+    "git_commit": "ff7322d1434f1cc9e98b1b0e5f1161305dbd1e21",
+    "git_dirty": true,
+    "logical_cpu_count": 12,
+    "member": "timelyrag_company_policies_dataset_v2.jsonl",
+    "output_sha256": {
+      "config.json": "b5543930b65117193ff28df550dc2e3e13b242e6487495e2b0909a23923a2394",
+      "failure_cases.json": "db28ab48e64e36bc27fc1933fe5c3a1f1e1d7eb245358bafb41837b23f0c0484",
+      "per_query.jsonl": "b41e74f19845b05e9df4e3f28a5138c8074b7273621091b6b4c137eb3cbf1f75",
+      "qrels.tsv": "12b489f6f34ed422ab1229857f48e31c2aa49bcd8715f73910ab56820ec9dd85",
+      "run.trec": "724604657680f5d784539da0c9dd60729255957964f6d7b5bf9adb4f55ef0026",
+      "summary.json": "206530ea5c4aa571927ad1d2a745460bf4af5ec585b23dc415f763826fc7e786"
+    },
+    "packages": {
+      "numpy": "2.5.5",
+      "pydantic": "2.14.4",
+      "rank-bm25": "0.2.2"
+    },
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.13.11",
+    "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+    "selected_query_ids": [
+      1016,
+      474,
+      866,
+      5,
+      200,
+      1858,
+      841,
+      2949,
+      262,
+      741,
+      855,
+      2615,
+      2072,
+      1806,
+      720,
+      1959,
+      2969,
+      91,
+      1214,
+      246,
+      2500,
+      2630,
+      1218,
+      2354,
+      718,
+      2222,
+      757,
+      453,
+      136,
+      2763,
+      2654,
+      1978,
+      947,
+      1094,
+      1197,
+      406,
+      238,
+      716,
+      2069,
+      3,
+      2379,
+      1422,
+      2613,
+      2998,
+      1868,
+      2766,
+      1045,
+      2150,
+      2837,
+      1393,
+      2035,
+      2487,
+      833,
+      317,
+      2217,
+      1931,
+      2126,
+      1720,
+      2876,
+      919,
+      380,
+      1733,
+      2059,
+      758,
+      2146,
+      2029,
+      2017,
+      224,
+      2317,
+      944,
+      1483,
+      62,
+      118,
+      223,
+      1455,
+      1040,
+      2351,
+      1636,
+      2346,
+      1127,
+      2076,
+      2140,
+      2922,
+      953,
+      1571,
+      1876,
+      790,
+      2614,
+      2460,
+      1339,
+      2750,
+      1645,
+      2851,
+      1670,
+      1300,
+      2313,
+      2063,
+      1795,
+      444,
+      1443
+    ],
+    "source_files_sha256": {
+      "pyproject.toml": "68d879976ed875fc7bfd70be6ad99e6e2e730e3a3819384c1a284c4e7de1e5b4",
+      "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+      "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+      "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+      "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+      "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+      "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+      "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+      "src/temporalproof/evaluation/baseline.py": "1ef78cfa474c785cc6039489b4af2feaa6eb3cd88339fafc8cd0f50c7dbdc2be",
+      "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+      "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+      "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+      "uv.lock": "37e4f0844ca6af1a3c7d7eb4e821d4757de2ce6c5283ccf0705b751ffff7f9ed"
+    },
+    "source_snapshot_sha256": "48de450cc56f4071e7fadacba06d0e7170e956b99cd7a68f6d22d944fda9188f",
+    "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+    "test_partition_evaluated": false,
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "warmup_query_id": 0
+  },
+  "measured_on": "2026-11-26",
+  "replay": {
+    "rankings_qrels_config_and_quality_metrics_match": true,
+    "retrieval_timing_ms": {
+      "concurrency": 1,
+      "mean": 69.00339163000126,
+      "p50": 69.70724249993054,
+      "p95": 97.3802444498915,
+      "scope": "sequential warm BM25 tokenization, scoring and top-k sorting; not API latency"
+    }
+  },
+  "scope": "100 deterministic validation queries; full 30000-passage domain; not official full-benchmark or final test scores",
+  "summary": {
+    "index_build_ms": 239.03312900006313,
+    "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+    "metrics": {
+      "ndcg_at_10": {
+        "mean": 0.17595877026340895,
+        "query_bootstrap_95_percent_interval": [
+          0.12230256145325066,
+          0.23036653559413722
+        ]
+      },
+      "recall_at_10": {
+        "mean": 0.23,
+        "query_bootstrap_95_percent_interval": [
+          0.16666666666666663,
+          0.29666666666666663
+        ]
+      },
+      "recall_at_100": {
+        "mean": 0.39333333333333337,
+        "query_bootstrap_95_percent_interval": [
+          0.31581249999999994,
+          0.47166666666666673
+        ]
+      },
+      "recall_at_20": {
+        "mean": 0.2816666666666666,
+        "query_bootstrap_95_percent_interval": [
+          0.2116458333333333,
+          0.3567083333333331
+        ]
+      },
+      "reference_prefix_ndcg_at_10": {
+        "mean": 0.24276213967124355,
+        "query_bootstrap_95_percent_interval": [
+          0.1760420134658617,
+          0.31001915350050885
+        ]
+      }
+    },
+    "queries_with_incomplete_top10": 88,
+    "queries_with_no_gold_in_top100": 45,
+    "query_count": 100,
+    "retrieval_timing_ms": {
+      "concurrency": 1,
+      "mean": 70.20540802000141,
+      "p50": 70.28754850000496,
+      "p95": 101.9954871999289,
+      "scope": "sequential warm BM25 tokenization, scoring and top-k sorting; not API latency"
+    }
+  }
+}

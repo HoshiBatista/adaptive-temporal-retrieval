@@ -1,7 +1,8 @@
 # Research protocol — Adaptive Semantic–Temporal Reranking (ASTR)
 
-**Status:** prospective experiment protocol; M0 data audit and metric unit tests are implemented.
-No retrieval scores exist. Observed schema and limitations are recorded in
+**Status:** prospective wider experiment protocol; M0 audit and M1 CPU BM25 are implemented.
+Measured validation-subset results are in [`docs/m1_bm25_report.md`](../m1_bm25_report.md);
+no final test or official whole-benchmark scores exist. Observed schema and limitations are recorded in
 [`docs/dataset_card.md`](../dataset_card.md); initial metric decisions are in
 [`docs/benchmark_protocol.md`](../benchmark_protocol.md). In particular, Company Policies
 has no explicit event-time fields, 47 unparseable document insertion strings and 1,253

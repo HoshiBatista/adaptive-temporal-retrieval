@@ -1,0 +1,15 @@
+{
+  "name": "bm25_company_policies_validation100_v1",
+  "partition": "validation",
+  "seed": 1729,
+  "query_limit": 100,
+  "top_k": 100,
+  "k1": 1.5,
+  "b": 0.75,
+  "epsilon": 0.25,
+  "tokenizer": "python_str_split_v1",
+  "tie_break": "score_desc_doc_id_asc",
+  "warmup_queries": 3,
+  "bootstrap_samples": 2000,
+  "failure_examples": 5
+}

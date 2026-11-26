@@ -25,10 +25,17 @@ available, and later-inserted positives prevent unqualified known-at claims. See
 ## M1 — Reference metrics and sparse baseline
 
 Tasks:
-- [ ] Implement relevance-grade mapping and tested nDCG@10/Recall@K functions.
-- [ ] Build small BM25 index and evaluate held-out queries.
-- [ ] Save per-query run and qrel files; record subset selection and seed.
-- [ ] Create a first error analysis report including temporal hard cases.
+- [x] Implement relevance-grade mapping and tested nDCG@10/Recall@K functions.
+- [x] Build small BM25 index and evaluate held-out queries.
+- [x] Save per-query run and qrel files; record subset selection and seed.
+- [x] Create a first error analysis report including temporal hard cases.
+
+Verified 2026-11-26: library CPU BM25 evaluated 100 deterministic validation queries
+against all 30,000 Company Policies passages; test was not evaluated. The frozen grouped
+split, config and aggregate provenance are included in the repository; full runs/qrels and
+failure text stay ignored. Replay rankings and quality metrics match exactly; 81 CPU tests
+pass. See [M1 report](../m1_bm25_report.md). Failure categories are exploratory observations,
+not new temporal gold labels; timings are sequential local query timings, not load tests.
 
 **Acceptance:** baseline metrics computed using an explicitly documented protocol; no query/pair leakage; CPU smoke command works.
 

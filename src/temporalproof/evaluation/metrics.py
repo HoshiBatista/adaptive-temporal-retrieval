@@ -25,3 +25,14 @@ def ndcg_at_k(ranking: Sequence[int], relevant: Set[int], k: int) -> float:
         1 / math.log2(rank + 2) for rank, doc_id in enumerate(ranking[:k]) if doc_id in relevant
     )
     return actual / ideal if ideal else 0.0
+
+
+def reference_prefix_ndcg_at_k(ranking: Sequence[int], relevant: Set[int], k: int) -> float:
+    """Reference-formula compatibility diagnostic, NOT the primary qrel metric.
+
+    TimelyRAG normalizes by positives retrieved within the cutoff. Re-expressed
+    independently here; no downloaded implementation is imported or changed.
+    """
+    _validate(ranking, k)
+    prefix_positives = set(ranking[:k]) & relevant
+    return ndcg_at_k(ranking[:k], prefix_positives, k)

@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** M0 data-audit foundation implemented; retrieval and application remain planned.
+**Project status:** M0 audit and M1 CPU BM25 implemented; validation-subset results measured.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -13,11 +13,14 @@
 > [!IMPORTANT]
 > This README specifies what we intend to build, how we will evaluate it, and what we will consider a successful research result. No benchmark scores, performance improvements, model quality claims, or production-readiness guarantees are asserted before the corresponding experiments have been completed.
 
-### Available now: M0 dataset audit
+### Available now: M0 audit and M1 BM25 baseline
 
 The repository includes a typed Company Policies loader, metadata-only audit CLI,
-CPU tests and binary retrieval metric functions. BM25, models, API and UI are not
-implemented yet. See the [verified data card](docs/dataset_card.md),
+frozen grouped split, CPU BM25 evaluation and tested retrieval metrics. On 100 fixed
+validation queries over 30,000 passages, BM25 measured nDCG@10 **0.175959** and Recall@10
+**0.230000**. These are local development-subset scores; final test and official
+whole-benchmark results have not been measured. Neural models, API and UI remain planned.
+See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),
 [benchmark protocol](docs/benchmark_protocol.md) and [current status](docs/agent/CURRENT_STATUS.md).
 
 From the repository root, with `uv` installed:
@@ -26,6 +29,9 @@ From the repository root, with `uv` installed:
 uv sync --frozen --group dev
 uv run --frozen temporalproof-audit --download
 uv run --frozen temporalproof-audit
+uv run --frozen temporalproof-prepare-split
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  uv run --frozen temporalproof-bm25 --output artifacts/bm25/my_validation100_run
 uv run --frozen pytest -q
 uv run --frozen ruff check .
 uv run --frozen ruff format --check .
@@ -35,6 +41,8 @@ uv run --frozen ruff format --check .
 checksum. Subsequent audits and normal tests require no dataset/model network access.
 Raw data and generated reports are gitignored. Dataset redistribution terms remain
 unresolved; no downloaded examples are included in the test fixture.
+Choose a new BM25 output directory for each run. The committed split contains IDs only;
+full rankings, qrels, timings and inspected failure text stay in ignored local artifacts.
 
 ---
 
@@ -1260,7 +1268,7 @@ This sequence provides a path to a finished thesis even if later models or optio
 
 ## Project Status and Acknowledgments
 
-**Current state:** M0 dataset-audit and metric-test foundation is implemented. The remaining research experiments, retrieval systems, services and deployment in this README are planned; no retrieval benchmark scores have been measured.
+**Current state:** M0 data audit and M1 CPU BM25 are implemented with measured validation-subset results and replay checks. Dense/hybrid retrieval, adaptive reranking, services and deployment remain planned; final test and official whole-benchmark scores have not been measured.
 
 The project builds on publicly released research and benchmark resources from the TimelyRAG/TimelyQABench and TEMPO teams. Their work should be cited appropriately in reports and any future publications. TemporalProof is a separate student project and is not affiliated with those research teams.
 
