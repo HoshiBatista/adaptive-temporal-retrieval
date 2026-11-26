@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** Research and implementation plan — **not yet an implemented or validated system**.  
+**Project status:** M0 data-audit foundation implemented; retrieval and application remain planned.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -12,6 +12,29 @@
 
 > [!IMPORTANT]
 > This README specifies what we intend to build, how we will evaluate it, and what we will consider a successful research result. No benchmark scores, performance improvements, model quality claims, or production-readiness guarantees are asserted before the corresponding experiments have been completed.
+
+### Available now: M0 dataset audit
+
+The repository includes a typed Company Policies loader, metadata-only audit CLI,
+CPU tests and binary retrieval metric functions. BM25, models, API and UI are not
+implemented yet. See the [verified data card](docs/dataset_card.md),
+[benchmark protocol](docs/benchmark_protocol.md) and [current status](docs/agent/CURRENT_STATUS.md).
+
+From the repository root, with `uv` installed:
+
+```bash
+uv sync --frozen --group dev
+uv run --frozen temporalproof-audit --download
+uv run --frozen temporalproof-audit
+uv run --frozen pytest -q
+uv run --frozen ruff check .
+uv run --frozen ruff format --check .
+```
+
+`--download` explicitly fetches the pinned 5.8 MB benchmark archive and verifies its
+checksum. Subsequent audits and normal tests require no dataset/model network access.
+Raw data and generated reports are gitignored. Dataset redistribution terms remain
+unresolved; no downloaded examples are included in the test fixture.
 
 ---
 
@@ -1237,8 +1260,8 @@ This sequence provides a path to a finished thesis even if later models or optio
 
 ## Project Status and Acknowledgments
 
-**Current state:** Proposal / planned research and development. This README is a detailed implementation specification, **not a claim that the described experiments, services, tests, or deployment already exist**.
+**Current state:** M0 dataset-audit and metric-test foundation is implemented. The remaining research experiments, retrieval systems, services and deployment in this README are planned; no retrieval benchmark scores have been measured.
 
 The project builds on publicly released research and benchmark resources from the TimelyRAG/TimelyQABench and TEMPO teams. Their work should be cited appropriately in reports and any future publications. TemporalProof is a separate student project and is not affiliated with those research teams.
 
-**License:** To be selected after reviewing dependency licenses and dataset distribution constraints. No open-source license is asserted by this README alone.
+**License:** Original project code is under the [MIT License](LICENSE). Third-party datasets, reference implementations and model weights retain their own terms; the project license does not grant rights to redistribute them.

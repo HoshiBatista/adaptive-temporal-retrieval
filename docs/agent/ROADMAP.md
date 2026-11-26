@@ -7,12 +7,18 @@ This is a **suggested order**, not a promise that all work is done or that it ta
 **Objective:** verify the data and benchmark before constructing a large system.
 
 Tasks:
-- [ ] Inspect actual file tree, dependency manager, README and git state.
-- [ ] Confirm official TimelyRAG repository and exact dataset download instructions.
-- [ ] Check dataset license/terms, access, filenames, field schema and split metadata.
-- [ ] Sample records and detect time-field ambiguity, duplicate queries and missing judgments.
-- [ ] Write `docs/dataset_card.md` with provenance, sample stats, and split conventions.
-- [ ] Add CPU-only deterministic schema/metric unit tests and a tiny fixture.
+- [x] Inspect actual file tree, dependency manager, README and git state.
+- [x] Confirm official TimelyRAG repository and exact dataset download instructions.
+- [x] Check dataset license/terms, access, filenames, field schema and split metadata.
+- [x] Sample records and detect time-field ambiguity, duplicate queries and missing judgments.
+- [x] Write `docs/dataset_card.md` with provenance, sample stats, and split conventions.
+- [x] Add CPU-only deterministic schema/metric unit tests and a tiny fixture.
+
+Verified 2026-11-26: Company Policies audit runs over all 3,000 queries / 30,000 documents;
+61 CPU tests pass. Checking terms found no explicit license file; exact rights remain
+unresolved. The research gate is conditional: no event-time labels or frozen split are
+available, and later-inserted positives prevent unqualified known-at claims. See the
+[data card](../dataset_card.md) and [benchmark protocol](../benchmark_protocol.md).
 
 **Acceptance:** no invented dataset fields, reproducible audit command, tests genuinely run; any external access blocker documented.
 

@@ -1,0 +1,53 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 1269,
+      "sha256": "0b4bf3936f642f7687aaa4ce8b9c8f80be74f384b0ae0ced9472bd6549709f11",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/README.md"
+    },
+    "TimelyQABench_datasets.py": {
+      "bytes": 3849,
+      "sha256": "61aa4ce8ac7e632a9d345e27e130b29c4ae68928bff46a8ef73398f04513759f",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/TimelyQABench_datasets.py"
+    },
+    "config.py": {
+      "bytes": 969,
+      "sha256": "a8ee9a9fd734c1d6fa4589e120023b38dd44087cd1a71ea6d072fc248246a3f0",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/config.py"
+    },
+    "datasets.zip": {
+      "bytes": 5765226,
+      "sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/datasets.zip"
+    },
+    "metrics.py": {
+      "bytes": 2073,
+      "sha256": "71b15ee20a99c7b12a2e3e928c86143fc4a2696584ab8ee49799d5e93f853110",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/metrics.py"
+    },
+    "retrieval.py": {
+      "bytes": 7200,
+      "sha256": "2bcee767056192bdb33b78dae7c29e748b70b9fb096e2e782f5d48aca5ae3f19",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/retrieval.py"
+    },
+    "time_utils.py": {
+      "bytes": 5968,
+      "sha256": "25207203792b034886d0c374e2c1a21bd468e135f57afdcadc389c080bcfab58",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/time_utils.py"
+    }
+  },
+  "license_review": {
+    "archive_license_file": false,
+    "github_license_metadata": null,
+    "repository_license_file_at_revision": false,
+    "status": "unresolved; paper states permissive research release without naming exact terms; no redistribution authorized by this manifest"
+  },
+  "retrieved_on": "2026-11-26",
+  "revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+  "selected_member": {
+    "bytes": 14282297,
+    "name": "timelyrag_company_policies_dataset_v2.jsonl",
+    "sha256": "fe76970ecb895debe3e4713de67c7f5a265a63be5209bb478850c59234aad6f5"
+  },
+  "source_repository": "https://github.com/kaist-dmlab/TimelyRAG"
+}

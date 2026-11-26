@@ -93,6 +93,29 @@ ChangeImpactEvent {answer_id, changed_evidence_refs[], status: REVIEW_REQUIRED|R
 | ADR-005 | PROVISIONAL | Optional generator, not part of required research metrics | Prevents LLM confounders | A reliable answer QA benchmark is verified |
 | ADR-006 | PROVISIONAL | Rust gateway deferred | Avoids premature complexity | Stable Python benchmark reveals a service bottleneck |
 
+### ADR-007: Preserve raw benchmark timestamps and audit uncertainty
+Date: 2026-11-26
+Status: ACCEPTED for the M0 adapter
+
+Company Policies contains 47 insertion strings outside the exact reference-format policy,
+no explicit event-time fields, and positive evidence inserted after query issuance. The
+typed adapter retains raw strings; parsing returns unknown for missing or malformed
+values, and the audit reports malformed counts separately. It does not repair values,
+derive event times, infer validity intervals or filter judgments. Unknown schema fields
+fail explicitly, so a different revision/domain needs an observed-schema review. Input
+errors omit source values and unknown field names. Revisit on a documented derived
+normalization or an expanded benchmark adapter; raw inputs stay immutable.
+
+### ADR-008: Separate qrel-based metrics from reference reproduction
+Date: 2026-11-26
+Status: ACCEPTED for initial evaluation
+
+Binary nDCG uses ideal DCG from the full positive set; Recall uses the full positive-set
+denominator. The reference normalizes nDCG using the retrieved prefix, and its best-alpha
+selection uses qrels per query. Preserve reference files unchanged and label any future
+reproduction separately; best-alpha is an offline diagnostic. Tests cover the missing-gold
+normalization counterexample. See [`benchmark_protocol.md`](../benchmark_protocol.md).
+
 ## Decision entry template
 
 ```text
