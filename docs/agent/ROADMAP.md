@@ -1,0 +1,100 @@
+# Milestone plan and task acceptance gates
+
+This is a **suggested order**, not a promise that all work is done or that it takes a fixed number of days. For each milestone, implement and test the smallest end-to-end slice. Update `CURRENT_STATUS.md` with verified facts.
+
+## M0 — Repository and dataset audit (start here)
+
+**Objective:** verify the data and benchmark before constructing a large system.
+
+Tasks:
+- [ ] Inspect actual file tree, dependency manager, README and git state.
+- [ ] Confirm official TimelyRAG repository and exact dataset download instructions.
+- [ ] Check dataset license/terms, access, filenames, field schema and split metadata.
+- [ ] Sample records and detect time-field ambiguity, duplicate queries and missing judgments.
+- [ ] Write `docs/dataset_card.md` with provenance, sample stats, and split conventions.
+- [ ] Add CPU-only deterministic schema/metric unit tests and a tiny fixture.
+
+**Acceptance:** no invented dataset fields, reproducible audit command, tests genuinely run; any external access blocker documented.
+
+## M1 — Reference metrics and sparse baseline
+
+Tasks:
+- [ ] Implement relevance-grade mapping and tested nDCG@10/Recall@K functions.
+- [ ] Build small BM25 index and evaluate held-out queries.
+- [ ] Save per-query run and qrel files; record subset selection and seed.
+- [ ] Create a first error analysis report including temporal hard cases.
+
+**Acceptance:** baseline metrics computed using an explicitly documented protocol; no query/pair leakage; CPU smoke command works.
+
+## M2 — Dense and temporal retrieval
+
+Tasks:
+- [ ] Choose/pin a compact embedding model and index version.
+- [ ] Compute dense candidate rankings on exactly the same evaluation split.
+- [ ] Add hybrid fusion and explicit temporal filtering/ranking features.
+- [ ] Compare B1/B2/B3/B4 with confidence intervals or per-query deltas.
+
+**Acceptance:** model provenance + repeatable datasets; time-boundary test cases; report includes both improvements and regressions.
+
+## M3 — Deep reranker and profiling
+
+Tasks:
+- [ ] Implement fixed top-K cross-encoder reranking.
+- [ ] Cache fixed candidate pools and output scores.
+- [ ] Profile CPU/GPU latency at controlled batch size and concurrency.
+- [ ] Record GPU peak and trade-off against the fast model.
+
+**Acceptance:** deep reranker gives a measurable basis for training the router; no unsupported GPU capacity claims.
+
+## M4 — Main research contribution: adaptive router
+
+Tasks:
+- [ ] Compute **training-only** fast/deep gains and measured-cost targets.
+- [ ] Implement pre-deep routing features (time intent, rank disagreement, margin/entropy, version diversity).
+- [ ] Compare fixed routing, rule-based routing and learned logistic/CatBoost routing.
+- [ ] Evaluate quality–cost Pareto curves on an untouched test split.
+- [ ] Run feature ablations, temporal-hard slices and a domain-transfer trial if feasible.
+
+**Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
+
+## M5 — Minimal production-style service
+
+Tasks:
+- [ ] Add version-aware ingestion with stable document/version/passage IDs.
+- [ ] Provide FastAPI endpoints for search, versions and evidence provenance.
+- [ ] Persist required state with tests and migration(s) where appropriate.
+- [ ] Add request validation, structured error handling and basic logging.
+- [ ] Package local components in Docker Compose if it simplifies reproducibility.
+
+**Acceptance:** end-to-end integration: ingest two revisions → search as of each date → see distinct cited evidence.
+
+## M6 — Product features and validation
+
+Tasks:
+- [ ] Add minimal React interface with search, timeline and citation view.
+- [ ] Implement conservative ChangeImpact: changed cited passage → `review_required`.
+- [ ] Add unit, integration, contract and one E2E test for revisions and history.
+- [ ] Perform load tests: fast-only, mixed routing, reads during ingestion; separately profile optional generation.
+- [ ] Add CI, Prometheus metrics/structured logs, documentation and demo fixtures.
+
+**Acceptance:** deterministic demo, real test results, observed p50/p95/RPS in a clearly described environment; no assertion of automatic factual invalidation.
+
+## M7 — Thesis evidence and open-source polish
+
+Tasks:
+- [ ] Freeze experimental protocol/configs and record dataset/model versions.
+- [ ] Prepare comparison tables, Pareto plots, ablation, error taxonomy and honest limitations.
+- [ ] Add setup documentation, sample environment template, security/licensing review and architecture diagram.
+- [ ] Validate clean clone/setup instructions on a fresh environment where feasible.
+
+**Acceptance:** reproducible end-to-end research story and usable service demonstration; no invented results.
+
+## Research gates (stop/go)
+
+- **After M0:** do the labels and time metadata actually permit the intended ranking experiment? If no, raise this with the project owner before changing the thesis scope.
+- **After M3:** is there enough quality difference and runtime difference between fast/deep paths to make adaptive routing meaningful? If no, analyze another compact reranker or pivot within the same retrieval problem.
+- **After M4:** does the learned router beat a simple policy at a defensible operating point? If no, publish the negative result and narrow the claimed contribution.
+
+## Scope discipline
+
+Keep M0–M4 ahead of heavy frontend work. Optional Rust/Go/large LLM components are not prerequisites. Do not “complete” milestones by adding placeholder folders or TODO-only modules.
