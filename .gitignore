@@ -228,3 +228,6 @@ __marimo__/
 /models/
 /artifacts/
 /mlruns/
+/mlartifacts/
+/mlflow.db
+/mlflow.db-*

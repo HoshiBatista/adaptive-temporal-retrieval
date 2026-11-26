@@ -10,6 +10,10 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
   Two runs on the same 100 validation queries / full 30,000-passage corpus have identical
   rankings, qrels and quality metrics. nDCG@10 0.175959, Recall@10 0.230000, Recall@100
   0.393333. These are development-subset measurements; test is not evaluated.
+- **Local tracking:** optional MLflow 3.18.0 SQLite/artifact store, loopback UI, idempotent
+  historical import and BM25 `--mlflow` are implemented. Current suite: **89 tests pass**.
+  M1 validation100 and a separate three-query train integration smoke are FINISHED in
+  the local store. No new validation comparison or final-test evaluation was performed.
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2 and NumPy 2.5.5.
@@ -21,6 +25,45 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
 - **Next milestone:** M2 compact dense/hybrid retrieval on the same fixed validation IDs.
 
 ## Verified work log
+
+### 2026-11-26 — Local MLflow setup
+
+- Goal: provide local experiment persistence/UI and integrate existing BM25 output after
+  the user chose local hosting. No remote tracking service, model or GPU job introduced.
+- Files changed: optional dependency/CLI in `pyproject.toml`, `uv.lock`, `.gitignore`,
+  `src/temporalproof/tracking/`, BM25 CLI flag, `tests/test_tracking.py`, `docs/mlflow.md`,
+  README, architecture decisions and this handoff; M1 report updated to link tracking.
+- Commands executed:
+
+  ```bash
+  uv sync --extra tracking --group dev
+  uv run --frozen --extra tracking ruff format .
+  uv run --frozen --extra tracking ruff check .
+  uv run --frozen --extra tracking pytest -q
+  uv run --frozen --extra tracking temporalproof-mlflow import-run --run-dir artifacts/bm25/company_policies_validation100_v1 --measured-on 2026-11-26
+  uv run --frozen --extra tracking temporalproof-mlflow server
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 uv run --frozen --extra tracking temporalproof-bm25 --mlflow --config artifacts/configs/bm25_mlflow_train_smoke_v1.json --output artifacts/bm25/mlflow_train_smoke_v1
+  ```
+
+- Validation: **89 tests passed**, Ruff checks passed. Initial unused-import/line-length
+  findings corrected. One third-party SQLAlchemy deprecation warning remains; server
+  startup also reports a third-party Starlette deprecation warning. Functional checks pass.
+- Tests use tiny independent fixtures and temporary SQLite stores; no benchmark download,
+  model inference or UI server is required. Missing tracking extra and failed tracking
+  preserve core usability/file results. Normal base-environment sync was not rerun while
+  the live server is using its installed optional dependencies.
+- Live checks: HTTP root and `/health` return 200; HTTP run listing sees two FINISHED
+  records; each has six evidence artifacts. `/get-artifact` serves the original M1
+  summary successfully. SDK telemetry client is disabled; wrapper disables UI telemetry.
+- Existing M1 import ID: `2bc4266fc7564093a8915c585d1155fd`; source commit/dirty-state,
+  source snapshot and metric 0.17595877026340895 retained. Reimport does not duplicate.
+- New CLI integration smoke ID: `3438643655224623a76a0247c9c70b21`, three train queries
+  over the full corpus. This is a functionality check, not a comparable benchmark score.
+- State: ignored `artifacts/mlflow/mlflow.db` and local file artifacts. The UI is started
+  at `http://127.0.0.1:5000`; restart the documented command after WSL/session shutdown.
+  No autostart service or remote access was configured. No commits/pushes in this task.
+- Next: M2 dense/hybrid comparisons can use the established local tracking setup while
+  retaining immutable file output, the original split and fixed validation selection.
 
 ### 2026-11-26 — M1 / frozen split and CPU BM25 baseline
 
@@ -148,6 +191,6 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
 
 Implement M2: add a pinned compact encoder suitable for Korean and hybrid candidate
 retrieval, using the same frozen validation selection/corpus. Compare paired query deltas,
-regressions and candidate recall before reranking. Add optional local MLflow for comparison,
-preserving portable run manifests. Do not tune on or evaluate final test yet. Original
+regressions and candidate recall before reranking. Use the implemented local MLflow and
+preserve portable run manifests. Do not tune on or evaluate final test yet. Original
 qrels and temporal uncertainty remain unchanged. See `docs/m1_bm25_report.md`.

@@ -241,6 +241,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--archive", type=Path, default=DEFAULT_ARCHIVE)
     parser.add_argument("--split", type=Path, default=DEFAULT_SPLIT)
     parser.add_argument(
+        "--mlflow", action="store_true", help="also log completed results to local MLflow"
+    )
+    parser.add_argument(
         "--config", type=Path, default=Path("configs/experiments/bm25_company_policies.json")
     )
     parser.add_argument(
@@ -278,6 +281,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 1
     print(json.dumps(summary["metrics"], sort_keys=True))
     print(f"Artifacts: {args.output}")
+    if args.mlflow:
+        from temporalproof.tracking.local import TrackingError, log_run_directory
+
+        try:
+            run_id = log_run_directory(args.output)
+        except (TrackingError, OSError):
+            print(
+                "BM25 completed; local MLflow export failed. Saved file results are intact.",
+                file=sys.stderr,
+            )
+            return 1
+        print(f"Local MLflow run: {run_id}")
     return 0
 
 

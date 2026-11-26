@@ -44,6 +44,21 @@ unresolved; no downloaded examples are included in the test fixture.
 Choose a new BM25 output directory for each run. The committed split contains IDs only;
 full rankings, qrels, timings and inspected failure text stay in ignored local artifacts.
 
+### Local experiment tracking
+
+Optional MLflow 3.18.0 tracking is implemented with local SQLite and artifact storage:
+
+```bash
+uv sync --frozen --extra tracking --group dev
+uv run --frozen --extra tracking temporalproof-mlflow server
+```
+
+Open <http://127.0.0.1:5000>. Add `--mlflow` to `temporalproof-bm25` to log completed
+results; use `uv run --frozen --extra tracking` for tracking-enabled commands. Logging
+also works with the UI stopped. M1's original result has been imported with its original
+provenance and a historical-import tag. See [local tracking instructions](docs/mlflow.md)
+for artifacts, idempotent imports, restarting and optional-dependency behavior.
+
 ---
 
 ## Table of Contents

@@ -145,5 +145,6 @@ and provenance only. Exact third-party data redistribution terms remain unresolv
 
 M2: add a pinned compact encoder suitable for Korean and a hybrid candidate pool on
 the same frozen validation selection; compare per-query deltas, regressions and recall
-before any reranker/router work. Add optional local MLflow tracking when comparing runs,
-while retaining file-based manifests. Keep the final test partition untouched.
+before any reranker/router work. Optional [local MLflow tracking](mlflow.md) is now
+implemented; M1's original result was imported with unchanged historical provenance.
+Retain file-based manifests and keep the final test partition untouched.

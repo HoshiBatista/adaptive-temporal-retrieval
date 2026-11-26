@@ -143,6 +143,26 @@ MLflow is deferred until multi-model comparisons in M2; manifests remain the por
 record even when tracking is added. Raw text/qrels remain ignored while exact data terms
 are unresolved. Revisit tokenization/models on train/validation only.
 
+### ADR-011: Optional local SQLite MLflow with immutable file evidence
+Date: 2026-11-26
+Status: ACCEPTED at the user's explicit request after M1
+
+The `tracking` extra pins MLflow 3.18.0. Explicit low-level clients write to a project-local
+SQLite database and file artifact store under ignored `artifacts/mlflow/`, independent
+of the UI process or remote tracking environment variables. A wrapper serves that store
+on loopback only with a single worker and disabled SDK/UI telemetry. MLflow owns its
+schema; application persistence remains unimplemented.
+
+BM25 tracking is opt-in and runs after evaluation/output, outside retrieval timing.
+File manifests remain the portable evidence. Import validates all original output hashes,
+copies an explicit artifact allowlist, preserves original Git/source/package provenance,
+and records historical measurement date separately from MLflow import clock timestamps.
+Finished imports are idempotent by manifest fingerprint; different historical dates are
+rejected. Tracking failure leaves completed research files intact and returns an error
+for explicit tracking requests. Local raw failure text is not duplicated into MLflow.
+This implements the tracking previously deferred in ADR-010; no remote account or model
+execution is required. See [`mlflow.md`](../mlflow.md) for actual commands and scope.
+
 ## Decision entry template
 
 ```text
