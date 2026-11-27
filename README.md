@@ -42,6 +42,13 @@ nDCG@10 **0.190746**, below hybrid **0.198972** and matched agreement **0.198817
 with 49 deep calls. Its paired group interval against hybrid is wholly negative;
 matched-control intervals include zero. See the [validation report](docs/m4_router_validation_report.md).
 No validation refit/threshold tuning; test remains unevaluated. Hybrid stays the reference.
+A CPU-only conservative rank blend then selected deep weight **0.20** using train groups.
+Grouped OOF reaches **0.196354** versus hybrid **0.197016**; frozen validation blend
+**0.196351** versus hybrid **0.198972**. Reusing old 49-query logistic routes with the
+blend reaches **0.199371**, but its paired interval against hybrid includes zero;
+this is a secondary transfer diagnostic, not a newly trained router. Candidate coverage
+and incomplete-judgment limitations are audited in the [M4.2 report](docs/m4_rankblend_report.md).
+No new GPU inference or final test. Hybrid remains the reference.
 API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),

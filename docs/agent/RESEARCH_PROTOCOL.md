@@ -175,3 +175,26 @@ calibrated probabilities. Original negative results/secondary regressions are pr
 An all-500-selected-train primary model is saved for future validation, not evaluated on
 its own training predictions as OOF. Next freeze the learned/control policies for validation;
 final test remains untouched. See [report](../m4_router_groupcv_report.md).
+
+
+## M4.2: Conservative rank blending after negative development validation
+
+This hypothesis was explicitly motivated by earlier validation failures, not independent
+confirmation. Fix reciprocal offset60 and weights0/.05/.10/.20/.30 before experiments;
+select each held-out fold's weight from other **training** groups only. Freeze the final
+all-train weight before validation access. Zero preserves fast, any positive weight
+requires the full expensive pool. Keep raw score scale out of rank fusion.
+
+Grouped OOF0.196354 versus fast0.197016 and validation .20-blend0.196351 versus fast0.198972
+do not establish an improvement. The old logistic routes + blend reach0.199371, but this
+is secondary, inconclusive against fast, and not retrained for the changed utility.
+Do not silently reuse old raw-deep gain labels to claim a newly trained blended router.
+Future fitting must derive targets on train only and select blend weights within folds.
+
+No/some/all positive-pool coverage is211/147/142 (train500),211/152/132 (validation495).
+Within-pool qrel oracle ceilings are offline diagnostics, never inference features or
+published-system results. Unjudged zero grades do not establish irrelevance; illustrative
+manual case observations are not new gold labels or validated temporal-hard groups.
+Keep dataset text local and original labels unchanged. Cached stage cost sums omit
+unmeasured new fusion/router overhead. Exact replay and188 CPU tests verified; see
+[report](../m4_rankblend_report.md). No new neural inference or final-test evaluation.

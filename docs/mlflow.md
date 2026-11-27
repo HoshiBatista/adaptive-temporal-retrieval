@@ -154,3 +154,14 @@ no model parameters or raw failure text. Repeated logging returns the same three
 the immutable collection manifest excludes its later tracking sidecar. Metrics remain
 **development validation / modeled cost**, with no refit or final test. Primary nDCG@10
 0.190746 regresses against hybrid 0.198972; preserve this negative result.
+
+
+M4.2 cached failure analysis/rank blending logs to FINISHED run
+**`93c50c8dd83842caba35022102083b74`** through `experiments/log_rank_blend.py`.
+See the [report](m4_rankblend_report.md) for original/replay/aggregate/plot/log commands.
+`rankblend/` contains seven explicit metadata files; `analysis/` contains the aggregate
+and PNG/SVG. Raw inspection/query/passage text, qrels, candidate scores and model parameters
+are excluded. A repeated log returned the same ID. The v2 figure only clarifies tick
+labels; both figure versions preserve the same measurements. Primary is grouped
+train-fold-selected all-query blend, not the best validation transfer policy. Source
+stage costs omit unmeasured new overhead; no new GPU timing or final-test score is logged.

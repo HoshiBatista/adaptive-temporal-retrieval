@@ -342,6 +342,33 @@ original validation100 GPU scores/ranks/qrels verified. Keep hybrid as the refer
 and inspect failures before the next train-only experiment; test remains untouched.
 See [validation report](../m4_router_validation_report.md).
 
+### ADR-019: Rank-only conservative deep blending and fold-local weight selection
+Date: 2026-11-27
+Status: ACCEPTED for the cached experiment; hybrid remains reference
+
+Diagnose candidate coverage separately from reranker permutations using immutable cached
+rankings and original qrels. Unjudged zero grades are an evaluation convention, not proof
+of semantic irrelevance. Textual case inspection is exploratory and remains local; no
+manual gold labels are introduced. Keep insertion/valid-time distinctions explicit.
+
+Combine hybrid and deep **ranks**, avoiding incomparable raw score scales, with fixed
+reciprocal offset60. Predeclare 0/.05/.10/.20/.30; zero is exact fast bypass. Select weight
+on other groups within each train fold, tie smaller, then freeze one all-train weight
+before validation. Any positive blend needs all expensive candidate scores; this is a
+ranking safeguard, not a cheaper neural pass. Source costs omit unmeasured new overhead.
+
+Primary fold-selected all-query blend reaches OOF0.196354 vs fast0.197016; final .20
+validation0.196351 vs fast0.198972. Both intervals include zero. A secondary unchanged
+old-route transfer reaches0.199371, also inconclusive vs fast. It is not newly trained
+for the changed deep utility and does not replace the predeclared primary. This design
+followed negative development validation; no independent final-test claim is warranted.
+
+Both cached executions have byte-identical outputs/manifests, 188 CPU tests pass, and
+metadata/figures are logged locally with explicit exclusions for raw inspection text.
+Next train-only changed-utility routing must keep weight choice inside each fold;
+old raw-deep labels cannot silently stand in for the new utility. No new GPU collection
+or final test is introduced here. See [report](../m4_rankblend_report.md).
+
 ## Decision entry template
 
 ```text

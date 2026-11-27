@@ -111,6 +111,16 @@ Retain the negative result and hybrid reference. Next inspect failures to predec
 train-only experiment, rather than select a new validation operating point. See the
 [validation report](../m4_router_validation_report.md).
 
+M4.2 measured: cached failure audit separates absent candidates from harmful permutations;
+predeclared rank-blend weights use train-fold selection only. Final .20 is frozen before
+validation. OOF nDCG0.196354 versus fast0.197016; validation0.196351 versus fast0.198972,
+both intervals include zero. Old-route transfer0.199371 is secondary, not a new learned
+policy or primary switch. Exact CPU replay,188 tests and local MLflow verified. No new
+neural inference/test. Next prioritize the official TimelyRAG baseline on a matched
+protocol before further changed-utility router fits; keep reference/full-qrel metric
+columns and automatic-alpha/oracle outcomes distinct. Candidate coverage remains separate.
+See [report](../m4_rankblend_report.md).
+
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 
 ## M5 — Minimal production-style service

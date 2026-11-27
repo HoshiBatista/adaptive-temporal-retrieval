@@ -51,6 +51,16 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   decision/metric/interval replay and original validation100 GPU scores/ranks/qrels verified;
   **167 CPU tests**, Ruff and local MLflow pass. This set includes prior model-selection
   validation100; it is not an independent final test. See the [report](../m4_router_validation_report.md).
+- **M4.2 failure audit / conservative rank blending:** cached train500/validation495
+  diagnoses no/some/all gold in pool **211/147/142** and **211/152/132**. Rank interpolation
+  weights 0/.05/.10/.20/.30 selected only within training groups; final **.20** frozen before
+  loading validation. Fold-selected OOF nDCG **0.196354** vs fast 0.197016 (interval includes
+  zero); frozen validation blend **0.196351** vs fast 0.198972. Old 49 logistic routes with
+  blend reach **0.199371**, delta **+0.000399** interval **[−0.001881, 0.002920]**, secondary
+  transfer only, not a new trained router. All source/checkpoint/official-qrel checks and
+  exact whole-experiment CPU replay verified; **188 CPU tests**, Ruff and local MLflow pass.
+  No new neural inference, router fit/targets, validation grid search or final test.
+  See [report](../m4_rankblend_report.md). Hybrid remains the reference.
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2, NumPy 2.5.5 and sklearn 1.9.1 (routing extra).
@@ -60,12 +70,83 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** inspect development reranker/router failures and predeclare the next
-  train-only hypothesis before expanding collection or opening final test. Keep hybrid as
-  the reference; retain negative/inconclusive policies rather than choosing another
-  validation operating point after inspecting its quality. No default learned-router adoption.
+- **Next increment:** reproduce the official TimelyRAG baseline under an explicitly matched
+  local protocol before further router fitting. Keep official reference-prefix and full-qrel
+  metric columns separate; evaluate automatic-alpha independently of the gold-dependent
+  best-alpha oracle. Published scores are context, not reproduced/local comparison results.
+  Preserve all negative findings and the closed final test. A later blended-utility router
+  must still generate targets and select blend weights within training folds only.
 
 ## Verified work log
+
+### 2026-11-27 — M4.2 / failure audit and conservative rank-blend experiment
+
+- User approved the proposed error analysis / train-only blend experiment. Added pure
+  `retrieval/rank_blend.py`, independent cached evaluator, predeclared config, 21 synthetic
+  CPU cases, explicit aggregate/figure/local-log scripts and a full report. No dependency/
+  model/raw-label changes, neural inference/downloads or new router fit/targets.
+- Source evidence remains immutable: train manifest `b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049`,
+  validation manifest `9d89e4079b6744f87001023c12df13073dd08550a9ace13037d34e84bb463892`.
+  Root/child outputs, canonical selections/groups, official qrels, candidate membership,
+  finite scores/costs and nDCG/Recall replay are verified. Test partition explicitly refused.
+- Candidate coverage no/some/all positives: train **211/147/142**, validation **211/152/132**.
+  Offline within-pool oracle mean nDCG ceilings **0.461027/0.453718**, never a feature/policy.
+  On validation full-coverage queries raw deep still regresses **0.478254 → 0.359584**;
+  partial-coverage **0.232643 → 0.171530**. Raw deep displaces **106** positive passages
+  from top10; promoted top1 originally outside fast top10 on **194** queries.
+- Local text inspection covers five largest gains/regressions per partition. Illustrative
+  requested-period/condition/scenario mismatches (705/2449/1132) and a plausible unjudged
+  cross-query answer (2351) are exploratory observations, not new gold/error-class labels.
+  Preserve unjudged-as-zero metric convention without claiming semantic irrelevance.
+  Raw inspection text stays ignored and is excluded from public aggregate/local logging.
+- Predeclared config SHA `adf67b8e29b4039fa7bd879006b8ede1a67fef372dfa749ab898335f0e8a2c41`.
+  Score=(1-w)/(60+fast rank)+w/(60+deep rank), tie doc ID ascending, grid **0/.05/.10/.20/.30**,
+  smaller-weight tie tolerance1e-12. Zero is exact fast bypass; any positive weight still
+  needs the full deep pool. Pure raw scores can change scale without affecting fusion.
+- Reused seed1729/five grouped folds on train500/493 groups. Select weight on other
+  training groups only, then evaluate held-out queries. Fold weights **.10/.20/.20/.10/.20**;
+  sizes101/100/100/101/98. All-train final **.20** checkpointed before validation loading.
+  Validation evaluates one new weight only. Hypothesis was designed after seeing earlier
+  negative development validation; no fresh independent validation or final-test claim.
+- Primary OOF all-query blend nDCG **0.1963544563**, hybrid **0.1970158265**, delta
+  **−0.000661**, interval **[−0.006120, 0.005015]**. Train in-sample best .20 reaches
+  0.198126; this small gain does not survive OOF. OOF gains/regressions/same **53/59/388**.
+- Frozen validation all-query blend **0.1963512337**, fast **0.1989722759**, raw deep
+  **0.1485609360**. Delta vs fast **−0.002621**, interval **[−0.008260, 0.003274]**;
+  vs raw deep **+0.047790**, interval **[0.032093, 0.065265]**. Regression count drops
+  123 → 55, but no superiority to hybrid is established. Recall@100 remains0.417744.
+- Secondary old-route transfer: logistic49 **0.1993711006**, agreement49 **0.1986563447**,
+  random49 **0.1988002934**. Logistic vs fast **+0.000399**, interval **[−0.001881,0.002920]**;
+  vs original same-route deep **+0.008625**, interval **[0.001906,0.016005]**. This reduces
+  the old policy's damage, not a newly trained-router result or a new primary. All source
+  old routes stay unchanged; no deep outcome enters a routing feature/decision.
+- Costs are reused source-stage sums, exclude unmeasured new fusion/router overhead and
+  are not live means/p95/throughput. Validation fast/all-query blend/logistic transfer
+  source means **87.299/1220.241/186.382 ms**; the last excludes the old 0.009056 ms
+  router microbenchmark. No new speedup/VRAM claim. Group intervals use2000 resamples,
+  conditional on selected folds/weights without refitting; secondary contrasts exploratory.
+- Evidence `artifacts/m4/rankblend_train500_v1` and complete `_replay_v1` are byte-identical,
+  including manifests, inspection, selection/OOF/summary. Source snapshot
+  `29acfcd9a5f830c4427f96a98c313d8e6706a12a62d9c853916948ffdeb3e707`, based on `9a5e7a6`
+  plus uncommitted stage changes. Manifest `97e0d19f35f82b6cf128d1ed07b3178b5ad523386000735cbc7b499144f0e1fa`;
+  pre-validation checkpoint `6e76f196f56cfa83195ab2f3e32d4f47b59825aefad534509fcdc1a0fce397d9`.
+- **188 CPU tests pass**; Ruff lint/format/diff checks pass. Cases include held-out-label
+  counterfactuals, group crossing, invalid grids/pools/scores/ranks, official-qrel integrity
+  after rehashing, fixed-pool coverage, ties/scale invariance, exact zero bypass/JSON and
+  one validation weight. Existing third-party SQLAlchemy warning only; normal tests CPU/offline.
+- Commands: threaded `uv run --frozen --extra tracking --extra dense --extra routing pytest -q`;
+  Ruff checks; `python -m temporalproof.evaluation.rank_blend` for original/replay;
+  `experiments/analyze_rank_blend.py`, `plot_rank_blend.py`, `log_rank_blend.py`. Full exact
+  arguments in [report](../m4_rankblend_report.md); aggregate at
+  `experiments/results/m4_rankblend_train500_v1.json`. Figure PNG/SVG inspected; v2 only
+  clarifies tick labels, preserving original measurements/figure too.
+- Local MLflow FINISHED **93c50c8dd83842caba35022102083b74**, idempotent second log same ID;
+  seven explicit metadata files plus aggregate/figures, no raw source/qrels/weights.
+  Tracking sidecar excluded from immutable manifest. No commit/push in this task.
+- Handoff: ADR-019 / report. Hybrid remains reference. Next evaluate new train-only
+  utility targets/router for the blended path, with fold-local weight selection. Candidate
+  coverage remains a separate controlled-study need; no default adoption or final test.
+
 
 ### 2026-11-27 — M4 / frozen train500 router on complete development validation
 

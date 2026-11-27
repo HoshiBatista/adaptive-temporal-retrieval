@@ -1,0 +1,640 @@
+{
+  "analysis_script_sha256": "d4aeaf2dc25cd91c636a689d279237ce2038cdaaab6d43ac3045ae3ecb527087",
+  "config": {
+    "bootstrap_samples": 2000,
+    "candidate_weights": [
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "n_splits": 5,
+    "name": "conservative_rankblend_train500_v1",
+    "primary": "fold_selected_all_query_blend",
+    "rank_offset": 60,
+    "router_config_sha256": "c5d9f1f05771a11a55ef58f78136d6b02341e14e5efd727916fd013bdd380db8",
+    "routing_transfer_budget": 0.1,
+    "seed": 1729,
+    "selection_metric": "mean_train_ndcg_at_10",
+    "selection_tolerance": 1e-12,
+    "tie_break": "smaller_deep_weight",
+    "top_k": 100,
+    "train_manifest_sha256": "b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049",
+    "train_query_count": 500,
+    "validation_manifest_sha256": "9d89e4079b6744f87001023c12df13073dd08550a9ace13037d34e84bb463892",
+    "validation_query_count": 495
+  },
+  "exact_replay_all_files_including_manifest": true,
+  "folds": [
+    {
+      "fold": 0,
+      "held_out_query_count": 101,
+      "selected_weight": 0.1,
+      "selection_query_count": 399,
+      "training_mean_by_weight": {
+        "0.0": 0.20113246003379973,
+        "0.05": 0.20027039671968214,
+        "0.1": 0.20188459358918967,
+        "0.2": 0.2017269401827728,
+        "0.3": 0.1966008693848038
+      }
+    },
+    {
+      "fold": 1,
+      "held_out_query_count": 100,
+      "selected_weight": 0.2,
+      "selection_query_count": 400,
+      "training_mean_by_weight": {
+        "0.0": 0.1916106672223745,
+        "0.05": 0.1922389424978634,
+        "0.1": 0.1935653666183265,
+        "0.2": 0.1951321792438906,
+        "0.3": 0.19096852740182577
+      }
+    },
+    {
+      "fold": 2,
+      "held_out_query_count": 100,
+      "selected_weight": 0.2,
+      "selection_query_count": 400,
+      "training_mean_by_weight": {
+        "0.0": 0.20672779334792515,
+        "0.05": 0.20716780327606032,
+        "0.1": 0.20692622739335895,
+        "0.2": 0.20739638323070758,
+        "0.3": 0.20193361184182967
+      }
+    },
+    {
+      "fold": 3,
+      "held_out_query_count": 101,
+      "selected_weight": 0.1,
+      "selection_query_count": 399,
+      "training_mean_by_weight": {
+        "0.0": 0.1938900075684771,
+        "0.05": 0.19433153082944543,
+        "0.1": 0.19568200365497815,
+        "0.2": 0.19374722570146785,
+        "0.3": 0.18769732661697644
+      }
+    },
+    {
+      "fold": 4,
+      "held_out_query_count": 98,
+      "selected_weight": 0.2,
+      "selection_query_count": 402,
+      "training_mean_by_weight": {
+        "0.0": 0.19174702536371407,
+        "0.05": 0.190946631637742,
+        "0.1": 0.19234919642974693,
+        "0.2": 0.19265204856562304,
+        "0.3": 0.18930003501320286
+      }
+    }
+  ],
+  "limitations": [
+    "hypothesis designed after negative development validation; test untouched",
+    "only one train-selected blend weight evaluated on validation",
+    "transfer keeps original routes/model, not retrained for the new utility",
+    "primary is fold-selected all-query blend, not best-looking transfer policy",
+    "conditional group intervals do not redo weight selection",
+    "positive blend weights still require complete expensive reranking",
+    "source stage costs omit unmeasured new fusion/router overhead",
+    "unjudged is not established irrelevant; no new gold labels",
+    "pool oracle is an offline diagnostic, not an inference feature"
+  ],
+  "manifest_sha256": "97e0d19f35f82b6cf128d1ed07b3178b5ad523386000735cbc7b499144f0e1fa",
+  "measured_on": "2026-11-27",
+  "secondary_paired_comparisons": [
+    {
+      "mean_ndcg_delta_blend_vs_original_deep": 0.04779029775883553,
+      "paired_group_bootstrap_95_interval": [
+        0.032093334630838875,
+        0.06526530085497653
+      ],
+      "scope": "all_queries",
+      "secondary_diagnostic": true
+    },
+    {
+      "mean_ndcg_delta_blend_vs_original_deep": 0.008625055888197971,
+      "paired_group_bootstrap_95_interval": [
+        0.0019060692354811008,
+        0.016004740138178368
+      ],
+      "scope": "logistic",
+      "secondary_diagnostic": true
+    },
+    {
+      "mean_ndcg_delta_blend_vs_original_deep": -0.00016061605284615457,
+      "paired_group_bootstrap_95_interval": [
+        -0.0027921069128294175,
+        0.0026589322239052283
+      ],
+      "scope": "agreement",
+      "secondary_diagnostic": true
+    },
+    {
+      "mean_ndcg_delta_blend_vs_original_deep": 0.004227036141454577,
+      "paired_group_bootstrap_95_interval": [
+        0.00033953731345537613,
+        0.00885575548789567
+      ],
+      "scope": "random",
+      "secondary_diagnostic": true
+    }
+  ],
+  "selection_checkpoint_sha256": "6e76f196f56cfa83195ab2f3e32d4f47b59825aefad534509fcdc1a0fce397d9",
+  "source_files_sha256": {
+    "pyproject.toml": "d5877f5c99430a46e8e299191c967b7ab42db435633647471c8836bd38727b4a",
+    "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+    "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+    "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+    "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+    "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+    "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+    "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+    "src/temporalproof/evaluation/baseline.py": "8a75fb32fe5cf79eee1260ecd947f1109f76abce5ecf0dcff6cfca4e8209255f",
+    "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+    "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+    "src/temporalproof/evaluation/pilot.py": "1dac10252677e999159d5b49471829ad471fd0060524bdbc189d3baaef5e2ff3",
+    "src/temporalproof/evaluation/rank_blend.py": "5938372a4b4261b8a89e46bcc4d889ca34743d88287334090940cb1d1b2d00da",
+    "src/temporalproof/evaluation/reranking.py": "469db2811cacdc009a3d5aa3494e25e1d431b8e03085ce3c26763a71212069ef",
+    "src/temporalproof/evaluation/router_cv.py": "02b8db516ff68e1e73b9572055e749f22d29cf27fb71ec0c357ae7f5be3ba5a2",
+    "src/temporalproof/evaluation/router_validation.py": "3adf9f9993371f66b5239e7d7c4227232f4b5f38ebf7d8e630a7c66afb0e9b73",
+    "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+    "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+    "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+    "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+    "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+    "src/temporalproof/retrieval/rank_blend.py": "d9b6bdaac9e1836e5c0a600acef2ded9f000cc068c12f5c28a05a1f9166cc7e7",
+    "src/temporalproof/retrieval/reranker.py": "8c1a5e17c9e8bb176a305d1f317e0279316f9e45e1c541da1a66f61fc70e1aa7",
+    "src/temporalproof/routing/__init__.py": "a95e1155bc0f7b29b0b93e25d50753d5970d181d3bef838bb4a1d27d7278514c",
+    "src/temporalproof/routing/cross_validation.py": "401006871dcdcf46aa1853710c8d5bb0db797d73448110969fa1535437215c82",
+    "src/temporalproof/routing/features.py": "a0b7b6a99db0e295582f57de97f207a2256724f60dc843d20685cd2ca149d6a1",
+    "src/temporalproof/routing/learned.py": "78fb49cc5b36010146fc7a6efdb5973286cbfe1d248f1c7c6d34195cb11cf5a6",
+    "src/temporalproof/routing/targets.py": "aecbecd7926a773be4fc837f0369b0d879068a58c290c26ca66dc344225b7e86",
+    "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+    "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+    "uv.lock": "8e0545c8e840019653098f8418dbb111c7d2e27ae56156525e270db3f27fa694"
+  },
+  "source_snapshot_sha256": "29acfcd9a5f830c4427f96a98c313d8e6706a12a62d9c853916948ffdeb3e707",
+  "summary": {
+    "diagnostics": {
+      "train": {
+        "deep_top1_from_outside_fast_top10_count": 202,
+        "gains_regressions_unchanged": [
+          71,
+          121,
+          308
+        ],
+        "group_count": 493,
+        "judgment_scope": "listed positives only; unjudged treated as zero for scoring, not established semantically irrelevant; no new manual gold labels",
+        "largest_gains": [
+          {
+            "deep_ndcg_at_10": 1.0,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 66,
+            "gain": 1.0,
+            "query_id": 143
+          },
+          {
+            "deep_ndcg_at_10": 1.0,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 22,
+            "gain": 1.0,
+            "query_id": 2739
+          },
+          {
+            "deep_ndcg_at_10": 0.9010126104210695,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 14,
+            "gain": 0.9010126104210695,
+            "query_id": 2294
+          },
+          {
+            "deep_ndcg_at_10": 0.8519590445170673,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 14,
+            "gain": 0.8519590445170673,
+            "query_id": 2556
+          },
+          {
+            "deep_ndcg_at_10": 0.7653606369886217,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 19,
+            "gain": 0.7653606369886217,
+            "query_id": 296
+          }
+        ],
+        "largest_regressions": [
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 13,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 1396
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 20,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 2128
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 13,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 2953
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 60,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 2961
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 0.9469024295259745,
+            "first_positive_deep_rank": 37,
+            "first_positive_fast_rank": 1,
+            "gain": -0.9469024295259745,
+            "query_id": 1265
+          }
+        ],
+        "mean_pool_oracle_ndcg_ceiling": 0.46102701644853233,
+        "oracle_scope": "offline qrel-based pool upper bound; never a deployable policy/feature",
+        "pool_coverage": {
+          "all_gold_in_pool": {
+            "count": 142,
+            "mean_deep_ndcg": 0.4010259509330779,
+            "mean_fast_ndcg": 0.45448391254560744
+          },
+          "no_gold_in_pool": {
+            "count": 211,
+            "mean_deep_ndcg": 0.0,
+            "mean_fast_ndcg": 0.0
+          },
+          "partial_gold_in_pool": {
+            "count": 147,
+            "mean_deep_ndcg": 0.1656640751924843,
+            "mean_fast_ndcg": 0.23109658277506165
+          }
+        },
+        "positive_passages_displaced_from_top10_count": 124,
+        "query_count": 500
+      },
+      "validation": {
+        "deep_top1_from_outside_fast_top10_count": 194,
+        "gains_regressions_unchanged": [
+          54,
+          123,
+          318
+        ],
+        "group_count": 462,
+        "judgment_scope": "listed positives only; unjudged treated as zero for scoring, not established semantically irrelevant; no new manual gold labels",
+        "largest_gains": [
+          {
+            "deep_ndcg_at_10": 1.0,
+            "fast_ndcg_at_10": 0.23719771276929622,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 5,
+            "gain": 0.7628022872307038,
+            "query_id": 2077
+          },
+          {
+            "deep_ndcg_at_10": 1.0,
+            "fast_ndcg_at_10": 0.3010299956639812,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 9,
+            "gain": 0.6989700043360187,
+            "query_id": 2571
+          },
+          {
+            "deep_ndcg_at_10": 1.0,
+            "fast_ndcg_at_10": 0.38685280723454163,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 2,
+            "gain": 0.6131471927654584,
+            "query_id": 1584
+          },
+          {
+            "deep_ndcg_at_10": 0.6131471927654584,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 19,
+            "gain": 0.6131471927654584,
+            "query_id": 1903
+          },
+          {
+            "deep_ndcg_at_10": 0.6131471927654584,
+            "fast_ndcg_at_10": 0.0,
+            "first_positive_deep_rank": 1,
+            "first_positive_fast_rank": 14,
+            "gain": 0.6131471927654584,
+            "query_id": 2059
+          }
+        ],
+        "largest_regressions": [
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 62,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 705
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 23,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 2351
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 1.0,
+            "first_positive_deep_rank": 27,
+            "first_positive_fast_rank": 1,
+            "gain": -1.0,
+            "query_id": 2449
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 0.9674679834891693,
+            "first_positive_deep_rank": 18,
+            "first_positive_fast_rank": 1,
+            "gain": -0.9674679834891693,
+            "query_id": 1132
+          },
+          {
+            "deep_ndcg_at_10": 0.0,
+            "fast_ndcg_at_10": 0.9197207891481876,
+            "first_positive_deep_rank": 11,
+            "first_positive_fast_rank": 1,
+            "gain": -0.9197207891481876,
+            "query_id": 2800
+          }
+        ],
+        "mean_pool_oracle_ndcg_ceiling": 0.45371815676692195,
+        "oracle_scope": "offline qrel-based pool upper bound; never a deployable policy/feature",
+        "pool_coverage": {
+          "all_gold_in_pool": {
+            "count": 132,
+            "mean_deep_ndcg": 0.35958365399666814,
+            "mean_fast_ndcg": 0.47825383741664185
+          },
+          "no_gold_in_pool": {
+            "count": 211,
+            "mean_deep_ndcg": 0.0,
+            "mean_fast_ndcg": 0.0
+          },
+          "partial_gold_in_pool": {
+            "count": 152,
+            "mean_deep_ndcg": 0.17153040116548407,
+            "mean_fast_ndcg": 0.2326432238597085
+          }
+        },
+        "positive_passages_displaced_from_top10_count": 106,
+        "query_count": 495
+      }
+    },
+    "hypothesis_scope": "new hypothesis motivated by previously observed development validation",
+    "interval_scope": "source-group resamples, fixed selected folds/weights without refit",
+    "new_neural_inference": false,
+    "new_router_fit": false,
+    "new_training_targets": false,
+    "test_partition_evaluated": false,
+    "train_cv": {
+      "controls": [
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            0,
+            0,
+            500
+          ],
+          "mean_ndcg_delta_vs_fast": 0.0,
+          "modeled_source_stage_mean_ms": 93.5627066200027,
+          "name": "fast",
+          "ndcg_at_10": 0.19701582649882068,
+          "paired_group_bootstrap_95_interval": [
+            0.0,
+            0.0
+          ],
+          "query_count": 500,
+          "recall_at_10": 0.2511333333333333,
+          "recall_at_100": 0.42643333333333333,
+          "recall_at_20": 0.30676666666666663,
+          "routed_count": 0
+        },
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            71,
+            121,
+            308
+          ],
+          "mean_ndcg_delta_vs_fast": -0.03441921832723615,
+          "modeled_source_stage_mean_ms": 1262.2423182179969,
+          "name": "raw_deep",
+          "ndcg_at_10": 0.16259660817158453,
+          "paired_group_bootstrap_95_interval": [
+            -0.055724743819696054,
+            -0.012919898740130371
+          ],
+          "query_count": 500,
+          "recall_at_10": 0.19946666666666668,
+          "recall_at_100": 0.42643333333333333,
+          "recall_at_20": 0.24746666666666664,
+          "routed_count": 500
+        }
+      ],
+      "final_weight": 0.2,
+      "primary": {
+        "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+        "gains_regressions_unchanged": [
+          53,
+          59,
+          388
+        ],
+        "mean_ndcg_delta_vs_fast": -0.0006613702047030079,
+        "modeled_source_stage_mean_ms": 1262.2423182179969,
+        "name": "fold_selected_blend",
+        "ndcg_at_10": 0.19635445629411766,
+        "paired_group_bootstrap_95_interval": [
+          -0.006119515130127842,
+          0.005015179519088099
+        ],
+        "query_count": 500,
+        "recall_at_10": 0.24896666666666667,
+        "recall_at_100": 0.42643333333333333,
+        "recall_at_20": 0.31176666666666664,
+        "routed_count": 500
+      },
+      "scope": "fold-local selection on training-only nDCG; held-out labels excluded from selection",
+      "train_grid_in_sample": {
+        "0.0": 0.19701582649882068,
+        "0.05": 0.19698470666002185,
+        "0.1": 0.1980750434349277,
+        "0.2": 0.19812587035051588,
+        "0.3": 0.19329722498874002
+      }
+    },
+    "validation": {
+      "policies": [
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            0,
+            0,
+            495
+          ],
+          "mean_ndcg_delta_vs_fast": 0.0,
+          "modeled_source_stage_mean_ms": 87.29854387273909,
+          "name": "fast",
+          "ndcg_at_10": 0.19897227589024732,
+          "paired_group_bootstrap_95_interval": [
+            0.0,
+            0.0
+          ],
+          "query_count": 495,
+          "recall_at_10": 0.24208754208754207,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.29292929292929293,
+          "routed_count": 0
+        },
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            54,
+            123,
+            318
+          ],
+          "mean_ndcg_delta_vs_fast": -0.05041133992112856,
+          "modeled_source_stage_mean_ms": 1220.240530226281,
+          "name": "raw_deep",
+          "ndcg_at_10": 0.14856093596911873,
+          "paired_group_bootstrap_95_interval": [
+            -0.07076302586283478,
+            -0.03246791293338852
+          ],
+          "query_count": 495,
+          "recall_at_10": 0.18670033670033667,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.23855218855218854,
+          "routed_count": 495
+        },
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            41,
+            55,
+            399
+          ],
+          "mean_ndcg_delta_vs_fast": -0.00262104216229303,
+          "modeled_source_stage_mean_ms": 1220.240530226281,
+          "name": "frozen_blend",
+          "ndcg_at_10": 0.1963512337279543,
+          "paired_group_bootstrap_95_interval": [
+            -0.008259618621484964,
+            0.003274071807535306
+          ],
+          "query_count": 495,
+          "recall_at_10": 0.24141414141414141,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.2988215488215488,
+          "routed_count": 495
+        },
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            6,
+            6,
+            483
+          ],
+          "mean_ndcg_delta_vs_fast": 0.00039882466501873164,
+          "modeled_source_stage_mean_ms": 186.3820442303066,
+          "name": "frozen_logistic_transfer",
+          "ndcg_at_10": 0.19937110055526602,
+          "paired_group_bootstrap_95_interval": [
+            -0.0018810327908180655,
+            0.002919546865581918
+          ],
+          "query_count": 495,
+          "recall_at_10": 0.2430976430976431,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.29461279461279455,
+          "routed_count": 49,
+          "scope": "unchanged original routes, not a newly trained utility predictor",
+          "source_requested_calls": 49
+        },
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            2,
+            3,
+            490
+          ],
+          "mean_ndcg_delta_vs_fast": -0.00031593117770382646,
+          "modeled_source_stage_mean_ms": 200.52950331314926,
+          "name": "frozen_agreement_transfer",
+          "ndcg_at_10": 0.1986563447125435,
+          "paired_group_bootstrap_95_interval": [
+            -0.001982542922905519,
+            0.0012771051571828554
+          ],
+          "query_count": 495,
+          "recall_at_10": 0.24141414141414141,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.2952861952861953,
+          "routed_count": 49,
+          "scope": "unchanged original routes, not a newly trained utility predictor",
+          "source_requested_calls": 49
+        },
+        {
+          "cost_scope": "source fast + selected incremental deep; new fusion/decision overhead unmeasured and excluded, not zero; no live latency/GPU replay",
+          "gains_regressions_unchanged": [
+            4,
+            7,
+            484
+          ],
+          "mean_ndcg_delta_vs_fast": -0.00017198251566014403,
+          "modeled_source_stage_mean_ms": 203.0161956626354,
+          "name": "frozen_random_transfer",
+          "ndcg_at_10": 0.19880029337458718,
+          "paired_group_bootstrap_95_interval": [
+            -0.0020307302036804077,
+            0.0019254400275859642
+          ],
+          "query_count": 495,
+          "recall_at_10": 0.24124579124579126,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.2956228956228956,
+          "routed_count": 49,
+          "scope": "unchanged original routes, not a newly trained utility predictor",
+          "source_requested_calls": 49
+        }
+      ],
+      "router_refitted": false,
+      "selected_weight": 0.2,
+      "test_partition_evaluated": false,
+      "validation_weight_search": false
+    }
+  },
+  "train_manifest_sha256": "b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049",
+  "validation_manifest_sha256": "9d89e4079b6744f87001023c12df13073dd08550a9ace13037d34e84bb463892"
+}
