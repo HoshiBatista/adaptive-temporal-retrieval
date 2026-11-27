@@ -281,6 +281,36 @@ features/outcomes/config/summary/checkpoint/manifest. Raw failure text is not up
 No new dependencies, training run, raw-data redistribution or held-out evaluation is
 introduced. See [pilot protocol/report](../m4_train_pilot_report.md).
 
+### ADR-017: Frozen train500 collection and fold-local logistic routing
+Date: 2026-11-27
+Status: ACCEPTED for the first learned-router experiment; advantage unestablished
+
+Run a predeclared 500-query GPU collection from a clean detached `30945ff` to prevent
+router development from changing the collection's source snapshot. Keep immutable data
+and router provenance separate, with exact archive/split/config/code/checkpoint/group
+checks on loading. The same numerical packages are retained; explicit `routing` extra
+pins sklearn 1.9.1. No reranker training or new model download is introduced.
+
+Use five shuffled GroupKFold splits, seed 1729, fold-local median imputation plus missing
+indicators/empty-column preservation, scaling and balanced LBFGS logistic C=1. Fixed
+full/no-explicit-temporal feature sets and penalties 0/0.01/0.05 are predeclared; primary
+is full/0 at a 10% query cap. Rank quota scores only inside each held-out fold: global OOF
+ranking could indirectly depend on held-out labels through other models. Decisions never
+receive gold, actual rerank cost or IDs as learned features. Random/agreement controls
+match query counts per fold. Outcome-derived targets remain offline train artifacts.
+
+Store validated version-1 JSON preprocessing/linear parameters, with independent numerical
+checks against sklearn, instead of pickle. A single-class fold has an explicit recorded
+constant fallback. An all-selected-train primary model is saved for later validation;
+only cross-fitted scores count as OOF evaluation. Group intervals condition on existing
+OOF fits without refitting; stage-cost sums/CPU microbenchmarks are not live service p95.
+
+500 queries / 493 groups produce primary nDCG@10 0.198929 with 49 deep calls versus
+hybrid 0.197016 and agreement-budget 0.204155. Primary contrast intervals include zero;
+there is no learned-quality superiority claim. Exact CPU model/score replay and 157 CPU
+tests are verified. Retain all sensitivity results and freeze policies for validation
+before considering a new method. See [report](../m4_router_groupcv_report.md).
+
 ## Decision entry template
 
 ```text

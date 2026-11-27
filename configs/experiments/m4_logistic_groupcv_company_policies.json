@@ -1,0 +1,35 @@
+{
+  "name": "logistic_train500_groupcv_v1",
+  "seed": 1729,
+  "query_count": 500,
+  "n_splits": 5,
+  "source_pilot_config_sha256": "6a853282bc3a8afaa124dc86707c94a8392619f01eb1b7f00d1179868d8f5b02",
+  "source_data_git_commit": "30945ff",
+  "penalties_ndcg_per_second": [
+    0.0,
+    0.01,
+    0.05
+  ],
+  "feature_sets": [
+    "full",
+    "no_temporal"
+  ],
+  "regularization_c": 1.0,
+  "class_weight": "balanced",
+  "max_iter": 2000,
+  "tol": 1e-06,
+  "probability_threshold": 0.5,
+  "query_route_budgets": [
+    0.0,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "disagreement_threshold": 0.2,
+  "bootstrap_samples": 2000,
+  "primary_penalty": 0.0,
+  "primary_feature_set": "full",
+  "primary_query_budget": 0.1,
+  "source_data_snapshot_sha256": "eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7"
+}

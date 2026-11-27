@@ -12,7 +12,7 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   0.393333. These are development-subset measurements; test is not evaluated.
 - **Local tracking:** optional MLflow 3.18.0 SQLite/artifact store, loopback UI, idempotent
   historical import and `--mlflow` are implemented. M1 validation100, a separate train
-  integration smoke, M2/M3 and M4 pilot fast/deep are FINISHED locally. The final M2
+  integration smoke, M2/M3, M4 pilots and grouped-router OOF are FINISHED locally. The final M2
   records are tagged `environment_lock_verified`; test remains unevaluated.
 - **M2:** pinned multilingual E5 GPU encoder, FAISS cosine index/cache, RRF fusion and
   insertion-time diagnostic implemented. On the original validation100, nDCG@10 is
@@ -34,21 +34,128 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   Deep gains/regressions/unchanged **15/18/67**; 45 pools have no gold. Rule delta's
   interval includes zero and modeled cost is high. Both GPU stages/targets/features
   replay exactly; **140 CPU tests pass**. No fitted router or held-out evaluation.
+- **M4 learned router:** a fresh GPU train500 collection (493 source groups) and five-
+  fold grouped OOF balanced logistic models are implemented. Primary full/penalty-0/10%
+  cap routes **49/500**, nDCG@10 **0.198929** versus fast **0.197016** and matched agreement
+  **0.204155**. Primary intervals include zero; no learned advantage established. Full/
+  no-explicit-temporal variants and all three penalties retained. Final primary JSON
+  model is fitted on the selected 500 train rows for later validation. Exact model/OOF
+  replay, strict source/group/feature guards and **157 CPU tests** verified.
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
-  pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2 and NumPy 2.5.5.
-- **Research results:** M1–M3 validation-subset baselines, train-only M4 utility targets
-  and descriptive routing controls. No fitted/held-out router, final test or official
-  whole-benchmark reproduction.
+  pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2, NumPy 2.5.5 and sklearn 1.9.1 (routing extra).
+- **Research results:** M1–M3 validation-subset baselines, M4 train utility targets and
+  first grouped-OOF learned routing/control comparison. No routing validation/final test,
+  live routed-service p95 or official whole-benchmark reproduction.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** larger predeclared train sample and grouped out-of-fold simple
-  router comparison against the measured controls. Keep preprocessing/fitting within
-  folds, reserve validation for method selection and final test for a frozen comparison.
-  Hybrid remains the fast reference.
+- **Next increment:** freeze the primary full-feature logistic and agreement-budget
+  control for validation comparison, with exact same candidate/model protocol. Retain the
+  inconclusive/negative learned-router result; final test stays untouched. Hybrid remains
+  the fast reference. No post-hoc switch to the best secondary OOF operating point.
 
 ## Verified work log
+
+### 2026-11-27 — M4 / first grouped-OOF logistic router on train500
+
+- Goal: expand to 500 train queries and fit a regularized simple router with preprocessing
+  isolated within groups/folds. User explicitly approved the proposed stage/GPU use.
+  No new model download, paid API, reranker training or validation/test outcome evaluation.
+- Data collection: predeclared train500 config, fresh full 500-query run from clean detached
+  `30945ffaf14d91f53c151630b882be5031464060` / source snapshot
+  `eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7`.
+  Temporary worktree `/tmp/temporalproof-m4-data-lzr2rgu1` isolated the collector while
+  router code evolved in main. Explicit absolute archive/split/model/cache/output paths;
+  main environment numerical versions matched the original lock. Temporary clean worktree
+  removed after completion. Original data outputs remain immutable.
+- New files: train500/router configs, `routing/learned.py`, `routing/cross_validation.py`,
+  `evaluation/router_cv.py`, 17 CPU cases in `tests/test_router_cv.py`, report/aggregate
+  and explicit analysis/plot scripts. Add routing extra pinning sklearn 1.9.1 and CLI;
+  no numerical package upgrades. Offline lock attempt lacked cross-platform metadata;
+  normal `uv lock` succeeded, retaining package versions. Environment synced only after
+  the running GPU collector finished. Source model states are JSON, not pickle.
+- Router controls predeclared before data inspection: seed 1729, five shuffled GroupKFold
+  folds; median/indicator/empty-column preservation + scaling + balanced LBFGS C=1,
+  tolerance 1e-6/max 2000. Full 15 fields / no-explicit-temporal 9 fields at penalties
+  0/0.01/0.05; primary full/0 at a per-fold 10% query cap. Threshold .5 and all budget
+  points remain diagnostics. No hyperparameter or decision-threshold search.
+- Guards: source hashes/archive/split/config/clean commit, pre-deep checkpoint, exact
+  canonical train selection/groups and source outcome/time consistency. Feature schema
+  rejects labels/IDs. Imputer/scaler/class weighting/model see training-fold rows only.
+  Budget ranking uses only this held-out fold's scores; other folds' models may have
+  seen its labels, so no global OOF quota ranking. Quota never uses actual deep cost/gain.
+- Commands executed:
+
+  ```bash
+  uv lock
+  uv sync --frozen --extra tracking --extra dense --extra routing --group dev
+  uv run --frozen --extra tracking --extra dense --extra routing ruff check .
+  uv run --frozen --extra tracking --extra dense --extra routing ruff format --check .
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 uv run --frozen --extra tracking --extra dense --extra routing pytest -q
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 uv run --frozen --extra tracking --extra dense --extra routing temporalproof-router-cv --pilot-run artifacts/m4/company_policies_train500_v1 --mlflow --output artifacts/m4/router_train500_groupcv_v1
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 uv run --frozen --extra tracking --extra dense --extra routing temporalproof-router-cv --pilot-run artifacts/m4/company_policies_train500_v1 --output artifacts/m4/router_train500_groupcv_replay_v1
+  uv run --frozen --extra tracking --extra dense --extra routing python experiments/analyze_router_cv.py --run artifacts/m4/router_train500_groupcv_v1 --replay artifacts/m4/router_train500_groupcv_replay_v1 --data artifacts/m4/company_policies_train500_v1 --measured-on 2026-11-27 --output experiments/results/m4_router_train500_groupcv_v1.json
+  uv run --frozen --extra tracking --extra dense --extra routing python experiments/plot_router_cv.py --results experiments/results/m4_router_train500_groupcv_v1.json --output artifacts/m4/analysis/router_train500_groupcv_verified.png
+  ```
+
+- GPU collector used `PYTHONPATH=<clean-worktree>/src <main>/.venv/bin/python -m
+  temporalproof.evaluation.pilot --config <main>/configs/experiments/m4_train500_company_policies.json`
+  with explicit main-workspace inputs/output and offline/thread flags, cwd=clean checkout.
+  The model/data/config pins and exact source fingerprints are preserved in its plan.
+  Collection ran without tracking initially to avoid logging into the temporary checkout;
+  completed runs were subsequently imported through the main local client with a separate
+  tracking sidecar. Original collection summary/manifests were not rewritten.
+- Data: **500 queries / 493 groups**, fold sizes **101/100/100/101/98**. Fresh original
+  100-query prefix has identical fast/deep scores/ranks to the earlier replayed pilot;
+  no second full 500-query GPU run performed. Quality fast **0.1970158265** / deep
+  **0.1625966082**, 71 gains/121 regressions/308 unchanged, 211 pools with no gold.
+  Positives at penalties 0/0.01/0.05 **71/71/67**. Existing corpus cache reused.
+- Primary OOF: **49 calls (9.8%)**, nDCG@10 **0.1989288156**, Recall@10/20/100
+  **0.249300 / 0.301100 / 0.426433**; 15 beneficial/13 harmful calls. Delta vs fast
+  **+0.001913**, group interval **[−0.006638, 0.010611]**. Exact per-fold cap controls:
+  random **0.194740**, agreement rank **0.204155**. Delta versus random **+0.004189**
+  interval **[−0.005810, 0.013785]**; versus agreement **−0.005226**, interval
+  **[−0.015983, 0.004889]**. No confirmed learned-quality advantage.
+- Explicit temporal ablation, full minus 9-field model at penalty 0/primary cap:
+  **+0.006932**, group interval **[−0.002086, 0.015823]**. AUC full/no-temporal
+  **0.628222/0.557405**, diagnostic/un-calibrated, not proof of temporal relevance.
+  Threshold .5 primary model routes 185, nDCG 0.196306; 25% cap routes 124, nDCG
+  0.200393. None replaces the predeclared primary point after looking at results.
+- Intervals: 2000 source-group resamples, query-weighted, fixed OOF predictions without
+  refitting. No population/held-out-test superiority or multiplicity-corrected claim.
+  Full raw decision/fit artifacts remain local; aggregate excludes model weights/text.
+- Resources: collection fast mean/p95 **93.563/133.831 ms**; incremental deep
+  **1168.680/1640.079 ms**; feature mean **1.830 ms** already in fast. Neural FP32/batch16/
+  max512/concurrency1/three warmups unchanged; 50,300 pairs including warmup, zero at cap.
+  Fast allocator **460.514/486 MiB**, deep **2728.898/4626 MiB** allocated/reserved.
+  No simultaneous residence, host RSS or full-process memory claim.
+- CPU primary JSON inference mean/p50/p95 **0.009164/0.008603/0.010073 ms**, warm numeric
+  feature objects, no parsing/loading/feature extraction/HTTP. Modeled primary mean with
+  router **195.949 ms** versus fast 93.563 / agreement-budget 207.566 / always-deep
+  1262.242 ms. Separate stage sums exclude quota sorting and are not measured live p95.
+- Fitting: 30 fold fits, zero single-class fallback; saved final primary model fitted on
+  all selected 500 train rows, 71 positives, 19 LBFGS iterations. Its training predictions
+  are never substituted for OOF evaluation. JSON parameters reproduce sklearn, including
+  new missing values and all-empty training columns. Model weights stay ignored locally.
+- Replay: exact fold/OOF scores/model states/decisions/quality/intervals, final model and
+  plans byte-identical. Timings vary and are retained. Actual serialized fold models
+  reproduce every held-out score. Data/router snapshots and analysis hashes verified.
+- **157 CPU tests pass**, Ruff lint/format and diff checks pass. New tests include
+  held-out label counterfactuals, held-out outlier preprocessing isolation, source guards
+  even after rehashing, group overlap, within-fold quotas, clustered intervals, safe JSON
+  roundtrip and forbidden outcome/ID model columns. Core tests remain CPU/offline; routing
+  tests skip without sklearn. Existing third-party SQLAlchemy deprecation warning only.
+- Tracking FINISHED: data fast **f33af6d892db41d098858d92b0c010a0**, deep
+  **0498406345ce4eb48db41c563688f4b7**, grouped router
+  **a47d56cea741452d82e64501cf051aa0**. Router log is idempotent with eight explicit
+  artifacts; analysis aggregate/PNG/SVG/provenance attached separately. Source data run
+  manifest preserved. Figure inspected; no raw failure text uploaded.
+- Not run: routing validation/test, all-2058-train fit, new neural/model search, real
+  routed-service p95/load test, calibrated probabilities or TEMPO/true version chains.
+  No commit/push in this task. Next: freeze primary logistic and matched agreement control
+  for validation, retaining these inconclusive/negative learned-router results.
+
 
 ### 2026-11-27 — M4 / first train-only utility pilot
 
@@ -499,9 +606,9 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
 
 ## Recommended next task
 
-The first train-only M4 pilot is measured with checkpointed features and 15 positive
-training examples. Predeclare a larger train sample and grouped out-of-fold regularized
-simple-router comparison against always-fast/deep, fixed rules and seeded random budgets.
-Fit feature preprocessing only within training folds, inspect quality/cost rather than
-classification accuracy alone, and keep validation/test outcomes out of training/inference
-features. M4 is not complete; no fitted/held-out router exists. See `docs/m4_train_pilot_report.md`.
+The first grouped-OOF train500 logistic router is fitted and reproduced, without an
+established quality advantage. Freeze the full-feature/penalty-0 primary model and the
+10%-budget agreement control for validation against fast/deep baselines. Do not replace
+the primary point with a secondary OOF winner after inspecting outcomes; any new method
+is a separately predeclared experiment. Final test remains untouched. M4 is not complete;
+no independent routing validation or service p95 exists. See `docs/m4_router_groupcv_report.md`.

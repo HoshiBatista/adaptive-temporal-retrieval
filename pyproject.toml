@@ -11,6 +11,7 @@ dependencies = ["pydantic>=2.12,<3", "rank-bm25==0.2.2", "numpy>=2,<3"]
 
 [project.optional-dependencies]
 tracking = ["mlflow==3.18.0"]
+routing = ["scikit-learn==1.9.1"]
 dense = ["torch==2.10.0", "transformers==5.5.0", "faiss-cpu==1.16.0"]
 
 [project.scripts]
@@ -23,6 +24,7 @@ temporalproof-compare = "temporalproof.evaluation.comparison:main"
 temporalproof-fetch-reranker = "temporalproof.retrieval.reranker:main"
 temporalproof-rerank = "temporalproof.evaluation.reranking:main"
 temporalproof-pilot = "temporalproof.evaluation.pilot:main"
+temporalproof-router-cv = "temporalproof.evaluation.router_cv:main"
 
 [dependency-groups]
 dev = ["pytest>=8.4,<10", "ruff>=0.16,<0.17"]

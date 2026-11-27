@@ -84,7 +84,7 @@ See [follow-up report](../m3_korean_reranker_report.md).
 Tasks:
 - [x] Compute **training-only** fast/deep gains and measured-cost targets (initial 100-query pilot).
 - [ ] Implement pre-deep routing features (time intent, rank disagreement, margin/entropy, version diversity).
-- [ ] Compare fixed routing, rule-based routing and learned logistic/CatBoost routing.
+- [x] Compare fixed/rule/learned logistic routing (initial grouped OOF train500; held-out validation pending).
 - [ ] Evaluate quality–cost Pareto curves on an untouched test split.
 - [ ] Run feature ablations, temporal-hard slices and a domain-transfer trial if feasible.
 
@@ -94,7 +94,13 @@ implemented; dates/text repetition are proxies, not actual version chains. Fixed
 seeded random budgets and a clearly offline oracle bound are measured descriptively.
 No fitted router or held-out routing evaluation yet. 140 CPU tests, exact-score/feature
 replay and local MLflow verified. See [M4 pilot](../m4_train_pilot_report.md).
-Next: a larger predeclared train sample and grouped out-of-fold simple-router comparison.
+Next increment measured: 500 queries / 493 groups, five group folds, train-fold-only
+imputation/scaling/logistic fits. Primary budget routes 49 queries: nDCG@10 0.198929 versus
+hybrid 0.197016 and matched agreement control 0.204155; all primary contrast intervals
+include zero. Two feature sets/three cost penalties are retained; no learned superiority.
+157 CPU tests, exact CPU model/OOF replay and local MLflow verified. Primary all-selected-
+train JSON model is saved, with no validation/test evaluation. Next freeze logistic and
+agreement controls for validation. See [grouped router report](../m4_router_groupcv_report.md).
 
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 

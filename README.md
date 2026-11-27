@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** M0–M3 experiments and the first train-only M4 utility pilot measured; no fitted router or final-test result.
+**Project status:** M0–M3, the M4 utility pilot and first grouped-OOF logistic router measured; no routing validation or final-test result.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -32,8 +32,12 @@ adopted as the deep path. The Korean BGE follow-up reaches **0.163721**, adding
 train-only feasibility pilot. M4 now saves pre-deep features and train-only gain/cost
 labels: on 100 training queries, hybrid nDCG@10 is **0.181688**, always-deep **0.158216**
 and a fixed disagreement rule **0.187237**, routing 64% of queries at high modeled cost.
-This is an in-sample diagnostic with no fitted router; see the
-[M4 pilot report](docs/m4_train_pilot_report.md). API, product UI and learned router remain planned.
+That pilot is an in-sample diagnostic; see the [M4 pilot report](docs/m4_train_pilot_report.md).
+The next 500-query experiment fits a logistic router using 5 grouped folds: primary OOF
+nDCG@10 **0.198929** versus hybrid **0.197016**, with **49/500** deep calls. Its interval
+includes zero; a matched simple agreement control scores **0.204155**. A learned advantage
+is not established. See the [grouped-router report](docs/m4_router_groupcv_report.md).
+API, product UI, independent routing validation and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),
 [benchmark protocol](docs/benchmark_protocol.md) and [current status](docs/agent/CURRENT_STATUS.md).
@@ -140,6 +144,24 @@ and builds separate train-only utility targets. Validation/test configs and outc
 inference columns are rejected. Models run sequentially; policy stage-cost sums are
 modeled estimates, not live pipeline p95. Repeat into a new directory for replay; see
 [protocol, controls and results](docs/m4_train_pilot_report.md).
+
+### First learned router: grouped OOF on train500
+
+After the pinned 500-query collection described in the report is available locally:
+
+```bash
+uv sync --frozen --extra tracking --extra dense --extra routing --group dev
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  uv run --frozen --extra tracking --extra dense --extra routing temporalproof-router-cv \
+  --pilot-run artifacts/m4/company_policies_train500_v1 --mlflow \
+  --output artifacts/m4/my_router_groupcv
+```
+
+The `routing` extra pins sklearn 1.9.1. Imputation/scaling/model fitting stay within each
+training fold; quotas are allocated inside each held-out fold without outcomes/costs.
+Versioned JSON model states avoid pickle. A primary model fitted on all 500 selected
+train rows is saved for future validation. The result is not a live routed latency or
+final-test claim. [Protocol, replay, controls and source pins](docs/m4_router_groupcv_report.md).
 
 ---
 

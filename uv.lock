@@ -3718,6 +3718,9 @@ dense = [
     { name = "torch" },
     { name = "transformers" },
 ]
+routing = [
+    { name = "scikit-learn" },
+]
 tracking = [
     { name = "mlflow" },
 ]
@@ -3735,10 +3738,11 @@ requires-dist = [
     { name = "numpy", specifier = ">=2,<3" },
     { name = "pydantic", specifier = ">=2.12,<3" },
     { name = "rank-bm25", specifier = "==0.2.2" },
+    { name = "scikit-learn", marker = "extra == 'routing'", specifier = "==1.9.1" },
     { name = "torch", marker = "extra == 'dense'", specifier = "==2.10.0" },
     { name = "transformers", marker = "extra == 'dense'", specifier = "==5.5.0" },
 ]
-provides-extras = ["tracking", "dense"]
+provides-extras = ["tracking", "routing", "dense"]
 
 [package.metadata.requires-dev]
 dev = [

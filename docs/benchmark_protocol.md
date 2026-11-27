@@ -162,3 +162,21 @@ contains zero, at high cost. True version chains, historical known-at evaluation
 routing, final test and domain transfer remain pending. Replay matches all scores,
 features, quality/gains and labels at all three lambda values. See
 [M4 pilot protocol/report](m4_train_pilot_report.md) and its aggregate/analysis scripts.
+
+## M4 learned router: grouped train500 evaluation
+
+One fresh 500-query GPU collection from pinned clean `30945ff` supplies features/targets;
+its initial 100-query scores match the earlier pilot exactly. No full GPU replay is claimed.
+The separate router method uses sklearn 1.9.1, five label-independent GroupKFold splits,
+fold-local median/indicator/scaler fitting, balanced LBFGS C=1, and predeclared full/
+no-explicit-temporal variants at three penalties. Primary operating point is full/0 and
+an at-most-10% query cap applied inside each held-out fold. Actual calls=49/500 because
+of per-fold flooring. Never allocate a global budget across OOF models or use measured
+deep costs at decision time; cross-fold training can contain another fold's labels.
+
+Quality uses the same frozen fast/deep rankings; all source groups are kept intact.
+Query-weighted paired group bootstraps resample source groups with fixed OOF predictions,
+not model refits. Modeled stage sums include separately measured CPU scoring but exclude
+quota allocation overhead; no live p95/service claim. At matched query counts, time costs
+can differ by selected query. JSON inference/state replay and held-out-label/outlier
+counterfactual tests guard fold isolation. See [full report](m4_router_groupcv_report.md).

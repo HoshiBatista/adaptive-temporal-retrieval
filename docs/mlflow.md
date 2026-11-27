@@ -129,3 +129,17 @@ Deep `retrieval_ms.*` remains incremental reranking only; fast includes feature 
 manifest; local raw failure text is excluded. `pilot/analysis` includes the checked
 aggregate and static PNG/SVG quality–cost figure with provenance. The curve uses modeled
 stage costs and an explicitly labeled training oracle bound, not a fitted/live router.
+
+Train500 collection logs remain separate from the immutable source collection:
+fast `f33af6d892db41d098858d92b0c010a0`, deep `0498406345ce4eb48db41c563688f4b7`.
+The collector used clean `30945ff`, and tracking IDs are stored in a local sidecar.
+
+`temporalproof-router-cv --pilot-run <frozen-train500-directory> --output <new-directory>
+--mlflow` logs a separate grouped-OOF run, **`a47d56cea741452d82e64501cf051aa0`**.
+The `routing` extra pins sklearn 1.9.1; keep tracking/dense/routing extras together in the
+shared GPU environment. Router logging validates seven explicit output hashes, checks
+local artifact location and uploads them plus manifest under `router/`. It is idempotent
+by manifest fingerprint. `analysis/` contains the checked aggregate/PNG/SVG/provenance.
+Model parameters/OOF scores are local research artifacts, never public benchmark content.
+Primary metrics describe grouped OOF training and modeled stage sums, not final test,
+calibrated probabilities or actual service p95. See [report](m4_router_groupcv_report.md).

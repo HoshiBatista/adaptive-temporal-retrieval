@@ -1,6 +1,6 @@
 # Research protocol — Adaptive Semantic–Temporal Reranking (ASTR)
 
-**Status:** prospective wider protocol; M0–M3 and the first train-only M4 pilot are measured.
+**Status:** M0–M3, the utility pilot and first train-only grouped-OOF logistic router are measured.
 Measured validation-subset results are in [`docs/m1_bm25_report.md`](../m1_bm25_report.md);
 no final test or official whole-benchmark scores exist. Observed schema and limitations are recorded in
 [`docs/dataset_card.md`](../dataset_card.md); initial metric decisions are in
@@ -150,3 +150,25 @@ rerank seconds directly; modeled stage sums do not establish live pipeline laten
 See [pilot report](../m4_train_pilot_report.md). Next use a larger predeclared train sample
 with grouped out-of-fold feature preprocessing/model fitting before comparing on validation.
 Do not treat earlier validation outcomes or query/document IDs as router input features.
+
+## First learned router: train500 grouped OOF
+
+The predeclared 500-query collection uses the clean committed collector `30945ff` while
+router development has a separate source snapshot. Loader checks pins/hashes/canonical
+train groups and outcomes; no held-out labels enter training. Five group folds independently
+fit median imputation, missing indicators, scaling and balanced logistic regression (C=1).
+No hyperparameter/threshold search occurs. Full/no-explicit-temporal feature sets and
+0/0.01/0.05 penalties are predeclared sensitivity variants, with full/0/10%-query-cap primary.
+
+Quota decisions are ranked within the held-out fold, not globally across OOF scores:
+other fold models may have seen this fold's labels. Controls have identical fold query
+caps, not exact time budgets. Cached JSON inference excludes outcomes/IDs; safe parameter
+states reproduce sklearn predictions without pickle. Raw gain/cost remains offline only.
+
+Primary OOF nDCG@10 0.198929 versus hybrid 0.197016 and agreement-budget 0.204155 gives
+no established gain; all primary paired group intervals contain zero. Group bootstraps
+condition on fixed OOF predictions and do not refit. AUC is secondary and scores are not
+calibrated probabilities. Original negative results/secondary regressions are preserved.
+An all-500-selected-train primary model is saved for future validation, not evaluated on
+its own training predictions as OOF. Next freeze the learned/control policies for validation;
+final test remains untouched. See [report](../m4_router_groupcv_report.md).
