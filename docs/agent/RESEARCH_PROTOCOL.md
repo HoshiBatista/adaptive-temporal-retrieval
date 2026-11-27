@@ -1,6 +1,6 @@
 # Research protocol — Adaptive Semantic–Temporal Reranking (ASTR)
 
-**Status:** prospective wider experiment protocol; M0–M3 retrieval experiments are implemented.
+**Status:** prospective wider protocol; M0–M3 and the first train-only M4 pilot are measured.
 Measured validation-subset results are in [`docs/m1_bm25_report.md`](../m1_bm25_report.md);
 no final test or official whole-benchmark scores exist. Observed schema and limitations are recorded in
 [`docs/dataset_card.md`](../dataset_card.md); initial metric decisions are in
@@ -130,12 +130,23 @@ rerank cost. Preserve this negative baseline. The multilingual backbone alone do
 establish Korean relevance quality; Korean was absent from documented supervised mMARCO
 languages. The separately pinned Korean BGE follow-up on identical candidates reaches
 0.163721, still below hybrid, with 11 gains/28 regressions and ~1.15 s mean incremental
-cost. Both negative always-deep comparisons are retained. The next increment is a small
-predeclared train-only feasibility pilot of fast/deep utility, before any learned policy.
-These validation outcomes are never router-training labels. Score caching and allocator/stage telemetry do not establish live pipeline p95,
+cost. Both negative always-deep comparisons are retained. The resulting first train-only
+utility pilot is measured below; no learned policy has been fitted yet. These validation
+outcomes are never router-training labels. Score caching and allocator/stage telemetry do not establish live pipeline p95,
 concurrent model residency or service throughput. See [M3 report](../m3_reranker_report.md).
 
 The [Korean follow-up report](../m3_korean_reranker_report.md) documents paired comparisons,
 exact-score replay, model-specific tokenizers and the undisclosed fine-tuning-data caveat.
 No independent benchmark-decontamination claim is made. No further model/weight sweep,
 final test or routing features derived from these deep outcomes were introduced.
+
+## First M4 train-only pilot measured
+
+The predeclared 100-query train pilot now has checkpointed pre-deep features and separate
+outcome/cost targets, with exact-score/feature replay. Its 15 positive gains are not a
+held-out routing result. Untrained rules/random budgets are descriptive controls; an
+outcome-aware upper bound is explicitly non-deployable. Cost penalties use incremental
+rerank seconds directly; modeled stage sums do not establish live pipeline latency.
+See [pilot report](../m4_train_pilot_report.md). Next use a larger predeclared train sample
+with grouped out-of-fold feature preprocessing/model fitting before comparing on validation.
+Do not treat earlier validation outcomes or query/document IDs as router input features.

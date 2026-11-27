@@ -140,3 +140,25 @@ without sigmoid saturation ties. Full fine-tuning data is undisclosed, so contam
 is not independently excluded. The larger model still regresses versus hybrid; no
 additional variants, reweighting or relabeling were used to hide the result. Before
 learning a router, measure fast/deep utility on a predeclared train-only pilot.
+
+## M4 train-only utility pilot
+
+The new pilot config predeclares 100 train queries, unchanged hybrid/Korean models,
+15 pre-deep feature fields, lambda penalties 0/0.01/0.05 nDCG per second, disagreement
+threshold 0.2 and query-fraction caps 0/0.1/0.25/0.5/1. Config/source/selection/full-group
+identities are saved before GPU work, then feature/fast hashes before reranker work.
+Outcome construction accepts matching unique train IDs only. Features and targets are
+separate files; strict feature schemas reject labels, deep scores and query/document IDs.
+
+Targets use measured incremental rerank time directly, with no second subtraction of
+fast time. Fast includes feature extraction. Fixed rules and one seeded random choice
+are in-sample controls, not fitted/held-out results. Gold-dependent oracle routing is an
+explicit offline upper bound under at-most-query-count budgets. Its outcomes never enter
+inference features. Policy costs sum separately measured stages; no combined p95 claim.
+
+The completed 100-query train pilot has 15 gains/18 regressions and 45 empty-gold pools.
+The fixed disagreement rule routes 64 queries with a small mean gain whose paired interval
+contains zero, at high cost. True version chains, historical known-at evaluation, fitted
+routing, final test and domain transfer remain pending. Replay matches all scores,
+features, quality/gains and labels at all three lambda values. See
+[M4 pilot protocol/report](m4_train_pilot_report.md) and its aggregate/analysis scripts.

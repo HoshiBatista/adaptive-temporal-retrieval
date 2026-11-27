@@ -22,6 +22,7 @@ temporalproof-fetch-encoder = "temporalproof.retrieval.encoder:main"
 temporalproof-compare = "temporalproof.evaluation.comparison:main"
 temporalproof-fetch-reranker = "temporalproof.retrieval.reranker:main"
 temporalproof-rerank = "temporalproof.evaluation.reranking:main"
+temporalproof-pilot = "temporalproof.evaluation.pilot:main"
 
 [dependency-groups]
 dev = ["pytest>=8.4,<10", "ruff>=0.16,<0.17"]

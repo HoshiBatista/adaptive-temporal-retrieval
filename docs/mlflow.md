@@ -120,3 +120,12 @@ Run `144b746d2199493fba60acfa5c130f05` is FINISHED, nDCG@10 0.163721 and increme
 mean 1,148.100 ms. It uses the same candidate pool as MiniLM; six evidence files and
 exact-score replay were verified. The default config remains the original MiniLM one.
 Both negative comparisons against hybrid remain visible.
+
+M4 pilot: `temporalproof-pilot --mlflow --output <new-directory>` logs completed standard
+fast/deep runs tagged `M4_train_only_pilot`. Initial fast ID is
+`66198b1aee61450a804c7b33e6363776`; deep is `001ba53181f041c49df1ca9c88ca8b63`.
+Deep `retrieval_ms.*` remains incremental reranking only; fast includes feature extraction.
+`pilot/` stores an explicit allowlist of config/plan/checkpoint/features/outcomes/summary/
+manifest; local raw failure text is excluded. `pilot/analysis` includes the checked
+aggregate and static PNG/SVG quality–cost figure with provenance. The curve uses modeled
+stage costs and an explicitly labeled training oracle bound, not a fitted/live router.

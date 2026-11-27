@@ -178,3 +178,7 @@ uv run --frozen --extra tracking --extra dense ruff format --check .
 unsupported models, unchanged protocol/manifest, manifest-to-code asset consistency,
 verification before GPU/network use and model-specific checked downloads, including
 corruption cleanup. The existing third-party MLflow/SQLAlchemy deprecation warning remains.
+
+Follow-up: the [first M4 train-only pilot](m4_train_pilot_report.md) has now measured
+those utility targets and predeclared controls. It retains both negative validation
+results and does not fit a router or evaluate the final test.

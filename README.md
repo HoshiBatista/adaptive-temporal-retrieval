@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** M0–M3 retrieval/reranking experiments and local MLflow implemented; validation-subset results measured.
+**Project status:** M0–M3 experiments and the first train-only M4 utility pilot measured; no fitted router or final-test result.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -13,7 +13,7 @@
 > [!IMPORTANT]
 > This README specifies what we intend to build, how we will evaluate it, and what we will consider a successful research result. No benchmark scores, performance improvements, model quality claims, or production-readiness guarantees are asserted before the corresponding experiments have been completed.
 
-### Available now: M0–M3 retrieval experiments
+### Available now: retrieval baselines and the M4 pilot
 
 The repository includes a typed Company Policies loader, metadata-only audit CLI,
 frozen grouped split, CPU BM25 evaluation and tested retrieval metrics. On 100 fixed
@@ -29,7 +29,11 @@ adopted as the deep path. The Korean BGE follow-up reaches **0.163721**, adding
 **1,148.100 ms** mean rerank time; it also falls below hybrid. See the
 [M3 report](docs/m3_reranker_report.md) and
 [Korean follow-up](docs/m3_korean_reranker_report.md) for regressions, profiling and the
-next train-only feasibility pilot. API, product UI and learned router remain planned.
+train-only feasibility pilot. M4 now saves pre-deep features and train-only gain/cost
+labels: on 100 training queries, hybrid nDCG@10 is **0.181688**, always-deep **0.158216**
+and a fixed disagreement rule **0.187237**, routing 64% of queries at high modeled cost.
+This is an in-sample diagnostic with no fitted router; see the
+[M4 pilot report](docs/m4_train_pilot_report.md). API, product UI and learned router remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),
 [benchmark protocol](docs/benchmark_protocol.md) and [current status](docs/agent/CURRENT_STATUS.md).
@@ -119,6 +123,23 @@ OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
 
 This model requires ~2.29 GB of explicitly fetched assets. It is an experimental
 alternative; the default MiniLM config and its original negative result are retained.
+
+### Train-only M4 feasibility pilot
+
+With the original local models/data already available:
+
+```bash
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 \
+  uv run --frozen --extra tracking --extra dense temporalproof-pilot --mlflow \
+  --output artifacts/m4/my_train100_pilot
+```
+
+The predeclared config selects 100 train queries, freezes features before deep inference
+and builds separate train-only utility targets. Validation/test configs and outcome/ID
+inference columns are rejected. Models run sequentially; policy stage-cost sums are
+modeled estimates, not live pipeline p95. Repeat into a new directory for replay; see
+[protocol, controls and results](docs/m4_train_pilot_report.md).
 
 ---
 

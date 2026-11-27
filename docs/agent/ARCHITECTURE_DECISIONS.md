@@ -250,6 +250,37 @@ reproduces all scores exactly; 124 CPU tests pass. Neither model is adopted as t
 always-deep path. Next: predeclared train-only utility pilot before learning a router.
 See [Korean follow-up](../m3_korean_reranker_report.md).
 
+### ADR-016: Train-only pilot with checkpointed pre-deep features
+Date: 2026-11-27
+Status: ACCEPTED for the first M4 increment
+
+Predeclare 100 train queries with the existing split/hash selection, unchanged hybrid
+and Korean cross-encoder, feature definitions, lambda penalties and diagnostic controls
+before collecting outcomes. Do not fit a router or evaluate held-out labels yet. Save
+source/group/selection/config provenance before GPU work, and checkpoint feature/fast
+manifest hashes before deep inference. Keep inference features and outcome targets in
+separate files; strict feature schemas reject outcome/ID columns. Train-only target
+construction refuses validation/test IDs or mismatched joins/candidate coverage.
+
+Reuse the common evaluation and frozen-pool runner. Fast latency includes pre-deep feature
+extraction; deep latency is already incremental, so do not subtract fast time again.
+Targets use gain > lambda * incremental seconds for fixed 0/0.01/0.05 nDCG/second penalties.
+Fixed disagreement/year rules and seeded random query budgets are descriptive controls.
+Outcome-aware positive-gain routing is a clearly marked offline training oracle bound,
+never an inference feature or learned-policy result. Policy cost sums are modeled stage
+costs, not live pipeline p95. Date/text diversity are proxies, not true version chains.
+
+Models run sequentially. Verify encoder model collection by weak reference before loading
+the reranker; a zero allocator counter is not a valid removal requirement because runtime
+workspaces can persist. Retain residual allocation telemetry. Initial fast-only attempt
+stopped on that overly strict check and remains untouched; subsequent runs record the
+corrected guard and their own source snapshots. See [PyTorch 2.10 CUDA semantics](https://docs.pytorch.org/docs/2.10/notes/cuda.html#cublas-workspaces).
+
+Local MLflow retains standard fast/deep evidence and an explicit allowlist of pilot
+features/outcomes/config/summary/checkpoint/manifest. Raw failure text is not uploaded.
+No new dependencies, training run, raw-data redistribution or held-out evaluation is
+introduced. See [pilot protocol/report](../m4_train_pilot_report.md).
+
 ## Decision entry template
 
 ```text

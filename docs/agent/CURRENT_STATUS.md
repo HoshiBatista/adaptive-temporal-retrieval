@@ -1,6 +1,6 @@
 # TemporalProof — verified project status and agent handoff
 
-Last verified: **2026-11-26**. Only executed work is recorded below.
+Last verified: **2026-11-27**. Only executed work is recorded below.
 
 ## Current state
 
@@ -12,7 +12,7 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
   0.393333. These are development-subset measurements; test is not evaluated.
 - **Local tracking:** optional MLflow 3.18.0 SQLite/artifact store, loopback UI, idempotent
   historical import and `--mlflow` are implemented. M1 validation100, a separate train
-  integration smoke, M2 methods and both M3 models are FINISHED in the local store. The final M2
+  integration smoke, M2/M3 and M4 pilot fast/deep are FINISHED locally. The final M2
   records are tagged `environment_lock_verified`; test remains unevaluated.
 - **M2:** pinned multilingual E5 GPU encoder, FAISS cosine index/cache, RRF fusion and
   insertion-time diagnostic implemented. On the original validation100, nDCG@10 is
@@ -28,19 +28,114 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
   rerank **1,148.100 ms**, p95 **1,500.089 ms**. Two GPU runs have identical scores and
   metrics; source/candidate/qrel integrity verified. **124 CPU tests pass**. No default
   model switch, router training, further model sweep or test evaluation.
+- **M4 initial pilot:** 100 train queries / 100 source groups, strict pre-deep features
+  checkpointed before reranking, separate train-only gain/cost targets. Hybrid nDCG@10
+  **0.181688**, deep **0.158216**, fixed disagreement rule **0.187237** (64% routed).
+  Deep gains/regressions/unchanged **15/18/67**; 45 pools have no gold. Rule delta's
+  interval includes zero and modeled cost is high. Both GPU stages/targets/features
+  replay exactly; **140 CPU tests pass**. No fitted router or held-out evaluation.
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2 and NumPy 2.5.5.
-- **Research results:** M1/M2 validation-subset baselines and paired analysis only;
-  fixed reranker comparison now available; no router, final test or official whole-benchmark reproduction.
+- **Research results:** M1–M3 validation-subset baselines, train-only M4 utility targets
+  and descriptive routing controls. No fitted/held-out router, final test or official
+  whole-benchmark reproduction.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** M4 predeclared small train-only utility pilot. Determine whether
-  useful fast/deep gains are predictable at the measured cost before learning a router;
-  hybrid remains the fast/default reference.
+- **Next increment:** larger predeclared train sample and grouped out-of-fold simple
+  router comparison against the measured controls. Keep preprocessing/fitting within
+  folds, reserve validation for method selection and final test for a frozen comparison.
+  Hybrid remains the fast reference.
 
 ## Verified work log
+
+### 2026-11-27 — M4 / first train-only utility pilot
+
+- Goal: measure training-fold fast/deep utility before fitting a router, preserving the
+  prior validation-only negative results and untouched final test. User authorized the
+  next experiments; existing pinned models/data reused with no downloads or paid APIs.
+- New files: `evaluation/pilot.py`, `routing/features.py`, `routing/targets.py` and package
+  initializer; frozen pilot config, `tests/test_m4_pilot.py`, aggregate/report and explicit
+  analysis/plot scripts under `experiments/`. Add one CLI entrypoint; no new dependencies
+  or environment-lock changes. README/protocol/roadmap/tracking/ADR-016 updated.
+- Predeclared: 100 hash-selected train IDs, seed 1729, top 100, existing hybrid RRF 60,
+  E5/Korean model pins, FP32/eager/TF32-off, batch 16/max 512. Penalties
+  0/0.01/0.05 nDCG per incremental second; disagreement threshold 0.2; query-budget caps
+  0/0.1/0.25/0.5/1. Plan/source/config/full-group identities saved before GPU work.
+- Leakage safeguards: strict 15-field inference schema accepts only query/fast scores/
+  candidate metadata; excludes outcome/ID columns. Feature file and fast manifest hashes
+  checkpointed before deep scoring. Separate outcome construction refuses held-out IDs,
+  duplicate/missing joins or changed candidate recall. IDs/groups are join/fold metadata,
+  not model features. No fitted or fold-learned feature/model exists yet.
+- CPU validation commands:
+
+  ```bash
+  uv sync --extra tracking --extra dense --group dev
+  uv run --frozen --extra tracking --extra dense ruff format .
+  uv run --frozen --extra tracking --extra dense ruff check .
+  uv run --frozen --extra tracking --extra dense ruff format --check .
+  uv run --frozen --extra tracking --extra dense pytest -q
+  ```
+
+- **140 tests pass**, Ruff and diff checks pass. Sixteen added CPU cases cover unknown
+  metadata, feature schema leakage, held-out config/target rejection, ID/coverage joins,
+  incremental-cost units, group preservation, outcome-independent rule/random choices,
+  explicit oracle use, frozen-before-scoring fake integration and tracking allowlist.
+  Normal tests require no models/GPU/network. Existing SQLAlchemy deprecation warning.
+- GPU commands (same thread/offline prefix for each):
+
+  ```bash
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 uv run --frozen --extra tracking --extra dense temporalproof-pilot --mlflow --output artifacts/m4/company_policies_train100_v1
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 uv run --frozen --extra tracking --extra dense temporalproof-pilot --mlflow --output artifacts/m4/company_policies_train100_verified_v1
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 HF_HUB_DISABLE_PROGRESS_BARS=1 uv run --frozen --extra tracking --extra dense temporalproof-pilot --output artifacts/m4/company_policies_train100_verified_replay_v1
+  uv run --frozen --extra tracking --extra dense python experiments/analyze_m4_pilot.py --run artifacts/m4/company_policies_train100_verified_v1 --replay artifacts/m4/company_policies_train100_verified_replay_v1 --measured-on 2026-11-27 --output experiments/results/m4_company_policies_train100_v1.json
+  uv run --frozen --extra tracking --extra dense python experiments/plot_m4_pilot.py --results experiments/results/m4_company_policies_train100_v1.json --output artifacts/m4/analysis/train100_quality_cost.png
+  ```
+
+- First attempt stopped after fast evaluation on an overly strict zero-allocation guard;
+  no deep scoring/targets occurred. Original directory retained. Corrected guard verifies
+  encoder model collection by weak reference, records residual allocator state 9,568,256
+  bytes (9.125 MiB), and then loads deep sequentially. Persistent backend workspaces make
+  zero allocations an invalid removal criterion; see ADR-016/PyTorch 2.10 reference.
+  Aborted fast rankings/scores/qrels/features exactly match the corrected run.
+- Quality, 100 selected queries from 100 distinct groups: hybrid nDCG **0.1816883117**,
+  Recall@10/20/100 **0.247833 / 0.302333 / 0.386333**; deep nDCG **0.1582155606**,
+  recalls **0.207 / 0.233667 / 0.386333**. Mean gain **−0.023473**, conditional paired
+  interval **[−0.059726, 0.013150]**, 15 gains/18 regressions/67 unchanged. 45 pools
+  have no judged positive; candidate recall identical per query. Targets positive at
+  lambdas 0/0.01/0.05: **15/15/13**. No manually supplied labels or changes to qrels.
+- Fixed low-agreement rule routes **64**, nDCG **0.187237**, delta **+0.005549** with
+  interval **[−0.013982, 0.028870]**, 7 gains/7 regressions. Modeled additive mean
+  **843.716 ms**, versus fast 94.503 ms. Year-and-disagreement has identical choices.
+  These are in-sample controls, not established predictive/held-out gains.
+- Offline outcome-aware upper bound routes 15 positive queries at caps >=25%, nDCG
+  **0.217611**, modeled mean 257.871 ms. Clearly non-deployable; no oracle feature is
+  exposed. All predeclared random/oracle budgets and slices retained, with no tuning.
+- Actual stage timings, initial/replay: fast including features mean **94.503/90.535 ms**,
+  p95 **123.161/123.463 ms**; incremental deep mean **1,151.802/1,147.255 ms**, p95
+  **1,438.660/1,413.324 ms**. Features mean **1.795/1.751 ms**, already included in fast.
+  No feature-free fast timing or combined live/p95 result. Same RTX 5060 Ti/Ryzen host,
+  concurrency 1, thread environment 1, three warmups. Embedding cache reused/verified.
+- Both replays: fast allocator peaks **459.697/484 MiB** allocated/reserved; deep
+  **2,728.898/4,626 MiB**. No full-process VRAM/RSS claim. Deep 10,300 pairs including
+  warmup, zero at token limit. Models not concurrently resident; backend state recorded.
+- Replay exactness: config/plan/features, fast/deep rankings including all scores and
+  qrels byte-identical. Quality/gains/groups/paired deltas match. Cost-label changes at
+  every lambda **0**; actual timing variation retained. Distinct fast manifest pins
+  reflect measured times, not changed candidates. Both completed source snapshots match
+  delivered method code. This is not 200 independent queries.
+- Tracking verified: fast **66198b1aee61450a804c7b33e6363776**, deep
+  **001ba53181f041c49df1ca9c88ca8b63**, FINISHED with six standard evidence artifacts each.
+  Deep stores the explicit pilot allowlist plus checked aggregate/PNG/SVG/provenance in
+  `pilot/analysis`; copied pilot hashes verified. Raw failure text stays local.
+- Report/aggregate/script hashes and a standalone quality–modeled-cost scientific figure
+  are reproducible; figure inspected locally. No benchmark text/targets/weights committed.
+- Not run: fitted router, larger train sample, grouped out-of-fold training, new validation/
+  final-test evaluation, TEMPO, real routed pipeline p95, API/load tests or total-process
+  resources. No commit/push in this task. Next: larger predeclared train sample and grouped
+  simple-router baseline, retaining all negative outcomes and train-only safeguards.
+
 
 ### 2026-11-26 — M3 follow-up / pinned Korean alternative
 
@@ -404,9 +499,9 @@ Last verified: **2026-11-26**. Only executed work is recorded below.
 
 ## Recommended next task
 
-The Korean follow-up is measured and also regresses against hybrid. Next implement a
-small deterministic train-only feasibility pilot: freeze train candidates and fast/deep
-outcomes, inspect gain/cost and pool-coverage distributions, and decide whether available
-pre-deep features justify learning routing policies. Predeclare the pilot size/config;
-retain negative outcomes. Validation results must never become router-training labels
-or inference features. Keep final test untouched. See `docs/m3_korean_reranker_report.md`.
+The first train-only M4 pilot is measured with checkpointed features and 15 positive
+training examples. Predeclare a larger train sample and grouped out-of-fold regularized
+simple-router comparison against always-fast/deep, fixed rules and seeded random budgets.
+Fit feature preprocessing only within training folds, inspect quality/cost rather than
+classification accuracy alone, and keep validation/test outcomes out of training/inference
+features. M4 is not complete; no fitted/held-out router exists. See `docs/m4_train_pilot_report.md`.

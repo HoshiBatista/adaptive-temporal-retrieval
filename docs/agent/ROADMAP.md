@@ -75,18 +75,26 @@ CPU-only inference and live end-to-end timing are not. See [M3 report](../m3_rer
 **Korean follow-up checked:** pinned bge-reranker-v2-m3-ko on the identical pool reaches
 nDCG@10 0.163721 (hybrid 0.207685), 11 gains/28 regressions, mean incremental cost
 1,148.100 ms. Two GPU runs reproduce all scores exactly; **124 CPU tests pass**.
-Neither reranker is adopted as the default deep path. Next M4 increment: a small predeclared
-train-only feasibility pilot of fast/deep utility before learning a route policy.
+Neither reranker is adopted as the default deep path. The first M4 train-only utility
+pilot is now measured below, before learning a route policy.
 See [follow-up report](../m3_korean_reranker_report.md).
 
 ## M4 — Main research contribution: adaptive router
 
 Tasks:
-- [ ] Compute **training-only** fast/deep gains and measured-cost targets.
+- [x] Compute **training-only** fast/deep gains and measured-cost targets (initial 100-query pilot).
 - [ ] Implement pre-deep routing features (time intent, rank disagreement, margin/entropy, version diversity).
 - [ ] Compare fixed routing, rule-based routing and learned logistic/CatBoost routing.
 - [ ] Evaluate quality–cost Pareto curves on an untouched test split.
 - [ ] Run feature ablations, temporal-hard slices and a domain-transfer trial if feasible.
+
+Initial pilot verified: 100 train queries / 100 source groups, 15 positive gains,
+18 regressions, 67 unchanged. Strict 15-field pre-deep schema and separate train targets
+implemented; dates/text repetition are proxies, not actual version chains. Fixed rules,
+seeded random budgets and a clearly offline oracle bound are measured descriptively.
+No fitted router or held-out routing evaluation yet. 140 CPU tests, exact-score/feature
+replay and local MLflow verified. See [M4 pilot](../m4_train_pilot_report.md).
+Next: a larger predeclared train sample and grouped out-of-fold simple-router comparison.
 
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 

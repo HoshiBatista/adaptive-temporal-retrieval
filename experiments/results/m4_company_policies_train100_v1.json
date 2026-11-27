@@ -1,0 +1,3602 @@
+{
+  "analysis_script_sha256": "cb2602011f2cea4c235e3f2d5bc100c7ed487a725bb7cdabbc342c3e3eeb26e9",
+  "manifest": {
+    "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+    "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+    "files_sha256": {
+      "config.json": "c79ef4b49ece82aa9fb2e95a4993db5802f4ce787aa02a4eb3bc15c8b695efb5",
+      "deep/candidates/pool.json": "694239d005f8b2ace593d2b3547c805c89b6b00400cc3da35c2669cc6b7a338a",
+      "deep/candidates/source_manifest.json": "69214fede247d6bfa8f5a6a865fc4280bd69995ab9bb34a9a101511b69895772",
+      "deep/comparison.json": "cd96a05ae4704c6273ed8a556f9d405f32d3e1dc5ca7f7aa923c2c2dd3f47e53",
+      "deep/run/config.json": "d220b53178da0511cba302cfb23fee8390cde8768ecc5ae64cd194cc0eb6e114",
+      "deep/run/failure_cases.json": "0fb781764fc92873cb5a7baaddb29617464f005c5b443e4c5d65b1075e2163fe",
+      "deep/run/manifest.json": "0af18314391a62b28108764117741f134f5e2957a8500d6eaf2d9b34eb28979d",
+      "deep/run/per_query.jsonl": "bbb3511b0c3461ba0bb73a22f08805c8cb0d0fb06d40f64d44b34d91b6866c4f",
+      "deep/run/qrels.tsv": "8eb2e4f69283500f6a6dbf2d66793506c34eef6ce0f23fd83273d2c2ad9f0030",
+      "deep/run/run.trec": "e6d0ad0cf7acee0cafff338dd329ee0d5f7ee19321f08de6b5e1844e05bb6f10",
+      "deep/run/summary.json": "f572ac2b7d75cc18ce81b6545c770e70a765a6ea793899e79c8c754524c488a1",
+      "fast/config.json": "9adf5cf640847b4da666b9668ef130943af04b7cd0cd261ec32b8ac0bc08866d",
+      "fast/failure_cases.json": "c263246e03e0a0ebcfccaec35dc332c0434c35aa86aa3c0f12f0ce02735fc354",
+      "fast/manifest.json": "69214fede247d6bfa8f5a6a865fc4280bd69995ab9bb34a9a101511b69895772",
+      "fast/per_query.jsonl": "5144997a073cabc8efcf1914ab4226f96c0acd58207d1b809dab03f2d2cc18ea",
+      "fast/qrels.tsv": "8eb2e4f69283500f6a6dbf2d66793506c34eef6ce0f23fd83273d2c2ad9f0030",
+      "fast/run.trec": "794c3a981d8ef9b2e26f5f1d8dddc1419e7485d5943693146607bdd5c43f134a",
+      "fast/summary.json": "a341c38fd30e5e9bd3f536af6b40ac8f62b05d2247734670af4c784489fa7444",
+      "feature_timing.jsonl": "501abd6203be7afb9dce90bd1322df3661f6d9634a74a3eddf22c12084a6c536",
+      "features.jsonl": "01238a28792014299cc01866294d6c33110e11f89655db013b13af3a2dabce43",
+      "outcomes.jsonl": "1c583377b7dc3d0c1ecf14072822aa2d5aefc4e1931795c6fd2eb3c5c599615a",
+      "plan.json": "b688a86b2882cc118fa82a0628b817a6c9d868ab5a037ef02c56ec528b3c5710",
+      "pre_deep_checkpoint.json": "4a95c3e88498b49966e0cfd5fec47dc6cab3dac6c65f5e3ea812fe5ee94d7ba7",
+      "reranking_config.json": "5d606162d6defce8edc8bbd65e9d5e9b5b84564565c9c284ce1254088b3f9237",
+      "summary.json": "4baa1124fcb30b375e92ca31fd5744bde5ae49e1cd536f700c774646224ef1b6"
+    },
+    "git_commit": "b87279fcc2bedd5d9e221eefdd8954746e3279fd",
+    "git_dirty": true,
+    "member": "timelyrag_company_policies_dataset_v2.jsonl",
+    "packages": {
+      "faiss-cpu": "1.16.0",
+      "tokenizers": "0.22.2",
+      "torch": "2.10.0",
+      "transformers": "5.5.0"
+    },
+    "pilot_config_sha256": "e4d5635d5b7fb6470391f12589fdb75becaab95324846187429556f886e2b85b",
+    "pre_deep_checkpoint": {
+      "allocation_scope": "allocator state may include backend workspaces; model removal verified by weak reference, not inferred from a zero allocation counter",
+      "between_models_allocated_bytes": 9568256,
+      "encoder_model_collected": true,
+      "fast_manifest_sha256": "69214fede247d6bfa8f5a6a865fc4280bd69995ab9bb34a9a101511b69895772",
+      "features_sha256": "01238a28792014299cc01866294d6c33110e11f89655db013b13af3a2dabce43",
+      "plan_sha256": "b688a86b2882cc118fa82a0628b817a6c9d868ab5a037ef02c56ec528b3c5710",
+      "scope": "written before reranker inference; features contain no outcomes"
+    },
+    "source_files_sha256": {
+      "pyproject.toml": "ab1cb013f9d543803ddb2f4015d1968ee754f2b4f1d63e9d3b3968ed4eac6721",
+      "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+      "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+      "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+      "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+      "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+      "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+      "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+      "src/temporalproof/evaluation/baseline.py": "8a75fb32fe5cf79eee1260ecd947f1109f76abce5ecf0dcff6cfca4e8209255f",
+      "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+      "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+      "src/temporalproof/evaluation/pilot.py": "cc4b57f390acb990abb4385b251e9fb6d6f962a0a5e8298bbb7dd5c28a510ce2",
+      "src/temporalproof/evaluation/reranking.py": "469db2811cacdc009a3d5aa3494e25e1d431b8e03085ce3c26763a71212069ef",
+      "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+      "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+      "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+      "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+      "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+      "src/temporalproof/retrieval/reranker.py": "8c1a5e17c9e8bb176a305d1f317e0279316f9e45e1c541da1a66f61fc70e1aa7",
+      "src/temporalproof/routing/__init__.py": "a95e1155bc0f7b29b0b93e25d50753d5970d181d3bef838bb4a1d27d7278514c",
+      "src/temporalproof/routing/features.py": "a0b7b6a99db0e295582f57de97f207a2256724f60dc843d20685cd2ca149d6a1",
+      "src/temporalproof/routing/targets.py": "aecbecd7926a773be4fc837f0369b0d879068a58c290c26ca66dc344225b7e86",
+      "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+      "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+      "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+    },
+    "source_snapshot_sha256": "eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7",
+    "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7"
+  },
+  "measured_on": "2026-11-27",
+  "plan": {
+    "config": {
+      "baseline": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "hybrid_rrf",
+        "name": "hybrid_m4_train100_v1",
+        "partition": "train",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "cost_penalties_ndcg_per_second": [
+        0.0,
+        0.01,
+        0.05
+      ],
+      "disagreement_threshold": 0.2,
+      "encoder_batch_size": 16,
+      "encoder_max_length": 512,
+      "encoder_model_id": "intfloat/multilingual-e5-small",
+      "encoder_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "query_route_budgets": [
+        0.0,
+        0.1,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "reranker_batch_size": 16,
+      "reranker_max_length": 512,
+      "reranker_model_id": "dragonkue/bge-reranker-v2-m3-ko",
+      "reranker_revision": "2aca5884ecac490192af9ebd86836d9073d826cd",
+      "rrf_offset": 60
+    },
+    "feature_version": "pre_deep_v1",
+    "provenance": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "git_commit": "b87279fcc2bedd5d9e221eefdd8954746e3279fd",
+      "git_dirty": true,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "pilot_config_sha256": "e4d5635d5b7fb6470391f12589fdb75becaab95324846187429556f886e2b85b",
+      "source_files_sha256": {
+        "pyproject.toml": "ab1cb013f9d543803ddb2f4015d1968ee754f2b4f1d63e9d3b3968ed4eac6721",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "8a75fb32fe5cf79eee1260ecd947f1109f76abce5ecf0dcff6cfca4e8209255f",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/evaluation/pilot.py": "cc4b57f390acb990abb4385b251e9fb6d6f962a0a5e8298bbb7dd5c28a510ce2",
+        "src/temporalproof/evaluation/reranking.py": "469db2811cacdc009a3d5aa3494e25e1d431b8e03085ce3c26763a71212069ef",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/retrieval/reranker.py": "8c1a5e17c9e8bb176a305d1f317e0279316f9e45e1c541da1a66f61fc70e1aa7",
+        "src/temporalproof/routing/__init__.py": "a95e1155bc0f7b29b0b93e25d50753d5970d181d3bef838bb4a1d27d7278514c",
+        "src/temporalproof/routing/features.py": "a0b7b6a99db0e295582f57de97f207a2256724f60dc843d20685cd2ca149d6a1",
+        "src/temporalproof/routing/targets.py": "aecbecd7926a773be4fc837f0369b0d879068a58c290c26ca66dc344225b7e86",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7"
+    },
+    "query_groups": {
+      "1112": "714faff716fb54929a7776ec6523c3608f0487bf65b266601624e4e15ac6919a",
+      "1159": "1a57dd8b95948b63ec984bb722eb5a1166d694ef64e6132d76e71a6bf3a415aa",
+      "121": "ed6be4acfc5393a4be9966c7fc2ae828325d39c58759ea6a55d3dcea6d03b9f8",
+      "1260": "1af1f404aa517c972064dda6843ac6438ff7b64bdb925a99a423f9384f67ea98",
+      "1269": "82318b1665c4e3b29b4f57f66d53aae7e1de8646935eb089000bf6aa01f378a9",
+      "1277": "efb2adfcb387e0660a3250647f54e23f634863380b922fb23863876be607db68",
+      "1291": "64a4acddbf52abc0681e399c347471d7d6f70fe13cb87250589f73b10758fd6c",
+      "1292": "96cfdd09d79cd8bda92a5c15e51657cf2cb7c2fa832fe9ab0d4e21089c477900",
+      "1308": "e2b703a4a6b2588e2cfe6345a2c4c3595495afd24c30be7070abc5247a6cc860",
+      "1329": "93bbb5cc2b0670a09eccaa6492eaf28775448b2f3ead9a837d31a296e64fd2ae",
+      "1348": "360cb6a16b1150faf4255a56bfd8931eb4e2b22392aec220586b5efdcb286583",
+      "1349": "671177a5690bac5a73d2f797c309f62ad1902acedcfc20b9596908a6be425448",
+      "137": "b6b754bab56dac1c09a508bdca7f483f09633b197665c368d23a69d5ae19817c",
+      "1415": "44cf8fb2af21c9eb3d9ae4d0f886f39a5d5c4a7f007bb5f67035fd3bc4893a84",
+      "147": "d2b749041ba19ba6f24ab037b402c2ad0918b61a5206413192b1383214e477e8",
+      "1472": "356a5f37cf041c65d8ade1b84b96e17d514564780da15ca76a528b0fc0850005",
+      "1509": "c7c4b0d1d1b9064696effcddad4cb45dec7f20b6c875161a07918b02afbfdd52",
+      "1510": "1ca3995ac339f51f95d95a5f12af58f1b7c0f4e18eba7d181cfca33aa00488cc",
+      "1521": "830ca6e563ebd9a77e622d0c83cbb98a5ec1eef72f45189022debc5f5ab4f373",
+      "1545": "647f2cad5fdd9f2fa93b7134b74f526b6f79a46164367448b0e7eb98eff8b297",
+      "156": "9884092439ead2bc23dc7ed832769839bf08c4d87574b29ebf44450693fe50f7",
+      "1577": "7ce8843a81c7c62df3300d4ec354304892da665d0d333b4113408afffb35d11d",
+      "1597": "b5ad9903b6193359279e07fa46eb0f328ef0216a917cd487de4c9b2e55e11ee5",
+      "1612": "1787daee1e74c23c678957717b068e6ac8ca301752e418b651fe9af9277c1896",
+      "1693": "745bf74f8e9ff9a1f89b030abd7248ee110b78c9634eff2484540ac05172a100",
+      "1695": "e491a45550592c0810e179bbf4ab340f80e3dab56142be5483b0ac1a30bce21c",
+      "1727": "251400d8b25352eedaab9a526ce3824fa393e5f0cb003c9754255d9488fc78da",
+      "1740": "f90901e734fc4f4b9c8b084c7db73f4e1a4203162b17588d955fce59e88b20b4",
+      "1752": "81087e708da04abad30d33bfe1d593958b59fc752aebc9451728939481e8ee6f",
+      "1768": "ec8641fcde3548a86557a52fea4df25de4e0ce2833b2389c2db072559259f7fe",
+      "180": "3eb7381879d467cec45f173a3d8abe4bbb3f5a62278e04dac82ff69d072e06cb",
+      "1802": "883c3c92cb5f7ea5096d3dc59cdbcce8d9cde9a4c74ad98c4d2def73da649cf8",
+      "1827": "5127ec4b8dabf38fa731ea66c09f1e19ee58c7deaa5efb4ae7a6dec463c42574",
+      "1844": "2aff9b5f088b75692493c49c28fd76c71dbec2c6551e0b18b8f13eaed411433c",
+      "1909": "7c03e4f81412f433241c87b309806b3d6909080750b3e47794f13152f3819340",
+      "1947": "06dac1fafbc1c223860d0fa932ba0e79e9b72e40d69a13a3d0e4099efbbd4875",
+      "198": "840d60afcf8aeb607ff32e9b4fba7e3132722c2148136c5f4e4816fec59f4ff3",
+      "1980": "5a1cf7485e22527e004dbc3491ecf97d880bfac385387d37c29c2f8a54ac7781",
+      "2051": "52047d622dcd25ad8acbd1f2f7cc9f3531b73e623e373291b52253136268e785",
+      "2138": "b0936988aa627a76d76dd698f7d99cd3e986f68d855c5b2eca63e1ddfded18b9",
+      "2155": "6f09a5e325466b0427e6264a551ac2c9ef01bc33cd000f0ba36e67a41362b49c",
+      "2214": "a8ec4448a098d9ddd0c602df8f7c62701d9eb460da9c454021149bddd8a05ec7",
+      "2223": "b95013664bb7c3538f2d55633ad1103634a603a271035f8ea53319cedeab93c9",
+      "2227": "0fb5c61982987f8f1c5c0923cab4c8079589508d2318d7659417bac507e00a01",
+      "2258": "c933ac46ee666751b35a64b2cde665ff779018f4b9adc265ad127bcf51c1a3de",
+      "2262": "7c477f56cc053fa723ff0f478302287c281c75f397eba52953979f090d5eefdd",
+      "2265": "d3416440a90caff7e9c7080cc161e68841c238d397fb09f08e06e09d1b8c8c06",
+      "2269": "47b924cd707f6af882033514d19cc1cfdd18ec20bbce865d4768e511c638ffc8",
+      "2285": "84af4a92a129ae6e3fd4f1bbc90e1a8a33e173971b754d14b8f997716479dd45",
+      "2318": "8b39a9808fc56d39fa916c437f4d1d8238f1e8bd2799edfd570191ef39e5a524",
+      "2340": "460c54c55147298e3787a5d21a624cf08bb7ae42bfbfc45ae1d21215dc8464ba",
+      "2424": "1418fe29b1dce76a6dac022364adf2bc930c1e44b7943ee8e0eb06bdf4a63e96",
+      "2457": "67909ea13fd9ca31427c9f1a6d5fcc975dd34cc24ee07a354afa31b23c854167",
+      "2461": "335a04da626806e55f6fb7cfec74eea6466be6d0c721a848227ed89b0b335216",
+      "2498": "4cd83d959d1423d87cff2577cbe0cc737a99a72a31c55872865c67476f1468c7",
+      "2505": "40ad9f425aa68d738ac8455de77dae6605c65455a3fa1d3954ef7243304706dc",
+      "2510": "2556b5c4ed8a618e9dd1229320e48d1ef905da00cb4a741070e8f4d07cb8cb21",
+      "2526": "23a9f958d1684c3715f77fea768e2668cb1adab22cb8d152e00629e57477b62c",
+      "2565": "21517dfb7022fa9e1d7543416f5e385263ade326eda395a86cf7a46444504bd4",
+      "2694": "4cb94e8e4880bea8efb09e197b3d87c6e771f8b45dd2ae4fbc0f6728950aa0eb",
+      "2723": "5de7393e14143f5c6fea5d771f2b730f6f605990e4ddef5adca93bdfc1e1b6ad",
+      "2776": "2ce9563566af8e45131217ecab63bfddf43e8a12d050a5666c2afc8c194c8400",
+      "2797": "ac3d1c304a7335d505343ad8da67e25b2d19c7783c990574357ab5b4d2f8abdd",
+      "2798": "5c49b1b5e6b50d527285108c0eaa03a98975d9e8b5ad73f97ed7c0792ef9a3af",
+      "2808": "433e56e57a3fee02cb609623978322e9aba48b9ce59915a84f7a6a7090c473fd",
+      "2845": "6cf9c7f2b82d6a0c2dc5c86b761a252eec2db19b1ed8a5eeaf620354b85d4a29",
+      "2849": "c6e2e8aabf411fd694367f7a54e5b00d2055c29fd71844ad71bfa726b91e97c0",
+      "2856": "95582b66555f3f8bf264f415b0c719886f1903272f42391ac0f6c64a3caad080",
+      "2873": "11722cc95e610e3329450e248edb64c53a0381f1861d8ce89fb50ebcae56092d",
+      "2894": "aa33de1e2b325b6a905b9e3152c4650843212bc51543a516713ad76f76141f1b",
+      "2925": "923d241db72f80b3cc2602e334133e8ea74cdcb8bad7b180717fd2594f36ea41",
+      "2970": "55b75171155675e834b9189243662df1a3a94315a87e51165bc997797a296101",
+      "2995": "c2d03efea9e31aa9189bab67fac173fecaada31594d6cce86c7dd4b8be3531c6",
+      "310": "22596bca93e765f82654b21bc56a2cf6a2dd1157597ab3c6c06e1e28de9bc12e",
+      "324": "6d8c2eee56c8ae1181a0aa86608c03890323fdd0713d9ee40eb9e4f6fc46e53c",
+      "357": "66644a224b22542e92ba04607e4f002a6412bc524102f598cbedbb2ca645bffb",
+      "409": "730950c0215a2f4126bae71b22eae8521214998687fc7d72f15bb1d8c23d3836",
+      "42": "b86b1ea11b28136fe5224b9d1e3017b7efb68d4fae0b90c4940e0c0f89b3907a",
+      "428": "ed135ef7f995631a6cc523d2b245e8f49151427b0fb92bf10c450cf77e14a59c",
+      "435": "7f713fc8be1d893ae3d22345a9cd96d447a1125361656363d6ca52530013225c",
+      "461": "325d84497ed1581d01c0ad653ce1624fd6237e68fcd103d56cc17c6f2278ce3a",
+      "541": "a103b016f8419334507a138d22082f44459439f0cfb34932ba4151d6f83c9658",
+      "544": "bac8f90a8fa18791beda1a2a731d3ad22b68cf90a892817acfe109523a5260cb",
+      "56": "0494aeb56d68d0683dcdc2856752cd331cb1a9112b239e9a529519dbe29e3e63",
+      "599": "4a295a41d67bc943ce7ca0eb24bff066e53719bd7b7490eac14deb733da03db1",
+      "610": "299bd8f76fc7cfcf0140c68e8043976a99efe549a1b40e07832f5dac83a34407",
+      "721": "a5577f91d65e56beb22a1ff5fb9bf7f7ff3cc0b165dcaa229907fe37a2828eea",
+      "733": "da95fc4b8c9debca1b876c6f21ae2a326cbdeebe1e5639b897fb9c94d92fa4e1",
+      "740": "651aac59ef565e98d1a5249172e2644979f05bc1935d61d3a6ed9459c53fbb0e",
+      "776": "ea1bc68fdfbb4311a5979766ac589203132a1997bf5cbc2ced1faf5ad4f20aa7",
+      "791": "c5f81e7f7d848bf7d317b15bb2d71471ff3572454fb96f78d877c58ada7f6d65",
+      "798": "564e54e46d6fd0af5cc8af6e1d3ace0da0f9cdde604112ccc93c5077ee1c03aa",
+      "811": "ee17b7a509654d6720bbcbed19f8b46a167c5f2044ef9d035a41aa47553da823",
+      "868": "e76a9e71ea6bb190c72b874f75ad5bf980869690d8fada1cab348d16e48ca829",
+      "9": "16390873ae6b6a173fc894a873bab02283debbd320b5f0758849d01afa6ee8b6",
+      "948": "11a7dd0024919ac14d5cd2471c96702703ab567b118d44c9250f6a8264505d27",
+      "96": "b8b8f879082817d4f7d0cf28ac50336aca056b3e7e2153b857d130886be4758a",
+      "97": "05080dc082c6df88129efbbe3f2c5a354e5348c963564f889914d0252f48b17d",
+      "980": "3747065fb4c91d1b6295c7a239f27e107c54dc8f1f14dc845222aa4e99da6a94",
+      "992": "941b03e3e934ef127438c3392525c82a3232750484e9438c97026434d0b5a0ea"
+    },
+    "scope": "train-only pilot; no fitted router or held-out evaluation",
+    "selected_query_ids": [
+      1521,
+      2424,
+      599,
+      1909,
+      2565,
+      1612,
+      2894,
+      1260,
+      409,
+      2461,
+      541,
+      1802,
+      2138,
+      1277,
+      2223,
+      1752,
+      357,
+      2155,
+      310,
+      544,
+      733,
+      1695,
+      97,
+      1947,
+      2258,
+      1577,
+      2318,
+      2265,
+      868,
+      2797,
+      2051,
+      992,
+      147,
+      798,
+      2873,
+      2849,
+      2995,
+      2694,
+      740,
+      461,
+      96,
+      180,
+      435,
+      2214,
+      1740,
+      121,
+      1727,
+      2285,
+      1693,
+      2970,
+      1844,
+      1545,
+      1291,
+      1472,
+      610,
+      2227,
+      1349,
+      721,
+      2723,
+      2262,
+      1269,
+      2510,
+      2457,
+      2498,
+      9,
+      137,
+      1308,
+      2269,
+      1510,
+      1768,
+      2526,
+      1112,
+      198,
+      1415,
+      1348,
+      1509,
+      2925,
+      1980,
+      56,
+      1329,
+      2808,
+      1292,
+      156,
+      2505,
+      2340,
+      1159,
+      2856,
+      811,
+      324,
+      2776,
+      42,
+      1827,
+      791,
+      776,
+      1597,
+      980,
+      2798,
+      948,
+      2845,
+      428
+    ],
+    "test_partition_evaluated": false,
+    "validation_partition_evaluated": false
+  },
+  "policy_paired_deltas": {
+    "low_agreement": {
+      "ndcg_at_10": {
+        "best_query_ids": [
+          733,
+          2925,
+          980,
+          97,
+          1612
+        ],
+        "improved": 7,
+        "mean_delta": 0.005548632570196459,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.013982086107213094,
+          0.028869564292936717
+        ],
+        "regressed": 7,
+        "unchanged": 86,
+        "worst_query_ids": [
+          2510,
+          1510,
+          2265,
+          2461,
+          2808
+        ]
+      },
+      "recall_at_10": {
+        "best_query_ids": [
+          2894,
+          980,
+          733,
+          97,
+          2995
+        ],
+        "improved": 4,
+        "mean_delta": -0.0033333333333333314,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.035,
+          0.025
+        ],
+        "regressed": 4,
+        "unchanged": 92,
+        "worst_query_ids": [
+          1510,
+          2510,
+          2265,
+          2461,
+          9
+        ]
+      },
+      "recall_at_100": {
+        "best_query_ids": [
+          2995,
+          2970,
+          2925,
+          2894,
+          2873
+        ],
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_query_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 100,
+        "worst_query_ids": [
+          9,
+          42,
+          56,
+          96,
+          97
+        ]
+      },
+      "recall_at_20": {
+        "best_query_ids": [
+          733,
+          2995,
+          2970,
+          2925,
+          2894
+        ],
+        "improved": 1,
+        "mean_delta": -0.035,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.07004166666666667,
+          -0.003333333333333333
+        ],
+        "regressed": 7,
+        "unchanged": 92,
+        "worst_query_ids": [
+          541,
+          1510,
+          1947,
+          2510,
+          1521
+        ]
+      }
+    },
+    "year_and_low_agreement": {
+      "ndcg_at_10": {
+        "best_query_ids": [
+          733,
+          2925,
+          980,
+          97,
+          1612
+        ],
+        "improved": 7,
+        "mean_delta": 0.005548632570196459,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.013982086107213094,
+          0.028869564292936717
+        ],
+        "regressed": 7,
+        "unchanged": 86,
+        "worst_query_ids": [
+          2510,
+          1510,
+          2265,
+          2461,
+          2808
+        ]
+      },
+      "recall_at_10": {
+        "best_query_ids": [
+          2894,
+          980,
+          733,
+          97,
+          2995
+        ],
+        "improved": 4,
+        "mean_delta": -0.0033333333333333314,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.035,
+          0.025
+        ],
+        "regressed": 4,
+        "unchanged": 92,
+        "worst_query_ids": [
+          1510,
+          2510,
+          2265,
+          2461,
+          9
+        ]
+      },
+      "recall_at_100": {
+        "best_query_ids": [
+          2995,
+          2970,
+          2925,
+          2894,
+          2873
+        ],
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_query_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 100,
+        "worst_query_ids": [
+          9,
+          42,
+          56,
+          96,
+          97
+        ]
+      },
+      "recall_at_20": {
+        "best_query_ids": [
+          733,
+          2995,
+          2970,
+          2925,
+          2894
+        ],
+        "improved": 1,
+        "mean_delta": -0.035,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.07004166666666667,
+          -0.003333333333333333
+        ],
+        "regressed": 7,
+        "unchanged": 92,
+        "worst_query_ids": [
+          541,
+          1510,
+          1947,
+          2510,
+          1521
+        ]
+      }
+    }
+  },
+  "replay_verification": {
+    "config_plan_features_fast_deep_rankings_scores_qrels_byte_identical": true,
+    "cost_sensitive_label_changes_by_lambda": {
+      "0.0": 0,
+      "0.01": 0,
+      "0.05": 0
+    },
+    "manifest_sha256": "9a6a1aaf5c88d2fb5c901b1382d89d69debc20d0875c1d0bea1765d4ee8f6bd7",
+    "pre_deep_checkpoint": {
+      "allocation_scope": "allocator state may include backend workspaces; model removal verified by weak reference, not inferred from a zero allocation counter",
+      "between_models_allocated_bytes": 9568256,
+      "encoder_model_collected": true,
+      "fast_manifest_sha256": "a1345b8ff2546a37224ffddb45ed393186ddc50e5dd72d6ab85951f4aa8be90e",
+      "features_sha256": "01238a28792014299cc01866294d6c33110e11f89655db013b13af3a2dabce43",
+      "plan_sha256": "b688a86b2882cc118fa82a0628b817a6c9d868ab5a037ef02c56ec528b3c5710",
+      "scope": "written before reranker inference; features contain no outcomes"
+    },
+    "quality_gains_groups_paired_deltas_identical": true,
+    "summary": {
+      "config": {
+        "baseline": {
+          "b": 0.75,
+          "bootstrap_samples": 2000,
+          "epsilon": 0.25,
+          "failure_examples": 5,
+          "k1": 1.5,
+          "method": "hybrid_rrf",
+          "name": "hybrid_m4_train100_v1",
+          "partition": "train",
+          "query_limit": 100,
+          "seed": 1729,
+          "tie_break": "score_desc_doc_id_asc",
+          "tokenizer": "python_str_split_v1",
+          "top_k": 100,
+          "warmup_queries": 3
+        },
+        "cost_penalties_ndcg_per_second": [
+          0.0,
+          0.01,
+          0.05
+        ],
+        "disagreement_threshold": 0.2,
+        "encoder_batch_size": 16,
+        "encoder_max_length": 512,
+        "encoder_model_id": "intfloat/multilingual-e5-small",
+        "encoder_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "query_route_budgets": [
+          0.0,
+          0.1,
+          0.25,
+          0.5,
+          1.0
+        ],
+        "reranker_batch_size": 16,
+        "reranker_max_length": 512,
+        "reranker_model_id": "dragonkue/bge-reranker-v2-m3-ko",
+        "reranker_revision": "2aca5884ecac490192af9ebd86836d9073d826cd",
+        "rrf_offset": 60
+      },
+      "cost_scope": "fast includes feature extraction; deep is incremental only; policy sums are offline stage-cost estimates, not live p95",
+      "deep_summary": {
+        "index_build_ms": 0.0,
+        "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+        "metrics": {
+          "ndcg_at_10": {
+            "mean": 0.158215560568843,
+            "query_bootstrap_95_percent_interval": [
+              0.10793159733093578,
+              0.21118179040186297
+            ]
+          },
+          "recall_at_10": {
+            "mean": 0.207,
+            "query_bootstrap_95_percent_interval": [
+              0.14164166666666664,
+              0.2766666666666666
+            ]
+          },
+          "recall_at_100": {
+            "mean": 0.3863333333333333,
+            "query_bootstrap_95_percent_interval": [
+              0.304,
+              0.4660083333333333
+            ]
+          },
+          "recall_at_20": {
+            "mean": 0.23366666666666666,
+            "query_bootstrap_95_percent_interval": [
+              0.16664999999999996,
+              0.30666666666666664
+            ]
+          },
+          "reference_prefix_ndcg_at_10": {
+            "mean": 0.22120767821854062,
+            "query_bootstrap_95_percent_interval": [
+              0.15599550535069484,
+              0.2935185481565859
+            ]
+          }
+        },
+        "queries_with_incomplete_top10": 89,
+        "queries_with_no_gold_in_top100": 45,
+        "query_count": 100,
+        "retrieval_timing_ms": {
+          "concurrency": 1,
+          "mean": 1147.2549458099923,
+          "p50": 1113.888488500038,
+          "p95": 1413.3244422499786,
+          "scope": "incremental rerank only: frozen candidate lookup, text lookup, pair tokenization, CPU/GPU transfers, synchronized CUDA forward, scalar scores and sorting; concurrency 1; excludes fast retrieval, model load, warmup, metrics, file writes and tracking"
+        }
+      },
+      "fast_summary": {
+        "index_build_ms": 296.85936199996377,
+        "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+        "metrics": {
+          "ndcg_at_10": {
+            "mean": 0.18168831170093028,
+            "query_bootstrap_95_percent_interval": [
+              0.1312652033021412,
+              0.23690180261051472
+            ]
+          },
+          "recall_at_10": {
+            "mean": 0.24783333333333332,
+            "query_bootstrap_95_percent_interval": [
+              0.179,
+              0.3175083333333333
+            ]
+          },
+          "recall_at_100": {
+            "mean": 0.3863333333333333,
+            "query_bootstrap_95_percent_interval": [
+              0.304,
+              0.4660083333333333
+            ]
+          },
+          "recall_at_20": {
+            "mean": 0.30233333333333334,
+            "query_bootstrap_95_percent_interval": [
+              0.23065833333333333,
+              0.3806916666666666
+            ]
+          },
+          "reference_prefix_ndcg_at_10": {
+            "mean": 0.2457918691295643,
+            "query_bootstrap_95_percent_interval": [
+              0.18209265498134983,
+              0.31523247615693545
+            ]
+          }
+        },
+        "queries_with_incomplete_top10": 88,
+        "queries_with_no_gold_in_top100": 45,
+        "query_count": 100,
+        "retrieval_timing_ms": {
+          "concurrency": 1,
+          "mean": 90.53529168999263,
+          "p50": 90.33235999999079,
+          "p95": 123.46308969995903,
+          "scope": "warm sequential hybrid plus pre-deep feature extraction; synchronized GPU query encoding, CPU BM25/FAISS/RRF; concurrency 1; excludes offline build/metrics/files/tracking"
+        }
+      },
+      "feature_slices": {
+        "explicit_year": {
+          "mean_gain": -0.020133713344999974,
+          "positive_gain_count": 15,
+          "query_count": 99
+        },
+        "low_agreement": {
+          "mean_gain": 0.008669738390931965,
+          "positive_gain_count": 7,
+          "query_count": 64
+        },
+        "no_explicit_year": {
+          "mean_gain": -0.3540374920537315,
+          "positive_gain_count": 0,
+          "query_count": 1
+        },
+        "other_agreement": {
+          "mean_gain": -0.08061495472856595,
+          "positive_gain_count": 8,
+          "query_count": 36
+        },
+        "unknown_query_insertion": {
+          "mean_gain": null,
+          "positive_gain_count": 0,
+          "query_count": 0
+        }
+      },
+      "feature_timing_mean_ms": 1.7508764899992002,
+      "fitted_router": false,
+      "group_count": 100,
+      "mlflow_run_ids": {},
+      "paired_deltas": {
+        "ndcg_at_10": {
+          "best_query_ids": [
+            733,
+            121,
+            2925,
+            992,
+            980
+          ],
+          "improved": 15,
+          "mean_delta": -0.023472751132087286,
+          "paired_query_bootstrap_95_percent_interval": [
+            -0.05972574972432273,
+            0.013149988958233647
+          ],
+          "regressed": 18,
+          "unchanged": 67,
+          "worst_query_ids": [
+            798,
+            544,
+            428,
+            2873,
+            156
+          ]
+        },
+        "recall_at_10": {
+          "best_query_ids": [
+            121,
+            2894,
+            2227,
+            992,
+            980
+          ],
+          "improved": 8,
+          "mean_delta": -0.04083333333333333,
+          "paired_query_bootstrap_95_percent_interval": [
+            -0.095,
+            0.012500000000000002
+          ],
+          "regressed": 16,
+          "unchanged": 76,
+          "worst_query_ids": [
+            544,
+            1510,
+            2873,
+            1472,
+            798
+          ]
+        },
+        "recall_at_100": {
+          "best_query_ids": [
+            2995,
+            2970,
+            2925,
+            2894,
+            2873
+          ],
+          "improved": 0,
+          "mean_delta": 0.0,
+          "paired_query_bootstrap_95_percent_interval": [
+            0.0,
+            0.0
+          ],
+          "regressed": 0,
+          "unchanged": 100,
+          "worst_query_ids": [
+            9,
+            42,
+            56,
+            96,
+            97
+          ]
+        },
+        "recall_at_20": {
+          "best_query_ids": [
+            121,
+            2227,
+            733,
+            2995,
+            2970
+          ],
+          "improved": 3,
+          "mean_delta": -0.06866666666666667,
+          "paired_query_bootstrap_95_percent_interval": [
+            -0.12033333333333333,
+            -0.02
+          ],
+          "regressed": 17,
+          "unchanged": 80,
+          "worst_query_ids": [
+            541,
+            544,
+            1510,
+            1472,
+            798
+          ]
+        }
+      },
+      "policies": [
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.0,
+          "modeled_mean_additive_stage_ms": 90.53529168999263,
+          "name": "always_fast",
+          "ndcg_at_10": 0.18168831170093028,
+          "routed_beneficial": 0,
+          "routed_count": 0,
+          "routed_fraction": 0.0,
+          "routed_harmful": 0,
+          "routed_query_ids": [],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": -0.023472751132087286,
+          "modeled_mean_additive_stage_ms": 1237.7902374999849,
+          "name": "always_deep",
+          "ndcg_at_10": 0.158215560568843,
+          "routed_beneficial": 15,
+          "routed_count": 100,
+          "routed_fraction": 1.0,
+          "routed_harmful": 18,
+          "routed_query_ids": [
+            9,
+            42,
+            56,
+            96,
+            97,
+            121,
+            137,
+            147,
+            156,
+            180,
+            198,
+            310,
+            324,
+            357,
+            409,
+            428,
+            435,
+            461,
+            541,
+            544,
+            599,
+            610,
+            721,
+            733,
+            740,
+            776,
+            791,
+            798,
+            811,
+            868,
+            948,
+            980,
+            992,
+            1112,
+            1159,
+            1260,
+            1269,
+            1277,
+            1291,
+            1292,
+            1308,
+            1329,
+            1348,
+            1349,
+            1415,
+            1472,
+            1509,
+            1510,
+            1521,
+            1545,
+            1577,
+            1597,
+            1612,
+            1693,
+            1695,
+            1727,
+            1740,
+            1752,
+            1768,
+            1802,
+            1827,
+            1844,
+            1909,
+            1947,
+            1980,
+            2051,
+            2138,
+            2155,
+            2214,
+            2223,
+            2227,
+            2258,
+            2262,
+            2265,
+            2269,
+            2285,
+            2318,
+            2340,
+            2424,
+            2457,
+            2461,
+            2498,
+            2505,
+            2510,
+            2526,
+            2565,
+            2694,
+            2723,
+            2776,
+            2797,
+            2798,
+            2808,
+            2845,
+            2849,
+            2856,
+            2873,
+            2894,
+            2925,
+            2970,
+            2995
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.0055486325701964555,
+          "modeled_mean_additive_stage_ms": 836.9213632299897,
+          "name": "low_agreement",
+          "ndcg_at_10": 0.18723694427112675,
+          "routed_beneficial": 7,
+          "routed_count": 64,
+          "routed_fraction": 0.64,
+          "routed_harmful": 7,
+          "routed_query_ids": [
+            56,
+            97,
+            137,
+            180,
+            324,
+            357,
+            409,
+            435,
+            461,
+            541,
+            610,
+            721,
+            733,
+            740,
+            776,
+            791,
+            948,
+            980,
+            1112,
+            1159,
+            1260,
+            1291,
+            1292,
+            1308,
+            1329,
+            1415,
+            1510,
+            1521,
+            1545,
+            1597,
+            1612,
+            1693,
+            1695,
+            1727,
+            1740,
+            1768,
+            1802,
+            1909,
+            1947,
+            2138,
+            2214,
+            2258,
+            2265,
+            2285,
+            2318,
+            2424,
+            2457,
+            2461,
+            2498,
+            2505,
+            2510,
+            2526,
+            2565,
+            2694,
+            2776,
+            2797,
+            2798,
+            2808,
+            2845,
+            2849,
+            2894,
+            2925,
+            2970,
+            2995
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.0055486325701964555,
+          "modeled_mean_additive_stage_ms": 836.9213632299897,
+          "name": "year_and_low_agreement",
+          "ndcg_at_10": 0.18723694427112675,
+          "routed_beneficial": 7,
+          "routed_count": 64,
+          "routed_fraction": 0.64,
+          "routed_harmful": 7,
+          "routed_query_ids": [
+            56,
+            97,
+            137,
+            180,
+            324,
+            357,
+            409,
+            435,
+            461,
+            541,
+            610,
+            721,
+            733,
+            740,
+            776,
+            791,
+            948,
+            980,
+            1112,
+            1159,
+            1260,
+            1291,
+            1292,
+            1308,
+            1329,
+            1415,
+            1510,
+            1521,
+            1545,
+            1597,
+            1612,
+            1693,
+            1695,
+            1727,
+            1740,
+            1768,
+            1802,
+            1909,
+            1947,
+            2138,
+            2214,
+            2258,
+            2265,
+            2285,
+            2318,
+            2424,
+            2457,
+            2461,
+            2498,
+            2505,
+            2510,
+            2526,
+            2565,
+            2694,
+            2776,
+            2797,
+            2798,
+            2808,
+            2845,
+            2849,
+            2894,
+            2925,
+            2970,
+            2995
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.0,
+          "modeled_mean_additive_stage_ms": 90.53529168999263,
+          "name": "random_query_budget_0",
+          "ndcg_at_10": 0.18168831170093028,
+          "routed_beneficial": 0,
+          "routed_count": 0,
+          "routed_fraction": 0.0,
+          "routed_harmful": 0,
+          "routed_query_ids": [],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.0,
+          "modeled_mean_additive_stage_ms": 90.53529168999263,
+          "name": "oracle_query_budget_0",
+          "ndcg_at_10": 0.18168831170093028,
+          "routed_beneficial": 0,
+          "routed_count": 0,
+          "routed_fraction": 0.0,
+          "routed_harmful": 0,
+          "routed_query_ids": [],
+          "scope": "offline training oracle upper bound; not deployable",
+          "uses_outcomes_at_decision": true
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": -0.0009077089626867646,
+          "modeled_mean_additive_stage_ms": 207.81718512999305,
+          "name": "random_query_budget_0.1",
+          "ndcg_at_10": 0.18078060273824353,
+          "routed_beneficial": 1,
+          "routed_count": 10,
+          "routed_fraction": 0.1,
+          "routed_harmful": 2,
+          "routed_query_ids": [
+            428,
+            733,
+            776,
+            1159,
+            1827,
+            2340,
+            2461,
+            2723,
+            2797,
+            2798
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.03199399629583157,
+          "modeled_mean_additive_stage_ms": 197.47291135999035,
+          "name": "oracle_query_budget_0.1",
+          "ndcg_at_10": 0.21368230799676183,
+          "routed_beneficial": 10,
+          "routed_count": 10,
+          "routed_fraction": 0.1,
+          "routed_harmful": 0,
+          "routed_query_ids": [
+            97,
+            121,
+            198,
+            733,
+            980,
+            992,
+            1277,
+            1612,
+            2227,
+            2925
+          ],
+          "scope": "offline training oracle upper bound; not deployable",
+          "uses_outcomes_at_decision": true
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": -0.010257431566053571,
+          "modeled_mean_additive_stage_ms": 383.4381806099895,
+          "name": "random_query_budget_0.25",
+          "ndcg_at_10": 0.1714308801348767,
+          "routed_beneficial": 3,
+          "routed_count": 25,
+          "routed_fraction": 0.25,
+          "routed_harmful": 5,
+          "routed_query_ids": [
+            156,
+            310,
+            428,
+            461,
+            541,
+            733,
+            776,
+            798,
+            1159,
+            1308,
+            1509,
+            1577,
+            1827,
+            2138,
+            2155,
+            2265,
+            2318,
+            2340,
+            2461,
+            2498,
+            2526,
+            2723,
+            2797,
+            2798,
+            2925
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.03592238162713512,
+          "modeled_mean_additive_stage_ms": 252.7433061999886,
+          "name": "oracle_query_budget_0.25",
+          "ndcg_at_10": 0.21761069332806543,
+          "routed_beneficial": 15,
+          "routed_count": 15,
+          "routed_fraction": 0.15,
+          "routed_harmful": 0,
+          "routed_query_ids": [
+            42,
+            97,
+            121,
+            198,
+            409,
+            733,
+            980,
+            992,
+            1277,
+            1348,
+            1577,
+            1612,
+            2227,
+            2894,
+            2925
+          ],
+          "scope": "offline training oracle upper bound; not deployable",
+          "uses_outcomes_at_decision": true
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": -0.01760990443924161,
+          "modeled_mean_additive_stage_ms": 670.9298403899891,
+          "name": "random_query_budget_0.5",
+          "ndcg_at_10": 0.16407840726168868,
+          "routed_beneficial": 7,
+          "routed_count": 50,
+          "routed_fraction": 0.5,
+          "routed_harmful": 9,
+          "routed_query_ids": [
+            9,
+            42,
+            56,
+            156,
+            180,
+            310,
+            357,
+            428,
+            435,
+            461,
+            541,
+            733,
+            740,
+            776,
+            791,
+            798,
+            980,
+            1112,
+            1159,
+            1260,
+            1269,
+            1291,
+            1308,
+            1348,
+            1509,
+            1521,
+            1577,
+            1597,
+            1727,
+            1802,
+            1827,
+            1844,
+            2138,
+            2155,
+            2265,
+            2318,
+            2340,
+            2424,
+            2457,
+            2461,
+            2498,
+            2510,
+            2526,
+            2723,
+            2797,
+            2798,
+            2849,
+            2873,
+            2894,
+            2925
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.03592238162713512,
+          "modeled_mean_additive_stage_ms": 252.7433061999886,
+          "name": "oracle_query_budget_0.5",
+          "ndcg_at_10": 0.21761069332806543,
+          "routed_beneficial": 15,
+          "routed_count": 15,
+          "routed_fraction": 0.15,
+          "routed_harmful": 0,
+          "routed_query_ids": [
+            42,
+            97,
+            121,
+            198,
+            409,
+            733,
+            980,
+            992,
+            1277,
+            1348,
+            1577,
+            1612,
+            2227,
+            2894,
+            2925
+          ],
+          "scope": "offline training oracle upper bound; not deployable",
+          "uses_outcomes_at_decision": true
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": -0.023472751132087286,
+          "modeled_mean_additive_stage_ms": 1237.7902374999849,
+          "name": "random_query_budget_1",
+          "ndcg_at_10": 0.158215560568843,
+          "routed_beneficial": 15,
+          "routed_count": 100,
+          "routed_fraction": 1.0,
+          "routed_harmful": 18,
+          "routed_query_ids": [
+            9,
+            42,
+            56,
+            96,
+            97,
+            121,
+            137,
+            147,
+            156,
+            180,
+            198,
+            310,
+            324,
+            357,
+            409,
+            428,
+            435,
+            461,
+            541,
+            544,
+            599,
+            610,
+            721,
+            733,
+            740,
+            776,
+            791,
+            798,
+            811,
+            868,
+            948,
+            980,
+            992,
+            1112,
+            1159,
+            1260,
+            1269,
+            1277,
+            1291,
+            1292,
+            1308,
+            1329,
+            1348,
+            1349,
+            1415,
+            1472,
+            1509,
+            1510,
+            1521,
+            1545,
+            1577,
+            1597,
+            1612,
+            1693,
+            1695,
+            1727,
+            1740,
+            1752,
+            1768,
+            1802,
+            1827,
+            1844,
+            1909,
+            1947,
+            1980,
+            2051,
+            2138,
+            2155,
+            2214,
+            2223,
+            2227,
+            2258,
+            2262,
+            2265,
+            2269,
+            2285,
+            2318,
+            2340,
+            2424,
+            2457,
+            2461,
+            2498,
+            2505,
+            2510,
+            2526,
+            2565,
+            2694,
+            2723,
+            2776,
+            2797,
+            2798,
+            2808,
+            2845,
+            2849,
+            2856,
+            2873,
+            2894,
+            2925,
+            2970,
+            2995
+          ],
+          "scope": "predeclared in-sample diagnostic; no held-out claim",
+          "uses_outcomes_at_decision": false
+        },
+        {
+          "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+          "mean_gain_vs_fast": 0.03592238162713512,
+          "modeled_mean_additive_stage_ms": 252.7433061999886,
+          "name": "oracle_query_budget_1",
+          "ndcg_at_10": 0.21761069332806543,
+          "routed_beneficial": 15,
+          "routed_count": 15,
+          "routed_fraction": 0.15,
+          "routed_harmful": 0,
+          "routed_query_ids": [
+            42,
+            97,
+            121,
+            198,
+            409,
+            733,
+            980,
+            992,
+            1277,
+            1348,
+            1577,
+            1612,
+            2227,
+            2894,
+            2925
+          ],
+          "scope": "offline training oracle upper bound; not deployable",
+          "uses_outcomes_at_decision": true
+        }
+      ],
+      "query_count": 100,
+      "router_training_targets_generated": true,
+      "target_definition": "gain > lambda * incremental_rerank_ms / 1000 + 1e-12; lambda in nDCG/second; training only",
+      "test_partition_evaluated": false,
+      "utility": {
+        "beneficial_count": 15,
+        "harmful_count": 18,
+        "mean_gain": -0.023472751132087286,
+        "no_gold_in_pool": 45,
+        "positive_labels_by_lambda": {
+          "0.0": 15,
+          "0.01": 15,
+          "0.05": 13
+        },
+        "unchanged_count": 67
+      },
+      "validation_partition_evaluated": false
+    }
+  },
+  "stage_manifests": {
+    "deep": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "candidate_pool": {
+        "candidates_per_query": 100,
+        "frozen_pool_sha256": "694239d005f8b2ace593d2b3547c805c89b6b00400cc3da35c2669cc6b7a338a",
+        "no_test_access": true,
+        "query_count": 100,
+        "score_cache": "run/run.trec; one raw cross-encoder logit per frozen query/document pair",
+        "source_manifest_sha256": "69214fede247d6bfa8f5a6a865fc4280bd69995ab9bb34a9a101511b69895772",
+        "source_run_sha256": "794c3a981d8ef9b2e26f5f1d8dddc1419e7485d5943693146607bdd5c43f134a",
+        "source_snapshot_sha256": "eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7"
+      },
+      "config": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "fixed_cross_encoder",
+        "name": "deep_hybrid_m4_train100_v1",
+        "partition": "train",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "corpus_document_count": 30000,
+      "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+      "cutoffs": {
+        "ndcg": [
+          10
+        ],
+        "recall": [
+          10,
+          20,
+          100
+        ]
+      },
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "git_commit": "b87279fcc2bedd5d9e221eefdd8954746e3279fd",
+      "git_dirty": true,
+      "logical_cpu_count": 12,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "output_sha256": {
+        "config.json": "d220b53178da0511cba302cfb23fee8390cde8768ecc5ae64cd194cc0eb6e114",
+        "failure_cases.json": "0fb781764fc92873cb5a7baaddb29617464f005c5b443e4c5d65b1075e2163fe",
+        "per_query.jsonl": "bbb3511b0c3461ba0bb73a22f08805c8cb0d0fb06d40f64d44b34d91b6866c4f",
+        "qrels.tsv": "8eb2e4f69283500f6a6dbf2d66793506c34eef6ce0f23fd83273d2c2ad9f0030",
+        "run.trec": "e6d0ad0cf7acee0cafff338dd329ee0d5f7ee19321f08de6b5e1844e05bb6f10",
+        "summary.json": "f572ac2b7d75cc18ce81b6545c770e70a765a6ea793899e79c8c754524c488a1"
+      },
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "numpy": "2.5.5",
+        "pydantic": "2.14.4",
+        "rank-bm25": "0.2.2",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "pilot_config_sha256": "e4d5635d5b7fb6470391f12589fdb75becaab95324846187429556f886e2b85b",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.13.11",
+      "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+      "reranker": {
+        "asset_sha256": {
+          "config.json": "a1d675becc0aa53d579723d7842dc25bea0797fecdc5004f55b9bdb43394d69a",
+          "model.safetensors": "aba51b69d97bfff4cd2c1d8eb6c57764e350231850f712b75ae426270f265a43",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835",
+          "tokenizer.json": "b74659c780d49afad7a7b9799868f75cbd3014fb6c34956e85a793028d38094a",
+          "tokenizer_config.json": "7e4c1cc848840aeccdd763458c18dd525eb0f795c992e00ebe9c28554e7db2d4"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "call_timings_including_warmup": [
+          {
+            "cpu_tokenization_ms": 24.141988999758723,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1492.1554779999724
+          },
+          {
+            "cpu_tokenization_ms": 22.793431999957647,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1374.5031010001867
+          },
+          {
+            "cpu_tokenization_ms": 22.55756099998507,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1371.4596109999775
+          },
+          {
+            "cpu_tokenization_ms": 22.139773999924728,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1380.8325689998355
+          },
+          {
+            "cpu_tokenization_ms": 21.234923999941202,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1041.1822790000542
+          },
+          {
+            "cpu_tokenization_ms": 22.583773999940604,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1160.2737330000537
+          },
+          {
+            "cpu_tokenization_ms": 22.63941900014288,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1329.575987999874
+          },
+          {
+            "cpu_tokenization_ms": 21.063467000089986,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1152.6045679996741
+          },
+          {
+            "cpu_tokenization_ms": 21.158917000093425,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1043.4270939997532
+          },
+          {
+            "cpu_tokenization_ms": 20.634645999848544,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 980.5987029999415
+          },
+          {
+            "cpu_tokenization_ms": 22.269855999866195,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1227.029348999963
+          },
+          {
+            "cpu_tokenization_ms": 20.5882869998959,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 970.135603000017
+          },
+          {
+            "cpu_tokenization_ms": 21.345086000110314,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1202.9879279999705
+          },
+          {
+            "cpu_tokenization_ms": 21.708254000145644,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1096.6578820001587
+          },
+          {
+            "cpu_tokenization_ms": 20.621011000116596,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 986.7265180001823
+          },
+          {
+            "cpu_tokenization_ms": 23.042002000011053,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1385.7705240001224
+          },
+          {
+            "cpu_tokenization_ms": 21.13416000008783,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1100.8704620001026
+          },
+          {
+            "cpu_tokenization_ms": 19.899550999866733,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 960.0619980000147
+          },
+          {
+            "cpu_tokenization_ms": 20.118653000167797,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1026.8064380001078
+          },
+          {
+            "cpu_tokenization_ms": 21.50647200005551,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1170.5977259999827
+          },
+          {
+            "cpu_tokenization_ms": 20.71603500007768,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1019.8115590000043
+          },
+          {
+            "cpu_tokenization_ms": 22.359450000067227,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1120.4479079997327
+          },
+          {
+            "cpu_tokenization_ms": 20.95942100004322,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1077.9428040000312
+          },
+          {
+            "cpu_tokenization_ms": 20.97637899998972,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1027.9610170000524
+          },
+          {
+            "cpu_tokenization_ms": 19.65358599989031,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 802.5169280000455
+          },
+          {
+            "cpu_tokenization_ms": 22.715900999969563,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1353.9101540000047
+          },
+          {
+            "cpu_tokenization_ms": 20.13447999991058,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 978.2713299999841
+          },
+          {
+            "cpu_tokenization_ms": 18.95511700024599,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 891.4419509999334
+          },
+          {
+            "cpu_tokenization_ms": 21.42554900012783,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1272.3784349998368
+          },
+          {
+            "cpu_tokenization_ms": 22.13960100004897,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1414.1663660000177
+          },
+          {
+            "cpu_tokenization_ms": 20.2934929999401,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1088.7985670001399
+          },
+          {
+            "cpu_tokenization_ms": 19.85244299999067,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 983.7767209999129
+          },
+          {
+            "cpu_tokenization_ms": 20.55960099994536,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1158.1158249999817
+          },
+          {
+            "cpu_tokenization_ms": 21.21612099995218,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1280.2836279998928
+          },
+          {
+            "cpu_tokenization_ms": 19.2431340000212,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 886.9880700000294
+          },
+          {
+            "cpu_tokenization_ms": 21.568596999941292,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1448.1568749998814
+          },
+          {
+            "cpu_tokenization_ms": 20.175287000142816,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1251.9482879999941
+          },
+          {
+            "cpu_tokenization_ms": 20.224896999934572,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1304.2199269999628
+          },
+          {
+            "cpu_tokenization_ms": 19.525993000115704,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 948.5222460000386
+          },
+          {
+            "cpu_tokenization_ms": 20.76067099994816,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1086.6012029998728
+          },
+          {
+            "cpu_tokenization_ms": 18.03152200011482,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 851.4960260001772
+          },
+          {
+            "cpu_tokenization_ms": 20.53093999995781,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 937.9979129998901
+          },
+          {
+            "cpu_tokenization_ms": 20.245030000069164,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 895.9574840000641
+          },
+          {
+            "cpu_tokenization_ms": 19.559518000164644,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1126.2876960001904
+          },
+          {
+            "cpu_tokenization_ms": 21.528511999804323,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1248.0046509997464
+          },
+          {
+            "cpu_tokenization_ms": 18.052326999963952,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 863.6839360000295
+          },
+          {
+            "cpu_tokenization_ms": 21.703450000018165,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1306.213525999965
+          },
+          {
+            "cpu_tokenization_ms": 19.096548000220537,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 954.6541990001742
+          },
+          {
+            "cpu_tokenization_ms": 19.943439000030594,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1093.7892319998355
+          },
+          {
+            "cpu_tokenization_ms": 22.475979999853735,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1714.5453219999354
+          },
+          {
+            "cpu_tokenization_ms": 20.058625999922697,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1163.619930999971
+          },
+          {
+            "cpu_tokenization_ms": 21.751723000193124,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1722.9374589998088
+          },
+          {
+            "cpu_tokenization_ms": 19.42431099996611,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1151.369227000032
+          },
+          {
+            "cpu_tokenization_ms": 18.936838999707106,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1002.7385149998054
+          },
+          {
+            "cpu_tokenization_ms": 19.376508999926045,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1076.8959299999779
+          },
+          {
+            "cpu_tokenization_ms": 18.87147700006153,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 992.2696180001367
+          },
+          {
+            "cpu_tokenization_ms": 19.287002000169196,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1073.6738739998373
+          },
+          {
+            "cpu_tokenization_ms": 20.27216000021781,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1254.0377310000395
+          },
+          {
+            "cpu_tokenization_ms": 18.36501800005408,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 973.5647249999602
+          },
+          {
+            "cpu_tokenization_ms": 20.462757000018428,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1187.622117999922
+          },
+          {
+            "cpu_tokenization_ms": 20.785955000292233,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1285.8149490000415
+          },
+          {
+            "cpu_tokenization_ms": 20.02760599987141,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 926.9550279998384
+          },
+          {
+            "cpu_tokenization_ms": 19.94456500005981,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1067.4074379999183
+          },
+          {
+            "cpu_tokenization_ms": 21.17415699990488,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1288.9036480000868
+          },
+          {
+            "cpu_tokenization_ms": 20.493080999813174,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1259.8901899999646
+          },
+          {
+            "cpu_tokenization_ms": 20.086014999833424,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1063.9599220000946
+          },
+          {
+            "cpu_tokenization_ms": 19.35830200000055,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1082.094544000256
+          },
+          {
+            "cpu_tokenization_ms": 18.805928000006134,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1058.7903019999203
+          },
+          {
+            "cpu_tokenization_ms": 21.34537599988562,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1269.9772170000188
+          },
+          {
+            "cpu_tokenization_ms": 19.280195000078493,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 925.7816659999207
+          },
+          {
+            "cpu_tokenization_ms": 19.38028199992914,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1030.049915999939
+          },
+          {
+            "cpu_tokenization_ms": 18.852362000075118,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 798.279273000162
+          },
+          {
+            "cpu_tokenization_ms": 18.91381000018555,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 954.4415589999744
+          },
+          {
+            "cpu_tokenization_ms": 22.28470899990498,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1562.0505869999306
+          },
+          {
+            "cpu_tokenization_ms": 20.88158700007625,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1242.485034000083
+          },
+          {
+            "cpu_tokenization_ms": 18.679111000096782,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 942.872783000098
+          },
+          {
+            "cpu_tokenization_ms": 20.316219000051206,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1149.8952669998062
+          },
+          {
+            "cpu_tokenization_ms": 18.46894300012991,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 915.850619999901
+          },
+          {
+            "cpu_tokenization_ms": 18.28679899972485,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 821.4958769998475
+          },
+          {
+            "cpu_tokenization_ms": 20.754129000010835,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1169.8908460001576
+          },
+          {
+            "cpu_tokenization_ms": 19.17543300021407,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 900.6241780000437
+          },
+          {
+            "cpu_tokenization_ms": 20.232270999713364,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1167.9519659999187
+          },
+          {
+            "cpu_tokenization_ms": 22.752110000169523,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1844.267281000043
+          },
+          {
+            "cpu_tokenization_ms": 20.327155000131825,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1312.41305799972
+          },
+          {
+            "cpu_tokenization_ms": 18.953166000073907,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 849.3075489999455
+          },
+          {
+            "cpu_tokenization_ms": 20.828431999802888,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1276.731497000128
+          },
+          {
+            "cpu_tokenization_ms": 19.455152000091402,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1149.6324500002402
+          },
+          {
+            "cpu_tokenization_ms": 20.674880000228768,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1205.380785999978
+          },
+          {
+            "cpu_tokenization_ms": 20.496847999993406,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1260.4881230000728
+          },
+          {
+            "cpu_tokenization_ms": 19.083390000105283,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1026.0024479999856
+          },
+          {
+            "cpu_tokenization_ms": 18.82780000016737,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 968.011556999727
+          },
+          {
+            "cpu_tokenization_ms": 19.43177900000137,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1049.837251000099
+          },
+          {
+            "cpu_tokenization_ms": 19.426148999855286,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1310.642377000022
+          },
+          {
+            "cpu_tokenization_ms": 20.846753999990142,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1329.881783000019
+          },
+          {
+            "cpu_tokenization_ms": 19.822522999902503,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1029.224620999912
+          },
+          {
+            "cpu_tokenization_ms": 20.354342000018733,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1165.6415839997862
+          },
+          {
+            "cpu_tokenization_ms": 19.730839000089873,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1221.8596989999924
+          },
+          {
+            "cpu_tokenization_ms": 19.730124000147953,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1050.7574880001584
+          },
+          {
+            "cpu_tokenization_ms": 18.97353899994414,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 962.7492170000096
+          },
+          {
+            "cpu_tokenization_ms": 20.610636999776943,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1141.7773989999205
+          },
+          {
+            "cpu_tokenization_ms": 21.503581000047234,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1383.880053000098
+          },
+          {
+            "cpu_tokenization_ms": 19.240044000071066,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1086.8356709999034
+          },
+          {
+            "cpu_tokenization_ms": 21.236408999925516,
+            "pair_count": 100,
+            "synchronized_forward_and_transfers_ms": 1376.9279809998807
+          }
+        ],
+        "component_timing_scope": "wall clock; forward includes CUDA work, CPU dispatch and transfers; not kernel-only GPU time; warmup calls precede measured calls",
+        "cuda_runtime": "12.8",
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "input": "query/text pairs; no prefixes, titles, timestamps or qrels",
+        "korean_scope": "Korean optimization declared by author; complete fine-tuning data undisclosed; benchmark contamination not independently excluded",
+        "length_count_scope": "potential truncation; not exact truncated count",
+        "license": "Apache-2.0 (model card)",
+        "loading_info": {
+          "legacy_position_buffer_checked": false,
+          "missing_keys": [],
+          "unexpected_keys": []
+        },
+        "max_length": 512,
+        "model_id": "dragonkue/bge-reranker-v2-m3-ko",
+        "padding": "dynamic_per_batch",
+        "pair_count_including_warmup": 10300,
+        "pairs_at_max_length_including_warmup": 0,
+        "peak_allocated_bytes": 2861457408,
+        "peak_reserved_bytes": 4850712576,
+        "resident_models": "reranker only; frozen candidates; encoder not loaded",
+        "revision": "2aca5884ecac490192af9ebd86836d9073d826cd",
+        "score": "single_raw_logit; higher_is_better; identity_activation",
+        "seed": 1729,
+        "tf32": false,
+        "truncation": "longest_first"
+      },
+      "reranking_config": {
+        "baseline": {
+          "b": 0.75,
+          "bootstrap_samples": 2000,
+          "epsilon": 0.25,
+          "failure_examples": 5,
+          "k1": 1.5,
+          "method": "fixed_cross_encoder",
+          "name": "deep_hybrid_m4_train100_v1",
+          "partition": "train",
+          "query_limit": 100,
+          "seed": 1729,
+          "tie_break": "score_desc_doc_id_asc",
+          "tokenizer": "python_str_split_v1",
+          "top_k": 100,
+          "warmup_queries": 3
+        },
+        "batch_size": 16,
+        "candidate_manifest_sha256": "69214fede247d6bfa8f5a6a865fc4280bd69995ab9bb34a9a101511b69895772",
+        "max_length": 512,
+        "model_id": "dragonkue/bge-reranker-v2-m3-ko",
+        "revision": "2aca5884ecac490192af9ebd86836d9073d826cd"
+      },
+      "selected_query_ids": [
+        1521,
+        2424,
+        599,
+        1909,
+        2565,
+        1612,
+        2894,
+        1260,
+        409,
+        2461,
+        541,
+        1802,
+        2138,
+        1277,
+        2223,
+        1752,
+        357,
+        2155,
+        310,
+        544,
+        733,
+        1695,
+        97,
+        1947,
+        2258,
+        1577,
+        2318,
+        2265,
+        868,
+        2797,
+        2051,
+        992,
+        147,
+        798,
+        2873,
+        2849,
+        2995,
+        2694,
+        740,
+        461,
+        96,
+        180,
+        435,
+        2214,
+        1740,
+        121,
+        1727,
+        2285,
+        1693,
+        2970,
+        1844,
+        1545,
+        1291,
+        1472,
+        610,
+        2227,
+        1349,
+        721,
+        2723,
+        2262,
+        1269,
+        2510,
+        2457,
+        2498,
+        9,
+        137,
+        1308,
+        2269,
+        1510,
+        1768,
+        2526,
+        1112,
+        198,
+        1415,
+        1348,
+        1509,
+        2925,
+        1980,
+        56,
+        1329,
+        2808,
+        1292,
+        156,
+        2505,
+        2340,
+        1159,
+        2856,
+        811,
+        324,
+        2776,
+        42,
+        1827,
+        791,
+        776,
+        1597,
+        980,
+        2798,
+        948,
+        2845,
+        428
+      ],
+      "source_files_sha256": {
+        "pyproject.toml": "ab1cb013f9d543803ddb2f4015d1968ee754f2b4f1d63e9d3b3968ed4eac6721",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "8a75fb32fe5cf79eee1260ecd947f1109f76abce5ecf0dcff6cfca4e8209255f",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/evaluation/pilot.py": "cc4b57f390acb990abb4385b251e9fb6d6f962a0a5e8298bbb7dd5c28a510ce2",
+        "src/temporalproof/evaluation/reranking.py": "469db2811cacdc009a3d5aa3494e25e1d431b8e03085ce3c26763a71212069ef",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/retrieval/reranker.py": "8c1a5e17c9e8bb176a305d1f317e0279316f9e45e1c541da1a66f61fc70e1aa7",
+        "src/temporalproof/routing/__init__.py": "a95e1155bc0f7b29b0b93e25d50753d5970d181d3bef838bb4a1d27d7278514c",
+        "src/temporalproof/routing/features.py": "a0b7b6a99db0e295582f57de97f207a2256724f60dc843d20685cd2ca149d6a1",
+        "src/temporalproof/routing/targets.py": "aecbecd7926a773be4fc837f0369b0d879068a58c290c26ca66dc344225b7e86",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+      "test_partition_evaluated": false,
+      "thread_environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "warmup_query_id": 1521
+    },
+    "fast": {
+      "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+      "config": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "hybrid_rrf",
+        "name": "hybrid_m4_train100_v1",
+        "partition": "train",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "corpus_document_count": 30000,
+      "corpus_scope": "full_domain_union; no text deduplication or timestamp filtering",
+      "cutoffs": {
+        "ndcg": [
+          10
+        ],
+        "recall": [
+          10,
+          20,
+          100
+        ]
+      },
+      "dataset_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+      "encoder": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "inputs_at_max_length": 0,
+        "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "peak_allocated_bytes": 482027008,
+        "peak_reserved_bytes": 507510784,
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "encoder_cache": {
+        "cache_hit": true,
+        "cache_key": "2f28e158c4839b3700271b3c644bd6daedfed510f440616ba833b696af216616",
+        "cache_manifest_sha256": "271a952c2157a8ef03cfbd34f0725d9ee44c64398fbd2bbc47baa1986d01347b",
+        "dimension": 384,
+        "document_count": 30000,
+        "embedding_build_ms": 34075.51163900007,
+        "faiss_build_ms": 97.5272270000005,
+        "faiss_index": "IndexFlatIP",
+        "files_sha256": {
+          "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+          "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+        },
+        "identity": {
+          "asset_sha256": {
+            "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+            "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+            "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+            "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+          },
+          "attention": "eager",
+          "batch_size": 16,
+          "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+          "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+          "cuda_runtime": "12.8",
+          "dimension": 384,
+          "dtype": "float32",
+          "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+          "environment_lock_sha256": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724",
+          "faiss_version": "1.16.0",
+          "gpu": "NVIDIA GeForce RTX 5060 Ti",
+          "license": "MIT",
+          "loading_info": {
+            "legacy_position_buffer_checked": true,
+            "missing_keys": [],
+            "unexpected_keys": [
+              "embeddings.position_ids"
+            ]
+          },
+          "max_length": 512,
+          "model_id": "intfloat/multilingual-e5-small",
+          "passage_prefix": "passage: ",
+          "pooling": "attention_mask_mean_then_l2",
+          "query_prefix": "query: ",
+          "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "seed": 1729,
+          "tf32": false
+        },
+        "input_count_at_max_length": 1
+      },
+      "feature_version": "pre_deep_v1",
+      "git_commit": "b87279fcc2bedd5d9e221eefdd8954746e3279fd",
+      "git_dirty": true,
+      "logical_cpu_count": 12,
+      "member": "timelyrag_company_policies_dataset_v2.jsonl",
+      "output_sha256": {
+        "config.json": "9adf5cf640847b4da666b9668ef130943af04b7cd0cd261ec32b8ac0bc08866d",
+        "failure_cases.json": "c263246e03e0a0ebcfccaec35dc332c0434c35aa86aa3c0f12f0ce02735fc354",
+        "per_query.jsonl": "5144997a073cabc8efcf1914ab4226f96c0acd58207d1b809dab03f2d2cc18ea",
+        "qrels.tsv": "8eb2e4f69283500f6a6dbf2d66793506c34eef6ce0f23fd83273d2c2ad9f0030",
+        "run.trec": "794c3a981d8ef9b2e26f5f1d8dddc1419e7485d5943693146607bdd5c43f134a",
+        "summary.json": "a341c38fd30e5e9bd3f536af6b40ac8f62b05d2247734670af4c784489fa7444"
+      },
+      "packages": {
+        "faiss-cpu": "1.16.0",
+        "numpy": "2.5.5",
+        "pydantic": "2.14.4",
+        "rank-bm25": "0.2.2",
+        "tokenizers": "0.22.2",
+        "torch": "2.10.0",
+        "transformers": "5.5.0"
+      },
+      "pilot_config_sha256": "e4d5635d5b7fb6470391f12589fdb75becaab95324846187429556f886e2b85b",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "pre_deep_features_sha256": "01238a28792014299cc01866294d6c33110e11f89655db013b13af3a2dabce43",
+      "python": "3.13.11",
+      "qrel_scale": "binary; listed positives=1; unjudged treated as 0 for scoring only",
+      "selected_query_ids": [
+        1521,
+        2424,
+        599,
+        1909,
+        2565,
+        1612,
+        2894,
+        1260,
+        409,
+        2461,
+        541,
+        1802,
+        2138,
+        1277,
+        2223,
+        1752,
+        357,
+        2155,
+        310,
+        544,
+        733,
+        1695,
+        97,
+        1947,
+        2258,
+        1577,
+        2318,
+        2265,
+        868,
+        2797,
+        2051,
+        992,
+        147,
+        798,
+        2873,
+        2849,
+        2995,
+        2694,
+        740,
+        461,
+        96,
+        180,
+        435,
+        2214,
+        1740,
+        121,
+        1727,
+        2285,
+        1693,
+        2970,
+        1844,
+        1545,
+        1291,
+        1472,
+        610,
+        2227,
+        1349,
+        721,
+        2723,
+        2262,
+        1269,
+        2510,
+        2457,
+        2498,
+        9,
+        137,
+        1308,
+        2269,
+        1510,
+        1768,
+        2526,
+        1112,
+        198,
+        1415,
+        1348,
+        1509,
+        2925,
+        1980,
+        56,
+        1329,
+        2808,
+        1292,
+        156,
+        2505,
+        2340,
+        1159,
+        2856,
+        811,
+        324,
+        2776,
+        42,
+        1827,
+        791,
+        776,
+        1597,
+        980,
+        2798,
+        948,
+        2845,
+        428
+      ],
+      "source_files_sha256": {
+        "pyproject.toml": "ab1cb013f9d543803ddb2f4015d1968ee754f2b4f1d63e9d3b3968ed4eac6721",
+        "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+        "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+        "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+        "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+        "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+        "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+        "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+        "src/temporalproof/evaluation/baseline.py": "8a75fb32fe5cf79eee1260ecd947f1109f76abce5ecf0dcff6cfca4e8209255f",
+        "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+        "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+        "src/temporalproof/evaluation/pilot.py": "cc4b57f390acb990abb4385b251e9fb6d6f962a0a5e8298bbb7dd5c28a510ce2",
+        "src/temporalproof/evaluation/reranking.py": "469db2811cacdc009a3d5aa3494e25e1d431b8e03085ce3c26763a71212069ef",
+        "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+        "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+        "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+        "src/temporalproof/retrieval/reranker.py": "8c1a5e17c9e8bb176a305d1f317e0279316f9e45e1c541da1a66f61fc70e1aa7",
+        "src/temporalproof/routing/__init__.py": "a95e1155bc0f7b29b0b93e25d50753d5970d181d3bef838bb4a1d27d7278514c",
+        "src/temporalproof/routing/features.py": "a0b7b6a99db0e295582f57de97f207a2256724f60dc843d20685cd2ca149d6a1",
+        "src/temporalproof/routing/targets.py": "aecbecd7926a773be4fc837f0369b0d879068a58c290c26ca66dc344225b7e86",
+        "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+        "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+        "uv.lock": "0a38e7e3bd0d0ca017b902b3ec050f69a55c26f89e1cc9f93f67b8faf8ca3724"
+      },
+      "source_snapshot_sha256": "eaff8985ec0882614d9bdf417f9ac5cae4170c1da1193ac0bfc191247e770bf7",
+      "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+      "test_partition_evaluated": false,
+      "thread_environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "warmup_query_id": 0
+    }
+  },
+  "summary": {
+    "config": {
+      "baseline": {
+        "b": 0.75,
+        "bootstrap_samples": 2000,
+        "epsilon": 0.25,
+        "failure_examples": 5,
+        "k1": 1.5,
+        "method": "hybrid_rrf",
+        "name": "hybrid_m4_train100_v1",
+        "partition": "train",
+        "query_limit": 100,
+        "seed": 1729,
+        "tie_break": "score_desc_doc_id_asc",
+        "tokenizer": "python_str_split_v1",
+        "top_k": 100,
+        "warmup_queries": 3
+      },
+      "cost_penalties_ndcg_per_second": [
+        0.0,
+        0.01,
+        0.05
+      ],
+      "disagreement_threshold": 0.2,
+      "encoder_batch_size": 16,
+      "encoder_max_length": 512,
+      "encoder_model_id": "intfloat/multilingual-e5-small",
+      "encoder_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "query_route_budgets": [
+        0.0,
+        0.1,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "reranker_batch_size": 16,
+      "reranker_max_length": 512,
+      "reranker_model_id": "dragonkue/bge-reranker-v2-m3-ko",
+      "reranker_revision": "2aca5884ecac490192af9ebd86836d9073d826cd",
+      "rrf_offset": 60
+    },
+    "cost_scope": "fast includes feature extraction; deep is incremental only; policy sums are offline stage-cost estimates, not live p95",
+    "deep_summary": {
+      "index_build_ms": 0.0,
+      "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+      "metrics": {
+        "ndcg_at_10": {
+          "mean": 0.158215560568843,
+          "query_bootstrap_95_percent_interval": [
+            0.10793159733093578,
+            0.21118179040186297
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.207,
+          "query_bootstrap_95_percent_interval": [
+            0.14164166666666664,
+            0.2766666666666666
+          ]
+        },
+        "recall_at_100": {
+          "mean": 0.3863333333333333,
+          "query_bootstrap_95_percent_interval": [
+            0.304,
+            0.4660083333333333
+          ]
+        },
+        "recall_at_20": {
+          "mean": 0.23366666666666666,
+          "query_bootstrap_95_percent_interval": [
+            0.16664999999999996,
+            0.30666666666666664
+          ]
+        },
+        "reference_prefix_ndcg_at_10": {
+          "mean": 0.22120767821854062,
+          "query_bootstrap_95_percent_interval": [
+            0.15599550535069484,
+            0.2935185481565859
+          ]
+        }
+      },
+      "queries_with_incomplete_top10": 89,
+      "queries_with_no_gold_in_top100": 45,
+      "query_count": 100,
+      "retrieval_timing_ms": {
+        "concurrency": 1,
+        "mean": 1151.8020776800017,
+        "p50": 1116.5924039999595,
+        "p95": 1438.6595359499665,
+        "scope": "incremental rerank only: frozen candidate lookup, text lookup, pair tokenization, CPU/GPU transfers, synchronized CUDA forward, scalar scores and sorting; concurrency 1; excludes fast retrieval, model load, warmup, metrics, file writes and tracking"
+      }
+    },
+    "fast_summary": {
+      "index_build_ms": 327.7729989999898,
+      "interval_scope": "query bootstrap conditional on selected development queries; no population or paired significance claim",
+      "metrics": {
+        "ndcg_at_10": {
+          "mean": 0.18168831170093028,
+          "query_bootstrap_95_percent_interval": [
+            0.1312652033021412,
+            0.23690180261051472
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.24783333333333332,
+          "query_bootstrap_95_percent_interval": [
+            0.179,
+            0.3175083333333333
+          ]
+        },
+        "recall_at_100": {
+          "mean": 0.3863333333333333,
+          "query_bootstrap_95_percent_interval": [
+            0.304,
+            0.4660083333333333
+          ]
+        },
+        "recall_at_20": {
+          "mean": 0.30233333333333334,
+          "query_bootstrap_95_percent_interval": [
+            0.23065833333333333,
+            0.3806916666666666
+          ]
+        },
+        "reference_prefix_ndcg_at_10": {
+          "mean": 0.2457918691295643,
+          "query_bootstrap_95_percent_interval": [
+            0.18209265498134983,
+            0.31523247615693545
+          ]
+        }
+      },
+      "queries_with_incomplete_top10": 88,
+      "queries_with_no_gold_in_top100": 45,
+      "query_count": 100,
+      "retrieval_timing_ms": {
+        "concurrency": 1,
+        "mean": 94.50328119999652,
+        "p50": 93.33646549998775,
+        "p95": 123.16103655003303,
+        "scope": "warm sequential hybrid plus pre-deep feature extraction; synchronized GPU query encoding, CPU BM25/FAISS/RRF; concurrency 1; excludes offline build/metrics/files/tracking"
+      }
+    },
+    "feature_slices": {
+      "explicit_year": {
+        "mean_gain": -0.020133713344999974,
+        "positive_gain_count": 15,
+        "query_count": 99
+      },
+      "low_agreement": {
+        "mean_gain": 0.008669738390931965,
+        "positive_gain_count": 7,
+        "query_count": 64
+      },
+      "no_explicit_year": {
+        "mean_gain": -0.3540374920537315,
+        "positive_gain_count": 0,
+        "query_count": 1
+      },
+      "other_agreement": {
+        "mean_gain": -0.08061495472856595,
+        "positive_gain_count": 8,
+        "query_count": 36
+      },
+      "unknown_query_insertion": {
+        "mean_gain": null,
+        "positive_gain_count": 0,
+        "query_count": 0
+      }
+    },
+    "feature_timing_mean_ms": 1.7954605099998844,
+    "fitted_router": false,
+    "group_count": 100,
+    "mlflow_run_ids": {
+      "deep": "001ba53181f041c49df1ca9c88ca8b63",
+      "fast": "66198b1aee61450a804c7b33e6363776"
+    },
+    "paired_deltas": {
+      "ndcg_at_10": {
+        "best_query_ids": [
+          733,
+          121,
+          2925,
+          992,
+          980
+        ],
+        "improved": 15,
+        "mean_delta": -0.023472751132087286,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.05972574972432273,
+          0.013149988958233647
+        ],
+        "regressed": 18,
+        "unchanged": 67,
+        "worst_query_ids": [
+          798,
+          544,
+          428,
+          2873,
+          156
+        ]
+      },
+      "recall_at_10": {
+        "best_query_ids": [
+          121,
+          2894,
+          2227,
+          992,
+          980
+        ],
+        "improved": 8,
+        "mean_delta": -0.04083333333333333,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.095,
+          0.012500000000000002
+        ],
+        "regressed": 16,
+        "unchanged": 76,
+        "worst_query_ids": [
+          544,
+          1510,
+          2873,
+          1472,
+          798
+        ]
+      },
+      "recall_at_100": {
+        "best_query_ids": [
+          2995,
+          2970,
+          2925,
+          2894,
+          2873
+        ],
+        "improved": 0,
+        "mean_delta": 0.0,
+        "paired_query_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "regressed": 0,
+        "unchanged": 100,
+        "worst_query_ids": [
+          9,
+          42,
+          56,
+          96,
+          97
+        ]
+      },
+      "recall_at_20": {
+        "best_query_ids": [
+          121,
+          2227,
+          733,
+          2995,
+          2970
+        ],
+        "improved": 3,
+        "mean_delta": -0.06866666666666667,
+        "paired_query_bootstrap_95_percent_interval": [
+          -0.12033333333333333,
+          -0.02
+        ],
+        "regressed": 17,
+        "unchanged": 80,
+        "worst_query_ids": [
+          541,
+          544,
+          1510,
+          1472,
+          798
+        ]
+      }
+    },
+    "policies": [
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.0,
+        "modeled_mean_additive_stage_ms": 94.50328119999652,
+        "name": "always_fast",
+        "ndcg_at_10": 0.18168831170093028,
+        "routed_beneficial": 0,
+        "routed_count": 0,
+        "routed_fraction": 0.0,
+        "routed_harmful": 0,
+        "routed_query_ids": [],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": -0.023472751132087286,
+        "modeled_mean_additive_stage_ms": 1246.3053588799983,
+        "name": "always_deep",
+        "ndcg_at_10": 0.158215560568843,
+        "routed_beneficial": 15,
+        "routed_count": 100,
+        "routed_fraction": 1.0,
+        "routed_harmful": 18,
+        "routed_query_ids": [
+          9,
+          42,
+          56,
+          96,
+          97,
+          121,
+          137,
+          147,
+          156,
+          180,
+          198,
+          310,
+          324,
+          357,
+          409,
+          428,
+          435,
+          461,
+          541,
+          544,
+          599,
+          610,
+          721,
+          733,
+          740,
+          776,
+          791,
+          798,
+          811,
+          868,
+          948,
+          980,
+          992,
+          1112,
+          1159,
+          1260,
+          1269,
+          1277,
+          1291,
+          1292,
+          1308,
+          1329,
+          1348,
+          1349,
+          1415,
+          1472,
+          1509,
+          1510,
+          1521,
+          1545,
+          1577,
+          1597,
+          1612,
+          1693,
+          1695,
+          1727,
+          1740,
+          1752,
+          1768,
+          1802,
+          1827,
+          1844,
+          1909,
+          1947,
+          1980,
+          2051,
+          2138,
+          2155,
+          2214,
+          2223,
+          2227,
+          2258,
+          2262,
+          2265,
+          2269,
+          2285,
+          2318,
+          2340,
+          2424,
+          2457,
+          2461,
+          2498,
+          2505,
+          2510,
+          2526,
+          2565,
+          2694,
+          2723,
+          2776,
+          2797,
+          2798,
+          2808,
+          2845,
+          2849,
+          2856,
+          2873,
+          2894,
+          2925,
+          2970,
+          2995
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.0055486325701964555,
+        "modeled_mean_additive_stage_ms": 843.7155212299979,
+        "name": "low_agreement",
+        "ndcg_at_10": 0.18723694427112675,
+        "routed_beneficial": 7,
+        "routed_count": 64,
+        "routed_fraction": 0.64,
+        "routed_harmful": 7,
+        "routed_query_ids": [
+          56,
+          97,
+          137,
+          180,
+          324,
+          357,
+          409,
+          435,
+          461,
+          541,
+          610,
+          721,
+          733,
+          740,
+          776,
+          791,
+          948,
+          980,
+          1112,
+          1159,
+          1260,
+          1291,
+          1292,
+          1308,
+          1329,
+          1415,
+          1510,
+          1521,
+          1545,
+          1597,
+          1612,
+          1693,
+          1695,
+          1727,
+          1740,
+          1768,
+          1802,
+          1909,
+          1947,
+          2138,
+          2214,
+          2258,
+          2265,
+          2285,
+          2318,
+          2424,
+          2457,
+          2461,
+          2498,
+          2505,
+          2510,
+          2526,
+          2565,
+          2694,
+          2776,
+          2797,
+          2798,
+          2808,
+          2845,
+          2849,
+          2894,
+          2925,
+          2970,
+          2995
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.0055486325701964555,
+        "modeled_mean_additive_stage_ms": 843.7155212299979,
+        "name": "year_and_low_agreement",
+        "ndcg_at_10": 0.18723694427112675,
+        "routed_beneficial": 7,
+        "routed_count": 64,
+        "routed_fraction": 0.64,
+        "routed_harmful": 7,
+        "routed_query_ids": [
+          56,
+          97,
+          137,
+          180,
+          324,
+          357,
+          409,
+          435,
+          461,
+          541,
+          610,
+          721,
+          733,
+          740,
+          776,
+          791,
+          948,
+          980,
+          1112,
+          1159,
+          1260,
+          1291,
+          1292,
+          1308,
+          1329,
+          1415,
+          1510,
+          1521,
+          1545,
+          1597,
+          1612,
+          1693,
+          1695,
+          1727,
+          1740,
+          1768,
+          1802,
+          1909,
+          1947,
+          2138,
+          2214,
+          2258,
+          2265,
+          2285,
+          2318,
+          2424,
+          2457,
+          2461,
+          2498,
+          2505,
+          2510,
+          2526,
+          2565,
+          2694,
+          2776,
+          2797,
+          2798,
+          2808,
+          2845,
+          2849,
+          2894,
+          2925,
+          2970,
+          2995
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.0,
+        "modeled_mean_additive_stage_ms": 94.50328119999652,
+        "name": "random_query_budget_0",
+        "ndcg_at_10": 0.18168831170093028,
+        "routed_beneficial": 0,
+        "routed_count": 0,
+        "routed_fraction": 0.0,
+        "routed_harmful": 0,
+        "routed_query_ids": [],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.0,
+        "modeled_mean_additive_stage_ms": 94.50328119999652,
+        "name": "oracle_query_budget_0",
+        "ndcg_at_10": 0.18168831170093028,
+        "routed_beneficial": 0,
+        "routed_count": 0,
+        "routed_fraction": 0.0,
+        "routed_harmful": 0,
+        "routed_query_ids": [],
+        "scope": "offline training oracle upper bound; not deployable",
+        "uses_outcomes_at_decision": true
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": -0.0009077089626867646,
+        "modeled_mean_additive_stage_ms": 212.1269797799971,
+        "name": "random_query_budget_0.1",
+        "ndcg_at_10": 0.18078060273824353,
+        "routed_beneficial": 1,
+        "routed_count": 10,
+        "routed_fraction": 0.1,
+        "routed_harmful": 2,
+        "routed_query_ids": [
+          428,
+          733,
+          776,
+          1159,
+          1827,
+          2340,
+          2461,
+          2723,
+          2797,
+          2798
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.03199399629583157,
+        "modeled_mean_additive_stage_ms": 202.13509907999764,
+        "name": "oracle_query_budget_0.1",
+        "ndcg_at_10": 0.21368230799676183,
+        "routed_beneficial": 10,
+        "routed_count": 10,
+        "routed_fraction": 0.1,
+        "routed_harmful": 0,
+        "routed_query_ids": [
+          97,
+          121,
+          198,
+          733,
+          980,
+          992,
+          1277,
+          1612,
+          2227,
+          2925
+        ],
+        "scope": "offline training oracle upper bound; not deployable",
+        "uses_outcomes_at_decision": true
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": -0.010257431566053571,
+        "modeled_mean_additive_stage_ms": 389.1789309199975,
+        "name": "random_query_budget_0.25",
+        "ndcg_at_10": 0.1714308801348767,
+        "routed_beneficial": 3,
+        "routed_count": 25,
+        "routed_fraction": 0.25,
+        "routed_harmful": 5,
+        "routed_query_ids": [
+          156,
+          310,
+          428,
+          461,
+          541,
+          733,
+          776,
+          798,
+          1159,
+          1308,
+          1509,
+          1577,
+          1827,
+          2138,
+          2155,
+          2265,
+          2318,
+          2340,
+          2461,
+          2498,
+          2526,
+          2723,
+          2797,
+          2798,
+          2925
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.03592238162713512,
+        "modeled_mean_additive_stage_ms": 257.870660289999,
+        "name": "oracle_query_budget_0.25",
+        "ndcg_at_10": 0.21761069332806543,
+        "routed_beneficial": 15,
+        "routed_count": 15,
+        "routed_fraction": 0.15,
+        "routed_harmful": 0,
+        "routed_query_ids": [
+          42,
+          97,
+          121,
+          198,
+          409,
+          733,
+          980,
+          992,
+          1277,
+          1348,
+          1577,
+          1612,
+          2227,
+          2894,
+          2925
+        ],
+        "scope": "offline training oracle upper bound; not deployable",
+        "uses_outcomes_at_decision": true
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": -0.01760990443924161,
+        "modeled_mean_additive_stage_ms": 677.4571416699996,
+        "name": "random_query_budget_0.5",
+        "ndcg_at_10": 0.16407840726168868,
+        "routed_beneficial": 7,
+        "routed_count": 50,
+        "routed_fraction": 0.5,
+        "routed_harmful": 9,
+        "routed_query_ids": [
+          9,
+          42,
+          56,
+          156,
+          180,
+          310,
+          357,
+          428,
+          435,
+          461,
+          541,
+          733,
+          740,
+          776,
+          791,
+          798,
+          980,
+          1112,
+          1159,
+          1260,
+          1269,
+          1291,
+          1308,
+          1348,
+          1509,
+          1521,
+          1577,
+          1597,
+          1727,
+          1802,
+          1827,
+          1844,
+          2138,
+          2155,
+          2265,
+          2318,
+          2340,
+          2424,
+          2457,
+          2461,
+          2498,
+          2510,
+          2526,
+          2723,
+          2797,
+          2798,
+          2849,
+          2873,
+          2894,
+          2925
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.03592238162713512,
+        "modeled_mean_additive_stage_ms": 257.870660289999,
+        "name": "oracle_query_budget_0.5",
+        "ndcg_at_10": 0.21761069332806543,
+        "routed_beneficial": 15,
+        "routed_count": 15,
+        "routed_fraction": 0.15,
+        "routed_harmful": 0,
+        "routed_query_ids": [
+          42,
+          97,
+          121,
+          198,
+          409,
+          733,
+          980,
+          992,
+          1277,
+          1348,
+          1577,
+          1612,
+          2227,
+          2894,
+          2925
+        ],
+        "scope": "offline training oracle upper bound; not deployable",
+        "uses_outcomes_at_decision": true
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": -0.023472751132087286,
+        "modeled_mean_additive_stage_ms": 1246.3053588799983,
+        "name": "random_query_budget_1",
+        "ndcg_at_10": 0.158215560568843,
+        "routed_beneficial": 15,
+        "routed_count": 100,
+        "routed_fraction": 1.0,
+        "routed_harmful": 18,
+        "routed_query_ids": [
+          9,
+          42,
+          56,
+          96,
+          97,
+          121,
+          137,
+          147,
+          156,
+          180,
+          198,
+          310,
+          324,
+          357,
+          409,
+          428,
+          435,
+          461,
+          541,
+          544,
+          599,
+          610,
+          721,
+          733,
+          740,
+          776,
+          791,
+          798,
+          811,
+          868,
+          948,
+          980,
+          992,
+          1112,
+          1159,
+          1260,
+          1269,
+          1277,
+          1291,
+          1292,
+          1308,
+          1329,
+          1348,
+          1349,
+          1415,
+          1472,
+          1509,
+          1510,
+          1521,
+          1545,
+          1577,
+          1597,
+          1612,
+          1693,
+          1695,
+          1727,
+          1740,
+          1752,
+          1768,
+          1802,
+          1827,
+          1844,
+          1909,
+          1947,
+          1980,
+          2051,
+          2138,
+          2155,
+          2214,
+          2223,
+          2227,
+          2258,
+          2262,
+          2265,
+          2269,
+          2285,
+          2318,
+          2340,
+          2424,
+          2457,
+          2461,
+          2498,
+          2505,
+          2510,
+          2526,
+          2565,
+          2694,
+          2723,
+          2776,
+          2797,
+          2798,
+          2808,
+          2845,
+          2849,
+          2856,
+          2873,
+          2894,
+          2925,
+          2970,
+          2995
+        ],
+        "scope": "predeclared in-sample diagnostic; no held-out claim",
+        "uses_outcomes_at_decision": false
+      },
+      {
+        "cost_scope": "sum of separately measured stages, including fast feature extraction; not measured live latency or p95",
+        "mean_gain_vs_fast": 0.03592238162713512,
+        "modeled_mean_additive_stage_ms": 257.870660289999,
+        "name": "oracle_query_budget_1",
+        "ndcg_at_10": 0.21761069332806543,
+        "routed_beneficial": 15,
+        "routed_count": 15,
+        "routed_fraction": 0.15,
+        "routed_harmful": 0,
+        "routed_query_ids": [
+          42,
+          97,
+          121,
+          198,
+          409,
+          733,
+          980,
+          992,
+          1277,
+          1348,
+          1577,
+          1612,
+          2227,
+          2894,
+          2925
+        ],
+        "scope": "offline training oracle upper bound; not deployable",
+        "uses_outcomes_at_decision": true
+      }
+    ],
+    "query_count": 100,
+    "router_training_targets_generated": true,
+    "target_definition": "gain > lambda * incremental_rerank_ms / 1000 + 1e-12; lambda in nDCG/second; training only",
+    "test_partition_evaluated": false,
+    "utility": {
+      "beneficial_count": 15,
+      "harmful_count": 18,
+      "mean_gain": -0.023472751132087286,
+      "no_gold_in_pool": 45,
+      "positive_labels_by_lambda": {
+        "0.0": 15,
+        "0.01": 15,
+        "0.05": 13
+      },
+      "unchanged_count": 67
+    },
+    "validation_partition_evaluated": false
+  }
+}
