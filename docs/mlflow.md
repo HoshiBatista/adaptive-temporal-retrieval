@@ -143,3 +143,14 @@ by manifest fingerprint. `analysis/` contains the checked aggregate/PNG/SVG/prov
 Model parameters/OOF scores are local research artifacts, never public benchmark content.
 Primary metrics describe grouped OOF training and modeled stage sums, not final test,
 calibrated probabilities or actual service p95. See [report](m4_router_groupcv_report.md).
+
+
+Frozen development validation uses the separate Python module and analysis/plot/log
+commands in the [validation report](m4_router_validation_report.md). FINISHED runs:
+fast `536e5d8412a84faeb8faf98ac84b78d1`, deep `fa31b63560844d8581b7c68b7bae53eb`,
+frozen router `d3258e57ad3a43709832aa94b3a1c499`. The router run has explicit metadata
+artifacts under `frozen_router/` and checked aggregate/PNG/SVG under `analysis/`, with
+no model parameters or raw failure text. Repeated logging returns the same three IDs;
+the immutable collection manifest excludes its later tracking sidecar. Metrics remain
+**development validation / modeled cost**, with no refit or final test. Primary nDCG@10
+0.190746 regresses against hybrid 0.198972; preserve this negative result.

@@ -311,6 +311,37 @@ there is no learned-quality superiority claim. Exact CPU model/score replay and 
 tests are verified. Retain all sensitivity results and freeze policies for validation
 before considering a new method. See [report](../m4_router_groupcv_report.md).
 
+### ADR-018: Frozen-model development validation with pre-deep decisions
+Date: 2026-11-27
+Status: ACCEPTED for the evaluation protocol; no superiority claim
+
+Keep the previous train500 primary full-feature/penalty-0 JSON model fixed. Pin its
+manifest/config/parameter hashes, original feature/scoring code, train IDs/groups and
+retrieval settings before evaluating all 495 validation queries. A separate validation
+runner never fits a model or creates validation training targets; the train-only pilot
+validator remains enforced. Share only the partition-aware fast collector.
+
+Save model/features/scores/policy decisions and hashes before deep inference. Apply a
+single frozen-model whole-cohort quota, with 49/495 calls at the primary 10% cap and
+matched random/agreement controls. OOF must still rank within held-out folds, since
+other fold models may have seen a query's labels. A cohort quota is not an online SLA.
+Maintain all predeclared sensitivity points without selecting a new primary on validation.
+
+Treat this as development validation: the original validation100 already informed model
+choices. Test remains separate. Replay decisions/metrics and group intervals, verify the
+original validation100 scores/ranks/qrels, retain regressions and report modeled stage
+means separately from live pipeline latency. Keep raw text/labels/weights outside Git;
+local MLflow uses explicit metadata artifact lists and the existing local-store guard.
+
+Protocol tests cover no-fit/label independence, source/group/hash guards, immutable
+checkpoints, matching quotas and JSON serialization; 167 CPU tests pass. An interrupted
+serialization-only attempt remains separate; only a complete verified run may provide
+validation results. Complete validation495 now measures primary nDCG@10 0.190746
+versus hybrid 0.198972; paired group interval is below zero. Exact CPU replay and
+original validation100 GPU scores/ranks/qrels verified. Keep hybrid as the reference
+and inspect failures before the next train-only experiment; test remains untouched.
+See [validation report](../m4_router_validation_report.md).
+
 ## Decision entry template
 
 ```text

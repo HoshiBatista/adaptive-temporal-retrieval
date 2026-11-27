@@ -12,7 +12,8 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   0.393333. These are development-subset measurements; test is not evaluated.
 - **Local tracking:** optional MLflow 3.18.0 SQLite/artifact store, loopback UI, idempotent
   historical import and `--mlflow` are implemented. M1 validation100, a separate train
-  integration smoke, M2/M3, M4 pilots and grouped-router OOF are FINISHED locally. The final M2
+  integration smoke, M2/M3, M4 pilots, grouped-router OOF and frozen validation495
+  are FINISHED locally. The final M2
   records are tagged `environment_lock_verified`; test remains unevaluated.
 - **M2:** pinned multilingual E5 GPU encoder, FAISS cosine index/cache, RRF fusion and
   insertion-time diagnostic implemented. On the original validation100, nDCG@10 is
@@ -41,21 +42,101 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   no-explicit-temporal variants and all three penalties retained. Final primary JSON
   model is fitted on the selected 500 train rows for later validation. Exact model/OOF
   replay, strict source/group/feature guards and **157 CPU tests** verified.
+- **M4 frozen development validation:** all **495 validation queries / 462 groups**, same
+  full corpus/candidate/model protocol. Unchanged train500 primary routes **49/495**,
+  nDCG@10 **0.190746** versus hybrid **0.198972**, agreement **0.198817**, random **0.194573**,
+  all-deep **0.148561**. Primary delta −0.008226, paired group interval
+  **[−0.016980, −0.000566]**; matched-control intervals include zero. Negative primary result
+  retained. No validation refit/targets/threshold tuning; no test evaluation. Exact CPU
+  decision/metric/interval replay and original validation100 GPU scores/ranks/qrels verified;
+  **167 CPU tests**, Ruff and local MLflow pass. This set includes prior model-selection
+  validation100; it is not an independent final test. See the [report](../m4_router_validation_report.md).
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2, NumPy 2.5.5 and sklearn 1.9.1 (routing extra).
 - **Research results:** M1–M3 validation-subset baselines, M4 train utility targets and
-  first grouped-OOF learned routing/control comparison. No routing validation/final test,
+  grouped-OOF routing/control and frozen development validation comparison. No final test,
   live routed-service p95 or official whole-benchmark reproduction.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** freeze the primary full-feature logistic and agreement-budget
-  control for validation comparison, with exact same candidate/model protocol. Retain the
-  inconclusive/negative learned-router result; final test stays untouched. Hybrid remains
-  the fast reference. No post-hoc switch to the best secondary OOF operating point.
+- **Next increment:** inspect development reranker/router failures and predeclare the next
+  train-only hypothesis before expanding collection or opening final test. Keep hybrid as
+  the reference; retain negative/inconclusive policies rather than choosing another
+  validation operating point after inspecting its quality. No default learned-router adoption.
 
 ## Verified work log
+
+### 2026-11-27 — M4 / frozen train500 router on complete development validation
+
+- User approved the proposed validation495 stage with GPU. Implemented separate
+  `evaluation/router_validation.py`, predeclared config, synthetic CPU contracts and three
+  explicit analysis/plot/local-tracking scripts. Shared fast collector now respects its
+  declared train/validation partition; the pilot's train-only validator is preserved.
+  No new dependencies, model downloads, fitting, calibration, threshold selection or
+  validation training targets. Final test remains unevaluated.
+- Frozen training manifest `1ec906f15ff132ccda05f1172c169c68f5d2ffa243f6fd6541d1e2aa5784982a`,
+  final model `4a8d3265bf6545640a14060a76cfc67872e4e70d0b8dcd875777310b19d60755`.
+  Guards verify seven training output files, canonical train groups/IDs and original
+  feature/predictor code. All retrieval settings match train500 except query name/count/
+  partition. Decisions/scores/model/features/config/plan are checkpointed before deep.
+- Full validation: **495 queries / 462 groups**, corpus **30,000**, top100, unchanged
+  full-positive qrels. Single frozen model ranks whole cohort; primary floor(.1*495)=49
+  calls, matched seeded random/agreement. OOF still uses within-fold ranking. All original
+  0/.1/.25/.5/1 budgets and fixed rules retained, with no post-hoc primary switch.
+- Completed evidence `artifacts/m4/router_validation495_v2`, source snapshot
+  `5c83e6deccd2613780e5beadf1ece564cb954d6a089eb7dc5e1880eb200bdcf8`, based on
+  `285d454` with the recorded uncommitted changes; source stayed fixed during collection.
+  Manifest `9d89e4079b6744f87001023c12df13073dd08550a9ace13037d34e84bb463892`.
+  Original train500 source/model artifacts remain unchanged.
+- Primary nDCG@10 **0.1907460447**, hybrid **0.1989722759**, agreement **0.1988169608**,
+  random **0.1945732572**, always-deep **0.1485609360**. Primary Recall@10/20/100
+  **0.238384/0.289226/0.417744**. All policies preserve candidate Recall@100; **211**
+  pools have no gold. Full-deep gains/regressions/unchanged **54/123/318**, primary calls
+  **11/17/21**. Both candidate failure and harmful reranks need investigation.
+- Primary vs hybrid **−0.008226**, group interval **[−0.016980, −0.000566]**. Vs random
+  **−0.003827**, interval **[−0.013632, 0.004883]**; vs agreement **−0.008071**, interval
+  **[−0.017396, 0.000287]**. Conditional 2,000-group bootstrap, fixed predictions/no refit;
+  matched-control intervals include zero. Negative primary development result, no learned
+  superiority or independent final-test claim. Prior model-selection validation100 included.
+- Timings, concurrency1/three warmups/FP32/batch16/max512 unchanged: fast mean/p95
+  **87.299/122.577 ms**, incremental deep **1132.942/1516.032 ms**. Feature extraction
+  mean **1.801 ms** already included in fast. Warm numeric/parsed-model CPU routing mean
+  **0.009056 ms**. Modeled primary/fast/agreement/all-deep means **186.391/87.299/200.530/
+  1220.241 ms**; not measured live routed p95. Full deep profile has **49,800** pairs
+  including warmup and zero at max length.
+- Allocator peaks allocated/reserved: completed-run E5 query stage **459.794/486 MiB**,
+  deep **2706.176/4590 MiB**; residual bytes between collected model references **9,568,256**.
+  Full corpus cache was newly encoded in first attempt (**32.340 s**) because the routing
+  extra changed the lock fingerprint; the completed run reused it. No numerical package/
+  model change. Completed cached BM25/FAISS build **314.344 ms**, excludes original encoding.
+- The first `router_validation495_v1` attempt was deliberately interrupted during deep
+  after inspection found NumPy count serialization would fail at report writing. Preserved
+  its artifacts/log without complete deep/policy results. Fixed integer conversion and
+  added JSON serialization contract before restarting. Both attempts have exact identical
+  config/model/features/decisions/router scores; no outcome-driven change. Only `v2`
+  completes the full deep run. No second complete 495-query GPU replay.
+- Verification: all root/child hashes, unchanged source/training model, exact CPU scores/
+  decisions/summary/group intervals, plus original validation100 **both fast/deep scores,
+  ranks and qrels** match old M2/M3. Scientific PNG/SVG generated and visually inspected.
+  Aggregate `experiments/results/m4_router_validation495_v1.json` includes numeric failure
+  cases and exploratory metadata slices without benchmark text or model parameters.
+- Validation commands (full invocation/flags in the report): `uv run --frozen --extra
+  tracking --extra dense --extra routing pytest -q` with OMP/MKL/OpenBLAS=1;
+  Ruff lint/format; `python -u -m temporalproof.evaluation.router_validation --output
+  artifacts/m4/router_validation495_v2` with offline/thread flags;
+  `experiments/analyze_router_validation.py`, `plot_router_validation.py`,
+  `log_router_validation.py`. **167 CPU tests pass**, with existing third-party SQLAlchemy
+  deprecation warning. No GPU inference/network in ordinary tests. No final test/load test.
+- Local MLflow FINISHED: fast **536e5d8412a84faeb8faf98ac84b78d1**,
+  deep **fa31b63560844d8581b7c68b7bae53eb**, router **d3258e57ad3a43709832aa94b3a1c499**.
+  Seven explicit metadata artifacts plus aggregate/PNG/SVG; no raw failure text or model
+  weights. Second log returned exactly the same three IDs; tracking sidecar excluded
+  from immutable source manifest. No remote tracking, commit or push in this task.
+- Handoff: see [report](../m4_router_validation_report.md), ADR-018. Keep hybrid as fast
+  reference. Inspect failures to predeclare a train-only next experiment; do not advance
+  to M5/final test or claim temporal/learned superiority from this result.
+
 
 ### 2026-11-27 — M4 / first grouped-OOF logistic router on train500
 

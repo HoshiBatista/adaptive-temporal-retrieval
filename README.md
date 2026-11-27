@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** M0–M3, the M4 utility pilot and first grouped-OOF logistic router measured; no routing validation or final-test result.
+**Project status:** M0–M3, M4 train pilots/grouped OOF and frozen-router development validation measured; the router regresses against hybrid, final test remains unevaluated.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -37,7 +37,12 @@ The next 500-query experiment fits a logistic router using 5 grouped folds: prim
 nDCG@10 **0.198929** versus hybrid **0.197016**, with **49/500** deep calls. Its interval
 includes zero; a matched simple agreement control scores **0.204155**. A learned advantage
 is not established. See the [grouped-router report](docs/m4_router_groupcv_report.md).
-API, product UI, independent routing validation and final test remain planned.
+The frozen train500 model was then evaluated on all **495 development validation** queries:
+nDCG@10 **0.190746**, below hybrid **0.198972** and matched agreement **0.198817**,
+with 49 deep calls. Its paired group interval against hybrid is wholly negative;
+matched-control intervals include zero. See the [validation report](docs/m4_router_validation_report.md).
+No validation refit/threshold tuning; test remains unevaluated. Hybrid stays the reference.
+API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),
 [benchmark protocol](docs/benchmark_protocol.md) and [current status](docs/agent/CURRENT_STATUS.md).

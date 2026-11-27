@@ -9,7 +9,7 @@ import weakref
 from collections.abc import Callable, Sequence
 from pathlib import Path
 from time import perf_counter
-from typing import Literal, Self
+from typing import Literal, Protocol, Self
 
 import numpy as np
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -98,17 +98,24 @@ def read_rows(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines()]
 
 
+class FastCollectionConfig(Protocol):
+    baseline: BaselineConfig
+    rrf_offset: int
+
+
 def collect_fast(
     records: Sequence[QueryRecord],
     split: SplitManifest,
-    config: PilotConfig,
+    config: FastCollectionConfig,
     root: Path,
     provenance: dict,
     search: Callable[[str, int], tuple[list[Hit], list[Hit]]],
     build_ms: float = 0,
 ) -> dict[int, PreDeepFeatures]:
     """Search/extraction callbacks see no QueryRecord/qrels; IDs are joins only."""
-    selected = select_queries(split, "train", config.baseline.query_limit, config.baseline.seed)
+    selected = select_queries(
+        split, config.baseline.partition, config.baseline.query_limit, config.baseline.seed
+    )
     by_doc = {doc.global_doc_id: doc for record in records for doc in record.docs_ko}
     features, timings = {}, {}
 

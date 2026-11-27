@@ -84,7 +84,7 @@ See [follow-up report](../m3_korean_reranker_report.md).
 Tasks:
 - [x] Compute **training-only** fast/deep gains and measured-cost targets (initial 100-query pilot).
 - [ ] Implement pre-deep routing features (time intent, rank disagreement, margin/entropy, version diversity).
-- [x] Compare fixed/rule/learned logistic routing (initial grouped OOF train500; held-out validation pending).
+- [x] Compare fixed/rule/learned logistic routing (grouped OOF train500 and frozen development validation495).
 - [ ] Evaluate quality–cost Pareto curves on an untouched test split.
 - [ ] Run feature ablations, temporal-hard slices and a domain-transfer trial if feasible.
 
@@ -99,8 +99,17 @@ imputation/scaling/logistic fits. Primary budget routes 49 queries: nDCG@10 0.19
 hybrid 0.197016 and matched agreement control 0.204155; all primary contrast intervals
 include zero. Two feature sets/three cost penalties are retained; no learned superiority.
 157 CPU tests, exact CPU model/OOF replay and local MLflow verified. Primary all-selected-
-train JSON model is saved, with no validation/test evaluation. Next freeze logistic and
-agreement controls for validation. See [grouped router report](../m4_router_groupcv_report.md).
+train JSON model was saved before validation. See [grouped router report](../m4_router_groupcv_report.md).
+
+Frozen development validation verified: all 495 queries / 462 groups; primary routes
+49 and reaches nDCG@10 0.190746 versus hybrid 0.198972 and agreement 0.198817. Primary
+minus hybrid group interval [−0.016980, −0.000566] is below zero; matched-control
+intervals include zero. Full deep reaches 0.148561. No validation fit/targets/threshold
+tuning, no test evaluation. Exact CPU score/decision/metric replay and original
+validation100 GPU rankings/scores/qrels verified; 167 CPU tests and local MLflow pass.
+Retain the negative result and hybrid reference. Next inspect failures to predeclare a
+train-only experiment, rather than select a new validation operating point. See the
+[validation report](../m4_router_validation_report.md).
 
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 

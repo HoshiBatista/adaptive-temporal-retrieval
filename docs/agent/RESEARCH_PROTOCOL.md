@@ -1,6 +1,6 @@
 # Research protocol — Adaptive Semantic–Temporal Reranking (ASTR)
 
-**Status:** M0–M3, the utility pilot and first train-only grouped-OOF logistic router are measured.
+**Status:** M0–M3, utility pilots, grouped-OOF logistic routing and frozen development validation are measured.
 Measured validation-subset results are in [`docs/m1_bm25_report.md`](../m1_bm25_report.md);
 no final test or official whole-benchmark scores exist. Observed schema and limitations are recorded in
 [`docs/dataset_card.md`](../dataset_card.md); initial metric decisions are in
@@ -11,8 +11,11 @@ known-at filter against unchanged qrels without a separate documented experiment
 M2's [dense/hybrid report](../m2_retrieval_report.md) retains the fixed validation selection,
 reports paired deltas including regressions and tests insertion metadata only. M3 adds a
 fixed cross-encoder on frozen candidates and measured incremental cost; see the
-[M3 report](../m3_reranker_report.md). Router and valid-time applicability evaluation
-remain pending.
+[M3 report](../m3_reranker_report.md). Frozen train500 routing on all 495 development validation queries regresses against hybrid:
+0.190746 versus 0.198972 nDCG@10, paired group interval below zero. No validation
+refit/threshold tuning; see [validation report](../m4_router_validation_report.md). The set
+includes prior model-selection validation100. Final test, valid-time applicability and
+independent transfer evaluation remain pending.
 
 ## 1. Primary research question
 
