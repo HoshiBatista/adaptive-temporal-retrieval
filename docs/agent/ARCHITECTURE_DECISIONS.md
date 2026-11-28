@@ -369,6 +369,35 @@ Next train-only changed-utility routing must keep weight choice inside each fold
 old raw-deep labels cannot silently stand in for the new utility. No new GPU collection
 or final test is introduced here. See [report](../m4_rankblend_report.md).
 
+### ADR-020: Reviewed upstream auto-alpha code with explicit metric/tie parity
+Date: 2026-11-28
+Status: ACCEPTED for local code reproduction; no default adoption or paper-score claim
+
+Run the original reviewed/pinned temporal and metric helpers outside Git. Compile only
+original numeric config assignments and unchanged free-function ASTs for parity; exclude
+the pipeline, config I/O and unused neural wrapper to avoid hidden BGE-M3 downloads. Restore
+absolute helper module names after import. A separate qrel-free adapter exposes automatic
+alpha; the gold-dependent best-alpha branch is an offline oracle, never a real-query baseline.
+
+Preserve native NumPy reverse-argsort ties and export full-qrel versus reference-prefix
+metric columns separately. Add backward-compatible baseline enum values and refuse a
+native-tie label without an explicit callback, rather than misreport ordinary BM25 ties.
+E5 runs on CUDA using existing verified assets/cache. BM25 is code reproduction on local
+queries; E5/hybrid are retriever-agnostic transfers. No whole-paper/backbone equality claim.
+
+Two GPU runs preserve score matrices/ranks/qrels/alpha/quality; all1,485 real automatic
+top10s match the original function observed at its first metric boundary, before oracle
+execution. Independent CPU replay checks complete top100 and metric outputs. Real index
+build telemetry is separate from encoding/query stages; temporal increment means and
+modeled total means are not live pipeline p95.
+
+Local native BM25/E5 means decline with intervals including zero; hybrid .198335→.173203
+has negative group interval. Keep these findings and the fast reference. Derived query
+times are heuristic and document event times absent; source unknown-affinity .5 does not
+establish validity or hard filtering. Audit query-event roles/fallback on train before
+further routing. 206 tests with explicit source integration (202+4 skips by default),
+local tracking and [report](../m4_timelyrag_reference_report.md) verified. Final test closed.
+
 ## Decision entry template
 
 ```text

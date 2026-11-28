@@ -180,3 +180,17 @@ not model refits. Modeled stage sums include separately measured CPU scoring but
 quota allocation overhead; no live p95/service claim. At matched query counts, time costs
 can differ by selected query. JSON inference/state replay and held-out-label/outlier
 counterfactual tests guard fold isolation. See [full report](m4_router_groupcv_report.md).
+
+
+## Native TimelyRAG code comparison (M4.3)
+
+A separate fixed validation495 experiment uses original reversed NumPy argsort ties,
+not the previous local doc-ID tie policy. All candidate/score maps are preserved within
+paired baseline/auto methods; full-qrel nDCG and official prefix-normalized metric columns
+remain separate. The generic runner requires an explicit callback for native ties.
+Original auto code parity and full cached replay are checked; gold-dependent best-alpha
+is not a real-query baseline. BM25 is a matched local code reproduction, E5/hybrid are
+GPU-backed transfers with explicitly substituted backbone; published whole-benchmark
+results are not reproduced. Two GPU collections preserve scores/ranks/alpha/metrics.
+No qrels/time applicability labels are modified; source unknown .5 affinity is not a
+validity assertion or hard known-at filter. See [report](m4_timelyrag_reference_report.md).

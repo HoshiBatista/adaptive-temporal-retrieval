@@ -4,7 +4,7 @@
 
 > A research-oriented, version-aware retrieval system designed to find evidence that is both semantically relevant and temporally appropriate, while adapting its retrieval and reranking effort to the query.
 
-**Project status:** M0–M3, M4 train pilots/grouped OOF and frozen-router development validation measured; the router regresses against hybrid, final test remains unevaluated.
+**Project status:** M0–M3 and M4 routing/blending/native TimelyRAG code evaluated locally; no established adaptive advantage, final test remains unevaluated.
 **Academic context:** Undergraduate thesis / applied machine-learning research.  
 **Primary focus:** Adaptive semantic–temporal information retrieval.  
 **Secondary product feature:** ChangeImpact, a conservative evidence-dependency notification mechanism.  
@@ -13,7 +13,7 @@
 > [!IMPORTANT]
 > This README specifies what we intend to build, how we will evaluate it, and what we will consider a successful research result. No benchmark scores, performance improvements, model quality claims, or production-readiness guarantees are asserted before the corresponding experiments have been completed.
 
-### Available now: retrieval baselines and the M4 pilot
+### Available now: retrieval baselines and M4 experiments
 
 The repository includes a typed Company Policies loader, metadata-only audit CLI,
 frozen grouped split, CPU BM25 evaluation and tested retrieval metrics. On 100 fixed
@@ -49,6 +49,13 @@ blend reaches **0.199371**, but its paired interval against hybrid includes zero
 this is a secondary transfer diagnostic, not a newly trained router. Candidate coverage
 and incomplete-judgment limitations are audited in the [M4.2 report](docs/m4_rankblend_report.md).
 No new GPU inference or final test. Hybrid remains the reference.
+The native automatic-alpha code from TimelyRAG is now checked on the same validation495:
+BM25 **0.154621 → 0.146812**, CUDA E5 **0.141065 → 0.131546**, hybrid
+**0.198335 → 0.173203** nDCG@10. Two GPU runs reproduce scores/ranks/alpha; all1,485
+automatic top10s match the original function. The native tie policy and reference-prefix
+metrics are kept explicit. This is matched local code reproduction with E5 transfers,
+not reproduction of published whole-benchmark/BGE-M3 numbers. See the
+[M4.3 reference report](docs/m4_timelyrag_reference_report.md). Final test remains closed.
 API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),

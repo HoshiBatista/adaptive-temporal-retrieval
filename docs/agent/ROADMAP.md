@@ -121,6 +121,15 @@ protocol before further changed-utility router fits; keep reference/full-qrel me
 columns and automatic-alpha/oracle outcomes distinct. Candidate coverage remains separate.
 See [report](../m4_rankblend_report.md).
 
+M4.3 measured: pinned native auto-alpha code on validation495, BM25 reproduction and
+CUDA E5/hybrid transfers. All1485 real original auto top10s match; two GPU runs preserve
+score matrices/ranks/alpha/quality. Native full-qrel means BM25 .154621→.146812, E5
+.141065→.131546 (intervals include zero), hybrid .198335→.173203 (negative interval).
+Reference-prefix and native tie policies are explicit; no whole-paper/BGE-M3 claim.
+206 tests with source integration; default202 pass/4 optional skips. No benchmark oracle,
+new fit or final test. Next audit derived event-role/fallback policy on train. See the
+[reference report](../m4_timelyrag_reference_report.md).
+
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 
 ## M5 — Minimal production-style service

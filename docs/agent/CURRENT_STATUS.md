@@ -1,6 +1,6 @@
 # TemporalProof — verified project status and agent handoff
 
-Last verified: **2026-11-27**. Only executed work is recorded below.
+Last verified: **2026-11-28**. Only executed work is recorded below.
 
 ## Current state
 
@@ -12,8 +12,8 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   0.393333. These are development-subset measurements; test is not evaluated.
 - **Local tracking:** optional MLflow 3.18.0 SQLite/artifact store, loopback UI, idempotent
   historical import and `--mlflow` are implemented. M1 validation100, a separate train
-  integration smoke, M2/M3, M4 pilots, grouped-router OOF and frozen validation495
-  are FINISHED locally. The final M2
+  integration smoke, M2/M3, M4 pilots, grouped-router OOF, frozen validation495 and
+  native TimelyRAG comparisons are FINISHED locally. The final M2
   records are tagged `environment_lock_verified`; test remains unevaluated.
 - **M2:** pinned multilingual E5 GPU encoder, FAISS cosine index/cache, RRF fusion and
   insertion-time diagnostic implemented. On the original validation100, nDCG@10 is
@@ -61,23 +61,117 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
   exact whole-experiment CPU replay verified; **188 CPU tests**, Ruff and local MLflow pass.
   No new neural inference, router fit/targets, validation grid search or final test.
   See [report](../m4_rankblend_report.md). Hybrid remains the reference.
+- **M4.3 native TimelyRAG auto code:** pinned original helpers + qrel-free adapter;
+  all495 validation queries/462 groups, full30k corpus. Native BM25 nDCG **0.154621 →
+  0.146812**, E5 **0.141065 → 0.131546**, hybrid **0.198335 → 0.173203**. BM25/E5
+  intervals include zero; hybrid delta **−0.025133**, interval **[−0.037790,−0.012204]**.
+  Full-qrel and reference-prefix metrics stay separate. BM25 is a matched local code
+  reproduction; E5/hybrid are transfers, not BGE-M3/published whole-benchmark results.
+  E5 ran on CUDA; corpus cache reused, no model download. Two GPU runs have identical
+  scores/ranks/qrels/alpha/quality. Exact original-auto top10 parity on1485 real pairs,
+  CPU replay and206 tests with integration enabled; default202 pass/4 optional skips.
+  Seven final MLflow runs FINISHED. No benchmark oracle, fit/targets or test evaluation.
+  See [report](../m4_timelyrag_reference_report.md).
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2, NumPy 2.5.5 and sklearn 1.9.1 (routing extra).
 - **Research results:** M1–M3 validation-subset baselines, M4 train utility targets and
-  grouped-OOF routing/control and frozen development validation comparison. No final test,
+  grouped-OOF routing/control, blending and native auto-code validation comparisons. No final test,
   live routed-service p95 or official whole-benchmark reproduction.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** reproduce the official TimelyRAG baseline under an explicitly matched
-  local protocol before further router fitting. Keep official reference-prefix and full-qrel
-  metric columns separate; evaluate automatic-alpha independently of the gold-dependent
-  best-alpha oracle. Published scores are context, not reproduced/local comparison results.
-  Preserve all negative findings and the closed final test. A later blended-utility router
-  must still generate targets and select blend weights within training folds only.
+- **Next increment:** audit derived query-event selection and insertion/event fallback
+  coverage on train before more router fits. Freeze any derived-time policy before
+  validation; unknown remains unknown. Keep the source auto baseline and negative results.
+  Exact paper-backbone/whole-benchmark reproduction remains unrun (BGE-M3 assets absent),
+  final test closed. Future changed-utility router targets/selection stay train-fold-only.
 
 ## Verified work log
+
+### 2026-11-28 — M4.3 / native TimelyRAG code and GPU E5 transfers
+
+- User requested continued stages with GPU. Followed agreed official-baseline priority:
+  reproduce pinned automatic-alpha code on matched local validation, with CUDA E5 dense/
+  hybrid extensions. BGE-M3 assets are absent; no new large model download or claimed
+  paper-backbone parity. Only five small source/config text files fetched at the already
+  audited commit; all ten reviewed files pinned in `configs/datasets/timelyrag_reference.json`.
+  Original source/data files remain unmodified and ignored; license status unresolved.
+- New modules `retrieval/timelyrag.py`, `evaluation/timelyrag.py`; config,18 CPU cases,
+  explicit analysis/plot/local-log scripts, report and two metadata aggregates. Core
+  baseline enums now allow native reverse-argsort ties/auto method. An explicit callback
+  is required for native ties; ordinary BM25 cannot silently claim the new tie behavior.
+  Existing configs pass. No dependency changes or hidden pipeline/model-wrapper downloads.
+- Execute unchanged reviewed helpers, only original numeric config AST assignments and
+  unchanged two retrieval free-function ASTs for parity; avoid config mkdir, FlagEmbedding
+  import and unused neural constructor. Absolute helper module names restored after load.
+  The own adapter has no qrel argument; no current-query gold enters automatic alpha.
+- Config SHA **062e6a9d5379672152e76e5d8ec0a87107cbe84068b1919bfe8c60681d69e966** before
+  outcomes: seed1729, validation495, source top100/K10, BM25 defaults, fixed source heuristics,
+  E5 FP32/eager/TF32-off/max512, three warmups/concurrency1. Primary BM25 auto vs native
+  BM25; E5/hybrid secondary. No fit, targets, model/alpha selection or benchmark oracle.
+- Preserved original NumPy reversed argsort, not previous doc-ID ties. Old/new hybrid
+  score maps/candidate sets match for all495 queries; ties change nDCG on11 and Recall10
+  on2. Native mean0.198335 differs from old0.198972 only by ties. New paired deltas use
+  the matched new native baseline. Both full-qrel and source prefix-normalized nDCG/MAP
+  are exported separately; no direct paper leaderboard comparison is claimed.
+- Primary full-qrel BM25 **0.1546205380 → 0.1468118910**, delta **−0.007809**, group
+  interval **[−0.017143,0.002364]**, gains/regressions/same **56/74/365**. E5 **0.1410652672 →
+  0.1315464792**, delta **−0.009519**, interval **[−0.021288,0.002741]**,59/71/365.
+  Hybrid **0.1983352490 → 0.1732025258**, delta **−0.025133**, interval
+  **[−0.037790,−0.012204]**,53/95/347. Primary/E5 inconclusive; hybrid negatively shifted.
+- Source prefix nDCG base→auto: BM25 **0.217608→0.208895**, E5 **0.205982→0.190062**,
+  hybrid **0.275678→0.240788**. Candidate Recall100 unchanged per query at **0.368923/
+  0.362357/0.417744**. Official metric functions match within1e-12 on every query.
+- Native QET extraction succeeds on491/495, but takes finest/first expression without
+  role disambiguation. Explicit document event times0; malformed insertions47 stay unknown.
+  Source DIT>=QIT yields NaN distance, then neutral affinity .5; no hard exclusion. Unknown
+  distance candidates BM25/E5/hybrid **12552/11229/12321**, later/equal insertions
+  **12518/11202/12290** out of49500. Preserve qrels and unknown semantics; no valid-time gold.
+- Original free-function auto top10 matches the adapter on36 synthetic cases and all
+  **1485 real query/backbone pairs**. Real parity stops at the first metric boundary,
+  before best-alpha, without changing ranking/helper code or labels. Source oracle runs
+  only on synthetic fixtures. Cached CPU replay matches complete top100 scores/order/
+  alpha/diagnostics, metrics and paired intervals;495 full BM25 score vectors recomputed.
+- GPU collection v1/v2 retained, full score matrices/TREC/qrels/configs/alpha and quality/
+  group intervals identical. Final v2 adds only native-callback guard and actual build
+  telemetry. Original source preserved at ignored `artifacts/m4/timelyrag_reference_source_v1`;
+  source snapshot **d07f1e3dc413d4ff20d64fb9ebcd238af161ac6f7e3851eb6a87cb7e1ccebef4**.
+  Final source **be142ff248e360c2d016d1f3d48af7745a78987ba2eb907290f518eaa43b3a9b**,
+  based on `c71b035` plus recorded stage changes; manifest
+  **7be604b950735ad4993b07b0c06d8d65214a5c26df50401869f72345c6ff751c**.
+- Final fast means/p95 ms: BM25 **71.044/104.421**, GPU E5 **9.814/10.360**, GPU hybrid
+  **87.140/121.217**. Incremental temporal means/p95 **3.437/4.403**, **2.526/2.702**,
+  **5.718/6.064**. Includes adapter date parsing/diagnostics/pool checks; not original-paper
+  timing boundary. Stage sums74.481/12.341/92.858 are modeled, not live pipeline latency.
+- Actual build BM25 **218.283 ms**, FAISS **85.584 ms**, hybrid sum **303.867 ms**, excluding
+  cached encoding. Source cache reused; final query-stage E5 allocator **459.794/486 MiB**
+  allocated/reserved, zero at token cap. No host/process peak/service-throughput claim.
+  An additional independent CPU build profile has separate scope in the aggregate.
+- **206 CPU tests pass** with `TEMPORALPROOF_REFERENCE_TESTS=1`; default **202 pass/4 optional
+  source cases skip**, both executed. Coverage: source hash checks, old/new config contracts,
+  namespace restoration/no config side effects,36 native parity cases, unknown/equal/later
+  neutrality, counterfactual labels not changing rankings, unchanged pools/no test scoring,
+  native callback guard/JSON. Ruff lint/format and diff checks pass. Existing SQLAlchemy
+  third-party warning only. No neural inference/network in normal unit tests.
+- Commands: `uv run --frozen --extra tracking --extra dense --extra routing` with thread1/
+  offline flags for `python -u -m temporalproof.evaluation.timelyrag`; initial/final outputs
+  under `artifacts/m4/timelyrag_reference_validation495_v1` / `_v2`; explicit analyzer with
+  `--earlier-run`, plot/logger scripts and test commands in the [report](../m4_timelyrag_reference_report.md).
+  Final aggregate `experiments/results/m4_timelyrag_reference_validation495_v2.json`; initial
+  aggregate retained. Final PNG/SVG inspected and stored locally. Source/data/model hashes intact.
+- Final MLflow comparison **e4bcabb2988340e49c9d976d3b27d8b5**, plus six validated stage runs,
+  all FINISHED. Native/auto IDs: BM25 **cdbfa0067f0d43b6a17153148e60ba12** /
+  **599fef4087d942e9aceb38486d526d5e**; E5 **37c08effa69844fbaba3f6e2edb92d19** /
+  **b19b4149ea7542ff96d5e6a77a142738**; hybrid **8c6c806c96e548c8be0fad288fe618c4** /
+  **5f2a89dcc6b74678a2cb5c2c3da19b78**. Five root metadata artifacts plus aggregate/figures;
+  standard stage allowlists exclude failure text; no full score matrices/model weights uploaded.
+  Initial seven runs remain separate; final repeated log returns the same seven IDs.
+- Handoff: preserve negative/inconclusive code-baseline findings and hybrid reference.
+  Next audit query-event-role extraction/fallback on train before further router fits.
+  Exact paper/backbone/full-benchmark reproduction, independent transfer and final test remain
+  unrun. No default adoption, generation/API/UI, new fit or commit/push in this task. ADR-020.
+
 
 ### 2026-11-27 — M4.2 / failure audit and conservative rank-blend experiment
 
@@ -768,9 +862,7 @@ Last verified: **2026-11-27**. Only executed work is recorded below.
 
 ## Recommended next task
 
-The first grouped-OOF train500 logistic router is fitted and reproduced, without an
-established quality advantage. Freeze the full-feature/penalty-0 primary model and the
-10%-budget agreement control for validation against fast/deep baselines. Do not replace
-the primary point with a secondary OOF winner after inspecting outcomes; any new method
-is a separately predeclared experiment. Final test remains untouched. M4 is not complete;
-no independent routing validation or service p95 exists. See `docs/m4_router_groupcv_report.md`.
+Audit query-date roles and insertion/event fallback coverage on train before more router
+fits. Inspect a deterministic train-group sample and freeze any explicit-role QET policy
+before validation. Preserve unknowns, original qrels and the native auto baseline. No
+whole-paper/BGE-M3 claim; final test stays closed. See `docs/m4_timelyrag_reference_report.md`.

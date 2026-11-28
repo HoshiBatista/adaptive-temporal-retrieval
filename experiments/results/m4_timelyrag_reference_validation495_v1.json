@@ -1,0 +1,471 @@
+{
+  "analysis_script_sha256": "a1964a47cdc450ebecddadea1ba646e988ec12277c83748902fe43b48623b546",
+  "build_profile": {
+    "bm25_cpu_build_ms": 265.1374580000265,
+    "faiss_build_ms_in_collection": 93.15283299997645,
+    "scope": "independent same-corpus CPU rebuild after collection; not live query time"
+  },
+  "config": {
+    "baseline": {
+      "b": 0.75,
+      "bootstrap_samples": 2000,
+      "epsilon": 0.25,
+      "failure_examples": 5,
+      "k1": 1.5,
+      "method": "hybrid_rrf",
+      "name": "timelyrag_reference_validation495_v1",
+      "partition": "validation",
+      "query_limit": 495,
+      "seed": 1729,
+      "tie_break": "numpy_argsort_reverse_reference_v1",
+      "tokenizer": "python_str_split_v1",
+      "top_k": 100,
+      "warmup_queries": 3
+    },
+    "encoder_batch_size": 16,
+    "encoder_max_length": 512,
+    "encoder_model_id": "intfloat/multilingual-e5-small",
+    "encoder_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "methods": [
+      "bm25",
+      "dense",
+      "hybrid_rrf"
+    ],
+    "oracle_evaluation": false,
+    "primary": "bm25_timelyrag_auto",
+    "reference_manifest_sha256": "dbd0dce4db92abc276d65dafe16166ccafb691fec33fb9f5a70e68461d04bb55",
+    "reference_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+    "rrf_offset": 60,
+    "scope": "matched local validation; BM25 reference code and E5/hybrid extensions, not whole-paper reproduction"
+  },
+  "limitations": [
+    "matched local validation, not reproduction of published whole-benchmark numbers",
+    "E5/hybrid are backbone substitutions, not BGE-M3 results",
+    "original NumPy reverse-argsort tie policy differs from previous local doc-ID ties",
+    "prefix-normalized metrics are separate from full-qrel primary nDCG",
+    "document event times absent; query event times are heuristic, not new gold",
+    "unknown/later-or-equal insertions get neutral affinity, not exclusion",
+    "standard callback index_build_ms=0 is a placeholder; independent build profile above",
+    "stage means measured separately; combined time is modeled, not live latency",
+    "per-stage encoder context precedes queries; final root profile contains actual peak",
+    "source/model redistribution and independent decontamination remain unresolved"
+  ],
+  "manifest_sha256": "ac630ddaac22a96434dba58174b6f498243b3e8b8de9664f86f6ebf573aef95b",
+  "measured_on": "2026-11-28",
+  "official_metric_columns": {
+    "bm25": {
+      "hit_at_10": 0.3373737373737374,
+      "precision_at_10": 0.049090909090909095,
+      "recall_at_10": 0.2062289562289562,
+      "reference_prefix_map_at_10": 0.17457231040564372,
+      "reference_prefix_ndcg_at_10": 0.21760790836071517
+    },
+    "bm25_timelyrag_auto": {
+      "hit_at_10": 0.32525252525252524,
+      "precision_at_10": 0.045858585858585856,
+      "recall_at_10": 0.19545454545454546,
+      "reference_prefix_map_at_10": 0.16797194163860832,
+      "reference_prefix_ndcg_at_10": 0.20889496634791543
+    },
+    "dense": {
+      "hit_at_10": 0.3111111111111111,
+      "precision_at_10": 0.041616161616161614,
+      "recall_at_10": 0.17946127946127946,
+      "reference_prefix_map_at_10": 0.16891333974667305,
+      "reference_prefix_ndcg_at_10": 0.20598169460481866
+    },
+    "dense_timelyrag_auto": {
+      "hit_at_10": 0.2868686868686869,
+      "precision_at_10": 0.03898989898989899,
+      "recall_at_10": 0.16936026936026935,
+      "reference_prefix_map_at_10": 0.1558144941478275,
+      "reference_prefix_ndcg_at_10": 0.19006215252923409
+    },
+    "hybrid_rrf": {
+      "hit_at_10": 0.3898989898989899,
+      "precision_at_10": 0.05757575757575758,
+      "recall_at_10": 0.2420875420875421,
+      "reference_prefix_map_at_10": 0.2327579365079365,
+      "reference_prefix_ndcg_at_10": 0.27567829262490573
+    },
+    "hybrid_rrf_timelyrag_auto": {
+      "hit_at_10": 0.3656565656565657,
+      "precision_at_10": 0.05272727272727273,
+      "recall_at_10": 0.22525252525252526,
+      "reference_prefix_map_at_10": 0.19544187910854577,
+      "reference_prefix_ndcg_at_10": 0.24078766912115426
+    }
+  },
+  "packages": {
+    "faiss-cpu": "1.16.0",
+    "numpy": "2.5.5",
+    "rank-bm25": "0.2.2",
+    "tokenizers": "0.22.2",
+    "torch": "2.10.0",
+    "transformers": "5.5.0"
+  },
+  "python": "3.13.11",
+  "reference_source_manifest": {
+    "files": {
+      "TimelyQABench_datasets.py": {
+        "bytes": 3849,
+        "sha256": "61aa4ce8ac7e632a9d345e27e130b29c4ae68928bff46a8ef73398f04513759f",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/TimelyQABench_datasets.py"
+      },
+      "alpha.py": {
+        "bytes": 3189,
+        "sha256": "2cea013505a21f7c8cd8ef474fdbaededb7cb6a6acacba2c5eca8b9a96a22358",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/alpha.py"
+      },
+      "config.py": {
+        "bytes": 969,
+        "sha256": "a8ee9a9fd734c1d6fa4589e120023b38dd44087cd1a71ea6d072fc248246a3f0",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/config.py"
+      },
+      "io_utils.py": {
+        "bytes": 1338,
+        "sha256": "fc94350576723a32435388c9aaf1d2d75e3581f1cb1223058023380f85c9a282",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/io_utils.py"
+      },
+      "metrics.py": {
+        "bytes": 2073,
+        "sha256": "71b15ee20a99c7b12a2e3e928c86143fc4a2696584ab8ee49799d5e93f853110",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/metrics.py"
+      },
+      "pipeline.py": {
+        "bytes": 9409,
+        "sha256": "44aa011ac15b7f1d7d531608f9377b9ff2a5901cf25ebe0603b8c908aca331ef",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/pipeline.py"
+      },
+      "requirements.txt": {
+        "bytes": 3667,
+        "sha256": "d7af2dad325ff018e06ebfce2b213ddc15b24dba49676c1590891befa2161d10",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/requirements.txt"
+      },
+      "retrieval.py": {
+        "bytes": 7200,
+        "sha256": "2bcee767056192bdb33b78dae7c29e748b70b9fb096e2e782f5d48aca5ae3f19",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/retrieval.py"
+      },
+      "time_scores.py": {
+        "bytes": 3469,
+        "sha256": "e2b93ac4d17bb4d0c986402e86df2e9605482a370e0c6f5dcc44e06f2c8999b8",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/time_scores.py"
+      },
+      "time_utils.py": {
+        "bytes": 5968,
+        "sha256": "25207203792b034886d0c374e2c1a21bd468e135f57afdcadc389c080bcfab58",
+        "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/time_utils.py"
+      }
+    },
+    "license_review": {
+      "archive_license_file": false,
+      "github_license_metadata": null,
+      "repository_license_file_at_revision": false,
+      "status": "unresolved; paper states permissive research release without naming exact terms; no redistribution authorized by this manifest"
+    },
+    "retrieved_on": "2026-11-28",
+    "revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+    "scope": "reviewed reference source; original files remain outside git",
+    "source_repository": "https://github.com/kaist-dmlab/TimelyRAG"
+  },
+  "source_files_sha256": {
+    "pyproject.toml": "d5877f5c99430a46e8e299191c967b7ab42db435633647471c8836bd38727b4a",
+    "src/temporalproof/__init__.py": "e01a1e1c405aefc0ea5c4100689e814857a37664721262861d417952a560b76a",
+    "src/temporalproof/data/__init__.py": "69e98f021a20d514e2a9187ff2d70b6d20e70600f7a84f0bc7b79bffb60f6eb5",
+    "src/temporalproof/data/audit.py": "267c9e27354d347a1c6f85955b41fbd602fb1893e99c7f795e11639af4b592c5",
+    "src/temporalproof/data/source.py": "a185ed920bf6a0441748ecf786f56863166ff35e70fb8acb5f37e72558a50289",
+    "src/temporalproof/data/splits.py": "1de4a79a5cc6852fc0b57da444d4492685e47e372c5fbd95a82b3d3663f3e289",
+    "src/temporalproof/data/timelyqa.py": "f195b3abd11f66f2d2056bc72ec281d66219392454e88bf63a966f999ef51bf3",
+    "src/temporalproof/evaluation/__init__.py": "4a196aeafca34322847096bd24cddbbf23ee314c589bd72f931dbc5a03d08223",
+    "src/temporalproof/evaluation/baseline.py": "eb20bb82647b79307ef921219ebd8dd350e4f48c11dd2299c810e483b98028dc",
+    "src/temporalproof/evaluation/comparison.py": "24bac349eb04060d8a8ad91be654c145c77c948175b1e11dde0bc11c2c259af5",
+    "src/temporalproof/evaluation/metrics.py": "e56791a8c68357c6d5743fa80b5babe5720d77f9665c709b924d69b1ec3e43c4",
+    "src/temporalproof/evaluation/pilot.py": "1dac10252677e999159d5b49471829ad471fd0060524bdbc189d3baaef5e2ff3",
+    "src/temporalproof/evaluation/rank_blend.py": "5938372a4b4261b8a89e46bcc4d889ca34743d88287334090940cb1d1b2d00da",
+    "src/temporalproof/evaluation/reranking.py": "469db2811cacdc009a3d5aa3494e25e1d431b8e03085ce3c26763a71212069ef",
+    "src/temporalproof/evaluation/router_cv.py": "02b8db516ff68e1e73b9572055e749f22d29cf27fb71ec0c357ae7f5be3ba5a2",
+    "src/temporalproof/evaluation/router_validation.py": "3adf9f9993371f66b5239e7d7c4227232f4b5f38ebf7d8e630a7c66afb0e9b73",
+    "src/temporalproof/evaluation/timelyrag.py": "aba3ead958f9ea61747e037e6e28b5c7dec1363b7bfd91f71c30f50bdc25902e",
+    "src/temporalproof/retrieval/__init__.py": "1b45091f8e8240f9effa70057c45e1ccd3c9b1308bf79393a82a2a5302ff29dc",
+    "src/temporalproof/retrieval/bm25.py": "a80a9df389598d4d651631bf980d5ef256b3bd67bee33840e301016fafc58d5c",
+    "src/temporalproof/retrieval/dense.py": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+    "src/temporalproof/retrieval/encoder.py": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+    "src/temporalproof/retrieval/fusion.py": "b987421b879aaac787dd92f504bc43a320c09e3be8b4e7373cb824343acbaadf",
+    "src/temporalproof/retrieval/rank_blend.py": "d9b6bdaac9e1836e5c0a600acef2ded9f000cc068c12f5c28a05a1f9166cc7e7",
+    "src/temporalproof/retrieval/reranker.py": "8c1a5e17c9e8bb176a305d1f317e0279316f9e45e1c541da1a66f61fc70e1aa7",
+    "src/temporalproof/retrieval/timelyrag.py": "e5854d9d734d0158b5cc8e8a7ceae75c9fc14ece0548a028e3109524fe30bd4c",
+    "src/temporalproof/routing/__init__.py": "a95e1155bc0f7b29b0b93e25d50753d5970d181d3bef838bb4a1d27d7278514c",
+    "src/temporalproof/routing/cross_validation.py": "401006871dcdcf46aa1853710c8d5bb0db797d73448110969fa1535437215c82",
+    "src/temporalproof/routing/features.py": "a0b7b6a99db0e295582f57de97f207a2256724f60dc843d20685cd2ca149d6a1",
+    "src/temporalproof/routing/learned.py": "78fb49cc5b36010146fc7a6efdb5973286cbfe1d248f1c7c6d34195cb11cf5a6",
+    "src/temporalproof/routing/targets.py": "aecbecd7926a773be4fc837f0369b0d879068a58c290c26ca66dc344225b7e86",
+    "src/temporalproof/tracking/__init__.py": "4a03a496881cfd0263faa827fec38c56b6de6b7b95858bbd74fb16e98c0de82f",
+    "src/temporalproof/tracking/local.py": "7bd979aa62614c73cc596c415737f33aee1382383e57fe81f2b290abdfb4763b",
+    "uv.lock": "8e0545c8e840019653098f8418dbb111c7d2e27ae56156525e270db3f27fa694"
+  },
+  "source_snapshot_sha256": "d07f1e3dc413d4ff20d64fb9ebcd238af161ac6f7e3851eb6a87cb7e1ccebef4",
+  "summary": {
+    "dense_scope": "E5/hybrid are local extensions; no BGE-M3 weights downloaded",
+    "diagnostics": {
+      "bm25": {
+        "alpha_histogram": {
+          "0.1": 62,
+          "0.2": 230,
+          "0.3": 3,
+          "0.4": 6,
+          "0.5": 107,
+          "0.6": 83,
+          "0.7": 1,
+          "0.8": 3
+        },
+        "base_score_dtype": "float64",
+        "base_score_file": "bm25_base_scores.npy",
+        "base_scores_sha256": "967407902668abd460011e056f0d41ebc7486e16a53e45f9ff5f3bced7fa66eb",
+        "later_or_equal_insert_candidates": 12518,
+        "query_event_time_extracted_count": 491,
+        "unknown_delta_candidates": 12552
+      },
+      "dense": {
+        "alpha_histogram": {
+          "0.1": 20,
+          "0.2": 290,
+          "0.3": 1,
+          "0.4": 8,
+          "0.5": 72,
+          "0.6": 101,
+          "0.8": 3
+        },
+        "base_score_dtype": "float32",
+        "base_score_file": "dense_base_scores.npy",
+        "base_scores_sha256": "bdcc71c14f15dc6475053e6324e22a7779226cd846a1c21dda48c7eae602f3da",
+        "later_or_equal_insert_candidates": 11202,
+        "query_event_time_extracted_count": 491,
+        "unknown_delta_candidates": 11229
+      },
+      "hybrid_rrf": {
+        "alpha_histogram": {
+          "0.1": 23,
+          "0.2": 279,
+          "0.3": 6,
+          "0.4": 8,
+          "0.5": 82,
+          "0.6": 94,
+          "0.8": 3
+        },
+        "base_score_dtype": "float64",
+        "base_score_file": "hybrid_rrf_base_scores.npy",
+        "base_scores_sha256": "e979ee219b760ec834132598d7c7366f0d626447231e34cd40fede373349a454",
+        "later_or_equal_insert_candidates": 12290,
+        "query_event_time_extracted_count": 491,
+        "unknown_delta_candidates": 12321
+      }
+    },
+    "document_event_time_explicit_count": 0,
+    "document_insert_time_unknown_count": 47,
+    "encoder_cache": {
+      "cache_hit": true,
+      "cache_key": "0bf4a201c2b812657c37cb2c78d55346ae9afaba654799891b784c98a7668600",
+      "cache_manifest_sha256": "349551a6a5d7ad32c1cca7f34a527fbf982e70f8a17d1debd6bfaa77e9a89cf9",
+      "dimension": 384,
+      "document_count": 30000,
+      "embedding_build_ms": 32339.5488189999,
+      "faiss_build_ms": 93.15283299997645,
+      "faiss_index": "IndexFlatIP",
+      "files_sha256": {
+        "embeddings.npy": "2f02f24752a914c3b1d215d1854b98f4f5faa2e8a00b6aea90977507808b61c4",
+        "ids.npy": "0c3c5db0d5f99286740c37c9d0e2f594fe84a35b10c4ce66ef5a051a29ff316d"
+      },
+      "identity": {
+        "asset_sha256": {
+          "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+          "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+          "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+          "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "attention": "eager",
+        "batch_size": 16,
+        "cache_implementation_sha256": "a77b1aa25d0c8d30333bb4ee6700bdf6c000aac539b2ba1063c74d2e6905d1bf",
+        "corpus_text_ids_sha256": "a04e30ad0aa464b4340d852d58e8657ddbf2e0374cbd9c17000d3d3f3e393299",
+        "cuda_runtime": "12.8",
+        "dimension": 384,
+        "dtype": "float32",
+        "encoder_implementation_sha256": "c0d13db987b110152eda6b4f70babb33fbb0770df24926ba61d8925dd07c27ba",
+        "environment_lock_sha256": "8e0545c8e840019653098f8418dbb111c7d2e27ae56156525e270db3f27fa694",
+        "faiss_version": "1.16.0",
+        "gpu": "NVIDIA GeForce RTX 5060 Ti",
+        "license": "MIT",
+        "loading_info": {
+          "legacy_position_buffer_checked": true,
+          "missing_keys": [],
+          "unexpected_keys": [
+            "embeddings.position_ids"
+          ]
+        },
+        "max_length": 512,
+        "model_id": "intfloat/multilingual-e5-small",
+        "passage_prefix": "passage: ",
+        "pooling": "attention_mask_mean_then_l2",
+        "query_prefix": "query: ",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "seed": 1729,
+        "tf32": false
+      },
+      "input_count_at_max_length": 1
+    },
+    "encoder_profile": {
+      "asset_sha256": {
+        "config.json": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "special_tokens_map.json": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+        "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+      },
+      "attention": "eager",
+      "batch_size": 16,
+      "cuda_runtime": "12.8",
+      "dimension": 384,
+      "dtype": "float32",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "inputs_at_max_length": 0,
+      "length_count_scope": "potential truncation, includes all calls; not exact truncated count",
+      "license": "MIT",
+      "loading_info": {
+        "legacy_position_buffer_checked": true,
+        "missing_keys": [],
+        "unexpected_keys": [
+          "embeddings.position_ids"
+        ]
+      },
+      "max_length": 512,
+      "model_id": "intfloat/multilingual-e5-small",
+      "passage_prefix": "passage: ",
+      "peak_allocated_bytes": 482128896,
+      "peak_reserved_bytes": 509607936,
+      "pooling": "attention_mask_mean_then_l2",
+      "query_prefix": "query: ",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "seed": 1729,
+      "tf32": false
+    },
+    "metric_policy": "full-qrel nDCG primary; reference-prefix nDCG separate column",
+    "oracle_evaluation": false,
+    "paper_whole_benchmark_reproduced": false,
+    "results": {
+      "bm25": {
+        "auto_metrics": {
+          "ndcg_at_10": 0.1468118910074434,
+          "recall_at_10": 0.19545454545454546,
+          "recall_at_100": 0.36892255892255893,
+          "recall_at_20": 0.26161616161616164,
+          "reference_prefix_ndcg_at_10": 0.20889496634791543
+        },
+        "base_method": "bm25",
+        "base_metrics": {
+          "ndcg_at_10": 0.15462053796247716,
+          "recall_at_10": 0.2062289562289562,
+          "recall_at_100": 0.36892255892255893,
+          "recall_at_20": 0.2585858585858586,
+          "reference_prefix_ndcg_at_10": 0.21760790836071517
+        },
+        "cost_scope": "measured stages collected separately; sum is modeled, not live pipeline latency",
+        "gains_regressions_unchanged": [
+          56,
+          74,
+          365
+        ],
+        "incremental_temporal_mean_ms": 3.401064915150794,
+        "mean_ndcg_delta": -0.007808646955033753,
+        "modeled_additive_mean_ms": 73.73800022020293,
+        "paired_group_bootstrap_95_interval": [
+          -0.01714341745656918,
+          0.0023642324053667163
+        ],
+        "query_count": 495,
+        "source_fast_mean_ms": 70.33693530505214
+      },
+      "dense": {
+        "auto_metrics": {
+          "ndcg_at_10": 0.13154647918030338,
+          "recall_at_10": 0.16936026936026935,
+          "recall_at_100": 0.3623569023569024,
+          "recall_at_20": 0.22424242424242424,
+          "reference_prefix_ndcg_at_10": 0.19006215252923409
+        },
+        "base_method": "dense",
+        "base_metrics": {
+          "ndcg_at_10": 0.14106526720364532,
+          "recall_at_10": 0.17946127946127946,
+          "recall_at_100": 0.3623569023569024,
+          "recall_at_20": 0.22558922558922556,
+          "reference_prefix_ndcg_at_10": 0.20598169460481866
+        },
+        "cost_scope": "measured stages collected separately; sum is modeled, not live pipeline latency",
+        "gains_regressions_unchanged": [
+          59,
+          71,
+          365
+        ],
+        "incremental_temporal_mean_ms": 2.506122511111914,
+        "mean_ndcg_delta": -0.009518788023341943,
+        "modeled_additive_mean_ms": 11.770824674748368,
+        "paired_group_bootstrap_95_interval": [
+          -0.021288409726565396,
+          0.0027408448482696686
+        ],
+        "query_count": 495,
+        "source_fast_mean_ms": 9.264702163636455
+      },
+      "hybrid_rrf": {
+        "auto_metrics": {
+          "ndcg_at_10": 0.1732025258100989,
+          "recall_at_10": 0.22525252525252526,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.2804713804713804,
+          "reference_prefix_ndcg_at_10": 0.24078766912115426
+        },
+        "base_method": "hybrid_rrf",
+        "base_metrics": {
+          "ndcg_at_10": 0.19833524903564204,
+          "recall_at_10": 0.2420875420875421,
+          "recall_at_100": 0.41774410774410775,
+          "recall_at_20": 0.29292929292929293,
+          "reference_prefix_ndcg_at_10": 0.27567829262490573
+        },
+        "cost_scope": "measured stages collected separately; sum is modeled, not live pipeline latency",
+        "gains_regressions_unchanged": [
+          53,
+          95,
+          347
+        ],
+        "incremental_temporal_mean_ms": 5.695371636363574,
+        "mean_ndcg_delta": -0.025132723225543163,
+        "modeled_additive_mean_ms": 91.30886026868706,
+        "paired_group_bootstrap_95_interval": [
+          -0.0377900606406943,
+          -0.012204047269928948
+        ],
+        "query_count": 495,
+        "source_fast_mean_ms": 85.61348863232351
+      }
+    },
+    "router_refitted": false,
+    "test_partition_evaluated": false,
+    "tie_policy": "native reversed numpy.argsort; differs from previous local doc-ID ascending ties",
+    "unknown_policy": "upstream NaN distance => neutral affinity .5; no hard exclusion"
+  },
+  "verification": {
+    "bm25_full_score_vectors_replayed": 495,
+    "exact_base_and_auto_rank_score_alpha_replay_query_pairs": 1485,
+    "official_metric_absolute_tolerance": 1e-12,
+    "official_per_query_metric_parity": true,
+    "oracle_on_benchmark_queries": false,
+    "original_auto_function_top10_parity_pairs": 1485,
+    "paired_group_statistics_replay_exact": true,
+    "second_gpu_run": false,
+    "test_partition_evaluated": false
+  }
+}

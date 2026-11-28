@@ -198,3 +198,28 @@ manual case observations are not new gold labels or validated temporal-hard grou
 Keep dataset text local and original labels unchanged. Cached stage cost sums omit
 unmeasured new fusion/router overhead. Exact replay and188 CPU tests verified; see
 [report](../m4_rankblend_report.md). No new neural inference or final-test evaluation.
+
+
+## M4.3: Matched local native auto-alpha reference
+
+The reviewed TimelyRAG code is pinned separately; original source/evaluation files stay
+unmodified outside Git. Native auto top10 parity holds for36 synthetic cases and all1485
+real query/backbone pairs, stopping original real-query execution at the first metric
+boundary before its oracle. No real best-alpha outputs are generated. Candidate pools/
+qrels and source heuristic coefficients remain unchanged; no fitted targets or new model.
+
+Use native reversed NumPy argsort for this comparison. Full-qrel nDCG is primary;
+reference-prefix nDCG/MAP are separately named. Generic BM25 requires an explicit native
+callback before it can claim this tie policy. Comparisons with past local doc-ID ties
+must expose differences. E5 uses GPU; native BM25 and cheap temporal helpers use CPU.
+
+On validation495, native BM250.154621→0.146812 and E5 .141065→.131546 have group intervals
+containing zero; hybrid .198335→.173203 has a negative group interval. Do not tune alpha
+on validation to replace these findings. Two GPU runs and full cached CPU replay verify
+scores/ranks/alpha/metrics. Paper whole-benchmark/BGE-M3 scores are not reproduced.
+
+Query event extraction491/495 is heuristic finest/first-expression selection, not role-aware
+validity gold. Document event times absent;47 insertion strings unknown. Source later/equal
+insertions become unknown distance with neutral .5 affinity and remain candidates. Preserve
+unknowns and labels; no historical known-at claim. Next audit event-role/fallback inputs on
+train before further routing. Details and exact commands: [report](../m4_timelyrag_reference_report.md).

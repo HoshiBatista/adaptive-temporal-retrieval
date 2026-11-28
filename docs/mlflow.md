@@ -165,3 +165,14 @@ are excluded. A repeated log returned the same ID. The v2 figure only clarifies 
 labels; both figure versions preserve the same measurements. Primary is grouped
 train-fold-selected all-query blend, not the best validation transfer policy. Source
 stage costs omit unmeasured new overhead; no new GPU timing or final-test score is logged.
+
+
+M4.3 native TimelyRAG automatic code comparison is FINISHED as
+**`e4bcabb2988340e49c9d976d3b27d8b5`**, with six standard stage runs listed in the
+[reference report](m4_timelyrag_reference_report.md). `experiments/log_timelyrag_reference.py`
+validates full evidence hashes and the local artifact root. Five explicit metadata files
+plus aggregate/PNG/SVG are logged; no full score matrices, source text, failure text or
+weights. Repeated logging returns the same seven IDs; initial prototype runs remain
+separate. Auto-stage `retrieval_ms.*` is **incremental temporal CPU work only**, not fast
+retrieval or live end-to-end p95. Native ties/reference-prefix metrics and E5-backbone
+substitution are explicit; no paper whole-benchmark or oracle score is claimed.

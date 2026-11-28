@@ -201,3 +201,9 @@ protocol before further router fits. Published paper values are not directly com
 to these local scores; preserve separate reference-prefix/full-qrel metric columns and
 automatic-alpha versus gold-dependent oracle results. No official reproduction has yet
 been executed. The changed-utility router remains a later train-only increment.
+
+
+The subsequent [M4.3 stage](m4_timelyrag_reference_report.md) has now checked the native
+auto code on matched validation, with GPU E5 transfers. This closes the local-code baseline
+gap, while exact whole-paper/backbone reproduction remains unrun. The current next step
+is training-data audit of event-role extraction and fallback before further router fits.

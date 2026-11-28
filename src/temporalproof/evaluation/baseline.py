@@ -43,7 +43,12 @@ class BaselineConfig(BaseModel):
 
     name: str = Field(pattern=r"^[a-zA-Z0-9_-]+$")
     method: Literal[
-        "bm25", "dense", "hybrid_rrf", "hybrid_insertion_time", "fixed_cross_encoder"
+        "bm25",
+        "dense",
+        "hybrid_rrf",
+        "hybrid_insertion_time",
+        "fixed_cross_encoder",
+        "timelyrag_reference_auto",
     ] = "bm25"
     partition: Literal["train", "validation"]
     seed: int = Field(strict=True, ge=0)
@@ -53,7 +58,7 @@ class BaselineConfig(BaseModel):
     b: float = Field(ge=0, le=1)
     epsilon: float = Field(ge=0)
     tokenizer: Literal["python_str_split_v1"]
-    tie_break: Literal["score_desc_doc_id_asc"]
+    tie_break: Literal["score_desc_doc_id_asc", "numpy_argsort_reverse_reference_v1"]
     warmup_queries: int = Field(strict=True, ge=0)
     bootstrap_samples: int = Field(strict=True, ge=100)
     failure_examples: int = Field(strict=True, ge=1)
@@ -173,6 +178,8 @@ def run_baseline(
     by_doc = {doc.global_doc_id: doc for doc in documents}
     if search is not None and query_search is not None:
         raise ValueError("provide only one retrieval callback")
+    if search is None and query_search is None and config.tie_break != "score_desc_doc_id_asc":
+        raise ValueError("native reference ties require an explicit retrieval callback")
     train_ids = split.query_ids("train")
     warmup_id = warmup_query_id
     if warmup_id is None:

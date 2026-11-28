@@ -1,0 +1,64 @@
+{
+  "files": {
+    "TimelyQABench_datasets.py": {
+      "bytes": 3849,
+      "sha256": "61aa4ce8ac7e632a9d345e27e130b29c4ae68928bff46a8ef73398f04513759f",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/TimelyQABench_datasets.py"
+    },
+    "alpha.py": {
+      "bytes": 3189,
+      "sha256": "2cea013505a21f7c8cd8ef474fdbaededb7cb6a6acacba2c5eca8b9a96a22358",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/alpha.py"
+    },
+    "config.py": {
+      "bytes": 969,
+      "sha256": "a8ee9a9fd734c1d6fa4589e120023b38dd44087cd1a71ea6d072fc248246a3f0",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/config.py"
+    },
+    "io_utils.py": {
+      "bytes": 1338,
+      "sha256": "fc94350576723a32435388c9aaf1d2d75e3581f1cb1223058023380f85c9a282",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/io_utils.py"
+    },
+    "metrics.py": {
+      "bytes": 2073,
+      "sha256": "71b15ee20a99c7b12a2e3e928c86143fc4a2696584ab8ee49799d5e93f853110",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/metrics.py"
+    },
+    "pipeline.py": {
+      "bytes": 9409,
+      "sha256": "44aa011ac15b7f1d7d531608f9377b9ff2a5901cf25ebe0603b8c908aca331ef",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/pipeline.py"
+    },
+    "requirements.txt": {
+      "bytes": 3667,
+      "sha256": "d7af2dad325ff018e06ebfce2b213ddc15b24dba49676c1590891befa2161d10",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/requirements.txt"
+    },
+    "retrieval.py": {
+      "bytes": 7200,
+      "sha256": "2bcee767056192bdb33b78dae7c29e748b70b9fb096e2e782f5d48aca5ae3f19",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/retrieval.py"
+    },
+    "time_scores.py": {
+      "bytes": 3469,
+      "sha256": "e2b93ac4d17bb4d0c986402e86df2e9605482a370e0c6f5dcc44e06f2c8999b8",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/time_scores.py"
+    },
+    "time_utils.py": {
+      "bytes": 5968,
+      "sha256": "25207203792b034886d0c374e2c1a21bd468e135f57afdcadc389c080bcfab58",
+      "url": "https://raw.githubusercontent.com/kaist-dmlab/TimelyRAG/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/time_utils.py"
+    }
+  },
+  "license_review": {
+    "archive_license_file": false,
+    "github_license_metadata": null,
+    "repository_license_file_at_revision": false,
+    "status": "unresolved; paper states permissive research release without naming exact terms; no redistribution authorized by this manifest"
+  },
+  "retrieved_on": "2026-11-28",
+  "revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+  "scope": "reviewed reference source; original files remain outside git",
+  "source_repository": "https://github.com/kaist-dmlab/TimelyRAG"
+}

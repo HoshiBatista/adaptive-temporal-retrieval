@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "name": "timelyrag_reference_validation495_v1",
+    "partition": "validation",
+    "seed": 1729,
+    "query_limit": 495,
+    "top_k": 100,
+    "k1": 1.5,
+    "b": 0.75,
+    "epsilon": 0.25,
+    "tokenizer": "python_str_split_v1",
+    "tie_break": "numpy_argsort_reverse_reference_v1",
+    "warmup_queries": 3,
+    "bootstrap_samples": 2000,
+    "failure_examples": 5,
+    "method": "hybrid_rrf"
+  },
+  "encoder_model_id": "intfloat/multilingual-e5-small",
+  "encoder_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "encoder_batch_size": 16,
+  "encoder_max_length": 512,
+  "rrf_offset": 60,
+  "reference_manifest_sha256": "dbd0dce4db92abc276d65dafe16166ccafb691fec33fb9f5a70e68461d04bb55",
+  "reference_revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+  "methods": [
+    "bm25",
+    "dense",
+    "hybrid_rrf"
+  ],
+  "primary": "bm25_timelyrag_auto",
+  "oracle_evaluation": false,
+  "scope": "matched local validation; BM25 reference code and E5/hybrid extensions, not whole-paper reproduction"
+}
