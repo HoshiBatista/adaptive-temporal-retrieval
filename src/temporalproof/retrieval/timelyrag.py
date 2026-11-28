@@ -8,6 +8,7 @@ import importlib.util
 import json
 import sys
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from types import ModuleType
 
@@ -176,11 +177,57 @@ def automatic_rerank(
     query: str,
     query_insert_time: str | None,
 ) -> tuple[list[Hit], dict]:
-    """No gold IDs/outcomes accepted; upstream time parsing/fallback and auto-alpha only.
+    """Unchanged native extraction/fallback; no gold or outcomes accepted."""
+    return _automatic_rerank(
+        reference,
+        scores,
+        document_ids,
+        document_insert_times,
+        document_event_times,
+        query,
+        query_insert_time,
+    )
 
-    Saves all top100 sorted scores; the leading K=10 matches the upstream algorithm.
-    Native NumPy reversed argsort ties are preserved, not replaced by document-ID ties.
-    """
+
+def automatic_rerank_with_qet(
+    reference: ReferenceCode,
+    scores: np.ndarray,
+    document_ids: list[int],
+    document_insert_times: np.ndarray,
+    document_event_times: np.ndarray,
+    query: str,
+    query_insert_time: str | None,
+    *,
+    query_event_time: datetime,
+) -> tuple[list[Hit], dict]:
+    """Override QET only; original text/granularity helpers and coefficients unchanged."""
+    if not isinstance(query_event_time, datetime) or query_event_time.tzinfo is not None:
+        raise ValueError("QET override requires an explicit naive datetime")
+    hits, info = _automatic_rerank(
+        reference,
+        scores,
+        document_ids,
+        document_insert_times,
+        document_event_times,
+        query,
+        query_insert_time,
+        qet_override=query_event_time,
+    )
+    return hits, {**info, "query_event_time_overridden": True}
+
+
+def _automatic_rerank(
+    reference: ReferenceCode,
+    scores: np.ndarray,
+    document_ids: list[int],
+    document_insert_times: np.ndarray,
+    document_event_times: np.ndarray,
+    query: str,
+    query_insert_time: str | None,
+    *,
+    qet_override: datetime | None = None,
+) -> tuple[list[Hit], dict]:
+    """Shared native kernel; explicit override does not replace other time inputs."""
     if (
         len(document_ids) != len(set(document_ids))
         or len(scores) != len(document_ids)
@@ -192,6 +239,8 @@ def automatic_rerank(
     candidates = native_top_indices(scores, reference.config.STAGE1_TOPN)
     qit = utils.to_dt(query_insert_time)
     qet, extracted_granularity = utils.extract_qet_from_query(query, qit_hint=qit)
+    if qet_override is not None:
+        qet = qet_override
     qg = utils.infer_gran_from_query_text(query)
     dg = utils.infer_gran_from_docs(
         document_insert_times, document_event_times, candidates, threshold=0.7

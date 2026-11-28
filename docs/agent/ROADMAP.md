@@ -138,6 +138,14 @@ ablation against fast/native auto, unchanged scores/pools/coefficients/granulari
 check native parity and paired full-qrel quality before validation. No new model/router fit.
 See [audit report](../m4_query_time_audit_report.md).
 
+M4.5 measured: frozen QET-only train500,493 groups; fast0.197016, native auto0.164114,
+role-QET+bypass0.194445. Primary−0.002570 interval[−0.007591,0.001085]; predeclared train
+gate fails. Same-bypass control separates mostly-bypass gain from unestablished date-only
+gain. Full pools/Recall100 unchanged;500+63 original-auto parity cases and20-file quality/
+decision replay;262 source-enabled tests. No new GPU work, validation/test or router fit.
+Next audit document rule-start/effective-date cues on train with unknowns preserved;
+keep hybrid and negative candidates. See [report](../m4_qet_ablation_report.md).
+
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 
 ## M5 — Minimal production-style service

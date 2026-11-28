@@ -248,3 +248,26 @@ Audit selected267/2058 points and preserved fast1791; cached500 pools have no do
 event metadata and25 unknown insertion occurrences. Exact seven-file/manifest replay,
 242 source-enabled tests and metadata-only local logging are verified. No new retrieval
 score, role accuracy, model fit or GPU measurement. See [report](../m4_query_time_audit_report.md).
+
+## M4.5: Frozen train QET intervention and failed gate
+
+Preserve the M4.4 parser/contract. QET-only override shares native kernel, query text/
+granularity and document fallback; exact fast bypass on abstention. Source top100 pools
+use restricted original-corpus order, explicitly distinct from full-corpus NumPy ties.
+Controls fixed before outcomes: unchanged fast, native-fast ties, all-query native auto,
+and native auto on the same selected queries with fast otherwise. These separate tie,
+bypass and QET effects; no selection among secondary validation policies.
+
+The train500/493-group primary role-QET0.194445 vs fast0.197016 delta−0.002570 has group
+interval[−0.007591,0.001085]. The predeclared gate requires positive mean and interval lower
+bound; it fails. Do not invoke validation/test or tune another query-time rule. The gain
+versus all-query native is mostly bypass, while the date-only interval includes zero.
+Train-text engineering makes these development diagnostics, not independent generalization.
+
+Original unchanged auto runs privately to the first metric boundary with a gold-access
+sentinel; no benchmark relevance IDs or best-alpha branch enter parity.500 native/63
+explicit overrides match; all pools/Recall100 and20 non-timing replay files match.262
+source-enabled CPU cases pass. Existing GPU rankings are reused, with incremental CPU
+callback timing only; no new neural or service-latency claim. Details in
+[report](../m4_qet_ablation_report.md). Next audit document effective-date cues on train,
+separately from insertion; do not manufacture applicability gold or filter original qrels.

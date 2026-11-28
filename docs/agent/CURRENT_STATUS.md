@@ -82,6 +82,16 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
   neural inference, new router fit or validation/test role analysis. 242 tests with
   source integration; default238 pass/4 skips. Local metadata-only MLflow FINISHED.
   See [audit report](../m4_query_time_audit_report.md).
+- **M4.5 frozen QET-only train500:** fixed hybrid top100 pools,493 groups. Fast nDCG
+  0.1970158265, native auto0.1641136016, role-QET + bypass0.1944454822. Primary delta
+  −0.0025703443, group95% interval[−0.0075911697,0.0010854833],8/9/483; train gate fails.
+  Native auto with same bypass0.1929177586: QET-only delta+0.0015277235 interval crosses
+  zero. Only63 temporal CPU calls/55 changed points;437 exact fast bypasses. All pools/
+  Recall100 unchanged;211 queries/25 active queries lack positives in pool.20 stable files
+  replay exactly,500 native +63 override top10s match original auto before metric/oracle.
+  262 source-enabled tests; default257 pass/5 skips. No new validation/test, model fit,
+  neural inference or adoption. Metadata-only local MLflow FINISHED. See
+  [report](../m4_qet_ablation_report.md).
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2, NumPy 2.5.5 and sklearn 1.9.1 (routing extra).
@@ -91,14 +101,62 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** frozen QET-only ablation on cached train500 hybrid pools:
-  unchanged fast vs native auto vs explicit-role QET override/fast bypass. Preserve pool,
-  scores, ties, qrels, original granularity helpers, document fallback and source alpha/gates.
-  Check native parity, full-qrel paired group deltas and regressions before new validation.
-  No role-policy tuning on validation; unknown remains unknown. Keep negative baselines.
-  Whole-paper BGE-M3/TEMPO/final test remain unrun. Further router targets stay train-fold-only.
+- **Next increment:** train-only audit of explicit document rule-start/effective dates
+  from passage text, separately from insertion. Use deterministic unlabeled train sampling,
+  preserve ambiguity/unknowns and freeze a policy before any further ranking comparison.
+  Failed query-only candidate stays off validation; no new router fit or test invocation.
+  Keep hybrid, unchanged qrels and all negative baselines. Paper BGE-M3/TEMPO remain unrun.
 
 ## Verified work log
+
+### 2026-11-28 — M4.5 / frozen train500 QET-only ablation
+
+- User requested separate experiment commits/push and next stage. Pushed M4.3 as
+  `c429668` and M4.4 as `2b92b47`; index source snapshots exactly matched the recorded
+  final experiment source hashes. No raw/source/weights or local MLflow store committed.
+- Kept the M4.4 parser/module and frozen contract unchanged. New qrel-free explicit-QET
+  entry point shares the existing native kernel, preserves the old API/diagnostics and
+  original query/granularity/document fallback/coefficients. Pure policy returns original
+  fast order/scores on abstention; never passes None into an insertion fallback.
+- New train-only fixed config/collector,20 synthetic/opt-in cases, aggregate/export and
+  local logging scripts/report. Source top100 restricted original-corpus axis; no new
+  full-corpus score collection. Before outcomes fixed primary gate and two diagnostic
+  controls: native-fast ties and native auto with same text-selected bypass.
+- Train500/493 groups: fast0.1970158265, native-fast0.1962082482, native-auto0.1641136016,
+  same-bypass-native0.1929177586, role-QET0.1944454822. Primary−0.0025703443 interval
+  [−0.0075911697,0.0010854833],8/9/483. Gate requires positive mean/lower bound; fails.
+  New QET versus same-bypass-native+0.0015277235 interval[−0.0037393051,0.0066243556].
+  Versus all-query native+0.0303318805, predominantly bypass, not proven date accuracy.
+- 63 selected (26 as-of/37 policy),55 point changes;437 original fast ranks/scores exact.
+  Candidate pools and Recall1000.4264333333 preserved;211/500 lack positive in pool,
+  including25/63 active. No candidate/qrel filtering or inferred document event metadata.
+- Original unchanged auto body in a private namespace matches500 native and63 override
+  top10s. An access-forbidden sentinel reaches first metric boundary without benchmark
+  gold; original oracle cannot run. All2500 prefix metric cells match reviewed helper.
+- Two CPU cached runs at `artifacts/m4/qet_ablation_train500{,_replay}_v1` have20 byte-
+  identical non-timing files (complete ranks/scores, metrics, decisions, config/plan).
+  Three timing files retained separately; export verifies current source/means/evidence.
+  Incremental callback mean/p50/p95: native0.579/0.576/0.661 ms, role0.168/0.094/0.686 ms,
+  serial concurrency1/thread1/three warmups. Excludes retrieval, I/O, parity and metrics;
+  not live service timing or a new GPU benchmark. Reused existing GPU candidate results.
+- Inspected three largest regressions428/2340/2262 and gains2194/1404/1997; raw text stays
+  ignored. Observations include multiple query-date roles, later-inserted leading gold,
+  changed semantic focus and near-identical unjudged passages. Q1404 has unchanged QET;
+  do not attribute every gain to parser quality. No new judgments or post-outcome tuning.
+- Source47a453949af1b9e9038fa035a5dd42036e47f0ff80ee6a5c9f9a981a0a03e1af,
+  config8b63a18da3c37806eb776bac81d420ff68a2ece4fa99d7b5e153a918d06a3e65,
+  manifest8b1b4c6c613249b87b1901b136d538ac0f802019bbe4204ecc698c87804de056;
+  parent2b92b47 with recorded dirty implementation. Frozen policy remains
+  f9d4cf0912c5f8300276cbec7207322ef0d6f6af70ee858ef9ad7799f290a162.
+- 262 source-enabled CPU tests pass; default257 pass/5 optional skips; lint/format/diff
+  checks pass. Existing SQLAlchemy third-party warning only. Local metadata-only MLflow
+  `f76c35e84ca5423384869823fc830c57` FINISHED; repeated import same ID. Six explicit
+  metadata files plus aggregate, no raw query/diagnostic/inspection text, ranks or qrels.
+- No new validation/test, GPU inference, model download, training or default adoption.
+  Keep negative candidate and fast reference. Next audit document effective-date roles
+  on train, without conflating insertion/applicability; policy frozen before new scoring.
+  Exact commands and limits in [report](../m4_qet_ablation_report.md).
+
 
 ### 2026-11-28 — M4.4 / train-only date roles and frozen QET ablation
 
@@ -914,10 +972,10 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 
 ## Recommended next task
 
-Execute the M4.4 frozen **train500 QET-only ablation** on existing hybrid candidate scores:
-fast, native automatic alpha, and selected explicit-role QET override with fast bypass.
-Keep original query/granularity helpers, document-time fallback, alpha/gates, native ties,
-pool and published qrels fixed. Check native parity and paired source-group quality deltas,
-including regressions. Do not fit another router before this gate; do not tune on
-validation or open final test. This is a heuristic candidate, not established improvement.
-See `docs/m4_query_time_audit_report.md` and the saved `frozen_policy.json` contract.
+The M4.5 train gate failed; do not invoke validation or tune another query-date rule.
+Audit explicit document rule-start/effective-date cues on an unlabeled deterministic
+train-passage sample, separately from insertion timestamps. Preserve ambiguous/range/
+coarse/unknown cases; no synthetic applicability gold, filtering or qrel changes.
+Freeze any derived document-time policy before future ranking evaluation. Keep hybrid
+and the negative source/QET baselines; no new router fit or final-test evaluation.
+See `docs/m4_qet_ablation_report.md`.

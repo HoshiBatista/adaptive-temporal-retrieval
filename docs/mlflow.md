@@ -186,3 +186,14 @@ and source question/mention text. The manifest records hashes without uploading 
 Logged numbers are heuristic coverage counts, not nDCG, accuracy, latency or VRAM.
 The separate exporter verifies all evidence hashes, current source and byte-identical
 replay. See the [audit report](m4_query_time_audit_report.md) for commands and limitations.
+
+M4.5 frozen train500 QET intervention is FINISHED as
+**`f76c35e84ca5423384869823fc830c57`**, imported idempotently by
+`experiments/log_qet_ablation.py`. Six explicit metadata files (`config`, `plan`,
+`frozen_policy`, `summary`, `timing`, `manifest` JSON) go under `qet_ablation/`; only the
+aggregate goes under `analysis/`. Raw query/selection diagnostics, inspection text, ranks,
+qrels and original source files are excluded. Export checks both runs and20 stable-file
+replay; three timing files remain separate. Logged latency is **incremental CPU callback
+work**, not original hybrid retrieval, GPU timing or live service p95. Primary train gate
+failed; no validation/test score is attributed to this stage. See the
+[report](m4_qet_ablation_report.md) for commands, confidence intervals and limitations.

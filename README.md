@@ -62,6 +62,12 @@ otherwise preserves fast ranking; these are heuristic coverage counts, not accur
 retrieval gains. The QET-only train500 comparison is frozen as the next experiment.
 See the [M4.4 audit report](docs/m4_query_time_audit_report.md). No new validation/test
 experiment or neural inference was performed in this audit.
+The frozen QET-only train500 experiment is now measured: role-aware date selection with
+fast bypass reaches nDCG@10 **0.194445**, versus unchanged hybrid **0.197016**. The paired
+group interval includes zero and the predeclared train promotion gate fails. Its gain over
+native auto **0.164114** is mostly explained by bypass; a date-only advantage is not
+established. No new validation/test evaluation or neural inference. See the
+[M4.5 ablation report](docs/m4_qet_ablation_report.md). Hybrid remains the reference.
 API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),

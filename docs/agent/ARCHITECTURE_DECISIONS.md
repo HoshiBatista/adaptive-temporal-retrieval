@@ -422,6 +422,28 @@ Evidence: exact seven-file/manifest replay,242 CPU cases with upstream integrati
 metadata-only local tracking, [audit report](../m4_query_time_audit_report.md). No measured
 retrieval improvement, new router fit or validation/test experiment in this increment.
 
+### ADR-022: QET-only shared kernel and failed train promotion gate
+Date: 2026-11-28
+Status: ACCEPTED experimental boundary; REJECTED for default ranking adoption
+
+Share the existing native auto kernel behind a new explicit naive-QET entry point;
+keep its old public API/diagnostics and all non-QET helpers unchanged. A separate text-only
+policy preserves exact fast ranks/scores on abstention. Pin the preceding parser and
+contract before scoring. Use cached train500 pools, not reconstructed full-corpus scores;
+record restricted corpus-axis NumPy ties and unchanged-fast tie control explicitly.
+
+Before outcomes fix primary role-QET vs fast, positive mean/positive group-lower-bound
+promotion gate, and secondary native-fast/same-bypass-native controls. Native original
+code runs privately to its first metric boundary, with no benchmark gold or oracle.
+All500/63 native/override top10s match;20 non-timing files replay exactly.
+
+Role-QET nDCG0.194445 vs fast0.197016; primary−0.002570 interval crosses zero. Gate fails:
+no new validation/test, tuning or adoption. Improvement over all-query native is mostly
+bypass; date-only advantage is unestablished. Keep source/fast baselines and the removable
+experimental entry point. Next audit document rule dates on train rather than promote
+another query-only heuristic.262 tests with source integration and metadata-only logging
+verified. Evidence: [report](../m4_qet_ablation_report.md).
+
 ## Decision entry template
 
 ```text

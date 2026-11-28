@@ -1,0 +1,19 @@
+{
+  "name": "qet_override_train500_v1",
+  "partition": "train",
+  "seed": 1729,
+  "query_count": 500,
+  "top_k": 100,
+  "bootstrap_samples": 2000,
+  "audit_manifest_sha256": "823be6ec0589e7b1797e5bb16da457bc7e147f58f237987bddcd132ccf0c3598",
+  "frozen_policy_sha256": "f9d4cf0912c5f8300276cbec7207322ef0d6f6af70ee858ef9ad7799f290a162",
+  "reference_manifest_sha256": "dbd0dce4db92abc276d65dafe16166ccafb691fec33fb9f5a70e68461d04bb55",
+  "train_manifest_sha256": "b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049",
+  "pool_axis": "original_corpus_order_restricted_to_frozen_top100",
+  "primary": "role_qet_vs_unchanged_fast",
+  "train_gate": "positive_mean_and_group_interval_lower_above_zero_vs_fast",
+  "validation_evaluation_allowed": false,
+  "test_evaluation_allowed": false,
+  "oracle_alpha": false,
+  "new_neural_inference": false
+}

@@ -209,3 +209,20 @@ and native auto, with explicit fast bypass on abstention. Preserve pool/scores/q
 query/granularity helpers, source alpha/gates, document fallback and native ties. Verify
 native parity, report paired group full-qrel deltas and separate prefix metrics, and pass
 the train gate before new validation. See [audit report](m4_query_time_audit_report.md).
+
+## Frozen train500 QET intervention (M4.5)
+
+The M4.4 parser and contract are unchanged; fixed source pools/scores/qrels, original
+query/granularity helpers, alpha/gates and insertion fallback. Native NumPy ties use
+original corpus order **restricted to the100 frozen candidates**. Outside-pool scores
+are not reconstructed, and unchanged fast retains its old tie order. A native-fast tie
+control and native-auto/same-bypass control are declared before scoring, alongside fast/
+native/role-QET methods. Native parity stops before metrics/oracle with no benchmark gold.
+
+Primary role-QET−fast mean−0.002570, source-group95% interval[−0.007591,0.001085],8/9/483.
+The positive-mean/positive-lower-bound train gate fails, so no new validation/test or
+adoption. Same-bypass control exposes an unestablished date-only gain, rather than
+attributing the whole improvement over weak native auto to role extraction. Keep the
+train-engineered/development caveat, all negative results, full-qrel versus prefix columns,
+unknown document event times and unchanged candidate Recall100. See
+[report](m4_qet_ablation_report.md) for replay, latency boundaries and failure inspection.
