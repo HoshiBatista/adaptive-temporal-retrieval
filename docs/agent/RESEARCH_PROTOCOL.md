@@ -271,3 +271,12 @@ source-enabled CPU cases pass. Existing GPU rankings are reused, with incrementa
 callback timing only; no new neural or service-latency claim. Details in
 [report](../m4_qet_ablation_report.md). Next audit document effective-date cues on train,
 separately from insertion; do not manufacture applicability gold or filter original qrels.
+
+## M4.6: Explicit document rule-start audit
+
+The extractor runs on deduplicated train passage text. The audit excludes text
+shared with either held-out partition under the frozen normalization. Date
+coverage and insertion-day agreement describe extracted statements. They supply
+no applicability judgments. Preserve the frozen parser hashes and original qrels
+when measuring exact policy-start matches in the train500 pools. Report match
+coverage before comparing retrieval quality with hybrid.

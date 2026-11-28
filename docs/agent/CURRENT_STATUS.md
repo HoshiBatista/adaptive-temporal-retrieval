@@ -101,13 +101,27 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** train-only audit of explicit document rule-start/effective dates
-  from passage text, separately from insertion. Use deterministic unlabeled train sampling,
-  preserve ambiguity/unknowns and freeze a policy before any further ranking comparison.
-  Failed query-only candidate stays off validation; no new router fit or test invocation.
-  Keep hybrid, unchanged qrels and all negative baselines. Paper BGE-M3/TEMPO remain unrun.
+- **M4.6 document rule-start audit:** 5,515 of 18,682 distinct training passages have
+  a selected explicit start day. 1,029 selected days differ from insertion and 11
+  have unknown insertion. Inspected 40 deterministic passages. The extractor is
+  frozen and abstains on recognized ranges, qualifications and competing starts.
+  Byte-identical CPU replay and 282 integration-enabled tests passed. Retrieval
+  metrics are pending. See [report](../m4_document_time_audit_report.md).
+- **Next increment:** measure exact query/document policy-start matches in frozen
+  train500 pools before a bounded comparison against unchanged hybrid.
 
 ## Verified work log
+
+### M4.6 / training passage rule-start audit
+
+- Fixed the sample at 40 passages using seed 1729. Removed normalized text shared
+  with either held-out partition and deduplicated train text by lowest document ID.
+- Froze the passage extractor and exported coverage only. The 16 anchors in the
+  inspected sample and 5,515 in the full audit are heuristic extracted statements.
+  The published corpus lacks applicability judgments.
+- Verified exact aggregate replay, 282 tests and local metadata-only MLflow run
+  `8b1c724c338047ebb5580e2c5c54c849`. Commands and scope are in the
+  [report](../m4_document_time_audit_report.md).
 
 ### 2026-11-28 — M4.5 / frozen train500 QET-only ablation
 
@@ -972,10 +986,8 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 
 ## Recommended next task
 
-The M4.5 train gate failed; do not invoke validation or tune another query-date rule.
-Audit explicit document rule-start/effective-date cues on an unlabeled deterministic
-train-passage sample, separately from insertion timestamps. Preserve ambiguous/range/
-coarse/unknown cases; no synthetic applicability gold, filtering or qrel changes.
-Freeze any derived document-time policy before future ranking evaluation. Keep hybrid
-and the negative source/QET baselines; no new router fit or final-test evaluation.
-See `docs/m4_qet_ablation_report.md`.
+Measure coverage of exact rule-start day matches in the frozen train500 candidate
+pools using the pinned M4.4 query and M4.6 document parsers. Use queries with an
+explicit policy-start anchor. Any evaluation should predeclare a bounded candidate
+promotion and compare with unchanged hybrid using the original qrels and pools.
+Keep general as-of applicability out of the exact-start match experiment.

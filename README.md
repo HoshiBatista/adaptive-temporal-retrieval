@@ -68,6 +68,10 @@ group interval includes zero and the predeclared train promotion gate fails. Its
 native auto **0.164114** is mostly explained by bypass; a date-only advantage is not
 established. No new validation/test evaluation or neural inference. See the
 [M4.5 ablation report](docs/m4_qet_ablation_report.md). Hybrid remains the reference.
+M4.6 found a unique explicit rule-start day in **5,515 of 18,682** distinct training
+passages. In **1,029** cases it differed from insertion day. The
+[document-date audit](docs/m4_document_time_audit_report.md) records the frozen
+extractor, coverage and limitations. Its effect on retrieval remains unmeasured.
 API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),

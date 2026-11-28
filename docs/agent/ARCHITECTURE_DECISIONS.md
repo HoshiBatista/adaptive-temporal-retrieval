@@ -444,6 +444,17 @@ experimental entry point. Next audit document rule dates on train rather than pr
 another query-only heuristic.262 tests with source integration and metadata-only logging
 verified. Evidence: [report](../m4_qet_ablation_report.md).
 
+### ADR-023: Passage rule-start day is an independent text signal
+
+Status: ACCEPTED for the training audit.
+
+Represent a unique explicit rule-start day separately from document insertion.
+Keep date mentions and preserve unknowns for unresolved starts. A passage day carries
+no end date or historical availability assertion. The pinned extractor produced
+5,515 selected days in 18,682 distinct training passages, of which 1,029 differed from
+insertion. Future work can test exact policy-start matches as a ranking feature.
+See [audit evidence](../m4_document_time_audit_report.md).
+
 ## Decision entry template
 
 ```text

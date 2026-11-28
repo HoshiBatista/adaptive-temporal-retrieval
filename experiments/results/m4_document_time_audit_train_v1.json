@@ -1,0 +1,106 @@
+{
+  "archive_sha256": "a006481ffdf723d4b15554da2c621ebdfefd59b78ad37c58a633b3b71de247ad",
+  "frozen_extractor": {
+    "contract": "document_rule_start_v1",
+    "date_parser_sha256": "6fccdecf951acdb64cff94c6854cd05d4e2fb5472e51428e407ffc99f6837c4e",
+    "insertion_fallback": false,
+    "module_sha256": "ca244b5f9033dbd48d528cf14b6ccf6df0f9055f6318bdd7a31c5d43545625a7",
+    "output": "unique explicitly stated rule-start day or unknown",
+    "validity_interval_inference": false
+  },
+  "inspection_ids": [
+    15775,
+    19310,
+    31876,
+    26152,
+    14619,
+    37433,
+    18340,
+    24329,
+    12970,
+    37439,
+    27300,
+    37955,
+    14685,
+    20731,
+    39103,
+    16220,
+    14526,
+    30815,
+    35412,
+    16834,
+    38449,
+    30604,
+    22413,
+    26134,
+    14201,
+    18503,
+    10281,
+    29232,
+    28597,
+    38560,
+    14123,
+    21905,
+    25136,
+    24451,
+    19981,
+    39855,
+    37429,
+    12050,
+    33456,
+    38577
+  ],
+  "neural_inference": false,
+  "partition": "train",
+  "population": {
+    "decision_counts": {
+      "multiple_start_dates": 12,
+      "no_dates": 4633,
+      "non_day_start": 54,
+      "other_dates_only": 5697,
+      "range_or_qualified": 2761,
+      "unique_day_start": 5515,
+      "unknown_start": 10
+    },
+    "mention_counts": {
+      "other_date": 11982,
+      "range_or_qualified": 3208,
+      "start_statement": 6103
+    },
+    "passages": 18682,
+    "selected_start_vs_insertion": {
+      "same_calendar_day": 4475,
+      "start_after_insertion_day": 706,
+      "start_before_insertion_day": 323,
+      "unknown": 11
+    }
+  },
+  "retrieval_evaluated": false,
+  "revision": "5213a0c1743f23fd52a258005c3887aaf7e8cd0f",
+  "sample": {
+    "decision_counts": {
+      "no_dates": 8,
+      "other_dates_only": 9,
+      "range_or_qualified": 7,
+      "unique_day_start": 16
+    },
+    "mention_counts": {
+      "other_date": 28,
+      "range_or_qualified": 7,
+      "start_statement": 17
+    },
+    "passages": 40,
+    "selected_start_vs_insertion": {
+      "same_calendar_day": 16
+    }
+  },
+  "sample_policy": "sha256_seed_document-time_min_id_normalized_text_exclude_heldout_v1",
+  "sample_seed": 1729,
+  "script_sha256": "6862d8e8e18af57a8bb4401880f2e3d233d667402c9a85b71071b0a0f40fc583",
+  "source_snapshot_sha256": "f2768c525b12a7dcecce6136dc5f1dcd4fbdc040485aeed7808482c6d6054502",
+  "split_sha256": "4aab958538041f019363a8ffcc5c5d15d030ebe408d869c17063bf9c3c566fa7",
+  "stage": "M4.6",
+  "train_passage_occurrences": 20580,
+  "train_query_count": 2058,
+  "validation_or_test_passages_analyzed": false
+}
