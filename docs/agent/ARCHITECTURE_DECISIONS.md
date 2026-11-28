@@ -398,6 +398,30 @@ establish validity or hard filtering. Audit query-event roles/fallback on train 
 further routing. 206 tests with explicit source integration (202+4 skips by default),
 local tracking and [report](../m4_timelyrag_reference_report.md) verified. Final test closed.
 
+### ADR-021: Text-only date roles with explicit abstention before QET ablation
+Date: 2026-11-28
+Status: ACCEPTED for audited input representation and frozen experiment; no ranking adoption
+
+Separate query-date mention/role analysis from source auto ranking and gold-bearing records.
+Preserve text resolution extents, normalized offsets, missing years and conflicts. A full
+calendar day canonicalizes to naive midnight; year/month bounds are uncertainty, never
+validity intervals or forced precise QET. Prefer unique explicit as-of, otherwise policy;
+coarse/ambiguous/conflicting/comparative targets preserve fast ranking. None must not be
+passed into a native insertion fallback to implement abstention. Policy start/after dates
+are heuristic anchors; no event-time/applicability gold is inferred.
+
+Train-only audit covers2058 queries,40 inspected groups, cached500 top100 pools. Selection
+267/2058 is coverage, not accuracy; source employment-cue matches1478 are not an error rate.
+Unknown insertion/event metadata remains unknown; candidates/qrels are not filtered.
+No new GPU inference or held-out role analysis. Freeze QET-only train500 comparison before
+any retrieval evaluation: preserve native coefficients/gates, ties, original granularity
+helpers, query text, document fallback and pools; retain fast/native controls. Keep this
+module removable if paired quality evidence fails. No default-ranking change.
+
+Evidence: exact seven-file/manifest replay,242 CPU cases with upstream integration,
+metadata-only local tracking, [audit report](../m4_query_time_audit_report.md). No measured
+retrieval improvement, new router fit or validation/test experiment in this increment.
+
 ## Decision entry template
 
 ```text

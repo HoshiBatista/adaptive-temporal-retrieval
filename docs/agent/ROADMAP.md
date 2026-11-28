@@ -130,6 +130,14 @@ Reference-prefix and native tie policies are explicit; no whole-paper/BGE-M3 cla
 new fit or final test. Next audit derived event-role/fallback policy on train. See the
 [reference report](../m4_timelyrag_reference_report.md).
 
+M4.4 audited: train2058/1994 groups and fixed40-group inspection; pure date-role policy
+selects267 precise anchors and abstains1791. Coverage only, no role gold/quality claim.
+Cached train500 pools preserve unknown timestamps and all candidates. Exact two-run replay,
+242 tests with source integration, metadata-only tracking. Next: frozen QET-only train500
+ablation against fast/native auto, unchanged scores/pools/coefficients/granularity/ties;
+check native parity and paired full-qrel quality before validation. No new model/router fit.
+See [audit report](../m4_query_time_audit_report.md).
+
 **Acceptance:** no oracle features at inference; held-out evaluation with reproducible scripts and a meaningful conclusion (positive or negative).
 
 ## M5 — Minimal production-style service

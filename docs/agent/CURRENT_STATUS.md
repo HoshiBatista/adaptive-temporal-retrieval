@@ -13,7 +13,7 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 - **Local tracking:** optional MLflow 3.18.0 SQLite/artifact store, loopback UI, idempotent
   historical import and `--mlflow` are implemented. M1 validation100, a separate train
   integration smoke, M2/M3, M4 pilots, grouped-router OOF, frozen validation495 and
-  native TimelyRAG comparisons are FINISHED locally. The final M2
+  native TimelyRAG comparisons and the train-only date-role audit are FINISHED locally. The final M2
   records are tagged `environment_lock_verified`; test remains unevaluated.
 - **M2:** pinned multilingual E5 GPU encoder, FAISS cosine index/cache, RRF fusion and
   insertion-time diagnostic implemented. On the original validation100, nDCG@10 is
@@ -72,6 +72,16 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
   CPU replay and206 tests with integration enabled; default202 pass/4 optional skips.
   Seven final MLflow runs FINISHED. No benchmark oracle, fit/targets or test evaluation.
   See [report](../m4_timelyrag_reference_report.md).
+- **M4.4 train date-role audit:** all2,058 train queries/1,994 groups; fixed40-group
+  raw/derived inspection. Source QET matches employment-cued mentions in1,478 queries,
+  heuristic coverage only, not gold/error rate. New text-only conservative policy selects
+  267 precise anchors (106 as-of/161 policy), otherwise fast bypass1,791. Train500 cached
+  top100 has50,000 candidate occurrences,25 unknown insertions,12,672 later/equal, no
+  explicit document event metadata; no filtering/relabeling. Two audits have byte-identical
+  seven files/manifest. Frozen prospective QET-only ablation; no retrieval quality measured,
+  neural inference, new router fit or validation/test role analysis. 242 tests with
+  source integration; default238 pass/4 skips. Local metadata-only MLflow FINISHED.
+  See [audit report](../m4_query_time_audit_report.md).
 - **Environment:** `pyproject.toml`, `uv.lock`, Python >=3.11 declared; validation executed
   on Linux x86-64, CPython 3.13.11. Actual locked versions include Pydantic 2.14.4,
   pytest 9.2.0, Ruff 0.16.10, rank-bm25 0.2.2, NumPy 2.5.5 and sklearn 1.9.1 (routing extra).
@@ -81,13 +91,55 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 - **Application:** no API, database, UI, generation or ChangeImpact implementation.
 - **Data:** pinned 5.8 MB archive in ignored `data/raw/`; derived reports in ignored
   `artifacts/`. No source benchmark content is committed; test data is independently authored.
-- **Next increment:** audit derived query-event selection and insertion/event fallback
-  coverage on train before more router fits. Freeze any derived-time policy before
-  validation; unknown remains unknown. Keep the source auto baseline and negative results.
-  Exact paper-backbone/whole-benchmark reproduction remains unrun (BGE-M3 assets absent),
-  final test closed. Future changed-utility router targets/selection stay train-fold-only.
+- **Next increment:** frozen QET-only ablation on cached train500 hybrid pools:
+  unchanged fast vs native auto vs explicit-role QET override/fast bypass. Preserve pool,
+  scores, ties, qrels, original granularity helpers, document fallback and source alpha/gates.
+  Check native parity, full-qrel paired group deltas and regressions before new validation.
+  No role-policy tuning on validation; unknown remains unknown. Keep negative baselines.
+  Whole-paper BGE-M3/TEMPO/final test remain unrun. Further router targets stay train-fold-only.
 
 ## Verified work log
+
+### 2026-11-28 — M4.4 / train-only date roles and frozen QET ablation
+
+- Completed the next small research increment after native-reference regression. Read
+  forty deterministic train-group representatives and their derived annotations; no
+  validation/test query-role parsing, new judgments or retrieval evaluation in this task.
+- Added pure `retrieval/query_time.py`, typed `evaluation/query_time_audit.py`, fixed
+  train config,36 synthetic cases, explicit aggregate/export and local logging scripts,
+  metadata-only result and report. No changes to upstream files, old reference adapter,
+  existing retrieval/reranker outputs, dependencies or split. No new neural/GPU job.
+- Date rules preserve NFKC spans, calendar resolution, missing-year/invalid uncertainty;
+  precise as-of precedes policy, ambiguity/comparison/coarse targets abstain. No insertion
+  year/current-date fallback. Abstention means fast, not calling a fallback reranker with
+  None. Month/year extents describe text resolution, not legal-validity intervals.
+- Train2058:4,485 mentions,14 missing-year; source QET employment cue1,478, only employment
+  1,174. These are heuristic matches, not role accuracy or error-rate gold. Selected267,
+  bypass1,791; source agreement51/difference216 among selected; later-than-query-insert97
+  not clamped. Sample selects4/40; mixed local wording causes extra abstention, documented.
+- Cached train500 source pinned; top100 unchanged.50,000 candidate occurrences,25 unknown
+  insertions,12,672 later/equal insertions; event-time metadata absent. Original train
+  associated20,580 passages have25 unknown insertion strings. No validity/filtering claim.
+- Final v2 handles timezone suffixes attached to Korean words; six synthetic cases
+  cover spaced/attached forms. v1 artifacts/aggregate retained; all per-query annotations
+  and summaries identical to v2. Earlier local run ad8503d34b964cf5aeee6d20778fce85 remains separate.
+- Original and replay artifacts at `artifacts/m4/query_time_roles_train{,_replay}_v2`:
+  all seven manifested files and manifest byte-identical. Source5077e97ff9237bab3f5629cee5f73e54db5b86ef64bc394525a62063e720ec6d,
+  manifest 823be6ec0589e7b1797e5bb16da457bc7e147f58f237987bddcd132ccf0c3598,
+  frozen policyf9d4cf0912c5f8300276cbec7207322ef0d6f6af70ee858ef9ad7799f290a162.
+  Parent c71b035 with existing M4.3 plus current work uncommitted; full file hashes in manifest.
+- Verified242 CPU tests with reviewed-source integration; normal238 pass/4 optional skips.
+  Ruff lint/format and diff checks pass. Existing SQLAlchemy deprecation warning only.
+  Tests include independent role/calendar/uncertainty cases, schema consistency, held-out
+  exclusion, label/answer invariance, deterministic grouping and no timestamp filtering.
+- Metadata-only local MLflow `3399daba47cb48198c4f02c7059f962b` FINISHED; repeated import
+  same ID. Five explicit metadata files plus aggregate, no raw query/date/inspection
+  annotations. Export verifies current implementation and exact replay. No quality/
+  latency/VRAM claims. Exact commands and pins in [report](../m4_query_time_audit_report.md).
+- Froze next train500 comparison: fast/native auto/QET-only override + fast abstention,
+  all other factors unchanged; verify native parity before interpreting full-qrel
+  paired group deltas. No grid, new fit, validation/test or whole-paper reproduction.
+  No commits/pushes in this task.
 
 ### 2026-11-28 — M4.3 / native TimelyRAG code and GPU E5 transfers
 
@@ -862,7 +914,10 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 
 ## Recommended next task
 
-Audit query-date roles and insertion/event fallback coverage on train before more router
-fits. Inspect a deterministic train-group sample and freeze any explicit-role QET policy
-before validation. Preserve unknowns, original qrels and the native auto baseline. No
-whole-paper/BGE-M3 claim; final test stays closed. See `docs/m4_timelyrag_reference_report.md`.
+Execute the M4.4 frozen **train500 QET-only ablation** on existing hybrid candidate scores:
+fast, native automatic alpha, and selected explicit-role QET override with fast bypass.
+Keep original query/granularity helpers, document-time fallback, alpha/gates, native ties,
+pool and published qrels fixed. Check native parity and paired source-group quality deltas,
+including regressions. Do not fit another router before this gate; do not tune on
+validation or open final test. This is a heuristic candidate, not established improvement.
+See `docs/m4_query_time_audit_report.md` and the saved `frozen_policy.json` contract.

@@ -194,3 +194,18 @@ GPU-backed transfers with explicitly substituted backbone; published whole-bench
 results are not reproduced. Two GPU collections preserve scores/ranks/alpha/metrics.
 No qrels/time applicability labels are modified; source unknown .5 affinity is not a
 validity assertion or hard known-at filter. See [report](m4_timelyrag_reference_report.md).
+
+## Query-date role audit and frozen intervention (M4.4)
+
+The audit applies only to train2058 and frozen train500 pools; validation/test role parsing
+and new retrieval evaluation are not run. A fixed40-group original/derived inspection
+informs a conservative text-only policy. Selected267 points /1791 fast bypasses and1478
+source employment-cued selections are heuristic coverage, not gold/accuracy/error rate.
+Missing years/calendar uncertainty and absent document event metadata are not repaired
+from ingestion time. Year/month extents describe resolution, not applicability intervals.
+
+The next train500 experiment is predeclared QET-only intervention versus unchanged fast
+and native auto, with explicit fast bypass on abstention. Preserve pool/scores/qrels,
+query/granularity helpers, source alpha/gates, document fallback and native ties. Verify
+native parity, report paired group full-qrel deltas and separate prefix metrics, and pass
+the train gate before new validation. See [audit report](m4_query_time_audit_report.md).

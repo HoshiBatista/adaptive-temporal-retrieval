@@ -56,6 +56,12 @@ automatic top10s match the original function. The native tie policy and referenc
 metrics are kept explicit. This is matched local code reproduction with E5 transfers,
 not reproduction of published whole-benchmark/BGE-M3 numbers. See the
 [M4.3 reference report](docs/m4_timelyrag_reference_report.md). Final test remains closed.
+A train-only date-role audit now covers all2,058 training queries and a forty-group
+inspection. A conservative text-only policy identifies267 precise query anchors and
+otherwise preserves fast ranking; these are heuristic coverage counts, not accuracy or
+retrieval gains. The QET-only train500 comparison is frozen as the next experiment.
+See the [M4.4 audit report](docs/m4_query_time_audit_report.md). No new validation/test
+experiment or neural inference was performed in this audit.
 API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),

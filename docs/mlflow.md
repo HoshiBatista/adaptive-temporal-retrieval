@@ -176,3 +176,13 @@ weights. Repeated logging returns the same seven IDs; initial prototype runs rem
 separate. Auto-stage `retrieval_ms.*` is **incremental temporal CPU work only**, not fast
 retrieval or live end-to-end p95. Native ties/reference-prefix metrics and E5-backbone
 substitution are explicit; no paper whole-benchmark or oracle score is claimed.
+
+M4.4 train-only date-role audit is FINISHED as
+**`3399daba47cb48198c4f02c7059f962b`**, imported idempotently by
+`experiments/log_query_time_audit.py`. The allowlist contains `config.json`, `plan.json`,
+`summary.json`, `frozen_policy.json`, `manifest.json` under `audit/`, and the aggregate
+under `analysis/`. It excludes `query_audit.jsonl`, `pool_audit.jsonl`, `inspection40.json`
+and source question/mention text. The manifest records hashes without uploading content.
+Logged numbers are heuristic coverage counts, not nDCG, accuracy, latency or VRAM.
+The separate exporter verifies all evidence hashes, current source and byte-identical
+replay. See the [audit report](m4_query_time_audit_report.md) for commands and limitations.

@@ -1,0 +1,19 @@
+{
+  "name": "query_date_roles_train_v1",
+  "partition": "train",
+  "seed": 1729,
+  "query_count": 2058,
+  "sample_count": 40,
+  "sample_policy": "sha256_group_then_min_query_id_v1",
+  "before_characters": 16,
+  "after_characters": 32,
+  "rule_version": "ko_query_date_roles_v1",
+  "precise_policy": "unique_asof_then_policy_day_or_finer_v1",
+  "abstention_action": "keep_fast_ranking",
+  "reference_manifest_sha256": "dbd0dce4db92abc276d65dafe16166ccafb691fec33fb9f5a70e68461d04bb55",
+  "train500_manifest_sha256": "b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049",
+  "train500_query_count": 500,
+  "next_experiment": "fixed_train500_hybrid_pool_qet_override_only",
+  "validation_evaluation_allowed": false,
+  "test_evaluation_allowed": false
+}

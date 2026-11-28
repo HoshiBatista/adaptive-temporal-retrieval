@@ -223,3 +223,28 @@ validity gold. Document event times absent;47 insertion strings unknown. Source 
 insertions become unknown distance with neutral .5 affinity and remain candidates. Preserve
 unknowns and labels; no historical known-at claim. Next audit event-role/fallback inputs on
 train before further routing. Details and exact commands: [report](../m4_timelyrag_reference_report.md).
+
+## M4.4: Train-only role audit and prospective QET intervention
+
+The date-role parser runs on the2058 training queries only; forty source groups are
+hash-selected before inspection. Dataset-wide split verification still loads all records.
+No answer, qrel or expensive outcome enters role decisions. Public counts describe regex
+cues, not temporal gold or accuracy. Keep original question/mention annotations ignored.
+
+Preserve year/month resolution extents without forcing precise dates; missing years stay
+unknown. Invalid longest spans do not shrink to a valid year/month. Prefer unique explicit
+as-of, then policy; ambiguous/conflicting/coarse/comparative cases preserve fast ranking.
+This is a heuristic anchor representation, not inferred legal applicability. No insertion
+backfill, automatic current date, clamping to query insertion or evidence exclusion.
+
+Freeze the parser/module and prospective experiment contract after train-only engineering,
+before new retrieval evaluation. Next train500 ablation changes QET only, with fast/native
+controls; keep candidate scores/IDs, source alpha/gates, original text/granularity helpers,
+document fallback, native ties and qrels fixed. None is not equivalent to abstention in a
+fallback reranker: bypass it and preserve fast. Assess native parity and paired full-qrel
+quality/regressions before new validation. Do not retune the rule or a router on validation.
+
+Audit selected267/2058 points and preserved fast1791; cached500 pools have no document
+event metadata and25 unknown insertion occurrences. Exact seven-file/manifest replay,
+242 source-enabled tests and metadata-only local logging are verified. No new retrieval
+score, role accuracy, model fit or GPU measurement. See [report](../m4_query_time_audit_report.md).
