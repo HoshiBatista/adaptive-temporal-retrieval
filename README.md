@@ -71,7 +71,9 @@ established. No new validation/test evaluation or neural inference. See the
 M4.6 found a unique explicit rule-start day in **5,515 of 18,682** distinct training
 passages. In **1,029** cases it differed from insertion day. The
 [document-date audit](docs/m4_document_time_audit_report.md) records the frozen
-extractor, coverage and limitations. Its effect on retrieval remains unmeasured.
+extractor, coverage and limitations. M4.7 tested one-position promotion for exact
+policy-start matches on train500. It scored **0.197092** versus hybrid **0.197016**
+nDCG@10 and missed its promotion gate. See the [comparison](docs/m4_exact_start_report.md).
 API, product UI and final test remain planned.
 See the [M2 report](docs/m2_retrieval_report.md) for all results and regressions.
 See the [M1 report](docs/m1_bm25_report.md), [data card](docs/dataset_card.md),

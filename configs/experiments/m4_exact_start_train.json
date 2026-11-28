@@ -1,0 +1,16 @@
+{
+  "partition": "train",
+  "seed": 1729,
+  "query_count": 500,
+  "top_k": 100,
+  "bootstrap_samples": 2000,
+  "promotion_rule": "one_adjacent_swap_of_topmost_match_within_top20",
+  "document_scope": "M4.6 normalized-text representatives only",
+  "query_scope": "M4.4 unique policy target with day precision",
+  "primary": "explicit_start_vs_fast_full_qrel_ndcg10",
+  "control": "insertion_calendar_day_with_same_scope_and_promotion",
+  "train_gate": "positive_lower_bound_of_paired_group_95_interval_vs_fast",
+  "train_manifest_sha256": "b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049",
+  "document_audit_sha256": "7459449e924a2f7c1ef16a703d8bd320f07cd5a41f3dfd6478db40930e51e271",
+  "query_audit_sha256": "823be6ec0589e7b1797e5bb16da457bc7e147f58f237987bddcd132ccf0c3598"
+}

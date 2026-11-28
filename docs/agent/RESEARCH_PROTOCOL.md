@@ -280,3 +280,12 @@ coverage and insertion-day agreement describe extracted statements. They supply
 no applicability judgments. Preserve the frozen parser hashes and original qrels
 when measuring exact policy-start matches in the train500 pools. Report match
 coverage before comparing retrieval quality with hybrid.
+
+## M4.7: Exact policy-start comparison
+
+Use the frozen date extractors and train500 pool. With an explicit policy-day
+query, promote the highest matching M4.6 representative one position when
+ranked 2–20. The insertion-date control uses the same scope and swap.
+Primary full-qrel nDCG@10 gain over hybrid is +0.000076, with paired group
+interval [−0.001052, +0.001424]. The train gate failed. Candidate coverage
+was unchanged. Keep the result as evidence about this fixed-pool intervention.

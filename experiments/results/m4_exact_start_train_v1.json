@@ -1,0 +1,129 @@
+{
+  "comparisons": {
+    "explicit_start_vs_fast": {
+      "candidate": "explicit_start",
+      "control": "fast",
+      "gains_regressions_unchanged": [
+        3,
+        3,
+        494
+      ],
+      "mean_ndcg_delta": 7.633637187169889e-05,
+      "paired_group_bootstrap_95_interval": [
+        -0.0010515244942388255,
+        0.00142364836957776
+      ],
+      "query_count": 500
+    },
+    "explicit_start_vs_insertion_day": {
+      "candidate": "explicit_start",
+      "control": "insertion_day",
+      "gains_regressions_unchanged": [
+        3,
+        5,
+        492
+      ],
+      "mean_ndcg_delta": -0.000555895556839934,
+      "paired_group_bootstrap_95_interval": [
+        -0.0024754283624557638,
+        0.0010261518501534608
+      ],
+      "query_count": 500
+    },
+    "insertion_day_vs_fast": {
+      "candidate": "insertion_day",
+      "control": "fast",
+      "gains_regressions_unchanged": [
+        4,
+        1,
+        495
+      ],
+      "mean_ndcg_delta": 0.0006322319287116329,
+      "paired_group_bootstrap_95_interval": [
+        -1.068454690216349e-05,
+        0.001874606574259623
+      ],
+      "query_count": 500
+    }
+  },
+  "config": {
+    "bootstrap_samples": 2000,
+    "control": "insertion_calendar_day_with_same_scope_and_promotion",
+    "document_audit_sha256": "7459449e924a2f7c1ef16a703d8bd320f07cd5a41f3dfd6478db40930e51e271",
+    "document_scope": "M4.6 normalized-text representatives only",
+    "partition": "train",
+    "primary": "explicit_start_vs_fast_full_qrel_ndcg10",
+    "promotion_rule": "one_adjacent_swap_of_topmost_match_within_top20",
+    "query_audit_sha256": "823be6ec0589e7b1797e5bb16da457bc7e147f58f237987bddcd132ccf0c3598",
+    "query_count": 500,
+    "query_scope": "M4.4 unique policy target with day precision",
+    "seed": 1729,
+    "top_k": 100,
+    "train_gate": "positive_lower_bound_of_paired_group_95_interval_vs_fast",
+    "train_manifest_sha256": "b3f0738a8e635f09930ae7aff8dfd368502ba73695c56fcedffe2a3f1d213049"
+  },
+  "config_sha256": "b2cbb41e5319a33d85d9ad9b82dd511ace3d0014f60dc673dc8a376fba3f3863",
+  "coverage": {
+    "audited_representatives_in_pools": 6234,
+    "controls": {
+      "explicit_start": {
+        "matching_occurrences_top100": 187,
+        "queries_already_first": 3,
+        "queries_promoted": 25,
+        "queries_with_match_top100": 33,
+        "queries_with_match_top20": 28
+      },
+      "insertion_day": {
+        "matching_occurrences_top100": 351,
+        "queries_already_first": 11,
+        "queries_promoted": 23,
+        "queries_with_match_top100": 37,
+        "queries_with_match_top20": 34
+      }
+    },
+    "eligible_queries": 37,
+    "explicit_day_documents": 1649,
+    "insertion_day_documents": 6232,
+    "queries_with_different_explicit_and_insertion_rankings": 26,
+    "representative_candidate_occurrences": 30695,
+    "unique_pool_documents": 9963
+  },
+  "explicit_start_primary_deltas": {
+    "101": 0.061442547954487,
+    "1404": -0.08027921085181244,
+    "2471": -0.0109559939712153,
+    "2925": 0.22629438553091674,
+    "636": -0.17319681505689122,
+    "672": 0.014863272330364663
+  },
+  "groups": 493,
+  "metrics": {
+    "explicit_start": {
+      "ndcg_at_10": 0.19709216287069237,
+      "recall_at_10": 0.2511333333333333,
+      "recall_at_100": 0.42643333333333333,
+      "recall_at_20": 0.30676666666666663,
+      "reference_prefix_ndcg_at_10": 0.26404311749226844
+    },
+    "fast": {
+      "ndcg_at_10": 0.19701582649882068,
+      "recall_at_10": 0.2511333333333333,
+      "recall_at_100": 0.42643333333333333,
+      "recall_at_20": 0.30676666666666663,
+      "reference_prefix_ndcg_at_10": 0.2644245761046718
+    },
+    "insertion_day": {
+      "ndcg_at_10": 0.1976480584275323,
+      "recall_at_10": 0.2511333333333333,
+      "recall_at_100": 0.42643333333333333,
+      "recall_at_20": 0.30676666666666663,
+      "reference_prefix_ndcg_at_10": 0.2654435182647492
+    }
+  },
+  "partition": "train",
+  "source_snapshot_sha256": "b405df1367adc488b650568c735972cd5306f51adf1158703cad54edf8aff149",
+  "stage": "M4.7",
+  "test_evaluated": false,
+  "train_gate_passed": false,
+  "validation_evaluated": false
+}

@@ -107,10 +107,26 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
   frozen and abstains on recognized ranges, qualifications and competing starts.
   Byte-identical CPU replay and 282 integration-enabled tests passed. Retrieval
   metrics are pending. See [report](../m4_document_time_audit_report.md).
-- **Next increment:** measure exact query/document policy-start matches in frozen
-  train500 pools before a bounded comparison against unchanged hybrid.
+- **M4.7 exact policy-start comparison:** 37 eligible train500 queries, 33 with
+  a top100 match and 25 adjacent swaps. Full-qrel nDCG@10 0.197092 vs hybrid
+  0.197016 and insertion-day control 0.197648. Paired gain vs hybrid +0.000076
+  with interval [−0.001052, +0.001424]. Train gate failed. 284 tests and exact
+  replay passed. See [report](../m4_exact_start_report.md).
+- **Next increment:** investigate candidate coverage on train. The fixed-pool
+  work found 211 of 500 queries with zero positives in the hybrid top100.
 
 ## Verified work log
+
+### M4.7 / exact policy-start match on train500
+
+- Measured overlap before evaluating the predeclared highest-match one-position
+  promotion within ranks 2–20. Retained the cached candidate scores and qrels.
+  Compared unchanged hybrid and insertion day on the same eligible documents.
+- Three gains and three regressions relative to hybrid. Recall@100 was preserved
+  per query and the positive lower-bound gate failed. Validation and test remain
+  closed for this candidate. Local MLflow `ccf627f04f834f808cbecd1734e72cc8`.
+  Two runs matched byte-for-byte. Full protocol in the
+  [report](../m4_exact_start_report.md).
 
 ### M4.6 / training passage rule-start audit
 
@@ -986,8 +1002,7 @@ Last verified: **2026-11-28**. Only executed work is recorded below.
 
 ## Recommended next task
 
-Measure coverage of exact rule-start day matches in the frozen train500 candidate
-pools using the pinned M4.4 query and M4.6 document parsers. Use queries with an
-explicit policy-start anchor. Any evaluation should predeclare a bounded candidate
-promotion and compare with unchanged hybrid using the original qrels and pools.
-Keep general as-of applicability out of the exact-start match experiment.
+Investigate training candidate coverage. Compare a fixed candidate-generation
+alternative with hybrid at the same top100 budget, report pooled positives on
+the previously audited zero-coverage slice, and keep quality and cost separate.
+M4.7 exact-start remains a completed negative promotion result.
